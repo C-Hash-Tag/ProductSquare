@@ -1,24 +1,44 @@
 angular.module('myApp.data', [])
 .factory('data', ['$rootScope', function($rootScope){
     var factory = {};
-    factory.dataRef = new Firebase('https://productsquare.firebaseio.com/');
+    var Ref = new Firebase('https://productsquare.firebaseio.com/');
 
-    factory.getUsersData = function(){
-      factory.dataRef.child("users").on("value", function(data){
+    factory.createUser = function(email, password, username, name){
+      Ref.child("users").child(username).set({
+        name: name,
+        email: email,
+        username: username
+      })
+
+      Ref.createUser({
+        email: email,
+        password: password
+      }, function(error, userData) {
+        if (error) {
+          console.log("Error creating user:", error);
+        } else {
+          console.log("Successfully created user account with uid:", userData.uid);
+        }
+      });
+    }
+
+    factory.getUsersData = function(name){
+      Ref.child("users").child(name).on("value", function(data){
         var users = data.val();
+        console.log(users);
         $rootScope.$broadcast('gotUsers', users);
       });
     }
 
     factory.getProjectsData = function(){
-      factory.dataRef.child("projects").on("value", function(data){
+      Ref.child("projects").on("value", function(data){
         var projects = data.val();
         $rootScope.$broadcast('gotProjects', projects);
       });
     }
 
     factory.getIdeasData = function(){
-      factory.dataRef.child("ideas").on("value", function(data){
+      Ref.child("ideas").on("value", function(data){
         var ideas = data.val();
         $rootScope.$broadcast('gotIdeas', ideas);
       });
