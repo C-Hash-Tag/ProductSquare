@@ -1,1 +1,0 @@
-var Firebase = require('firebase');
