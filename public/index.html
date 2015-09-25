@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-  </head>
-  <body>
-    <h1>Hi</h1>
 
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.min.js"></script>
+
+  </head>
+  <body ng-app="myApp">
+    <div ng-view></div>
+    <h1>Hi</h1>
+
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-route/angular-route.min.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/main/mainCtrl.js"></script>
+
   </body>
 </html>
