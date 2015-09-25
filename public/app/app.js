@@ -2,6 +2,7 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.main',
   'myApp.data'
+  'myApp.ideaMain',
   ])
 
 .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
@@ -12,8 +13,13 @@ angular.module('myApp', [
       controller: 'MainCtrl',
       controllerAs: 'vm'
     })
+    .when('/ideas', {
+      templateUrl: './app/ideaMain/ideaMain.html',
+      controller: 'IdeaMainCtrl',
+      controllerAs: 'vm'
+    })
 
-  $httpProvider
+  // $httpProvider
   // do something
 }])
 
