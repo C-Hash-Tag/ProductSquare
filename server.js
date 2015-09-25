@@ -22,7 +22,7 @@ var dummyData1 = {
   dateCreated: "10/25/2015"
 }
 
-app.use(express.static("../public"));
+app.use(express.static(__dirname + "/public"));
 
 app.listen(port);
 console.log('Server listening on ' + port);

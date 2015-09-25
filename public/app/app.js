@@ -1,6 +1,7 @@
 angular.module('myApp', [
   'ngRoute',
-  'myApp.main'
+  'myApp.main',
+  'myApp.user'
   ])
 
 .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
