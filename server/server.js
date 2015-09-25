@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var port = process.env.Port || 3000;
-var firebase = require('./firebase.js');
 
 var dummyData = {
   name: "Building a coffee app",
@@ -24,14 +23,6 @@ var dummyData1 = {
 }
 
 app.use(express.static("../public"));
-
-app.post('/projects', function(req, res){
-  firebase.submitProject(dummyData);
-});
-
-app.post('/ideas', function(req, res){
-  firebase.submitIdeas(dummyData1);
-})
 
 app.listen(port);
 console.log('Server listening on ' + port);

@@ -14,9 +14,7 @@ var submitProject = exports.submitProject = function(data){
     likes: data.likes,
     dateCreated: data.dateCreated
   });
-};
-
-var submitIdeas = 
+}; 
 
 // myDataRef.child('users/').push({
 //   email: "ceo@chashtag.com",
