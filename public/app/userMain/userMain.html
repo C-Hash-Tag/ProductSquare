@@ -1,0 +1,24 @@
+<div class="user">
+  <div id="user-name">{{name}}</div>
+  <div id="user-profile-pic">
+    <img src="{{profilePic}}" width="100px" />
+  </div>
+
+  <div id="user-projects" ng-repeat="project in projects" style="display:block;">
+    <div class="user-project">
+      <div class="user-project-name">{{project.name}}</div>
+      <div class="user-project-idea-pic">{{project.pic}}<img src="{{project.pic}}" width="100px" /></div>
+      <div class="user-project-idea">{{project.idea}}</div>
+    </div>
+  </div>
+
+  <div id="user-ideas" ng-repeat="idea in ideas">
+    <div class="user-idea">
+      <div class="user-idea-name">{{idea.name}}</div>
+      <div class="user-idea">{{idea.idea}}</div>
+    </div>
+  </div>
+
+  <h2> Contact </h2>
+  <textarea placeholder="this is a contact form" height="5" width="20"></textarea>
+</div>

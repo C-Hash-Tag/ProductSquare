@@ -3,6 +3,7 @@ angular.module('myApp', [
   'myApp.main',
   'myApp.data',
   'myApp.ideaMain',
+  'myApp.UserMain'
   ])
 
 .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
@@ -16,6 +17,11 @@ angular.module('myApp', [
     .when('/ideas', {
       templateUrl: './app/ideaMain/ideaMain.html',
       controller: 'IdeaMainCtrl',
+      controllerAs: 'vm'
+    })
+    .when('/user/', {
+      templateUrl: './app/userMain/userMain.html',
+      controller: 'UserMainCtrl',
       controllerAs: 'vm'
     })
 
