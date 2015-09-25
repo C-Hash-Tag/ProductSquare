@@ -7,7 +7,8 @@ angular.module('myApp.data', [])
       Ref.child("users").child(username).set({
         name: name,
         email: email,
-        username: username
+        username: username,
+        projects: {}
       })
 
       Ref.createUser({
@@ -20,6 +21,18 @@ angular.module('myApp.data', [])
           console.log("Successfully created user account with uid:", userData.uid);
         }
       });
+    }
+
+    factory.createProject = function(desc, repo, name, username){
+      Ref.child('projects').child(name).set({
+        description: desc,
+        githubRepo: repo,
+        name: name
+      })
+
+      Ref.child('users').child(username).child('projects').child(name).set({
+        githubRepo: repo
+      })
     }
 
     factory.getUsersData = function(name){
