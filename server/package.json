@@ -18,6 +18,7 @@
   "homepage": "https://github.com/C-Hash-Tag/ProductSquare#readme",
   "dependencies": {
     "express": "^4.13.3",
-    "firebase": "^2.2.9"
+    "firebase": "^2.2.9",
+    "firebase-token-generator": "^2.0.0"
   }
 }
