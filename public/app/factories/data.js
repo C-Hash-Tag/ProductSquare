@@ -3,12 +3,28 @@ angular.module('myApp.data', [])
     var factory = {};
     var Ref = new Firebase('https://productsquare.firebaseio.com/');
 
+    function currentDate(){
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //January is 0!
+      var yyyy = today.getFullYear();
+      if(dd<10) {
+        dd='0'+dd
+      } 
+      if(mm<10) {
+          mm='0'+mm
+      } 
+      today = mm+'/'+dd+'/'+yyyy;
+      return today;
+    }
+
     factory.createUser = function(email, password, username, name){
       Ref.child("users").child(username).set({
         name: name,
         email: email,
         username: username,
-        projects: {}
+        projects: {},
+        ideas: {}
       })
 
       Ref.createUser({
@@ -23,11 +39,14 @@ angular.module('myApp.data', [])
       });
     }
 
+    factory.createIdeas = function()
+
     factory.createProject = function(desc, repo, name, username){
       Ref.child('projects').child(name).set({
         description: desc,
         githubRepo: repo,
-        name: name
+        name: name,
+        date: currentDate()
       })
 
       Ref.child('users').child(username).child('projects').child(name).set({
