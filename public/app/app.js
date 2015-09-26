@@ -1,7 +1,7 @@
 angular.module('myApp', [
   'ngRoute',
-  'myApp.main',
   'myApp.data',
+  'myApp.main',
   'myApp.ideaMain',
   'myApp.UserMain'
   ])
