@@ -6,5 +6,6 @@ angular.module('myApp.main', [])
   // data.getUsersData("Tom Clooney");
   // data.createProject("it's cool", "what@github.com", "coffeeApp", "tc1234");
   // data.createIdea('coffeeApp', "hey, lets create some coffee", "tc1234")
+  // data.login("123@gmail.com", "124");
 }])
 
