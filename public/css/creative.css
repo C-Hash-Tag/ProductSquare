@@ -4,6 +4,10 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+ #page-top {
+    background-color: brown;
+ }
+
 html,
 body {
     width: 100%;
