@@ -8,5 +8,10 @@ angular.module('myApp.ideaMain', [])
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
   })
+
+  //TODO: add the username too
+  vm.postIdea = function(name, description){
+    //TODO: submit to firebase
+  }
   
 }])
