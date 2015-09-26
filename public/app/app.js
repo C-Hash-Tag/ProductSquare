@@ -23,6 +23,8 @@ angular.module('myApp', [
     .when('/user/', {
       templateUrl: './app/userMain/userMain.html',
       controller: 'UserMainCtrl',
+      controllerAs: 'vm'
+    })
     .when('/projects', {
       templateUrl: './app/projectMain/projectMain.html',
       controller:'ProjectMainCtrl',

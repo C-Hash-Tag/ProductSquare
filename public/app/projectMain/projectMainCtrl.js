@@ -1,13 +1,17 @@
 angular.module('myApp.projectMain', [])
 
-.controller('ProjectMainCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('ProjectMainCtrl', ['$scope', '$http', 'data', function($scope, $http, data) {
   var vm = this;
-  console.log("this is data", data);
 
   data.getProjectsData();
+  console.log("this is data", data);
 
-  $scope.$on('gotProjects')
-    .then(function(projects) {
+  $scope.projectSubmit = function(projectDescription, githubUrl) {
+    console.log("this is the projectDescription: ", projectDescription);
+    console.log("this is the githubUrl: ",githubUrl);
+  }
+
+  $scope.$on('gotProjects', function (event, projects) {
       console.log('projects retrieved', projects);
     })
 }])
