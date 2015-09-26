@@ -18,6 +18,20 @@ angular.module('myApp.data', [])
       return today;
     }
 
+    factory.login = function(email, password){
+      Ref.authWithPassword({
+          email: email,
+          password: password
+        }, 
+        function(error, authData) {
+          if (error) {
+            console.log("Login Failed!", error);
+          } else {
+            console.log("Authenticated successfully with payload:", authData);
+          }
+      });
+    }
+
     factory.createUser = function(email, password, username, name){
       Ref.child("users").child(username).set({
         name: name,
