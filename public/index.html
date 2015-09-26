@@ -56,12 +56,19 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+  </head>
+
+  <body ng-app="myApp">
+
     <div ng-view></div>
 
     <!-- FireBase -->
     <script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
 
     <!-- Angular -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-route/angular-route.min.js"></script>
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
@@ -71,7 +78,6 @@
     <script src="./app/main/mainCtrl.js"></script>
     <script src="./app/ideaMain/ideaMainCtrl.js"></script>
     <script src="./app/userMain/userMainCtrl.js"></script>
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -89,5 +95,6 @@
     <!-- Custom JavaScsript -->
     <script src="app/navbar/navbar.js"></script>
 
+    <script src="./app/projectMain/projectMainCtrl.js"></script>
   </body>
 </html>
