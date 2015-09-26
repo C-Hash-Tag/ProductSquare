@@ -19,7 +19,7 @@ angular.module('myApp.data', [])
     }
 
     factory.login = function(email, password){
-      Ref.authWithPassword({
+      var a = Ref.authWithPassword({
           email: email,
           password: password
         }, 
@@ -30,6 +30,7 @@ angular.module('myApp.data', [])
             console.log("Authenticated successfully with payload:", authData);
           }
       });
+      console.log(a)
     }
 
     factory.createUser = function(email, password, username, name){
@@ -96,7 +97,11 @@ angular.module('myApp.data', [])
     factory.getIdeasData = function(){
       Ref.child("ideas").on("value", function(data){
         var ideas = data.val();
-        $rootScope.$broadcast('gotIdeas', ideas);
+        var arr = [];
+        for(var prop in ideas){
+          arr.push(ideas[prop]);
+        }
+        $rootScope.$broadcast('gotIdeas', arr);
       });
     };
 
