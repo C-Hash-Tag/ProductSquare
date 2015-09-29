@@ -18,6 +18,21 @@ angular.module('myApp.data', [])
       return today;
     }
 
+    factory.login = function(email, password){
+      var a = Ref.authWithPassword({
+          email: email,
+          password: password
+        }, 
+        function(error, authData) {
+          if (error) {
+            console.log("Login Failed!", error);
+          } else {
+            console.log("Authenticated successfully with payload:", authData);
+          }
+      });
+      console.log(a)
+    }
+
     factory.createUser = function(email, password, username, name){
       Ref.child("users").child(username).set({
         name: name,
@@ -83,10 +98,9 @@ angular.module('myApp.data', [])
       Ref.child("ideas").on("value", function(data){
         var ideas = data.val();
         var arr = [];
-        for (var prop in ideas) {
+        for(var prop in ideas){
           arr.push(ideas[prop]);
         }
-        console.log(arr);
         $rootScope.$broadcast('gotIdeas', arr);
       });
     };
