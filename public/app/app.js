@@ -18,7 +18,7 @@ angular.module('myApp', [
       templateUrl: './app/ideaMain/ideaMain.html',
       controller: 'IdeaMainCtrl',
       controllerAs: 'vm',
-      css: './app/ideaMain/ideaMain.css'
+      // css: './app/ideaMain/ideaMain.css'
     })
     .when('/user/', {
       templateUrl: './app/userMain/userMain.html',

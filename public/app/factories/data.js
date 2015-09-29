@@ -82,7 +82,12 @@ angular.module('myApp.data', [])
     factory.getIdeasData = function(){
       Ref.child("ideas").on("value", function(data){
         var ideas = data.val();
-        $rootScope.$broadcast('gotIdeas', ideas);
+        var arr = [];
+        for (var prop in ideas) {
+          arr.push(ideas[prop]);
+        }
+        console.log(arr);
+        $rootScope.$broadcast('gotIdeas', arr);
       });
     };
 

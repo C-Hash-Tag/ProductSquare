@@ -66,7 +66,7 @@
 </style>
 
 
-<div ng-controller="IdeaMainCtrl as ctrl">
+<div>
   <div class="container">
     <h2>Ideas</h2>
 
@@ -74,14 +74,13 @@
 
     <!-- Neat Flippin Card -->
     <!-- toggle between "class = flipped card" and "class = card" to flip cards-->
-    <div class="cardContainer">
-      <div ng-class="flippedClass" ng-click="toggleClass()">
+    <div class="cardContainer" ng-repeat="idea in vm.newIdeas">
+      <div class="card" ng-class="{'flipped' : idea.flipped === true}" ng-click="idea.flipped = !idea.flipped">
         <div class="front">Click to flip</div>
         <div class="back">Yo, what up?</div>
       </div>
     </div>
     <!-- Neat Flippin Card ends -->
-
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog"> 
@@ -93,9 +92,9 @@
           </div>
 
           <div class="modal-body">
-            <form ng-submit="ctrl.postIdea(ctrl.name, ctrl.description)">
-              <p> Name </p> <input ng-model="ctrl.name">
-              <p> Description </p> <input ng-model="ctrl.description">
+            <form ng-submit="vm.postIdea(vm.name, vm.description)">
+              <p> Name </p> <input ng-model="vm.name">
+              <p> Description </p> <input ng-model="vm.description">
               <button type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
             </form>
           </div>

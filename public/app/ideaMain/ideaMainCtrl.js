@@ -1,30 +1,41 @@
 angular.module('myApp.ideaMain', [])
 
-.controller('IdeaMainCtrl', ['$scope', '$http', 'data', function($scope, $http, data){
+.controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', function($scope, $http, data, $log){
   var vm = this;
 
-  data.getIdeasData()
+  data.getIdeasData();
+
+  vm.newIdeas = [{'text':'a'}, {'text': 'b'}];
 
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
-
-   //TODO: add your new cards here
+   $scope.ideas = ideas;
   })
 
   //TODO: add the username too
-  vm.postIdea = function(name, description){
-    //TODO: submit to firebase
+  $scope.postIdea = function(name, description, username){
+    data.createIdea(name, description, username);
   }
 
-  $scope.flippedClass = "card";
 
-  $scope.toggleClass = function(){
-    if ($scope.flippedClass == "card flipped") {
-      $scope.flippedClass = "card";
-    }
-    else {
-      $scope.flippedClass = "card flipped";
-    } 
+  //vm.options = {flippedClass : 'card', pageSize: 12};
+  //vm.flippedClass = "card";
+
+  // ng-click="toggleClass($index)"
+  vm.toggleClass = function($index){
+    vm.ideas[$index].flipped = !vm[$index].flipped;
+    //if ($scope.idea[$index].flipped === "card flipped") {
+    //  $scope.flippedClass = "card";
+    //}
+    //else {
+    //  $scope.flippedClass = "card flvped";
+    //} 
   }
+  
+  //FOR TESTING PURPOSES  
+  $scope.postIdea("facebook for neighbors", "build a social network", "ting");
+
+  return vm;
+
 
 }])
