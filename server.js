@@ -1,6 +1,18 @@
 var express = require('express');
 var app = express();
 var port = process.env.Port || 3000;
+var bodyParser = require('body-parser');
+
+
+//need a real post route for the api.
+//create email process.
+var credentials = require('./credentials');
+var SENDGRID_API_KEY = credentials.sendgrid.api_key;
+var sendgrid = require('sendgrid')(SENDGRID_API_KEY);
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
 
 var dummyData = {
   name: "Building a coffee app",
@@ -21,6 +33,25 @@ var dummyData1 = {
   name: "Aaron",
   dateCreated: "10/25/2015"
 }
+
+
+
+app.post('/email', function(req, resp) {
+  sendgrid.send({
+    to: req.body.email,
+    from: 'ProductSquare',
+    subject: 'New Message from '+req.body.username,
+    text: req.body.message
+  },
+  function(err, json) {
+    if (err) { return console.error(err); }
+    console.log(json);
+  });
+  console.log("in email post");
+  resp.send("email sent");
+});
+
+
 
 app.use(express.static(__dirname + "/public"));
 

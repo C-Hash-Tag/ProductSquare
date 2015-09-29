@@ -8,7 +8,7 @@ angular.module('myApp.UserMain', [])
   $scope.$on('gotUsers', function(event, user){
     console.log("ideas retrieved!", ideas);
     //set the scope variables here in the future.
-  })
+  });
 
   $scope.name = "Dylan Wright";
   $scope.profilePic = "http://ds-wright.com/images/dylan-wright.png";
@@ -35,6 +35,21 @@ angular.module('myApp.UserMain', [])
       idea: "a useless website where people post useless content, called Tweets, with a maximum of 140 characters, to ensure uselessness."
     }
   ];
+
+  $scope.sendEmail = function(message){
+    $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
+    console.log("in sendMail");
+    $http.post('/email', {
+      email: "dylansamuelwright@gmail.com", //to be populated from the factory.
+      message: message,
+      username: "Dylan" //to be populated from the factory.
+    }).
+    then(function(response) {
+      console.log("email sent");
+    }, function(response) {
+      console.log("email error");
+    });
+  }
 
  
 }])
