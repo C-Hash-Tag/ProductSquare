@@ -35,7 +35,6 @@ angular.module('myApp.UserMain', [])
       idea: "a useless website where people post useless content, called Tweets, with a maximum of 140 characters, to ensure uselessness."
     }
   ];
-  console.log("something in the user contrl");
 
   $scope.sendEmail = function(message){
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
