@@ -1,7 +1,9 @@
 <nav-bar> </nav-bar>
 
 <style type="text/css">
+
 .cardContainer {
+  margin: 15px 0 15px;
   width: 300px;
   height: 200px;
   position: relative;
@@ -52,6 +54,11 @@
   -webkit-font-smoothing: antialiased;
   color: #47525d;
 }
+
+.card .front {
+  font-weight: bold;
+}
+
 .card .back {
   -webkit-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
@@ -71,13 +78,14 @@
     <h2>Ideas</h2>
 
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit your idea</button>
-
+  
+    
     <!-- Neat Flippin Card -->
     <!-- toggle between "class = flipped card" and "class = card" to flip cards-->
     <div class="cardContainer" ng-repeat="idea in vm.newIdeas">
       <div class="card" ng-class="{'flipped' : idea.flipped === true}" ng-click="idea.flipped = !idea.flipped">
-        <div class="front">Click to flip</div>
-        <div class="back">Yo, what up?</div>
+        <div class="front"> {{ idea.name }} </div>
+        <div class="back"> {{ idea.description}} </div>
       </div>
     </div>
     <!-- Neat Flippin Card ends -->
