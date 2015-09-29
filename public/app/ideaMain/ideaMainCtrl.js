@@ -9,13 +9,12 @@ angular.module('myApp.ideaMain', [])
 
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
-
-   //TODO: add your new cards here
+   $scope.ideas = ideas;
   })
 
   //TODO: add the username too
-  vm.postIdea = function(name, description){
-    //TODO: submit to firebase
+  $scope.postIdea = function(name, description, username){
+    data.createIdea(name, description, username);
   }
 
 
@@ -33,5 +32,10 @@ angular.module('myApp.ideaMain', [])
     //} 
   }
   
+  //FOR TESTING PURPOSES  
+  $scope.postIdea("facebook for neighbors", "build a social network", "ting");
+
   return vm;
+
+
 }])
