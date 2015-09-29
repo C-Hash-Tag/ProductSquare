@@ -1,0 +1,107 @@
+<nav-bar> </nav-bar>
+
+<style type="text/css">
+.cardContainer {
+  width: 300px;
+  height: 200px;
+  position: relative;
+  -webkit-perspective: 800px;
+  -ms-perspective: 800px;
+  perspective: 800px;
+  border-radius: 4px;
+}
+.card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+.card div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  background: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #47525d;
+}
+.card .back {
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.card.flipped {
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+  
+</style>
+
+
+<div>
+  <div class="container">
+    <h2>Ideas</h2>
+
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit your idea</button>
+
+    <!-- Neat Flippin Card -->
+    <!-- toggle between "class = flipped card" and "class = card" to flip cards-->
+    <div class="cardContainer" ng-repeat="idea in vm.newIdeas">
+      <div class="card" ng-class="{'flipped' : idea.flipped === true}" ng-click="idea.flipped = !idea.flipped">
+        <div class="front">Click to flip</div>
+        <div class="back">Yo, what up?</div>
+      </div>
+    </div>
+    <!-- Neat Flippin Card ends -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog"> 
+      <div class="modal-dialog">
+        <div class="modal-content"> <!-- Modal content-->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Idea</h4>
+          </div>
+
+          <div class="modal-body">
+            <form ng-submit="vm.postIdea(vm.name, vm.description)">
+              <p> Name </p> <input ng-model="vm.name">
+              <p> Description </p> <input ng-model="vm.description">
+              <button type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+        </div> <!-- Modal content-->
+      </div>
+    </div> 
+    <!-- Modal ends -->
+
+  </div>
+</div>
