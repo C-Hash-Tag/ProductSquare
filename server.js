@@ -47,6 +47,7 @@ app.post('/email', function(req, resp) {
     if (err) { return console.error(err); }
     console.log(json);
   });
+  console.log("in email post");
   resp.send("email sent");
 });
 
