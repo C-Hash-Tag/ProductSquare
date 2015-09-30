@@ -2,7 +2,7 @@
 <div>
 <!-- Nav Bar will sit here -->
 <div class="mainContainer">
-  <h1>This will be the Main Project page</h1>
+  <h1>Projects</h1>
   <!-- Feature sort and Create a Project -->
   <div class="btn-group" role="group" aria-label="project sorting">
   <button type="button" class="btn btn-default">Most Recent</button>
@@ -10,8 +10,7 @@
   <button type="button" class="btn btn-default">Staff Picks</button>
   </div>
 
-  <div class="container">
-  <h2>Modal Example</h2>
+  <div class="container" style="margin-left=0px">
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Submit A Project</button>
 
@@ -50,31 +49,18 @@
   </div>
   <!-- List View of Projects here -->
   <div class="projectList">
-    <div class="row">
+    <div class="row"  ng-repeat="project in vm.newProjects">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
          <img src="..." alt="...">
           <div class="caption">
-          <h3>Project #1</h3>
-          <p>Here is a brief summary of the project</p>
-          <p><a href="#" class="btn btn-primary" role="button">Modal Click Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          <h3 class="projectName"> {{project.projName}} </h3>
+          <p class="projectDescription"> {{project.description}} </p>
+          <p><a href="https://www.google.com" class="btn btn-primary" role="button">Learn More About {{project.projName}}</a></p>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-         <img src="..." alt="...">
-          <div class="caption">
-          <h3>Project #2</h3>
-          <p>Here is a brief summary of the project</p>
-          <p><a href="#" class="btn btn-primary" role="button">Modal Click Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
   <!-- End Project List View Here -->
 </div>
