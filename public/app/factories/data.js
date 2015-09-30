@@ -101,6 +101,7 @@ angular.module('myApp.data', [])
         for(var prop in ideas){
           arr.push(ideas[prop]);
         }
+        console.log("inside getIdeasData factory", arr)
         $rootScope.$broadcast('gotIdeas', arr);
       });
     };
