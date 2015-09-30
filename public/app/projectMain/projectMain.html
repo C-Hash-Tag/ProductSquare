@@ -1,0 +1,67 @@
+<nav-bar> </nav-bar>
+
+<div>
+<!-- Nav Bar will sit here -->
+<div class="mainContainer">
+  <h1>Projects</h1>
+  <!-- Feature sort and Create a Project -->
+  <div class="btn-group" role="group" aria-label="project sorting">
+    <button type="button" class="btn btn-default">Most Recent</button>
+    <button type="button" class="btn btn-default">Most Liked</button>
+    <button type="button" class="btn btn-default">Staff Picks</button>
+  </div>
+
+  <div class="container" style="margin-left=0px">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Submit A Project</button>
+
+    <!-- Project Modal -->
+    <div id="myModal" class="modal fade"  role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Submit Your Project</h4>
+          </div>
+          <div class="modal-body">
+            <form ng-submit="projectSubmit(projectDescription, githubUrl, projName)">
+              Project Name:<br>
+              <input ng-model="projName" type="text" placeholder="Name your project">
+              <br>
+              Project Description:<br>
+              <input ng-model="projectDescription" type="text" placeholder="Briefly describe your project">
+              <br>
+              Github Url:<br>
+              <input ng-model="githubUrl" type="text" placeholder="Github Url">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button id="submit" type="button" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- List View of Projects here -->
+  <div class="projectList">
+    <div class="row"  ng-repeat="project in vm.newProjects">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+         <img src="..." alt="...">
+          <div class="caption">
+          <h3 class="projectName"> {{project.projName}} </h3>
+          <p class="projectDescription"> {{project.description}} </p>
+          <p><a href="https://www.google.com" class="btn btn-primary" role="button">Learn More About {{project.projName}}</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Project List View Here -->
+</div>
+
+<!-- Footer will sit here -->
