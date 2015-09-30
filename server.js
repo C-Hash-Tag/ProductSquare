@@ -1,13 +1,18 @@
 var express = require('express');
 var app = express();
-var port = process.env.Port || 3000;
+var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 
 
-//need a real post route for the api.
-//create email process.
-var credentials = require('./credentials');
-var SENDGRID_API_KEY = credentials.sendgrid.api_key;
+//check if the server is on the Heroku environment, if not, we're on local - include the credentials file
+if (process.env.SENDGRID_API_KEY !== undefined){
+  var credentials = require('./credentials');
+  var SENDGRID_API_KEY = credentials.sendgrid.api_key;
+}
+else { //if we are on Heroku, just set the environment variable to the heroku environ variable
+  var SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+}
+
 var sendgrid = require('sendgrid')(SENDGRID_API_KEY);
 
 app.use(bodyParser.urlencoded({extended: true}));
