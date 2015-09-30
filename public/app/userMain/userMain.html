@@ -1,0 +1,52 @@
+<nav-bar> </nav-bar>
+
+<div class="user">
+  <div id="user-name">{{name}}</div>
+  <div id="user-profile-pic">
+    <img src="{{profilePic}}" width="100px" />
+  </div>
+
+  <div id="user-projects" ng-repeat="project in projects" style="display:block;">
+    <div class="user-project">
+      <div class="user-project-name">{{project.name}}</div>
+      <div class="user-project-idea-pic"><img src="{{project.pic}}" width="100px" /></div>
+      <div class="user-project-idea">{{project.idea}}</div>
+    </div>
+  </div>
+
+  <div id="user-ideas" ng-repeat="idea in ideas">
+    <div class="user-idea">
+      <div class="user-idea-name">{{idea.name}}</div>
+      <div class="user-idea">{{idea.idea}}</div>
+    </div>
+  </div>
+
+  <h2> Contact </h2>
+    <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">Contact {{name}}</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="contactModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Contact {{name}}</h4>
+        </div>
+        <div class="modal-body">
+         <form ng-submit="sendEmail(message)">
+           <textarea ng-model="message" placeholder="Post your message to Dylan here." style="height:100px; width:500px;"></textarea>
+           <input type="submit" value="Send" class="btn btn-default" />
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
