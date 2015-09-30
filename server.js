@@ -3,7 +3,8 @@ var app = express();
 var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 var aws = require('aws-sdk');
-
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 //check if the server is on the Heroku environment, if not, we're on local - include the credentials file
 if (process.env.SENDGRID_API_KEY === undefined){
@@ -67,10 +68,7 @@ app.post('/sign_s3', function(req, res){
   });
 });
 
-
-
 app.use(express.static(__dirname + "/public"));
-
 
 app.listen(port);
 console.log('Server listening on ' + port);
