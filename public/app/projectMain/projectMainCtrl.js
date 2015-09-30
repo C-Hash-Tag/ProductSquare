@@ -6,9 +6,10 @@ angular.module('myApp.projectMain', [])
   data.getProjectsData();
   console.log("this is data", data);
 
-  $scope.projectSubmit = function(projectDescription, githubUrl) {
-    console.log("this is the projectDescription: ", projectDescription);
-    console.log("this is the githubUrl: ",githubUrl);
+  $scope.projectSubmit = function(projectDescription, githubUrl, projName) {
+    // console.log("this is the projectDescription: ", projectDescription);
+    // console.log("this is the githubUrl: ",githubUrl);
+    data.createProject(projectDescription, githubUrl, projName)
   }
 
   $scope.$on('gotProjects', function (event, projects) {
