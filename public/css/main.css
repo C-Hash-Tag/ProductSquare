@@ -30,3 +30,7 @@
   margin-bottom: 50px;
 }
 
+a:hover {
+  text-decoration:none;
+}
+
