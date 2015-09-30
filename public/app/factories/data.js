@@ -53,14 +53,15 @@ angular.module('myApp.data', [])
       });
     };
 
-    factory.createIdea = function(name, desc, username){
-      Ref.child("ideas").child(name).set({
-        name: name,
+    factory.createIdea = function(ideaName, desc, username){
+      Ref.child("ideas").child(ideaName).set({
+        ideaName: ideaName,
         description: desc,
         date: currentDate()
+        user: username
       });
 
-      Ref.child('users').child(username).child('ideas').child(name).set({
+      Ref.child('users').child(username).child('ideas').child(ideaName).set({
         idea: desc
       })
     };
@@ -79,11 +80,10 @@ angular.module('myApp.data', [])
       })
     };
 
-    factory.getUsersData = function(name){
-      Ref.child("users").child(name).on("value", function(data){
-        var users = data.val();
-        console.log(users);
-        $rootScope.$broadcast('gotUsers', users);
+    factory.getUsersData = function(username){
+      Ref.child("users").child(username).on("value", function(data){
+        var user = data.val();
+        $rootScope.$broadcast('gotUsers', user);
       });
     };
 
