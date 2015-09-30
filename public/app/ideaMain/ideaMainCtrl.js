@@ -5,37 +5,23 @@ angular.module('myApp.ideaMain', [])
 
   data.getIdeasData();
 
-  vm.newIdeas = [{'text':'a'}, {'text': 'b'}];
+  vm.newIdeas 
 
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
-   $scope.ideas = ideas;
+   vm.newIdeas = ideas;
+   $scope.$apply();
   })
 
   //TODO: add the username too
-  $scope.postIdea = function(name, description, username){
-    data.createIdea(name, description, username);
+  vm.postIdea = function(name, description, username){
+    data.createIdea(name, description, 'username');
   }
 
-
-  //vm.options = {flippedClass : 'card', pageSize: 12};
-  //vm.flippedClass = "card";
-
-  // ng-click="toggleClass($index)"
-  vm.toggleClass = function($index){
-    vm.ideas[$index].flipped = !vm[$index].flipped;
-    //if ($scope.idea[$index].flipped === "card flipped") {
-    //  $scope.flippedClass = "card";
-    //}
-    //else {
-    //  $scope.flippedClass = "card flvped";
-    //} 
-  }
-  
   //FOR TESTING PURPOSES  
-  $scope.postIdea("facebook for neighbors", "build a social network", "ting");
+  vm.postIdea("trello222", "trello for wizards", "ting");
+
 
   return vm;
-
 
 }])
