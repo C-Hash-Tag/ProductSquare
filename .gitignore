@@ -28,6 +28,4 @@ bower_components/
 .floo
 .flooignore
 
-credentials.js
-
 .DS_Store
