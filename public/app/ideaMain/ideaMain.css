@@ -1,4 +1,5 @@
 .cardContainer {
+  margin: 15px 0 15px;
   width: 300px;
   height: 200px;
   position: relative;
@@ -49,15 +50,18 @@
   -webkit-font-smoothing: antialiased;
   color: #47525d;
 }
+
+.card .front {
+  font-weight: bold;
+}
+
 .card .back {
   -webkit-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
   transform: rotateY(180deg);
-  color: blue;
 }
 .card.flipped {
   -webkit-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
   transform: rotateY(180deg);
-  color: red;
 }

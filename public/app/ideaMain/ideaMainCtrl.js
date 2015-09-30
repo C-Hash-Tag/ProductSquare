@@ -16,17 +16,12 @@ angular.module('myApp.ideaMain', [])
   //TODO: add the username too
   vm.postIdea = function(name, description, username){
     data.createIdea(name, description, 'username');
-    console.log("args", arguments);
   }
 
-  vm.test = function(){
-    console.log("test called!")
-  }
   //FOR TESTING PURPOSES  
   vm.postIdea("trello222", "trello for wizards", "ting");
 
-  vm.testString = "hello";
-  return vm;
 
+  return vm;
 
 }])
