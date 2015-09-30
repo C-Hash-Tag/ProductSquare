@@ -34,3 +34,11 @@ a:hover {
   text-decoration:none;
 }
 
+#aboutUs {
+  text-align: center;
+}
+
+#aboutUs img{
+  height: 70px;
+  width: 70px;
+}
