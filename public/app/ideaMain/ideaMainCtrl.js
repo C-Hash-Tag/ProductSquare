@@ -3,7 +3,7 @@ angular.module('myApp.ideaMain', [])
 .controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', function($scope, $http, data, $log){
   var vm = this;
   
-  //NOTE: set the listener before you get the data
+  //NOTE: set the listener before you get the dat
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
    vm.newIdeas = ideas;
