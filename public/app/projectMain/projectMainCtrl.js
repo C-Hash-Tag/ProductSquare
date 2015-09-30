@@ -8,11 +8,13 @@ angular.module('myApp.projectMain', [])
       vm.newProjects = projects;
       $scope.$apply();
     })
+  vm.getProjectsData = function() {
+    data.getProjectsData();
+  }
 
-  vm.newProjects
+  vm.getProjectsData();
 
-  data.getProjectsData();
-  console.log("this is data", data);
+  vm.newProjects;
 
   $scope.projectSubmit = function(projectDescription, githubUrl, projName) {
     console.log("this is the projectDescription: ", projectDescription);
@@ -20,6 +22,8 @@ angular.module('myApp.projectMain', [])
     console.log("this is projName", projName);
     data.createProject(projectDescription, githubUrl, projName)
   }
+
+  return vm;
 
 }])
 
