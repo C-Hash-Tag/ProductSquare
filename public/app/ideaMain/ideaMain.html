@@ -89,7 +89,7 @@
     <!-- toggle between "class = flipped card" and "class = card" to flip cards-->
     <div class="cardContainer" ng-repeat="idea in vm.newIdeas">
       <div class="card" ng-class="{'flipped' : idea.flipped === true}" ng-click="idea.flipped = !idea.flipped">
-        <div class="front"> {{ idea.name }} </div>
+        <div class="front"> {{ idea.ideaName }} </div>
         <div class="back"> {{ idea.description}} </div>
       </div>
     </div>
