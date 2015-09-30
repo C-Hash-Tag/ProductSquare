@@ -3,6 +3,14 @@ angular.module('myApp.projectMain', [])
 .controller('ProjectMainCtrl', ['$scope', '$http', 'data', function($scope, $http, data) {
   var vm = this;
 
+  $scope.$on('gotProjects', function (event, projects) {
+      console.log('projects retrieved', projects);
+      vm.newProjects = projects;
+      $scope.$apply();
+    })
+
+  vm.newProjects
+
   data.getProjectsData();
   console.log("this is data", data);
 
@@ -13,8 +21,5 @@ angular.module('myApp.projectMain', [])
     data.createProject(projectDescription, githubUrl, projName)
   }
 
-  $scope.$on('gotProjects', function (event, projects) {
-      console.log('projects retrieved', projects);
-    })
 }])
 
