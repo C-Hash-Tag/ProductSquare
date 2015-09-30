@@ -1,23 +1,23 @@
 <nav-bar> </nav-bar>
+
 <div>
 <!-- Nav Bar will sit here -->
 <div class="mainContainer">
   <h1>Projects</h1>
   <!-- Feature sort and Create a Project -->
   <div class="btn-group" role="group" aria-label="project sorting">
-  <button type="button" class="btn btn-default">Most Recent</button>
-  <button type="button" class="btn btn-default">Most Liked</button>
-  <button type="button" class="btn btn-default">Staff Picks</button>
+    <button type="button" class="btn btn-default">Most Recent</button>
+    <button type="button" class="btn btn-default">Most Liked</button>
+    <button type="button" class="btn btn-default">Staff Picks</button>
   </div>
 
   <div class="container" style="margin-left=0px">
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Submit A Project</button>
 
-  <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <!-- Project Modal -->
+    <div id="myModal" class="modal fade"  role="dialog">
       <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -34,19 +34,18 @@
               <br>
               Github Url:<br>
               <input ng-model="githubUrl" type="text" placeholder="Github Url">
-              <br><br>
-              <button id="submit">Submit</button>
             </form>
           </div>
           <div class="modal-footer">
+            <button id="submit" type="button" class="btn btn-primary">Submit</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
-
       </div>
-  </div>
+    </div>
 
   </div>
+
   <!-- List View of Projects here -->
   <div class="projectList">
     <div class="row"  ng-repeat="project in vm.newProjects">
