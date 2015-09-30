@@ -19,7 +19,7 @@ angular.module('myApp.data', [])
     }
 
     factory.login = function(email, password){
-      var a = Ref.authWithPassword({
+      Ref.authWithPassword({
           email: email,
           password: password
         }, 
@@ -30,7 +30,6 @@ angular.module('myApp.data', [])
             console.log("Authenticated successfully with payload:", authData);
           }
       });
-      console.log(a)
     }
 
     factory.createUser = function(email, password, username, name){
