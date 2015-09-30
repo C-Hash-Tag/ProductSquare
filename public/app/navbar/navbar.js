@@ -1,4 +1,9 @@
-angular.module("myApp").directive("navBar", ['$window', function($window) {
+angular.module("myApp").directive("navBar", ['$window', "data", function($window, data) {
+  
+  $scope.newUser = function() {
+
+  }
+
   return {
     restrict: 'E',
     templateUrl: 'app/navbar/navbar.html',
