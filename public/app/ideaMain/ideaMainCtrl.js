@@ -5,7 +5,7 @@ angular.module('myApp.ideaMain', [])
 
   data.getIdeasData();
 
-  vm.newIdeas = [{'text':'a'}, {'text': 'b'}];
+  vm.newIdeas 
 
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
@@ -14,14 +14,18 @@ angular.module('myApp.ideaMain', [])
   })
 
   //TODO: add the username too
-  $scope.postIdea = function(name, description, username){
-    data.createIdea(name, description, username);
+  vm.postIdea = function(name, description, username){
+    data.createIdea(name, description, 'username');
+    console.log("args", arguments);
   }
 
-  
+  vm.test = function(){
+    console.log("test called!")
+  }
   //FOR TESTING PURPOSES  
-  $scope.postIdea("facebook for neighbors", "build a social network", "ting");
+  vm.postIdea("trello222", "trello for wizards", "ting");
 
+  vm.testString = "hello";
   return vm;
 
 

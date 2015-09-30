@@ -100,11 +100,14 @@
           </div>
 
           <div class="modal-body">
-            <form ng-submit="vm.postIdea(vm.name, vm.description)">
-              <p> Name </p> <input ng-model="vm.name">
+            <!-- <form ng-submit="vm.postIdea(vm.name, vm.description, user)"> -->
+            <form>
+              <p> Name {{vm.testString}} </p> <input ng-model="vm.name">
               <p> Description </p> <input ng-model="vm.description">
-              <button type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
+              <!-- TODO: diff b/w ng-click and ng-submit? -->
+              <button ng-click="vm.postIdea(vm.name, vm.description, 'username')" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
             </form>
+
           </div>
         </div> <!-- Modal content-->
       </div>
