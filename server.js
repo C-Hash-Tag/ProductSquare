@@ -6,6 +6,9 @@ var bodyParser = require('body-parser');
 
 //need a real post route for the api.
 //create email process.
+var credentials = require('./credentials');
+var SENDGRID_API_KEY = credentials.sendgrid.api_key;
+var sendgrid = require('sendgrid')(SENDGRID_API_KEY);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
