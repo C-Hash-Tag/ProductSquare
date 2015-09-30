@@ -10,10 +10,10 @@ angular.module('myApp.data', [])
       var yyyy = today.getFullYear();
       if(dd<10) {
         dd='0'+dd
-      } 
+      }
       if(mm<10) {
           mm='0'+mm
-      } 
+      }
       today = mm+'/'+dd+'/'+yyyy;
       return today;
     }
@@ -22,7 +22,7 @@ angular.module('myApp.data', [])
       Ref.authWithPassword({
           email: email,
           password: password
-        }, 
+        },
         function(error, authData) {
           if (error) {
             console.log("Login Failed!", error);
@@ -65,15 +65,16 @@ angular.module('myApp.data', [])
       })
     };
 
-    factory.createProject = function(desc, repo, name, username){
-      Ref.child('projects').child(name).set({
+    factory.createProject = function(desc, repo, projName, username){
+      Ref.child('projects').child(projName).set({
         description: desc,
         githubRepo: repo,
-        name: name,
-        date: currentDate()
+        projName: projName,
+        date: currentDate(),
+        user: "tc1234"
       })
 
-      Ref.child('users').child(username).child('projects').child(name).set({
+      Ref.child('users').child("tc1234").child('projects').child(projName).set({
         githubRepo: repo
       })
     };

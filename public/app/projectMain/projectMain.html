@@ -26,7 +26,10 @@
             <h4 class="modal-title">Submit Your Project</h4>
           </div>
           <div class="modal-body">
-            <form ng-submit="projectSubmit(projectDescription, githubUrl)">
+            <form ng-submit="projectSubmit(projectDescription, githubUrl, projName)">
+              Project Name:<br>
+              <input ng-model="projName" type="text" placeholder="Name your project">
+              <br>
               Project Description:<br>
               <input ng-model="projectDescription" type="text" placeholder="Briefly describe your project">
               <br>
