@@ -85,15 +85,33 @@
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit your idea</button>
   
     
-    <!-- Neat Flippin Card -->
+    <!-- OPTION 1: Neat Flippin Card -->
     <!-- toggle between "class = flipped card" and "class = card" to flip cards-->
-    <div class="cardContainer" ng-repeat="idea in vm.newIdeas">
+   <!--  <div class="cardContainer" ng-repeat="idea in vm.newIdeas">
       <div class="card" ng-class="{'flipped' : idea.flipped === true}" ng-click="idea.flipped = !idea.flipped">
         <div class="front"> {{ idea.ideaName }} </div>
         <div class="back"> {{ idea.description}} </div>
       </div>
-    </div>
+    </div> -->
     <!-- Neat Flippin Card ends -->
+
+
+    <!-- OPTION2: accordion -->
+    <style type="text/css">
+      .panel-group {
+        margin-top: 10px;
+      }
+      accordion {
+
+      }
+    </style>
+    
+    <accordion class = "col-md-6">
+      <accordion-group ng-repeat="idea in vm.newIdeas" heading='{{ idea.name }}'>
+        {{ idea.description }}
+      </accordion-group>
+    </accordion>
+    <!-- OPTION2: accordion ends -->
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog"> 
@@ -118,6 +136,8 @@
       </div>
     </div> 
     <!-- Modal ends -->
+
+
 
   </div>
 </div>

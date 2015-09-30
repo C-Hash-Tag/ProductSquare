@@ -4,7 +4,8 @@ angular.module('myApp', [
   'myApp.main',
   'myApp.ideaMain',
   'myApp.UserMain',
-  'myApp.projectMain'
+  'myApp.projectMain',
+  'ui.bootstrap'
   ])
 
 .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
