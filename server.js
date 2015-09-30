@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 
 
 //check if the server is on the Heroku environment, if not, we're on local - include the credentials file
-if (process.env.SENDGRID_API_KEY !== undefined){
+if (process.env.SENDGRID_API_KEY === undefined){
   var credentials = require('./credentials');
   var SENDGRID_API_KEY = credentials.sendgrid.api_key;
 }
