@@ -4,6 +4,8 @@ var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 var aws = require('aws-sdk');
 
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 //check if the server is on the Heroku environment, if not, we're on local - include the credentials file
 if (process.env.SENDGRID_API_KEY === undefined){
@@ -21,9 +23,6 @@ else { //if we are on Heroku, just set the environment variable to the heroku en
 }
 
 var sendgrid = require('sendgrid')(SENDGRID_API_KEY);
-
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
 
 app.post('/email', function(req, resp) {
   sendgrid.send({
