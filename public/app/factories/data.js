@@ -57,8 +57,8 @@ angular.module('myApp.data', [])
       Ref.child("ideas").child(ideaName).set({
         ideaName: ideaName,
         description: desc,
-        date: currentDate()
-        user: username
+        date: currentDate(),
+        user: "username"
       });
 
       Ref.child('users').child(username).child('ideas').child(ideaName).set({
