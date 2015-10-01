@@ -85,7 +85,7 @@
           <h4 class="modal-title">Log In</h4>
         </div>
         <div class="modal-body">
-          <form ng-submit="login(email, password)">
+          <form>
             Email:
             <br/>
             <input class="form-control" type="text" ng-model="email"/>
@@ -94,15 +94,13 @@
             <br/>
             <input class="form-control" type="password" ng-model="password"/>
             <br/>
-            <span class="pull-right">
-              <input type="submit" id="Submit" class="btn btn-primary" value="Submit" />
-            </span>
+            <button ng-click="login(email, password)" type="submit" data-dismiss="modal" class="btn btn-primary pull-right">Submit</button>
             <br/>
             <br/>
           </form>
         </div>
           <div class="modal-footer">
-            <h5 id="dontHaveAnAccount">Don't have an account? <a data-toggle="modal" data-target="#loginModal, #signupModal" style="cursor:pointer;">Sign Up</a> </h5>
+            <h5 id="dontHaveAnAccount">Don't have an account? <a data-toggle="modal" data-target="#loginModal, #signUpModal" style="cursor:pointer;">Sign Up</a> </h5>
           </div>
       </div>
     </div>
@@ -120,12 +118,10 @@
           <h4 class="modal-title">Log Out</h4>
         </div>
         <div class="modal-body">
-          <form ng-submit="logout()">
+          <form">
             Are you sure?
             <br/><br/>
-            <span class="pull-right">
-              <input type="submit" id="Submit" class="btn btn-danger" value="Submit" />
-            </span>
+            <button ng-click="logout()" type="submit" data-dismiss="modal" class="btn btn-danger pull-right">Confirm</button>
             <br/>
             <br/>
           </form>
