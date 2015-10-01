@@ -4,8 +4,8 @@
 
 .btn-group-lg>.btn,.btn-lg {
   display: block;
-}
 
+}
 .cardContainer {
   margin: 15px 15px 15px 15px;
   float: left;
@@ -18,10 +18,9 @@
   border-radius: 4px;
 }
 .card {
-  padding: 10px;
   width: 100%;
   height: 100%;
-  position: relative;
+  position: absolute;
   -webkit-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
@@ -30,40 +29,52 @@
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border-radius: 6px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-
-}
-
-.card:hover {
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 30px 0px rgba(102, 204, 255, 0.67);
-  -moz-box-shadow:    0px 0px 30px 0px rgba(102, 204, 255, 0.67);
-  box-shadow:         0px 0px 30px 0px rgba(102, 204, 255, 0.67);
-}
-
-p {
-  font-family: Helvetica;
-}
-.name {
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: bold;
-  color: gray;
-}
-
-hr {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.glyphicon {
-  position: absolute;
-  bottom: -3px;
-  right: 10px;
-  top: 180px !important;
   cursor: pointer;
-}  
+}
+.card div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  background: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #47525d;
+}
+
+.card .front {
+  font-weight: bold;
+}
+
+.card .back {
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.card.flipped {
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+  
 </style>
 
 
@@ -74,18 +85,15 @@ hr {
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit your idea</button>
   
     
-    <!-- Neat Non-Flippin Card -->
+    <!-- Neat Flippin Card -->
+    <!-- toggle between "class = flipped card" and "class = card" to flip cards-->
     <div class="cardContainer" ng-repeat="idea in vm.newIdeas">
-      <div class="card">
-        <p class="name"> {{ idea.name }} </p>
-        <hr>
-        <p class="description"> {{idea.description}} </p>
-
-        <span class="glyphicon glyphicon-thumbs-up"></span>
+      <div class="card" ng-class="{'flipped' : idea.flipped === true}" ng-click="idea.flipped = !idea.flipped">
+        <div class="front"> {{ idea.ideaName }} </div>
+        <div class="back"> {{ idea.description}} </div>
       </div>
     </div>
-    <!-- Neat Non-Flippin Card ends -->
-
+    <!-- Neat Flippin Card ends -->
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog"> 
@@ -110,8 +118,6 @@ hr {
       </div>
     </div> 
     <!-- Modal ends -->
-
-
 
   </div>
 </div>
