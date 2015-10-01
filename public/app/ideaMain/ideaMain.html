@@ -68,6 +68,10 @@ hr {
 .glyphicon {
   font-size: 13px;
   color: gray;
+}
+
+.liked {
+  background-color: orange;
 } 
 
 </style>
@@ -88,8 +92,11 @@ hr {
         <p class="description"> {{idea.description}} </p>
 
         <div class="glyphicon-container">
-          <button type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
-          <button type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
+          <button  type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
+
+          <button ng-click="vm.like('ting', idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> 
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+          </button>
         </div>
       </div>
     </div>

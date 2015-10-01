@@ -42,7 +42,8 @@ angular.module('myApp.data', [])
         email: email,
         username: username,
         projects: {},
-        ideas: {}
+        ideas: {},
+        likedIdeas: {}
       });
 
       // Create a user in Firebase
@@ -65,7 +66,8 @@ angular.module('myApp.data', [])
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
-        user: "username"
+        user: "username",
+        usersWhoLikeIt: {},
       });
 
       // Add the idea data to the user in Firebase
@@ -123,6 +125,29 @@ angular.module('myApp.data', [])
         $rootScope.$broadcast('gotIdeas', arr);
       });
     };
+
+    factory.updateLike = function(username, ideaName){
+      //update ideas table to store users who like it
+      Ref.child("ideas").child(ideaName).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
+        if(usersWhoLikeIt === null){
+          usersWhoLikeIt = {};
+        } 
+        usersWhoLikeIt[username] = true;
+
+        console.log(Object.keys(usersWhoLikeIt).length); //how many likes for a given idea
+        return usersWhoLikeIt;
+      })
+      
+      //update users table to store ideas that users like
+      Ref.child("users").child(username).child("likedIdeas").transaction(function(likedIdeas){
+        if(likedIdeas === null){
+          likedIdeas = {};
+        }
+        likedIdeas[ideaName] = true;
+        return likedIdeas;
+      })
+      
+    }
 
     return factory;
 }]);
