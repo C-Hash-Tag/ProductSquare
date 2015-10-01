@@ -74,8 +74,7 @@ hr {
 
 <div ng-click="close()">
 
-<!-- Nav Bar will sit here -->
-  <!-- Feature sort and Create a Project -->
+  <!-- Project Sort  -->
 <!--   <div class="btn-group" role="group" aria-label="project sorting">
     <button type="button" class="btn btn-default">Most Recent</button>
     <button type="button" class="btn btn-default">Most Liked</button>
@@ -85,9 +84,29 @@ hr {
   <div class="container">
     <h2>Projects</h2>
 
+    <!-- Display Project Modal -->
+
+  <div id="displayModal" class="modal fade"  role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <!-- Default Modal View -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Project Name: {{projDisplay.projName}}</h4>
+          </div>
+          <div class="modal-body" >
+            <p> Project Description: {{projDisplay.description}} </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End Display Project Modal -->
+
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit A Project</button>
-
 
   <!-- Project List View Starts -->
     <div class="projectContainer" ng-repeat="project in vm.newProjects">
@@ -97,14 +116,14 @@ hr {
         <p class="description"> {{project.description}} </p>
 
         <div class="glyphicon-container">
-          <button type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
+          <button ng-click="projSpecific(project.projName)" type="button" class="btn btn-default btn-xs"> <span data-toggle="modal" data-target="#displayModal" class="glyphicon glyphicon-eye-open"> </span> </button>
           <button type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
         </div>
       </div>
     </div>
   <!-- Project List View Ends -->
 
-    <!-- Project Modal -->
+    <!-- Project Submit Modal -->
     <div id="myModal" class="modal fade"  role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
@@ -140,47 +159,8 @@ hr {
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title"> Thanks for your Submission </h4>
           </div>
-
         </div>
       </div>
     </div>
-
   </div>
-
-  <!-- List View of Projects here -->
-<!--   <div class="projectList">
-    <div class="row"  ng-repeat="project in vm.newProjects">
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-         <img src="..." alt="...">
-          <div class="caption">
-          <h3 class="projectName"> Project Name: <br> {{project.projName}} </h3>
-          <p class="projectDescription"> Project Description: {{project.description}} </p> -->
-          <!-- Modal Button -->
-         <!--  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#projModal">Learn More About {{project.projName}} </button> -->
-          <!-- Modal Content -->
-<!--           <div class="modal fade" id="projModal" role="dialog">
-            <div class="modal-dialog">
-
-              <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title"> Project Name: {{project.projName}} </h4>
-              </div>
-              <div class="modal-body">
-                <p> Project Description: {{project.description}} </p>
-              </div> -->
-          <!-- <div class="modal-footer">
-            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div> -->
-<!--
-            </div>
-          </div> -->
-          <!-- End of Modal Content -->
-<!--           </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- End Project List View Here -->
  </div>
