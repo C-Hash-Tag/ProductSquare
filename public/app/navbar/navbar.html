@@ -25,7 +25,9 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<!-- Sign Up Modal -->
+<!-- Sign Up Modal
+  WORK ON FORM VALIDATION
+-->
 <div id="signUpModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -35,15 +37,15 @@
         <h4 class="modal-title">Sign Up</h4>
       </div>
       <div class="modal-body">
-        <form ng-submit="newUser()">
-          Username: <input type="text" class="form-control" model="username" /> <br/>
-          Full Name: <input type="text" class="form-control" model="realName" />  <br/>
-          Email Address: <input type="text" class="form-control" model="email" /> <br/>
-          Password: <input type="password" class="form-control" model="password" /> <br/>
+        <form ng-submit="newUser(username, realName, email, password)">
+          Username: <input type="text" class="form-control" ng-model="username" /> <br/>
+          Full Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
+          Email Address: <input type="text" class="form-control" ng-model="email" /> <br/>
+          Password: <input type="password" class="form-control" ng-model="password" /> <br/>
+          <input type="submit" id="submit" class="btn btn-primary" value="submit"/>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
