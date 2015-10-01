@@ -1,0 +1,186 @@
+<nav-bar> </nav-bar>
+
+<style type="text/css">
+
+.btn-group-lg>.btn,.btn-lg {
+  display: block;
+}
+
+.projectContainer {
+  margin: 15px 15px 15px 15px;
+  float: left;
+  width: 300px;
+  height: 200px;
+  position: relative;
+  -webkit-perspective: 800px;
+  -ms-perspective: 800px
+;  perspective: 800px;
+  border-radius: 4px;
+}
+.project {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+
+}
+
+.project:hover {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+  -moz-box-shadow:    0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+  box-shadow:         0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+}
+
+p {
+  font-family: Helvetica;
+}
+.name {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  color: gray;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.glyphicon-container{
+  position: absolute;
+  bottom: -3px;
+  right: 10px;
+  top: 171px !important;
+  cursor: pointer;
+}
+
+.glyphicon {
+  font-size: 13px;
+  color: gray;
+}
+
+</style>
+
+<div ng-click="close()">
+
+<!-- Nav Bar will sit here -->
+  <!-- Feature sort and Create a Project -->
+<!--   <div class="btn-group" role="group" aria-label="project sorting">
+    <button type="button" class="btn btn-default">Most Recent</button>
+    <button type="button" class="btn btn-default">Most Liked</button>
+    <button type="button" class="btn btn-default">Staff Picks</button>
+  </div> -->
+
+  <div class="container">
+    <h2>Projects</h2>
+
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit A Project</button>
+
+
+  <!-- Project List View Starts -->
+    <div class="projectContainer" ng-repeat="project in vm.newProjects">
+      <div class="project">
+        <p class="name"> {{project.projName}} </p>
+        <hr>
+        <p class="description"> {{project.description}} </p>
+
+        <div class="glyphicon-container">
+          <button type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
+          <button type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
+        </div>
+      </div>
+    </div>
+  <!-- Project List View Ends -->
+
+    <!-- Project Modal -->
+    <div id="myModal" class="modal fade"  role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <!-- Default Modal View -->
+         <div class="default-modal"  ng-hide="submission">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Submit Your Project</h4>
+          </div>
+          <div class="modal-body">
+            <form ng-submit="projectSubmit(projectDescription, githubUrl, projName)">
+              Project Name:<br>
+              <input ng-model="projName" class="projName" type="text" placeholder="Name your project">
+              <br>
+              Project Description:<br>
+              <input ng-model="projectDescription" class="projectDescription" type="text" placeholder="Briefly describe your project">
+              <br>
+              Github Url:<br>
+              <input ng-model="githubUrl" type="text" placeholder="Github Url">
+              <br/><br/>
+              <span class="pull-right">
+                <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
+              </span>
+              <br/><br/>
+            </form>
+          </div>
+         </div>
+
+          <!-- Second Modal View -->
+          <div class="modal-header" ng-show="submission">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"> Thanks for your Submission </h4>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- List View of Projects here -->
+<!--   <div class="projectList">
+    <div class="row"  ng-repeat="project in vm.newProjects">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+         <img src="..." alt="...">
+          <div class="caption">
+          <h3 class="projectName"> Project Name: <br> {{project.projName}} </h3>
+          <p class="projectDescription"> Project Description: {{project.description}} </p> -->
+          <!-- Modal Button -->
+         <!--  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#projModal">Learn More About {{project.projName}} </button> -->
+          <!-- Modal Content -->
+<!--           <div class="modal fade" id="projModal" role="dialog">
+            <div class="modal-dialog">
+
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title"> Project Name: {{project.projName}} </h4>
+              </div>
+              <div class="modal-body">
+                <p> Project Description: {{project.description}} </p>
+              </div> -->
+          <!-- <div class="modal-footer">
+            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div> -->
+<!--
+            </div>
+          </div> -->
+          <!-- End of Modal Content -->
+<!--           </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- End Project List View Here -->
+ </div>
