@@ -5,7 +5,7 @@ angular.module('myApp', [
   'myApp.ideaMain',
   'myApp.UserMain',
   'myApp.projectMain'
-  ])
+])
 
 .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
   $routeProvider
