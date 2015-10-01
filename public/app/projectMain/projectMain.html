@@ -1,5 +1,88 @@
 <nav-bar> </nav-bar>
 
+<style type="text/css">
+
+/*.btn-group-lg>.btn,.btn-lg {
+  display: block;
+
+}
+.cardContainer {
+  margin: 15px 15px 15px 15px;
+  float: left;
+  width: 300px;
+  height: 200px;
+  position: relative;
+  -webkit-perspective: 800px;
+  -ms-perspective: 800px
+;  perspective: 800px;
+  border-radius: 4px;
+}
+.card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+.projName {
+  width: 300px;
+  height: 20px;
+}
+
+.projectDescription {
+  width: 300px;
+  height: 20px;
+}
+
+.githubUrl {
+  width: 300px;
+  height: 20px;
+}*/
+
+/*.default-modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  background: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #47525d;
+}*/
+
+/*.card .front {
+  font-weight: bold;
+}*/
+
+
+
+</style>
+
 <div ng-click="close()">
 
 <!-- Nav Bar will sit here -->
@@ -22,7 +105,7 @@
         <!-- Modal content-->
         <div class="modal-content">
         <!-- Default Modal View -->
-         <div class="default-modal" ng-hide="submission">
+         <div class="default-modal"  ng-hide="submission">
 
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -31,10 +114,10 @@
           <div class="modal-body">
             <form ng-submit="projectSubmit(projectDescription, githubUrl, projName)">
               Project Name:<br>
-              <input ng-model="projName" type="text" placeholder="Name your project">
+              <input ng-model="projName" class="projName" type="text" placeholder="Name your project">
               <br>
               Project Description:<br>
-              <input ng-model="projectDescription" type="text" placeholder="Briefly describe your project">
+              <input ng-model="projectDescription" class="projectDescription" type="text" placeholder="Briefly describe your project">
               <br>
               Github Url:<br>
               <input ng-model="githubUrl" type="text" placeholder="Github Url">
@@ -68,16 +151,32 @@
           <div class="caption">
           <h3 class="projectName"> {{project.projName}} </h3>
           <p class="projectDescription"> {{project.description}} </p>
-          <p><a href="https://www.google.com" class="btn btn-primary" role="button">Learn More About {{project.projName}}</a></p>
-          <p><button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Learn More About {{project.projName}} </button>     <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
+          <!-- Modal Button -->
+          <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#projModal">Learn More About {{project.projName}} </button>
+          <!-- Modal Content -->
+          <div class="modal fade" id="projModal" role="dialog">
+            <div class="modal-dialog">
 
-      </div>
-  </div></p>
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title"> Project Name: {{project.projName}} </h4>
+              </div>
+              <div class="modal-body">
+                <p> Project Description: {{project.description}} </p>
+              </div>
+          <!-- <div class="modal-footer">
+            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div> -->
+
+            </div>
+          </div>
+          <!-- End of Modal Content -->
           </div>
         </div>
       </div>
     </div>
   </div>
   <!-- End Project List View Here -->
+ </div>
 </div>

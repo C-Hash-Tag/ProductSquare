@@ -29,7 +29,7 @@ angular.module('myApp.projectMain', [])
     $scope.submission = true;
   }
 
-  $scope.close = function() {
+  $scope.close = function(projName) {
     console.log("in close function!!!")
     $scope.submission = false;
   }
