@@ -14,11 +14,17 @@
         <li><a href="#/ideas">Ideas</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li ng-hide="loggedIn">
           <a data-toggle="modal" data-target="#signUpModal" style="cursor:pointer;">Sign Up</a>
         </li>
-        <li>
+        <li ng-hide="loggedIn">
           <a data-toggle="modal" data-target="#loginModal" style="cursor:pointer;">Login</a>
+        </li>
+        <li ng-show="loggedIn">
+          <a>My Profile</a>
+        </li>
+        <li ng-show="loggedIn">
+          <a data-toggle="modal" data-target="#logoutModal" style="cursor:pointer;">Logout</a>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -28,76 +34,103 @@
 <!-- Sign Up Modal
   NEED TO WORK ON FORM VALIDATION
 -->
-<div id="signUpModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
+<div ng-click="close()">
+  <div id="signUpModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
 
-      <!-- Pre-Submission Modal View -->
-      <div class="default-modal" ng-hide="submission">
-        <div class="modal-header">
+        <!-- Pre-Submission Modal View -->
+        <div class="default-modal" ng-hide="submission">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Sign Up</h4>
+          </div>
+          <div class="modal-body">
+            <form ng-submit="newUserSubmit(username, realName, email, password)">
+              Username: <input type="text" class="form-control" ng-model="username" /> <br/>
+              Full Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
+              Email Address: <input type="text" class="form-control" ng-model="email" /> <br/>
+              Password: <input type="password" class="form-control" ng-model="password" /> <br/>
+              <span class="pull-right">
+                <input type="submit" id="Submit" class="btn btn-primary" value="Submit"/>
+              </span>
+              <br/>
+              <br/>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <h5 id="alreadyHaveAnAccount">Already have an account? <a data-toggle="modal" data-target="#signUpModal, #loginModal" style="cursor:pointer;">Log In</a> </h5>
+          </div>
+        </div>
+
+        <!-- Post-Submission Modal View -->
+        <div class="modal-header" ng-show="submission">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Sign Up</h4>
+          <h4 class="modal-title"> Welcome to ProductSquare, {{realName}}! </h4>
         </div>
-        <div class="modal-body">
-          <form ng-submit="newUserSubmit(username, realName, email, password)">
-            Username: <input type="text" class="form-control" ng-model="username" /> <br/>
-            Full Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
-            Email Address: <input type="text" class="form-control" ng-model="email" /> <br/>
-            Password: <input type="password" class="form-control" ng-model="password" /> <br/>
-            <span class="pull-right">
-              <input type="submit" id="Submit" class="btn btn-primary" value="Submit"/>
-            </span>
-            <br/>
-            <br/>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <h5 id="alreadyHaveAnAccount">Already have an account? <a data-toggle="modal" data-target="#signUpModal, #loginModal" style="cursor:pointer;">Log In</a> </h5>
-        </div>
-      </div>
-
-      <!-- Post-Submission Modal View -->
-      <div class="modal-header" ng-show="submission">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"> Welcome to ProductSquare, {{realName}}! </h4>
       </div>
     </div>
   </div>
 </div>
 
-
 <!-- Log In Modal -->
-<div id="loginModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Log In</h4>
-      </div>
-      <div class="modal-body">
-        <form>
-          Username:
-          <br/>
-          <input class="form-control" type="text" />
-          <br/>
-          Password:
-          <br/>
-          <input class="form-control" type="password" />
-          <br/>
-
-          <!-- <input class="btn btn-primary" type="submit" value ="Submit" /> -->
-          <span class="pull-right">
-            <input type="submit" id="Submit" class="btn btn-primary" value="Submit"/>
-          </span>
-          <br/>
-          <br/>
-        </form>
-      </div>
-        <div class="modal-footer">
-          <h5 id="dontHaveAnAccount">Don't have an account? <a data-dismiss="modal" data-toggle="modal" data-target="#signupModal" style="cursor:pointer;">Sign Up</a> </h5>
+<div ng-click="close()">
+  <div id="loginModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Log In</h4>
         </div>
+        <div class="modal-body">
+          <form ng-submit="login(email, password)">
+            Email:
+            <br/>
+            <input class="form-control" type="text" ng-model="email"/>
+            <br/>
+            Password:
+            <br/>
+            <input class="form-control" type="password" ng-model="password"/>
+            <br/>
+            <span class="pull-right">
+              <input type="submit" id="Submit" class="btn btn-primary" value="Submit" />
+            </span>
+            <br/>
+            <br/>
+          </form>
+        </div>
+          <div class="modal-footer">
+            <h5 id="dontHaveAnAccount">Don't have an account? <a data-toggle="modal" data-target="#loginModal, #signupModal" style="cursor:pointer;">Sign Up</a> </h5>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Logout Modal -->
+<div ng-click="close()">
+  <div id="logoutModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Log Out</h4>
+        </div>
+        <div class="modal-body">
+          <form ng-submit="logout()">
+            Are you sure?
+            <br/><br/>
+            <span class="pull-right">
+              <input type="submit" id="Submit" class="btn btn-danger" value="Submit" />
+            </span>
+            <br/>
+            <br/>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
