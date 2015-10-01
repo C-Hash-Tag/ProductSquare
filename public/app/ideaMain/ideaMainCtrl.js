@@ -31,11 +31,6 @@ angular.module('myApp.ideaMain', [])
   vm.postIdea("trello222", "trello for wizards", "ting");
   console.log("in ideas")
 
-
-
-  // $scope.$on('$routeChangeUpdate', initScope);
-  // $scope.$on('$routeChangeSuccess', initScope);
-
   return vm;
 
-}])
+}]);
