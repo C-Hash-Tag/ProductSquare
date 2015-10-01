@@ -1,5 +1,15 @@
 angular.module('myApp.UserMain', [])
 
+.directive('customOnChange', function() {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var onChangeFunc = scope.$eval(attrs.customOnChange);
+      element.bind('change', onChangeFunc);
+    }
+  };
+})
+
 .controller('UserMainCtrl', ['$scope', '$http', function($scope, $http){
   var vm = this;
 
@@ -35,6 +45,45 @@ angular.module('myApp.UserMain', [])
       idea: "a useless website where people post useless content, called Tweets, with a maximum of 140 characters, to ensure uselessness."
     }
   ];
+
+  $scope.imagePreview = "/img/default-user.png";
+
+  var s3Upload = function(response, file, url) {
+    console.log("inside s3", response);
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", response.data.signed_request);
+    xhr.setRequestHeader('x-amz-acl', 'public-read');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        console.log("file loaded!");
+        $scope.imagePreview = response.data.url;
+        $scope.$apply();
+        // document.getElementById("preview").src = url;
+        // document.getElementById("avatar_url").value = url;
+      }
+    };
+    xhr.onerror = function() {
+        alert("Could not upload file.");
+    };
+    xhr.send(file);
+
+  };
+  $scope.username = "dswright";
+
+  $scope.signS3 = function(username){
+    var file = event.target.files[0];
+    $http.post('/sign_s3', {
+      fileName: "profileImage-"+$scope.username,
+      fileType: file.type
+    }).
+    then(function(response) {
+      //run upload function upon completion of signed certificate.
+      console.log("signed!", response, response.data.url, response.data.signed_request);
+      s3Upload(response, file);
+    })
+
+    console.log(file);
+  };
 
   $scope.sendEmail = function(message){
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
