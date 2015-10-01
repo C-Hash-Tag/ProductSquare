@@ -27,14 +27,19 @@ angular.module('myApp.ideaMain', [])
     data.createIdea(name, description, 'username');
   }
 
+  vm.like = function(username, ideaName){
+    //update css of the like button
+    
+    //update the database 
+    data.updateLike(username, ideaName);
+      //TODO: if username liked it before, remove her; if username hasn't, add her
+      //add/ remove idea in user's liked ideas 
+  }
+
   //FOR TESTING PURPOSES  
   vm.postIdea("trello222", "trello for wizards", "ting");
   console.log("in ideas")
 
-
-
-  // $scope.$on('$routeChangeUpdate', initScope);
-  // $scope.$on('$routeChangeSuccess', initScope);
 
   return vm;
 
