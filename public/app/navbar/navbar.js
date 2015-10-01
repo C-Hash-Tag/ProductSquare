@@ -4,17 +4,15 @@ angular.module("myApp").directive("navBar", ['$window', "data", function($window
     restrict: 'E',
     templateUrl: 'app/navbar/navbar.html',
     link: function(scope, elem, attrs) {
-      console.log("TESTTT" + elem);
-      //put the newuser function here.
-      scope.newUser = function(username, realName, email, password) {
+      scope.submission = false;
+      //put the newuserSubmit function here.
+      scope.newUserSubmit = function(username, realName, email, password) {
         data.createUser(email, password, username, realName);
-        scope.username = "";
-        scope.realName = "";
-        scope.email = "";
-        scope.password = "";
-
+        scope.submission = true;
       };
-
+      scope.close = function() {
+        scope.submission = false;
+      };
     }
   };
 }]);

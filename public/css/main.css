@@ -1,4 +1,3 @@
-
 /* Navbar styles */
 .navbar {
   margin-bottom: 0px;
@@ -41,4 +40,9 @@ a:hover {
 #aboutUs img{
   height: 70px;
   width: 70px;
+}
+
+/* Sign Up Modal Styles */
+#alreadyHaveAnAccount, #dontHaveAnAccount {
+  text-align: center;
 }
