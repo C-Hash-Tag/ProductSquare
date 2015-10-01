@@ -3,6 +3,7 @@ angular.module('myApp.projectMain', [])
 .controller('ProjectMainCtrl', ['$scope', '$http', 'data', function($scope, $http, data) {
   var vm = this;
 
+
   $scope.submission = false;
 
   $scope.$on('gotProjects', function (event, projects) {
@@ -15,6 +16,10 @@ angular.module('myApp.projectMain', [])
   }
 
   vm.getProjectsData();
+
+  $scope.projSpecific = function(projName) {
+    $scope.projDisplay = vm.newProjects[projName];
+  }
 
   vm.newProjects;
 
