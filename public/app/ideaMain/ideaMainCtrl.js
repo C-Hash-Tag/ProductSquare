@@ -24,8 +24,8 @@ angular.module('myApp.ideaMain', [])
 
 
   //TODO: add the username too
-  vm.postIdea = function(name, description, username){
-    data.createIdea(name, description, 'username');
+  vm.postIdea = function(name, description){
+    data.createIdea(name, description, localStorage.userID);
   }
 
   vm.like = function(userID, ideaName){

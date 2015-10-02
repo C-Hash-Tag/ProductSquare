@@ -33,13 +33,13 @@ angular.module('myApp.data', [])
     };
 
     // Collect idea data from createIdea and store it in Firebase
-    factory.createIdea = function(ideaName, desc, username){
+    factory.createIdea = function(ideaName, desc, userID){
       // Store the idea data in Firebase
       Ref.child("ideas").child(ideaName).set({
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
-        user: "username",
+        userID: userID,
         usersWhoLikeIt: {},
       });
 
@@ -50,7 +50,7 @@ angular.module('myApp.data', [])
     };
 
     // Collect project data from createProject and store it in Firebase
-    factory.createProject = function(desc, repo, projName, username){
+    factory.createProject = function(desc, repo, projName, userID){
       // Store the project data in Firebase
       Ref.child('projects').child(projName).set({
         description: desc,
