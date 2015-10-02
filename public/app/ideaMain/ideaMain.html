@@ -82,7 +82,7 @@ hr {
   <div class="container">
     <h2>Ideas</h2>
 
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit your idea</button>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" ng-attr-data-target="{{target}}">Submit your idea</button>
   
     
     <div class="cardContainer" ng-repeat="idea in vm.newIdeas">

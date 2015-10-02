@@ -33,24 +33,24 @@ angular.module('myApp.data', [])
     };
 
     // Collect idea data from createIdea and store it in Firebase
-    factory.createIdea = function(ideaName, desc, username){
+    factory.createIdea = function(ideaName, desc, userID){
       // Store the idea data in Firebase
       Ref.child("ideas").child(ideaName).set({
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
-        user: "username",
+        userID: userID,
         usersWhoLikeIt: {},
       });
 
       // Add the idea data to the user in Firebase
-      Ref.child('users').child(username).child('ideas').child(ideaName).set({
+      Ref.child('users').child(userID).child('ideas').child(ideaName).set({
         idea: desc
       });
     };
 
     // Collect project data from createProject and store it in Firebase
-    factory.createProject = function(desc, repo, projName, username){
+    factory.createProject = function(desc, repo, projName, userID){
       // Store the project data in Firebase
       Ref.child('projects').child(projName).set({
         description: desc,
@@ -67,8 +67,8 @@ angular.module('myApp.data', [])
     };
 
     // Get users data from Firebase
-    factory.getUsersData = function(username){
-      Ref.child("users").child(username).on("value", function(data){
+    factory.getUsersData = function(userID){
+      Ref.child("users").child(userID).on("value", function(data){
 
         // Broadcast users data to all 'gotUsers' event listeners
         var user = data.val();
@@ -99,13 +99,13 @@ angular.module('myApp.data', [])
       });
     };
 
-    factory.updateLike = function(username, ideaName){
+    factory.updateLike = function(userID, ideaName){
       //update ideas table to store users who like it
       Ref.child("ideas").child(ideaName).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
         if(usersWhoLikeIt === null){
           usersWhoLikeIt = {};
         } 
-        usersWhoLikeIt[username] = true;
+        usersWhoLikeIt[userID] = true;
 
         console.log(Object.keys(usersWhoLikeIt).length); //how many likes for a given idea
         return usersWhoLikeIt;
