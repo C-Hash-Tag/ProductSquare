@@ -19,10 +19,11 @@ angular.module('myApp.imageUpload', [])
   };
 
   var factory = {
+    //get a signed token from aws for the user input image and pass it to the upload function.
     userImage: function(username, event, cb) {
-      var file = event.target.files[0]; //get the fi
+      var file = event.target.files[0]; //get the file from the change event.
       $http.post('/sign_s3', {
-        fileName: "profileImage-"+username,
+        fileName: "profileImage-"+username, //create the profile image name using the username + version number.
         fileType: file.type
       }).
       then(function(response) {
