@@ -19,43 +19,16 @@ angular.module('myApp.data', [])
       return today;
     }
 
-    // Auth with password
-    factory.login = function(email, password){
-      Ref.authWithPassword({
-          email: email,
-          password: password
-        },
-        function(error, authData) {
-          if (error) {
-            console.log("Login Failed!", error);
-          } else {
-            console.log("Authenticated successfully with payload:", authData);
-          }
-      });
-    };
-
     // Collect user data from sign up and store it in Firebase
-    factory.createUser = function(email, password, username, name){
+    factory.createUser = function(email, password, userId, name){
       // Store the user data in Firebase
-      Ref.child("users").child(username).set({
+      Ref.child("users").child(userId).set({
         name: name,
         email: email,
-        username: username,
+        userId: userId,
         projects: {},
         ideas: {},
         likedIdeas: {}
-      });
-
-      // Create a user in Firebase
-      Ref.createUser({
-        email: email,
-        password: password
-      }, function(error, userData) {
-        if (error) {
-          console.log("Error creating user:", error);
-        } else {
-          console.log("Successfully created user account with uid:", userData.uid);
-        }
       });
     };
 
