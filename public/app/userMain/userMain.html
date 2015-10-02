@@ -50,7 +50,7 @@
 
   <form ng-submit="addImage(image)">
 
-    <input type="file" custom-on-change="signS3" />
+    <input type="file" custom-on-change="uploadUserImage" />
     <p id="status">Please select a file</p>
     <img id="preview" src="{{imagePreview}}" />
     <input type="submit" value="Add Image" />

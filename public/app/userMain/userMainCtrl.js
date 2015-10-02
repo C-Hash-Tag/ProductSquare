@@ -10,7 +10,7 @@ angular.module('myApp.UserMain', [])
   };
 })
 
-.controller('UserMainCtrl', ['$scope', '$http', function($scope, $http){
+.controller('UserMainCtrl', ['$scope', '$http', 'imageUpload', function($scope, $http, imageUpload){
   var vm = this;
 
   console.log("using user cntrl!");
@@ -48,44 +48,16 @@ angular.module('myApp.UserMain', [])
 
   $scope.imagePreview = "/img/default-user.png";
 
-  var s3Upload = function(response, file, url) {
-    console.log("inside s3", response);
-    var xhr = new XMLHttpRequest();
-    xhr.open("PUT", response.data.signed_request);
-    xhr.setRequestHeader('x-amz-acl', 'public-read');
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        console.log("file loaded!");
-        $scope.imagePreview = response.data.url;
-        $scope.$apply();
-        // document.getElementById("preview").src = url;
-        // document.getElementById("avatar_url").value = url;
-      }
-    };
-    xhr.onerror = function() {
-        alert("Could not upload file.");
-    };
-    xhr.send(file);
-
-  };
   $scope.username = "dswright";
-
-  $scope.signS3 = function(username){
-    var file = event.target.files[0];
-    $http.post('/sign_s3', {
-      fileName: "profileImage-"+$scope.username,
-      fileType: file.type
-    }).
-    then(function(response) {
-      //run upload function upon completion of signed certificate.
-      console.log("signed!", response, response.data.url, response.data.signed_request);
-      s3Upload(response, file);
-    })
-
-    console.log(file);
+  $scope.uploadUserImage = function(){
+    console.log("event", event);
+    imageUpload.userImage($scope.username, event, function(url){
+      $scope.imagePreview = url;
+      $scope.$apply();
+    }); //run the userImage upload from the imageUpload factory.
   };
 
-  $scope.sendEmail = function(message){
+  $scope.sendEmail = function(message) {
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
     console.log("in sendMail");
     $http.post('/email', {
@@ -99,6 +71,5 @@ angular.module('myApp.UserMain', [])
       console.log("email error");
     });
   }
-
  
 }])

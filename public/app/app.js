@@ -1,6 +1,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.data',
+  'myApp.imageUpload',
   'myApp.main',
   'myApp.ideaMain',
   'myApp.UserMain',
