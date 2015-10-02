@@ -8,20 +8,7 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", function
       auth.authLogin(scope);
       //put the newuserSubmit function here.
       scope.newUserSubmit = function(realName, email, password) {
-        Ref.createUser({
-          email: email,
-          password: password
-        }, function(error, userData) {
-          if (error) {
-            console.log("Error creating user:", error);
-          } else {
-            scope.submission = true;
-            scope.$apply()
-            console.log("Successfully created user account with uid:", userData.uid);
-            data.createUser(email, password, userData.uid, realName);
-            auth.authWithPass(email, password, scope);
-          }
-        });
+        auth.newUser(realName, email, password, scope);
       };
 
 

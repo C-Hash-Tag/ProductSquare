@@ -1,5 +1,5 @@
 angular.module('myApp.auth', [])
-.factory('auth', [function(){
+.factory('auth', ['data', function(data){
   var factory = {};
   var Ref = new Firebase('https://productsquare.firebaseio.com/');
 
@@ -38,6 +38,23 @@ angular.module('myApp.auth', [])
     delete localStorage.userID;
     delete localStorage.email;
     Ref.unauth();
+  };
+
+  factory.newUser = function(realName, email, password, scope){
+    Ref.createUser({
+        email: email,
+        password: password
+      }, function(error, userData) {
+        if (error) {
+          console.log("Error creating user:", error);
+        } else {
+          scope.submission = true;
+          scope.$apply()
+          console.log("Successfully created user account with uid:", userData.uid);
+          data.createUser(email, password, userData.uid, realName);
+          factory.authWithPass(email, password, scope);
+        }
+      });
   };
 
   return factory;
