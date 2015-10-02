@@ -44,7 +44,7 @@ angular.module('myApp.data', [])
       });
 
       // Add the idea data to the user in Firebase
-      Ref.child('users').child(username).child('ideas').child(ideaName).set({
+      Ref.child('users').child(userID).child('ideas').child(ideaName).set({
         idea: desc
       });
     };
