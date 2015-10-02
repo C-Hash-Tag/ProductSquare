@@ -8,8 +8,10 @@ angular.module('myApp.auth', [])
       if (authData) {
         console.log("User " + authData.uid + " is logged in with " + authData.provider);
         scope.loggedIn = true;
+        scope.target = "#myModal";
       } else {
         console.log("User is logged out");
+        scope.target = "#signUpModal";
       }
     });
   };

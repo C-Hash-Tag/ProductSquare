@@ -1,6 +1,7 @@
 angular.module('myApp.ideaMain', [])
 
-.controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', function($scope, $http, data, $log){
+.controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', function($scope, $http, data, $log, auth){
+  auth.authLogin($scope);
   var vm = this;
   
   //NOTE: set the listener before you get the dat
