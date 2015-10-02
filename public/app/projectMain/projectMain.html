@@ -106,7 +106,7 @@ hr {
     <!-- End Display Project Modal -->
 
   <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit A Project</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
 
   <!-- Project List View Starts -->
     <div class="projectContainer" ng-repeat="project in vm.newProjects">

@@ -1,8 +1,8 @@
 angular.module('myApp.projectMain', [])
 
-.controller('ProjectMainCtrl', ['$scope', '$http', 'data', function($scope, $http, data) {
+.controller('ProjectMainCtrl', ['$scope', '$http', 'data', 'auth', function($scope, $http, data, auth) {
+  auth.authLogin($scope);
   var vm = this;
-
 
   $scope.submission = false;
 
