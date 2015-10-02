@@ -1,6 +1,7 @@
 angular.module('myApp.projectMain', [])
 
 .controller('ProjectMainCtrl', ['$scope', '$http', 'data', function($scope, $http, data) {
+
   var vm = this;
 
 
@@ -11,6 +12,7 @@ angular.module('myApp.projectMain', [])
       vm.newProjects = projects;
       $scope.$apply();
     })
+
   vm.getProjectsData = function() {
     data.getProjectsData();
   }
