@@ -67,8 +67,8 @@ angular.module('myApp.data', [])
     };
 
     // Get users data from Firebase
-    factory.getUsersData = function(username){
-      Ref.child("users").child(username).on("value", function(data){
+    factory.getUsersData = function(userID){
+      Ref.child("users").child(userID).on("value", function(data){
 
         // Broadcast users data to all 'gotUsers' event listeners
         var user = data.val();
@@ -99,13 +99,13 @@ angular.module('myApp.data', [])
       });
     };
 
-    factory.updateLike = function(username, ideaName){
+    factory.updateLike = function(userID, ideaName){
       //update ideas table to store users who like it
       Ref.child("ideas").child(ideaName).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
         if(usersWhoLikeIt === null){
           usersWhoLikeIt = {};
         } 
-        usersWhoLikeIt[username] = true;
+        usersWhoLikeIt[userID] = true;
 
         console.log(Object.keys(usersWhoLikeIt).length); //how many likes for a given idea
         return usersWhoLikeIt;
