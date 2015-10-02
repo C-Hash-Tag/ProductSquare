@@ -22,6 +22,10 @@ angular.module('myApp.projectMain', [])
     $scope.projDisplay = vm.newProjects[projName];
   }
 
+  $scope.editProject = function() {
+    console.log("In edit project!");
+  }
+
   vm.newProjects;
 
   $scope.projectSubmit = function(projectDescription, githubUrl, projName) {

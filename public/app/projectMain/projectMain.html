@@ -11,10 +11,31 @@
 
   <div class="container">
 
-    <!-- INSERT Display Project Modal HERE -->
-
     <!-- Trigger the Project Submit Modal with a button -->
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit A Project</button>
+
+    <!-- INSERT Display Project Modal HERE -->
+  <div id="displayModal" class="modal fade"  role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <!-- Default Modal View -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Project Name: {{projDisplay.projName}}</h4>
+          </div>
+          <div class="modal-body" >
+            <p> Project Description: {{projDisplay.description}} </p>
+
+          </div>
+          <div class="modal-footer">
+            <button ng-click="editProject()" type="button" class="btn btn-info btn-md">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End Display Project Modal -->
 
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
@@ -31,7 +52,7 @@
           <button type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <section class="portfolio-1">
         <div class="container">
