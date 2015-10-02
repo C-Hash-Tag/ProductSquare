@@ -1,7 +1,7 @@
 angular.module('myApp.projectMain', [])
 
-.controller('ProjectMainCtrl', ['$scope', '$http', 'data', 'auth', function($scope, $http, data, auth) {
-  auth.authLogin($scope);
+.controller('ProjectMainCtrl', ['$scope', '$http', 'data', function($scope, $http, data) {
+
   var vm = this;
 
 // flag declarations to show/hide views
