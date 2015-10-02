@@ -28,7 +28,9 @@ angular.module('myApp.data', [])
         userId: userId,
         projects: {},
         ideas: {},
-        likedIdeas: {}
+        likedIdeas: {},
+        profileImageVersion: 0, //keep track of which profile image version the user is currently on.
+        profileImage: '/img/default-user.png' //this will update with aws image when input by the user.
       });
     };
 
