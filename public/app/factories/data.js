@@ -20,12 +20,12 @@ angular.module('myApp.data', [])
     }
 
     // Collect user data from sign up and store it in Firebase
-    factory.createUser = function(email, password, username, name){
+    factory.createUser = function(email, password, userId, name){
       // Store the user data in Firebase
-      Ref.child("users").child(username).set({
+      Ref.child("users").child(userId).set({
         name: name,
         email: email,
-        username: username,
+        userId: userId,
         projects: {},
         ideas: {},
         likedIdeas: {}

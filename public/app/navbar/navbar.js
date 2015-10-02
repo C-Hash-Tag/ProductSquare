@@ -6,9 +6,8 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", function
     link: function(scope, elem, attrs) {
       var Ref = new Firebase('https://productsquare.firebaseio.com/');
       auth.authLogin(scope);
-
       //put the newuserSubmit function here.
-      scope.newUserSubmit = function(username, realName, email, password) {
+      scope.newUserSubmit = function(realName, email, password) {
         Ref.createUser({
           email: email,
           password: password
@@ -19,11 +18,12 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", function
             scope.submission = true;
             scope.$apply()
             console.log("Successfully created user account with uid:", userData.uid);
-            data.createUser(email, password, username, realName);
+            data.createUser(email, password, userData.uid, realName);
             auth.authWithPass(email, password, scope);
           }
         });
       };
+
 
       scope.close = function() {
         scope.submission = false;
@@ -36,7 +36,6 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", function
         scope.loggedIn = false;
         auth.logout();
       };
-
     }
   }
 }]);

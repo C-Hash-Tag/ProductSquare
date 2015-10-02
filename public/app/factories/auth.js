@@ -26,6 +26,8 @@ angular.module('myApp.auth', [])
         scope.$apply();
         console.log("Authenticated successfully with payload:", authData);
         factory.authLogin(scope);
+        localStorage.userID = authData.uid;
+        localStorage.email = email;
       }
     }, {
       remember: "sessionOnly"
@@ -33,6 +35,8 @@ angular.module('myApp.auth', [])
    };
 
   factory.logout = function(){
+    delete localStorage.userID;
+    delete localStorage.email;
     Ref.unauth();
   };
 
