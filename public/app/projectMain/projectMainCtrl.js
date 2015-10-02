@@ -4,7 +4,9 @@ angular.module('myApp.projectMain', [])
   auth.authLogin($scope);
   var vm = this;
 
+// flag declarations to show/hide views
   $scope.submission = false;
+  $scope.save = false;
 
   $scope.$on('gotProjects', function (event, projects) {
       console.log('projects retrieved', projects);
@@ -20,6 +22,16 @@ angular.module('myApp.projectMain', [])
 
   $scope.projSpecific = function(projName) {
     $scope.projDisplay = vm.newProjects[projName];
+  }
+
+  $scope.editProject = function() {
+    console.log("In edit project!");
+    $scope.save = true;
+  }
+
+  $scope.saveProject = function() {
+    console.log("In save project!");
+    $scope.save = false;
   }
 
   vm.newProjects;

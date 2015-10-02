@@ -11,27 +11,10 @@
 
   <div class="container">
 
-    <!-- INSERT Display Project Modal HERE -->
-
-    <!-- Trigger the Project Submit Modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit A Project</button>
-
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
 
-  <!-- Project List View Starts -->
-    <div class="projectContainer" ng-repeat="project in vm.newProjects">
-      <div class="project">
-        <p class="name"> {{project.projName}} </p>
-        <hr>
-        <p class="description"> {{project.description}} </p>
-
-        <div class="glyphicon-container">
-          <button ng-click="projSpecific(project.projName)" type="button" class="btn btn-default btn-xs"> <span data-toggle="modal" data-target="#displayModal" class="glyphicon glyphicon-eye-open"> </span> </button>
-          <button type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-thumbs-up"></span> </button>
-        </div>
-      </div>
-    </div> -->
+  <!-- Project List View -->
 
     <section class="portfolio-1">
         <div class="container">
@@ -60,7 +43,7 @@
   <!-- Project List View Ends -->
 
     <!-- Project Submit Modal -->
-    <div id="myModal" class="modal fade"  role="dialog">
+    <d  iv id="myModal" class="modal fade"  role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -100,3 +83,28 @@
     </div>
   </div>
  </div>
+
+     <!-- Do NOT DELETE Display Project Modal HERE -->
+  <!-- <div id="displayModal" class="modal fade"  role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Project Name: {{projDisplay.projName}}</h4>
+          </div>
+          <div class="modal-body" >
+            <p> Project Description: {{projDisplay.description}} </p>
+
+          </div>
+          <div class="modal-footer">
+            <div class="modal-footer-default">
+              <button ng-click="editProject()" ng-hide="save" type="button" class="btn btn-info btn-md">Edit</button>
+            </div>
+            <div class="modal-footer-edit">
+              <button ng-click="saveProject()" ng-show="save" type="button" class="btn btn-info btn-md">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- End Display Project Modal -->
