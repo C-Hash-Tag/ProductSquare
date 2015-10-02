@@ -38,7 +38,7 @@ angular.module('myApp.ideaMain', [])
   }
 
   //FOR TESTING PURPOSES  
-  vm.postIdea("trello222", "trello for wizards", "ting");
+  // vm.postIdea("trello222", "trello for wizards", "ting");
   console.log("in ideas")
 
 
