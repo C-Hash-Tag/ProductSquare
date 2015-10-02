@@ -29,7 +29,12 @@
 
           </div>
           <div class="modal-footer">
-            <button ng-click="editProject()" type="button" class="btn btn-info btn-md">Edit</button>
+            <div class="modal-footer-default">
+              <button ng-click="editProject()" ng-hide="save" type="button" class="btn btn-info btn-md">Edit</button>
+            </div>
+            <div class="modal-footer-edit">
+              <button ng-click="saveProject()" ng-show="save" type="button" class="btn btn-info btn-md">Save</button>
+            </div>
           </div>
         </div>
       </div>
