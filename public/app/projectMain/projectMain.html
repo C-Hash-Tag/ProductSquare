@@ -17,30 +17,50 @@
   <!-- Project List View -->
 
     <section class="portfolio-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Portfolio</h2>
-                    <hr class="primary">
-                </div>
-            </div>
-            <div ng-repeat="project in vm.newProjects" class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
-                <a href="#modalID" class="portfolio-item" data-toggle="modal">
-                  <div class="portfolio-link">
-                    <div class="caption">
-                        <div class="caption-content">
-                            <h3>{{project.projName}}</h3>
-                            <p> {{project.description}}</p>
-                        </div>
-                    </div>
-                    <img src="../../img/projectImages/CodeFighter/codefighter2.png" class="img-centered" alt="">
-
-                  </div>
-                </a>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2>Portfolio</h2>
+            <hr class="primary">
+          </div>
         </div>
+        <div ng-repeat="project in vm.newProjects" class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
+          <a href="#modalID" class="portfolio-item" data-toggle="modal">
+            <div class="portfolio-link">
+              <div class="caption">
+                <div class="caption-content">
+                    <h3>{{project.projName}}</h3>
+                    <p> {{project.description}}</p>
+                </div>
+              </div>
+              <img src="../../img/projectImages/CodeFighter/codefighter2.png" class="img-centered" alt="">
+            </div>
+          </a>
+        </div>
+      </div>
     </section>
+
+    <div id="modalID" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl">
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row first">
+            <div class="col-lg-12">
+              <h2>EFEFEFE{{project.projName}}</h2>
+              <p>{{project.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <!-- Project List View Ends -->
+
 
     <!-- Project Submit Modal -->
     <d  iv id="myModal" class="modal fade"  role="dialog">
