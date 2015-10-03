@@ -18,7 +18,7 @@
   <div class="container">
   <!-- Testing -->
 
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalID">Test Submit A Project</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" ng-attr-data-target="{{target}}">Test Submit A Project</button>
 
   <div id="modalID" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
@@ -59,12 +59,56 @@
 
   <!-- End Testing -->
 
-  <!-- Trigger the Project Submit Modal with a button -->
+     <!-- Trigger the Project Submit Modal with a button -->
   <button id="projectSubmitBUtton" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
+
+    <!-- Project Submit Modal -->
+    <div id="myModal" class="modal fade"  role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <!-- Default Modal View -->
+         <div class="default-modal"  ng-hide="submission">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Submit Your Project</h4>
+          </div>
+          <div class="modal-body">
+            <form ng-submit="projectSubmit(projectDescription, githubUrl, projName)">
+              Project Name:<br>
+              <input ng-model="projName" class="projName" type="text" placeholder="Name your project">
+              <br>
+              Project Description:<br>
+              <input ng-model="projectDescription" class="projectDescription" type="text" placeholder="Briefly describe your project">
+              <br>
+              Github Url:<br>
+              <input ng-model="githubUrl" type="text" placeholder="Github Url">
+              <br/><br/>
+              <span class="pull-right">
+                <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
+              </span>
+              <br/><br/>
+            </form>
+          </div>
+         </div>
+
+          <!-- Second Modal View -->
+          <div class="modal-header" ng-show="submission">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"> Thanks for your Submission </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End Project Submit Button Modal -->
 
   <!-- Project List View -->
     <section class="portfolio-1">
+
       <div class="container">
+
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2>Projects</h2>
@@ -72,9 +116,9 @@
           </div>
         </div>
 
-        <div ng-repeat="project in vm.newProjects">
 
           <!-- project card -->
+        <div ng-repeat="project in vm.newProjects">
           <div  class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
             <a data-target="#{{project.projName}}" class="portfolio-item" data-toggle="modal">
               <div class="portfolio-link">
@@ -91,27 +135,6 @@
         </div>
 
         <div ng-repeat="project in vm.newProjects">
-
-
-          <!-- Project Detail View Modal -->
-      <!--     <div id="{{project.projName}}" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-              <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                  <div class="rl">
-                  </div>
-                </div>
-              </div>
-              <div class="container">
-                <div class="row first">
-                  <div class="col-lg-12">
-                    <h2>{{project.projName}}</h2>
-                    <p>{{project.description}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
 
           <!-- Standard Portfolio Modal - Images and Text -->
           <div id="{{project.projName}}" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -158,83 +181,14 @@
                   </div>
               </div>
           </div>
-
-
-
-
-
-
         </div>
+
       </div>
     </section>
-
-
 
   <!-- Project List View Ends -->
 
 
-    <!-- Project Submit Modal -->
-    <d  iv id="myModal" class="modal fade"  role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-        <!-- Default Modal View -->
-         <div class="default-modal"  ng-hide="submission">
-
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Submit Your Project</h4>
-          </div>
-          <div class="modal-body">
-            <form ng-submit="projectSubmit(projectDescription, githubUrl, projName)">
-              Project Name:<br>
-              <input ng-model="projName" class="projName" type="text" placeholder="Name your project">
-              <br>
-              Project Description:<br>
-              <input ng-model="projectDescription" class="projectDescription" type="text" placeholder="Briefly describe your project">
-              <br>
-              Github Url:<br>
-              <input ng-model="githubUrl" type="text" placeholder="Github Url">
-              <br/><br/>
-              <span class="pull-right">
-                <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
-              </span>
-              <br/><br/>
-            </form>
-          </div>
-         </div>
-
-          <!-- Second Modal View -->
-          <div class="modal-header" ng-show="submission">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"> Thanks for your Submission </h4>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
  </div>
 
-     <!-- Do NOT DELETE Display Project Modal HERE -->
-  <!-- <div id="displayModal" class="modal fade"  role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Project Name: {{projDisplay.projName}}</h4>
-          </div>
-          <div class="modal-body" >
-            <p> Project Description: {{projDisplay.description}} </p>
-          </div>
-          <div class="modal-footer">
-            <div class="modal-footer-default">
-              <button ng-click="editProject()" ng-hide="save" type="button" class="btn btn-info btn-md">Edit</button>
-            </div>
-            <div class="modal-footer-edit">
-              <button ng-click="saveProject()" ng-show="save" type="button" class="btn btn-info btn-md">Save</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!-- End Display Project Modal -->
