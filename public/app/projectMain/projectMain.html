@@ -84,6 +84,14 @@
               <br>
               Github Url:<br>
               <input ng-model="githubUrl" type="text" placeholder="Github Url">
+              <br> <br>
+              Upload website screenshots: <br>
+              <input type="file" custom-on-change="uploadUserImage" />
+              <p id="status">Please select a file</p>
+              <img id="preview" src="{{imagePreview}}" />
+              <input type="submit" value="Add Image" />
+
+
               <br/><br/>
               <span class="pull-right">
                 <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
