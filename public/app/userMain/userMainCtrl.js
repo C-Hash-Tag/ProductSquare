@@ -48,6 +48,7 @@ angular.module('myApp.UserMain', [])
   //   }); //run the userImage upload from the imageUpload factory.
   // };
 
+
   $scope.sendEmail = function(message) {
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
     console.log("in sendMail");
