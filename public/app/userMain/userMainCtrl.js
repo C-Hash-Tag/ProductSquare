@@ -1,15 +1,5 @@
 angular.module('myApp.UserMain', [])
 
-.directive('customOnChange', function() {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      var onChangeFunc = scope.$eval(attrs.customOnChange);
-      element.bind('change', onChangeFunc);
-    }
-  };
-})
-
 .controller('UserMainCtrl', ['$scope', '$http', 'imageUpload', function($scope, $http, imageUpload){
   var vm = this;
 

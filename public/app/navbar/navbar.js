@@ -11,8 +11,8 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUp
         auth.newUser(realName, email, password, scope);
       };
 
-
-      scope.uploadUserImage = function(){
+      scope.fileNameChanged = function() {
+        console.log("selectedFile!!!");
         console.log("event", event);
         imageUpload.userImage("dswright", event, function(url){
           scope.userProfileImage = url;
@@ -41,6 +41,6 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUp
       };
     }
   }
-}]);
+}])
 
 
