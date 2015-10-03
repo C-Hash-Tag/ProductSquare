@@ -44,7 +44,7 @@ angular.module('myApp.projectMain', [])
   $scope.projectSubmit = function(projDesc, githubUrl, projName, projUrl, projectImage) {
     var projID = uniqProjID(projName)
     if (projectImage === "") {
-      projectImage = "https://pbs.twimg.com/profile_images/378800000230205597/294cc5c6c74f80d1a0af481802edd80c_400x400.jpeg"
+      projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
     }
     data.createProject(projDesc, githubUrl, projName, projUrl, projID, projectImage);
     $scope.projDesc = "";
