@@ -31,14 +31,11 @@ angular.module('myApp.projectMain', [])
     $scope.projDisplay = vm.newProjects[projName];
   }
 
-  $scope.editProject = function() {
-    console.log("In edit project!");
-    $scope.save = true;
-  }
-
-  $scope.saveProject = function() {
-    console.log("In save project!");
-    $scope.save = false;
+  $scope.editProj = function(userID) {
+    console.log("in EDIT PROJ");
+    if (localStorage.userID === userID) {
+      return true;
+    }
   }
 
   // vm.newProjects;

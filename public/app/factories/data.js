@@ -76,7 +76,7 @@ angular.module('myApp.data', [])
 
       // Add the project data to the user in Firebase
       Ref.child('users').child(localStorage.userID).child('projects').child(projName).set({
-        githubRepo: githubUrl
+        projID: projID
       });
     };
 
