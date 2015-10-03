@@ -80,7 +80,7 @@
       </div>
       <div class="modal-body">
         <form ng-submit="saveUserImage">
-          <input type="file" ng-model="confirmed" ng-change="uploadUserImage()" />
+          <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveUserProfileImage(this)" />
           <p id="status">Please select a file</p>
           <img id="preview" src="{{userProfileImage}}" />
           <input type="submit" value="Add Image" />
