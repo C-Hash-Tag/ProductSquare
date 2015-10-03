@@ -30,21 +30,22 @@
         </div>
         <div class="container">
         <!-- first div here -->
-            <div class="row first">
+            <div class="row first" ng-hide="submission">
               <h2 style="text-align:center">Submit Your Project</h2>
                 <div class="col-lg-12">
-                  <form id="projFormSubmit" ng-submit="projectSubmit(projDesc, githubUrl, projName, projUrl)">
+                  <form ng-submit="projectSubmit(projDesc, githubUrl, projName, projUrl)">
                   <h2>
-                  <textarea rows="1" cols="25" name="comment" type="text" placeholder="Name your project" ng-model="projName" form="projFormSubmit"></textarea>
+                  <textarea rows="1" cols="25" name="comment" type="text" placeholder="Name your project" ng-model="projName" ></textarea>
                   </h2>
                   <img style="float:right" src="http://kidneyclever.com/wp-content/uploads/2014/04/micro-soft-word-kidney-pic-500px-x-300px.jpg">
                   <button>Upload an Image</button><br><br>
                   <p>Project Description:<br>
-                  <textarea rows="4" cols="50" name="comment" type="text" placeholder="Briefly describe your project" ng-model="projDesc" form="projFormSubmit"></textarea></p>
+                  <textarea rows="4" cols="50" name="comment" type="text" placeholder="Briefly describe your project" ng-model="projDesc" ></textarea></p>
                   <p>Github Url:<br>
-                  <textarea rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl" form="projFormSubmit"></textarea></p>
+                  <textarea rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl"></textarea></p>
                   <p>Project Url:<br>
-                  <textarea rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com" form="projFormSubmit"></textarea></p>
+                  <textarea rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com"></textarea>
+                  </p>
                   <br/><br/>
                   <span class="pull-right">
                     <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
@@ -54,6 +55,11 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal-body" ng-show="submission">
+            <button type="button" class="close" data-dismiss="modal"></button>
+            <h4 class="modal-title"> Thanks for your Submission </h4>
+          </div>
     </div>
 </div>
 
@@ -120,7 +126,7 @@
           <!-- project card -->
         <div ng-repeat="project in vm.newProjects">
           <div  class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
-            <a data-target="#{{project.projName}}" class="portfolio-item" data-toggle="modal">
+            <a ng-attr-data-target="#{{project.projID}}" class="portfolio-item" data-toggle="modal">
               <div class="portfolio-link">
                 <div class="caption">
                   <div class="caption-content">
@@ -137,7 +143,7 @@
         <div ng-repeat="project in vm.newProjects">
 
           <!-- Standard Portfolio Modal - Images and Text -->
-          <div id="{{project.projName}}" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div ng-attr-id="{{project.projID}}" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-content">
                   <div class="close-modal" data-dismiss="modal">
                       <div class="lr">
@@ -177,6 +183,7 @@
                                       <strong>Date:</strong>January 2015</li>
                               </ul>
                           </div>
+                          <button ng-show="editProj(project.userID)">Edit</button>
                       </div>
                   </div>
               </div>
