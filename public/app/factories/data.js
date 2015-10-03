@@ -54,19 +54,21 @@ angular.module('myApp.data', [])
     };
 
     // Collect project data from createProject and store it in Firebase
-    factory.createProject = function(desc, repo, projName){
+    factory.createProject = function(projDesc, githubUrl, projName, projUrl){
       // Store the project data in Firebase
       Ref.child('projects').child(projName).set({
-        description: desc,
-        githubRepo: repo,
+        description: projDesc,
+        githubRepo: githubUrl,
         projName: projName,
+        projUrl: projUrl,
         date: currentDate(),
         userID: localStorage.userID
+
       });
 
       // Add the project data to the user in Firebase
       Ref.child('users').child(localStorage.userID).child('projects').child(projName).set({
-        githubRepo: repo
+        githubRepo: githubUrl
       });
     };
 
@@ -108,13 +110,13 @@ angular.module('myApp.data', [])
       Ref.child("ideas").child(ideaName).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
         if(usersWhoLikeIt === null){
           usersWhoLikeIt = {};
-        } 
+        }
         usersWhoLikeIt[userID] = true;
 
         console.log(Object.keys(usersWhoLikeIt).length); //how many likes for a given idea
         return usersWhoLikeIt;
       })
-      
+
       //update users table to store ideas that users like
       Ref.child("users").child(username).child("likedIdeas").transaction(function(likedIdeas){
         if(likedIdeas === null){
@@ -123,7 +125,7 @@ angular.module('myApp.data', [])
         likedIdeas[ideaName] = true;
         return likedIdeas;
       })
-      
+
     }
 
     return factory;

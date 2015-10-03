@@ -35,14 +35,15 @@ angular.module('myApp.projectMain', [])
 
   vm.newProjects;
 
-  $scope.projectSubmit = function(projectDescription, githubUrl, projName) {
-    console.log("this is the projectDescription: ", projectDescription);
+  $scope.projectSubmit = function(projDesc, githubUrl, projName, projUrl) {
+    console.log("this is the projectDescription: ", projDesc);
     console.log("this is the githubUrl: ",githubUrl);
     console.log("this is projName", projName);
-    data.createProject(projectDescription, githubUrl, projName);
-    $scope.projectDescription = "";
+    data.createProject(projDesc, githubUrl, projName, projUrl);
+    $scope.projDesc = "";
     $scope.githubUrl = "";
     $scope.projName = "";
+    $scope.projUrl = "";
     $scope.submission = true;
   }
 
