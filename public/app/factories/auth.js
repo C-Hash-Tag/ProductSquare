@@ -32,8 +32,6 @@ angular.module('myApp.auth', [])
         localStorage.userID = authData.uid;
         localStorage.email = email;
       }
-    }, {
-      remember: "sessionOnly"
     });
    };
 
