@@ -1,11 +1,11 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.data',
+  'myApp.projectMain',
   'myApp.imageUpload',
   'myApp.main',
   'myApp.ideaMain',
   'myApp.UserMain',
-  'myApp.projectMain',
   'myApp.auth'
 ])
 

@@ -2,6 +2,29 @@
 .modal-backdrop, .modal-backdrop.in{
   display: none;
 }
+
+/*image container*/
+.portfolio-link {
+  display: block;
+  width 500px;
+  height: 200px;
+  margin: 0px;
+  /*padding: 9px;*/
+  text-align: left;
+  overflow: hidden;
+  /*vertical-align: center;*/
+}
+
+
+/*image*/
+.portfolio-link img {
+  width: 100%;
+
+  /*zoom: 5025;*/
+  /*height: 150px;*/
+  /*border: 1px solid #d6d6d6;*/
+}
+
 </style>
 
 <nav-bar> </nav-bar>
@@ -33,12 +56,18 @@
             <div class="row first">
               <h2 style="text-align:center">Submit Your Project</h2>
                 <div class="col-lg-12">
-                  <form id="projFormSubmit" ng-submit="projectSubmit(projDesc, githubUrl, projName, projUrl)">
+                  <form id="projFormSubmit" ng-submit="projectSubmit(projDesc, githubUrl, projName, projUrl, projectImage)">
                   <h2>
                   <textarea rows="1" cols="25" name="comment" type="text" placeholder="Name your project" ng-model="projName" form="projFormSubmit"></textarea>
                   </h2>
-                  <img style="float:right" src="http://kidneyclever.com/wp-content/uploads/2014/04/micro-soft-word-kidney-pic-500px-x-300px.jpg">
+                  <img id="preview" src="{{projectImage}}" style="float:right" >
                   <button>Upload an Image</button><br><br>
+
+                  <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveProjectImage(this)"/>
+                  <p id="status">Please select a file</p>
+                  
+
+
                   <p>Project Description:<br>
                   <textarea rows="4" cols="50" name="comment" type="text" placeholder="Briefly describe your project" ng-model="projDesc" form="projFormSubmit"></textarea></p>
                   <p>Github Url:<br>
@@ -136,7 +165,7 @@
                     <p> {{project.description}}</p>
                   </div>
                 </div>
-                <img src="../../img/projectImages/CodeFighter/codefighter2.png" class="img-centered" alt="">
+                <img src="{{project.projectImage}}" class="img-centered" alt="" style="zoom:200%">
               </div>
             </a>
           </div>
