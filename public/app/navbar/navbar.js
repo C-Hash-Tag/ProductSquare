@@ -11,6 +11,12 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUp
         auth.newUser(realName, email, password, scope);
       };
 
+      console.log(localStorage.userID);
+      if (localStorage.userID !== undefined) {
+        console.log("userID!", localStorage.userID);
+        scope.userID = localStorage.userID;
+      }
+
       scope.uploadUserProfileImage = function() {
         console.log("selectedFile!!!");
         console.log("event", event);

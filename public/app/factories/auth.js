@@ -25,6 +25,7 @@ angular.module('myApp.auth', [])
         console.log("Login Failed!", error);
       } else {
         scope.loggedIn = true;
+        scope.userID = authData.id;
         scope.$apply();
         console.log("Authenticated successfully with payload:", authData);
         factory.authLogin(scope);
