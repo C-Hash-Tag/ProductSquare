@@ -35,6 +35,7 @@ angular.module('myApp.data', [])
       $rootScope.$broadcast('userCreated', user);
     };
 
+
     // Collect idea data from createIdea and store it in Firebase
     factory.createIdea = function(ideaName, desc, userID){
       // Store the idea data in Firebase
@@ -52,6 +53,10 @@ angular.module('myApp.data', [])
       });
     };
 
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
     factory.setUserProfileImage = function(url, userId) {
       Ref.child('users').child(userId).update({
         profileImage: url
