@@ -52,6 +52,13 @@ angular.module('myApp.data', [])
       });
     };
 
+    factory.setUserProfileImage = function(url, userId) {
+      Ref.child('users').child(userId).update({
+        profileImage: url
+      });
+      console.log("userprofileimage Saved!!");
+    };
+
     // Collect project data from createProject and store it in Firebase
     factory.createProject = function(projDesc, githubUrl, projName, projUrl){
       // Store the project data in Firebase

@@ -1,3 +1,4 @@
+<!-- Actual Navigation Bar -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -33,10 +34,8 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<!-- Sign Up Modal
-  NEED TO WORK ON FORM VALIDATION
--->
 
+<!-- Sign Up Modal   NEED TO WORK ON FORM VALIDATION   -->
 <div id="signUpModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content -->
@@ -63,7 +62,6 @@
           <h5 id="alreadyHaveAnAccount">Already have an account? <a data-toggle="modal" data-target="#signUpModal, #loginModal" style="cursor:pointer;">Log In</a> </h5>
         </div>
       </div>
-
     </div>
   </div>
 </div>
@@ -79,17 +77,35 @@
         <h4 class="modal-title">Upload a Profile Image </h4>
       </div>
       <div class="modal-body">
-        <form ng-submit="saveUserImage">
-          <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveUserProfileImage(this)" />
+        <form ng-submit="saveUserImage()">
+          <input type="file" id="file" name='file' onchange="angular.element(this).scope().uploadUserProfileImage(this)" />
           <p id="status">Please select a file</p>
           <img id="preview" src="{{userProfileImage}}" />
           <input type="submit" value="Add Image" />
         </form>
+        <a data-toggle="modal" data-target="#profileImageModal, #profileCompleteModal" style="cursor:pointer;">Skip this step</a>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Profile Complete Modal -->
+<div id="profileCompleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Welcome, {{realName}}! </h4>
+      </div>
+      <div class="modal-body">
+        <a href="/#/projects/"><button class="btn-primary btn">Latest Projects</button></a>
+
+        <a href="/#/ideas/"><button class="btn-primary btn">Latest Ideas</button></a>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
