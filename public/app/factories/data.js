@@ -60,13 +60,14 @@ angular.module('myApp.data', [])
     };
 
     // Collect project data from createProject and store it in Firebase
-    factory.createProject = function(projDesc, githubUrl, projName, projUrl, projectImage){
+    factory.createProject = function(projDesc, githubUrl, projName, projUrl, projID, projectImage){
       // Store the project data in Firebase
       Ref.child('projects').child(projName).set({
         description: projDesc,
         githubRepo: githubUrl,
         projName: projName,
         projUrl: projUrl,
+        projID: projID,
         date: currentDate(),
         userID: localStorage.userID,
         projectImage: projectImage
