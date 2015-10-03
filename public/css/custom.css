@@ -1,3 +1,10 @@
+/* Custom CSS */
+#founder {
+  float:left;
+}
+
+#founder + #founder { margin-left: 3px; }
+
 /*!
  * Spectrum v1.2.0 (http://themes.startbootstrap.com/spectrum-v1.2.0)
  * Copyright 2013-2015 Start Bootstrap Themes
@@ -31,7 +38,7 @@ aside {
 }
 @media (min-width: 767px) {
   section {
-    padding: 100px 0;
+    padding: 0;
   }
 }
 .well {
@@ -921,16 +928,19 @@ a.light-text:focus {
 }
 @media (min-width: 767px) {
   .about-img-1 {
-    background-image: url(../img/demo-portraits/portrait-1.jpg);
+    background-image: url(https://avatars2.githubusercontent.com/u/8454621?v=3&s=460);
   }
   .about-img-2 {
-    background-image: url(../img/demo-portraits/portrait-2.jpg);
+    background-image: url(https://avatars0.githubusercontent.com/u/6378848?v=3&s=460);
   }
   .about-img-3 {
-    background-image: url(../img/demo-portraits/portrait-3.jpg);
+    background-image: url(https://avatars2.githubusercontent.com/u/9300663?v=3&s=460);
   }
   .about-img-4 {
-    background-image: url(../img/demo-portraits/portrait-4.jpg);
+    background-image: url(https://avatars2.githubusercontent.com/u/10605047?v=3&s=460);
+  }
+  .about-img-5 {
+    background-image: url(https://avatars2.githubusercontent.com/u/5301155?v=3&s=460);
   }
 }
 .blog-1 .blog-col {
