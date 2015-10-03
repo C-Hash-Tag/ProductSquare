@@ -22,7 +22,7 @@ angular.module('myApp.data', [])
     // Collect user data from sign up and store it in Firebase
     factory.createUser = function(email, password, userId, name){
       // Store the user data in Firebase
-      Ref.child("users").child(userId).set({
+      var user = {
         name: name,
         email: email,
         userId: userId,
@@ -31,7 +31,9 @@ angular.module('myApp.data', [])
         likedIdeas: {},
         profileImageVersion: 0, //keep track of which profile image version the user is currently on.
         profileImage: '/img/default-user.png' //this will update with aws image when input by the user.
-      });
+      };
+      Ref.child("users").child(userId).set(user);
+      $rootScope.$broadcast('userCreated', user);
     };
 
     // Collect idea data from createIdea and store it in Firebase

@@ -48,8 +48,7 @@
   </div>
   <br /><br /><br /><br />
 
-  <form ng-submit="addImage(image)">
-
+  <form ng-submit="saveUserImage()">
     <input type="file" custom-on-change="uploadUserImage" />
     <p id="status">Please select a file</p>
     <img id="preview" src="{{imagePreview}}" />
