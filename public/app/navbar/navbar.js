@@ -1,4 +1,4 @@
-angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUpload", function($window, auth, data) {
+angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUpload", function($window, auth, data, imageUpload) {
 
   return {
     restrict: 'E',
@@ -11,7 +11,7 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUp
         auth.newUser(realName, email, password, scope);
       };
 
-      scope.fileNameChanged = function() {
+      scope.saveUserProfileImage = function() {
         console.log("selectedFile!!!");
         console.log("event", event);
         imageUpload.userImage("dswright", event, function(url){
