@@ -19,6 +19,14 @@ angular.module('myApp.projectMain', [])
 
   vm.getProjectsData();
 
+  var uniqProjID = function(str) {
+    str = str.toLowerCase().split("");
+    for (var i = 0; i< str.length; i++) {
+      str[i] = (str[i] === ' ' ? '-' : str[i]);
+    }
+    return str.join('');
+  }
+
   $scope.projSpecific = function(projName) {
     $scope.projDisplay = vm.newProjects[projName];
   }
@@ -33,13 +41,11 @@ angular.module('myApp.projectMain', [])
     $scope.save = false;
   }
 
-  vm.newProjects;
+  // vm.newProjects;
 
   $scope.projectSubmit = function(projDesc, githubUrl, projName, projUrl) {
-    console.log("this is the projectDescription: ", projDesc);
-    console.log("this is the githubUrl: ",githubUrl);
-    console.log("this is projName", projName);
-    data.createProject(projDesc, githubUrl, projName, projUrl);
+    var projID = uniqProjID(projName)
+    data.createProject(projDesc, githubUrl, projName, projUrl, projID);
     $scope.projDesc = "";
     $scope.githubUrl = "";
     $scope.projName = "";
