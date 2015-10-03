@@ -11,13 +11,20 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUp
         auth.newUser(realName, email, password, scope);
       };
 
-      scope.saveUserProfileImage = function() {
+      scope.uploadUserProfileImage = function() {
         console.log("selectedFile!!!");
         console.log("event", event);
         imageUpload.userImage("dswright", event, function(url){
           scope.userProfileImage = url;
           scope.$apply();
         }); //run the userImage upload from the imageUpload factory.
+      };
+
+      scope.saveUserImage = function() {
+        console.log("saving image in scope..!");
+        data.setUserProfileImage(scope.userProfileImage, localStorage.userID);
+        $('#profileImageModal').modal('hide'); //hide the signup modal.
+        $('#profileCompleteModal').modal('show'); //show the uploadImage modal.
       };
 
       scope.$on('userCreated', function (event, user){ //when a user is created
