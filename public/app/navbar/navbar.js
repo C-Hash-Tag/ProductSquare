@@ -1,4 +1,4 @@
-angular.module("myApp").directive("navBar", ['$window', "auth", "data", function($window, auth, data) {
+angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUpload", function($window, auth, data) {
 
   return {
     restrict: 'E',
@@ -10,6 +10,23 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", function
       scope.newUserSubmit = function(realName, email, password) {
         auth.newUser(realName, email, password, scope);
       };
+
+
+      scope.uploadUserImage = function(){
+        console.log("event", event);
+        imageUpload.userImage("dswright", event, function(url){
+          scope.userProfileImage = url;
+          scope.$apply();
+        }); //run the userImage upload from the imageUpload factory.
+      };
+
+      scope.$on('userCreated', function (event, user){ //when a user is created
+        $('#signUpModal').modal('hide'); //hide the signup modal.
+        $('#profileImageModal').modal('show'); //show the uploadImage modal.
+        console.log("user created!", user);
+        scope.userProfileImage = user.profileImage; //set profileimage to default image to start.
+        scope.$apply();
+      });
 
       scope.close = function() {
         scope.submission = false;

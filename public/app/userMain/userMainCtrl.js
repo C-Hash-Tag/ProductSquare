@@ -1,6 +1,16 @@
 angular.module('myApp.UserMain', [])
 
-.controller('UserMainCtrl', ['$scope', '$http', function($scope, $http){
+.directive('customOnChange', function() {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var onChangeFunc = scope.$eval(attrs.customOnChange);
+      element.bind('change', onChangeFunc);
+    }
+  };
+})
+
+.controller('UserMainCtrl', ['$scope', '$http', 'imageUpload', function($scope, $http, imageUpload){
   var vm = this;
 
   console.log("using user cntrl!");
@@ -36,7 +46,18 @@ angular.module('myApp.UserMain', [])
     }
   ];
 
-  $scope.sendEmail = function(message){
+  $scope.imagePreview = "/img/default-user.png";
+
+  $scope.username = "dswright";
+  $scope.uploadUserImage = function(){
+    console.log("event", event);
+    imageUpload.userImage($scope.username, event, function(url){
+      $scope.imagePreview = url;
+      $scope.$apply();
+    }); //run the userImage upload from the imageUpload factory.
+  };
+
+  $scope.sendEmail = function(message) {
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
     console.log("in sendMail");
     $http.post('/email', {
@@ -50,6 +71,5 @@ angular.module('myApp.UserMain', [])
       console.log("email error");
     });
   }
-
  
 }])
