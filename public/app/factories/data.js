@@ -35,6 +35,9 @@ angular.module('myApp.data', [])
       $rootScope.$broadcast('userCreated', user);
     };
 
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
     // Collect idea data from createIdea and store it in Firebase
     factory.createIdea = function(ideaName, desc, userID){
@@ -45,6 +48,7 @@ angular.module('myApp.data', [])
         date: currentDate(),
         userID: userID,
         usersWhoLikeIt: {},
+        backgroundPath: "../background/wood" + getRandomInt(0,4)+".jpg"
       });
 
       // Add the idea data to the user in Firebase
@@ -52,10 +56,6 @@ angular.module('myApp.data', [])
         idea: desc
       });
     };
-
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
     
     factory.setUserProfileImage = function(url, userId) {
       Ref.child('users').child(userId).update({
