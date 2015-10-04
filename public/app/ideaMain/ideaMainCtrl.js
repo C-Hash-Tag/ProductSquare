@@ -1,46 +1,42 @@
 angular.module('myApp.ideaMain', [])
 
 .controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', function($scope, $http, data, $log, auth){
-  var vm = this;
-  
+  // var vm = this;
+
   //NOTE: set the listener before you get the dat
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
-   vm.newIdeas = ideas;
+   $scope.newIdeas = ideas;
    $scope.$apply();
   })
 
-  vm.getIdeasData = function(){
-    console.log("inside get Ideas Data")
+  $scope.getIdeasData = function(){
+    // console.log("inside get Ideas Data")
     data.getIdeasData();
   }
 
-  vm.getIdeasData()
+  $scope.getIdeasData()
 
-  vm.newIdeas; 
-
-  console.log("inside initScope");
-
-
-  //TODO: add the username too
-  vm.postIdea = function(name, description){
-    data.createIdea(name, description, localStorage.userID);
+  $scope.test = function() {
+    console.log("click works")
   }
 
-  vm.like = function(userID, ideaName){
-    //update css of the like button
-    
-    //update the database 
-    data.updateLike(userID, ideaName);
-      //TODO: if username liked it before, remove her; if username hasn't, add her
-      //add/ remove idea in user's liked ideas 
+  // vm.newIdeas;
+
+  // console.log("inside initScope");
+
+  $scope.ideaSubmit = function(ideaName, ideaDesc) {
+    // console.log("In Idea Submit");
+    data.createIdea(ideaName, ideaDesc);
   }
 
-  //FOR TESTING PURPOSES  
-  // vm.postIdea("trello222", "trello for wizards", "ting");
-  console.log("in ideas")
+  // $scope.like = function(userID, ideaName){
+  //   //update css of the like button
 
-
-  return vm;
+  //   //update the database
+  //   data.updateLike(userID, ideaName);
+  //     //TODO: if username liked it before, remove her; if username hasn't, add her
+  //     //add/ remove idea in user's liked ideas
+  // }
 
 }])
