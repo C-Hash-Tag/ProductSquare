@@ -19,6 +19,47 @@
   font-weight: bold;
 }
 
+#user-details {
+  margin-left:15px;
+}
+
+#user-page-github {
+  margin-top:5px;
+}
+
+#user-page-github-logo img {
+  width: 20px;
+}
+
+#user-page-github-logo {
+  float: left;
+  margin-right: 10px;
+}
+
+#user-page-github-link {
+  float: left;
+  margin-top:1px;
+}
+
+#user-page-linkedin {
+  margin-top: 5px;
+}
+
+#user-page-linkedin-logo img {
+  width: 20px;
+  margin-left: 2px;
+}
+
+#user-page-linkedin-logo {
+  float: left;
+  margin-right: 10px;
+}
+
+#user-page-linkedin-link {
+  margin-top: 1px;
+  float:left;
+}
+
 #user-page-right-col {
   float: right;
   width: 70%;
