@@ -1,4 +1,9 @@
 /* Custom CSS */
+
+.test-submit, #project-submit-button, #submit-an-idea-button {
+  margin-top: 15px;
+}
+
 #founder {
   float:left;
 }
@@ -6,7 +11,7 @@
 #founder + #founder { margin-left: 3px; }
 
 #page-top {
-  padding-top: 70px;
+  padding-top: 50px;
 }
 
 /*!
@@ -1349,7 +1354,7 @@ a.light-text:focus {
 .bg-parallax-light,
 .bg-parallax-dark {
   width: 100%;
-  height: auto;
+  height: 632px;
   background-attachment: scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
