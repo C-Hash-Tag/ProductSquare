@@ -65,6 +65,32 @@
   width: 70%;
 }
 
+
+/* User profile page styling */
+#user-page-left-col {
+  float: left;
+  width: 20%;
+  margin-right: 10%;
+}
+
+#user-page-profile-pic img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+#user-page-real-name {
+  font-size: 26px;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+#user-page-right-col {
+  float: right;
+  width: 70%;
+}
+
 /* clearfix class for floats within divs */
 .clearfix:after {
   visibility: hidden;
