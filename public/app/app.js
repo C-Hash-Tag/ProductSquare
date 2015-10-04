@@ -22,7 +22,7 @@ angular.module('myApp', [
       controllerAs: 'vm',
       css: './app/ideaMain/ideaMain.css'
     })
-    .when('/user/', {
+    .when('/user/:userID/', {
       templateUrl: './app/userMain/userMain.html',
       controller: 'UserMainCtrl',
       controllerAs: 'vm'

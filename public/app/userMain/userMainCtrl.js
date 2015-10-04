@@ -1,6 +1,6 @@
 angular.module('myApp.UserMain', [])
 
-.controller('UserMainCtrl', ['$scope', '$http', 'imageUpload', function($scope, $http, imageUpload){
+.controller('UserMainCtrl', ['$scope', '$http', '$routeParams', 'imageUpload', function($scope, $http, $routeParams, imageUpload){
   var vm = this;
 
   console.log("using user cntrl!");
@@ -36,16 +36,17 @@ angular.module('myApp.UserMain', [])
     }
   ];
 
-  $scope.imagePreview = "/img/default-user.png";
+  console.log($routeParams.userID);
 
-  $scope.username = "dswright";
-  $scope.uploadUserImage = function(){
-    console.log("event", event);
-    imageUpload.userImage($scope.username, event, function(url){
-      $scope.imagePreview = url;
-      $scope.$apply();
-    }); //run the userImage upload from the imageUpload factory.
-  };
+  // $scope.imagePreview = "/img/default-user.png";
+
+  // $scope.uploadUserImage = function(){
+  //   console.log("event", event);
+  //   imageUpload.userImage($routeParams.userId, event, function(url){
+  //     $scope.imagePreview = url;
+  //     $scope.$apply();
+  //   }); //run the userImage upload from the imageUpload factory.
+  // };
 
   $scope.sendEmail = function(message) {
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
