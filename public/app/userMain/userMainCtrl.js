@@ -38,15 +38,15 @@ angular.module('myApp.UserMain', [])
 
   console.log($routeParams.userID);
 
-  $scope.imagePreview = "/img/default-user.png";
+  // $scope.imagePreview = "/img/default-user.png";
 
-  $scope.uploadUserImage = function(){
-    console.log("event", event);
-    imageUpload.userImage($routeParams.userId, event, function(url){
-      $scope.imagePreview = url;
-      $scope.$apply();
-    }); //run the userImage upload from the imageUpload factory.
-  };
+  // $scope.uploadUserImage = function(){
+  //   console.log("event", event);
+  //   imageUpload.userImage($routeParams.userId, event, function(url){
+  //     $scope.imagePreview = url;
+  //     $scope.$apply();
+  //   }); //run the userImage upload from the imageUpload factory.
+  // };
 
   $scope.sendEmail = function(message) {
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.

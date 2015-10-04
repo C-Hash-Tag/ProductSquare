@@ -1,60 +1,106 @@
 <nav-bar> </nav-bar>
 
-<div class="user">
-  <div id="user-name">{{name}}</div>
-  <div id="user-profile-pic">
-    <img src="{{profilePic}}" width="100px" />
-  </div>
-
-  <div id="user-projects" ng-repeat="project in projects" style="display:block;">
-    <div class="user-project">
-      <div class="user-project-name">{{project.name}}</div>
-      <div class="user-project-idea-pic"><img src="{{project.pic}}" width="100px" /></div>
-      <div class="user-project-idea">{{project.idea}}</div>
+<div class="container">
+  <div id="user-page-left-col">
+    <div id="user-page-profile-pic" width="100%">
+      <img src="{{profilePic}}" />
     </div>
-  </div>
-
-  <div id="user-ideas" ng-repeat="idea in ideas">
-    <div class="user-idea">
-      <div class="user-idea-name">{{idea.name}}</div>
-      <div class="user-idea">{{idea.idea}}</div>
+    <div id="user-page-real-name">{{name}}</div>
+    <div id="user-page-github" class="clearfix">
+      <div id="user-page-github-logo">
+        <img src="/img/Github-Mark-64px.png" />
+      </div>
+      <div id="user-page-github-link">
+        <a href="https://github.com/dswright">https://github.com/dswright</a>
+      </div>
     </div>
+    <div id="user-page-linkedin" class="clearfix">
+      <div id="user-page-linkedin-logo">
+        <img src="/img/In-2C-81px-R.png" />
+      </div>
+      <div id="user-page-linkedin-link">
+        <a href="https://www.linkedin.com/in/dylanswright">https://www.linkedin.com/in/dylanswright</a>
+      </div>
+    </div>
+    <div id="user-page-blog"><a href="http://ds-wright.com/">http://ds-wright.com/</a></div>
+    <div id="user-page-location">San Francisco, CA</div>
+    <div id="user-page-org">MakerSquare</div>
   </div>
 
-  <h2> Contact </h2>
-    <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">Contact {{name}}</button>
+  <div id="user-page-right-col">
+    <div id="user-page-projects">
+      <div id="user-page-projects-header">
+        Projects By Dylan
+      </div>
+      
+      <div class="user-page-project">
+        Some project...
+      </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="contactModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Contact {{name}}</h4>
-        </div>
-        <div class="modal-body">
-         <form ng-submit="sendEmail(message)">
-           <textarea ng-model="message" placeholder="Post your message to Dylan here." style="height:100px; width:500px;"></textarea>
-           <input type="submit" value="Send" class="btn btn-default" />
-        </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+
+    <div id="user-page-ideas">
+      <div id="user-page-ideas-header">
+        Ideas By Dylan
+      </div>
+      <div class="user-page-idea">
+        Some idea...
+      </div>
+    </div>
+
+  </div>
+
+
+    
+
+    <div id="user-projects" ng-repeat="project in projects" style="display:block;">
+      <div class="user-project">
+        <div class="user-project-name">{{project.name}}</div>
+        <div class="user-project-idea">{{project.idea}}</div>
+      </div>
+    </div>
+
+    <div id="user-ideas" ng-repeat="idea in ideas">
+      <div class="user-idea">
+        <div class="user-idea-name">{{idea.name}}</div>
+        <div class="user-idea">{{idea.idea}}</div>
+      </div>
+    </div>
+
+    <h2> Contact </h2>
+      <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">Contact {{name}}</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="contactModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Contact {{name}}</h4>
+          </div>
+          <div class="modal-body">
+           <form ng-submit="sendEmail(message)">
+             <textarea ng-model="message" placeholder="Post your message to Dylan here." style="height:100px; width:500px;"></textarea>
+             <input type="submit" value="Send" class="btn btn-default" />
+          </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
+    <br /><br /><br /><br />
+
+    <form ng-submit="saveUserImage()">
+      <input type="file" custom-on-change="uploadUserImage" />
+      <p id="status">Please select a file</p>
+      <img id="preview" src="{{imagePreview}}" />
+      <input type="submit" value="Add Image" />
+    </form>
+
   </div>
-  <br /><br /><br /><br />
-
-  <form ng-submit="saveUserImage()">
-    <input type="file" custom-on-change="uploadUserImage" />
-    <p id="status">Please select a file</p>
-    <img id="preview" src="{{imagePreview}}" />
-    <input type="submit" value="Add Image" />
-  </form>
-
-
 
 </div>
