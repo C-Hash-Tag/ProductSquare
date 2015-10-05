@@ -1,10 +1,10 @@
 /* Custom CSS */
 /* Main */
 #founder {
-  float:left;
+  display:inline-block;
 }
 
-#founder + #founder { margin-left: 3px; }
+#founder + #founder { margin-left: 30px; }
 
 #page-top {
   padding-top: 50px;
