@@ -67,7 +67,6 @@ hr {
 <nav-bar> </nav-bar>
 
 <div class="container">
-
   <!-- Trigger the Project Submit Modal with a button -->
   <button id="submit-an-idea-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit An Idea</button>
 
@@ -122,6 +121,17 @@ hr {
               <br/>
               <button ng-click="postIdea(ideaName, description, ideaImage)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
             </form>
+        </div>
+      </div> <!-- Modal content-->
+        <div class="modal-body">
+          <!-- <form ng-submit="vm.postIdea(vm.name, vm.description, user)"> -->
+          <form>
+            <p> Name </p> <input ng-model="ideaName">
+            <p> Description </p> <input ng-model="description">
+            <!-- TODO: diff b/w ng-click and ng-submit? -->
+            <button ng-click="postIdea(ideaName, description)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
+          </form>
+
         </div>
       </div> <!-- Modal content-->
     </div>
