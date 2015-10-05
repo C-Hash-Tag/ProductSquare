@@ -1,6 +1,6 @@
 angular.module('myApp.ideaMain', [])
 
-.controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', function($scope, $http, data, $log, auth){
+.controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', 'imageUpload', function($scope, $http, data, $log, auth, imageUpload){
   //NOTE: set the listener before you get the dat
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
@@ -16,10 +16,12 @@ angular.module('myApp.ideaMain', [])
   $scope.getIdeasData();
 
   //TODO: add the username too
-  $scope.postIdea = function(ideaName, description){
-    data.createIdea(ideaName, description, localStorage.userID);
+  $scope.postIdea = function(ideaName, description, ideaImage){
+    data.createIdea(ideaName, description, ideaImage);
     $scope.ideaName = "";
     $scope.description = "";
+    $scope.ideaImage = "";
+    $scope.$apply();
   }
 
   $scope.like = function(ideaName){
@@ -30,5 +32,15 @@ angular.module('myApp.ideaMain', [])
       //TODO: if username liked it before, remove her; if username hasn't, add her
       //add/ remove idea in user's liked ideas 
   }
+
+  $scope.saveIdeaImage = function() {
+    console.log("selectedFile!!!");
+    console.log("event", event);
+    imageUpload.ideaImage(localStorage.userID, event, function(url){
+      console.log(url, "url!");
+      $scope.ideaImage = url;
+      $scope.$apply();
+    }); //run the userImage upload from the imageUpload factory.
+  };
 
 }]);

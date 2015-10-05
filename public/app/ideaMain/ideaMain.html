@@ -115,8 +115,15 @@ hr {
             <form>
               <p> Name </p> <input ng-model="ideaName">
               <p> Description </p> <input ng-model="description">
+              <br/>
+              <br/>
+              <div class="item">
+                  <img id="preview" src="{{ideaImage}}" style="float:right" >
+              </div>
+              <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveIdeaImage(this)"/>
               <!-- TODO: diff b/w ng-click and ng-submit? -->
-              <button ng-click="postIdea(ideaName, description)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
+              <br/>
+              <button ng-click="postIdea(ideaName, description, ideaImage)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
             </form>
 
           </div>
