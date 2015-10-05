@@ -1,9 +1,5 @@
 /* Custom CSS */
-
-.test-submit, #project-submit-button, #submit-an-idea-button {
-  margin-top: 15px;
-}
-
+/* Main */
 #founder {
   float:left;
 }
@@ -12,6 +8,22 @@
 
 #page-top {
   padding-top: 50px;
+}
+
+/* Project Page */
+.test-submit,
+#project-submit-button,
+#submit-an-idea-button {
+  margin-top: 15px;
+}
+
+.portfolio-link {
+  cursor: pointer;
+}
+
+.container {
+  overflow: auto;
+  zoom: 1;
 }
 
 /*!
