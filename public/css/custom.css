@@ -17,6 +17,10 @@
   margin-top: 15px;
 }
 
+.modal-content {
+  margin-top: 20px;
+}
+
 .portfolio-link {
   cursor: pointer;
 }
