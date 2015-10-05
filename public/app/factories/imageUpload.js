@@ -47,6 +47,20 @@ angular.module('myApp.imageUpload', [])
       })
       console.log(file);
     },
+
+    ideaImage: function(userId, event, cb) {
+      var file = event.target.files[0]; //get the file from the change event.
+      $http.post('/sign_s3', {
+        fileName: "profileImage-"+userId+"-"+Date.now(), //append a timestamp to create a unique image file name on AWS.
+        fileType: file.type
+      }).
+      then(function(response) {
+        //run upload function upon completion of signed certificate.
+        console.log("signed!", response, response.data.url, response.data.signed_request);
+        s3Upload(response, file, cb);
+      })
+      console.log(file);
+    },
       
     
 

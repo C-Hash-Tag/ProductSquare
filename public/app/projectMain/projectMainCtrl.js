@@ -20,9 +20,9 @@ angular.module('myApp.projectMain', [])
   $scope.getProjectsData();
 
   var uniqProjID = function(str) {
-    str = str.toLowerCase().split("");
+    str = str.split("");
     for (var i = 0; i< str.length; i++) {
-      str[i] = (str[i] === ' ' ? '-' : str[i]);
+      str[i] = (str[i] === ' ' ? '-' : str[i].toLowerCase());
     }
     return str.join('');
   }
@@ -32,7 +32,6 @@ angular.module('myApp.projectMain', [])
   }
 
   $scope.editProj = function(userID) {
-    console.log("in EDIT PROJ");
     if (localStorage.userID === userID) {
       return true;
     }
