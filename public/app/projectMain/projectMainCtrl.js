@@ -45,10 +45,11 @@ angular.module('myApp.projectMain', [])
       $scope.edible = true;
   }
 
-  $scope.saveModal = function(){
+  $scope.saveModal = function(projDesc, githubUrl, projName, projUrl, projectImage){
     // firebase logic
-    console.log("in the save function")
+    console.log("in the save function");
     $scope.edible = false;
+    data.createProject(projDesc, githubUrl, projName, projUrl, projID, projectImage);
   }
 
 
