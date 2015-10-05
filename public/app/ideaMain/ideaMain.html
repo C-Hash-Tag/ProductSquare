@@ -119,6 +119,12 @@ hr {
           </div>
         </div>
 
+    <div class="cardContainerContainer">
+      <div class="cardContainer" ng-repeat="idea in newIdeas">
+        <div class="card">
+          <p class="name"> {{ idea.ideaName }} </p>
+          <hr>
+          <p class="description"> {{idea.description}} </p>
 
           <!-- project card -->
         <div ng-repeat="idea in newIdeas">
@@ -137,53 +143,9 @@ hr {
           </div>
         </div>
 
-        <div ng-repeat="idea in newIdeas">
-
-          <!-- Standard Portfolio Modal - Images and Text -->
-          <div ng-attr-id="{{idea.ideaName}}" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-content">
-                  <div class="close-modal" data-dismiss="modal">
-                      <div class="lr">
-                          <div class="rl">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="container">
-                      <div class="row first">
-                          <div class="col-lg-12">
-                              <h2 class="page-header">{{idea.ideaName}}</h2>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-8">
-                              <div id="project-details-carousel" class="owl-carousel owl-theme">
-
-                                  <div class="item">
-                                      <img src="../../img/portfolio/1.jpg" alt="">
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-4">
-                              <h3>Idea Description:</h3>
-                              <p>{{idea.description}}</p>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-8">
-                              <h3>Idea Details:</h3>
-                              <ul class="list-unstyled project-details">
-                                  <li>
-                                      <strong>Client:</strong>Lorem Ipsum</li>
-                                  <li>
-                                      <strong>Services:</strong>Web Design, Photography</li>
-                                  <li>
-                                      <strong>Date:</strong>January 2015</li>
-                              </ul>
-                          </div>
-                          <button ng-click="" ng-show="editProj(project.userID)" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" data-target="#editModal">Edit</button>
-                      </div>
-                  </div>
-              </div>
+            <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}">
+              <span class="glyphicon glyphicon-thumbs-up"></span>
+            </button>
           </div>
         </div>
 
@@ -199,7 +161,7 @@ hr {
 
 
     <!-- Modal -->
-    <div class="modal fade" id="ideaModal" role="dialog">
+    <div class="modal fade" id="modalID" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content"> <!-- Modal content-->
           <div class="modal-header">
@@ -208,13 +170,12 @@ hr {
           </div>
 
           <div class="modal-body">
-            <form ng-submit="ideaSubmit(ideaName, ideaDesc)">
-              <p> Idea Name: </p> <input ng-model="ideaName">
-              <p> Description </p> <input ng-model="ideaDesc">
+            <!-- <form ng-submit="vm.postIdea(vm.name, vm.description, user)"> -->
+            <form>
+              <p> Name </p> <input ng-model="ideaName">
+              <p> Description </p> <input ng-model="description">
               <!-- TODO: diff b/w ng-click and ng-submit? -->
-              <span class="pull-right">
-                <input type="submit" data-dismiss="modal" id="submit" class="btn btn-primary" value="Submit"/>
-              </span>
+              <button ng-click="postIdea(ideaName, description)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
             </form>
 
           </div>
