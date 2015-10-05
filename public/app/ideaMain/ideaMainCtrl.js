@@ -18,6 +18,8 @@ angular.module('myApp.ideaMain', [])
   //TODO: add the username too
   $scope.postIdea = function(ideaName, description){
     data.createIdea(ideaName, description, localStorage.userID);
+    $scope.ideaName = "";
+    $scope.description = "";
   }
 
   $scope.like = function(ideaName){
