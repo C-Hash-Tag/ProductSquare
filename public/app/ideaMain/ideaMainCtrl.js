@@ -1,8 +1,6 @@
 angular.module('myApp.ideaMain', [])
 
 .controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', function($scope, $http, data, $log, auth){
-  // var vm = this;
-
   //NOTE: set the listener before you get the dat
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
@@ -11,32 +9,24 @@ angular.module('myApp.ideaMain', [])
   })
 
   $scope.getIdeasData = function(){
-    // console.log("inside get Ideas Data")
+    console.log("inside get Ideas Data")
     data.getIdeasData();
   }
 
-  $scope.getIdeasData()
+  $scope.getIdeasData();
 
-  $scope.test = function() {
-    console.log("click works")
+  //TODO: add the username too
+  $scope.postIdea = function(ideaName, description){
+    data.createIdea(ideaName, description, localStorage.userID);
   }
 
-  // vm.newIdeas;
-
-  // console.log("inside initScope");
-
-  $scope.ideaSubmit = function(ideaName, ideaDesc) {
-    // console.log("In Idea Submit");
-    data.createIdea(ideaName, ideaDesc);
+  $scope.like = function(ideaName){
+    //update css of the like button
+    
+    //update the database 
+    data.updateLike(localStorage.userID, ideaName);
+      //TODO: if username liked it before, remove her; if username hasn't, add her
+      //add/ remove idea in user's liked ideas 
   }
 
-  // $scope.like = function(userID, ideaName){
-  //   //update css of the like button
-
-  //   //update the database
-  //   data.updateLike(userID, ideaName);
-  //     //TODO: if username liked it before, remove her; if username hasn't, add her
-  //     //add/ remove idea in user's liked ideas
-  // }
-
-}])
+}]);

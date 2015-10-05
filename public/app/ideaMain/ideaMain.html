@@ -119,6 +119,12 @@ hr {
           </div>
         </div>
 
+    <div class="cardContainerContainer">
+      <div class="cardContainer" ng-repeat="idea in newIdeas">
+        <div class="card">
+          <p class="name"> {{ idea.ideaName }} </p>
+          <hr>
+          <p class="description"> {{idea.description}} </p>
 
           <!-- project card -->
         <div ng-repeat="idea in newIdeas">
@@ -184,6 +190,10 @@ hr {
                       </div>
                   </div>
               </div>
+
+            <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}">
+              <span class="glyphicon glyphicon-thumbs-up"></span>
+            </button>
           </div>
         </div>
 
@@ -199,7 +209,7 @@ hr {
 
 
     <!-- Modal -->
-    <div class="modal fade" id="ideaModal" role="dialog">
+    <div class="modal fade" id="modalID" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content"> <!-- Modal content-->
           <div class="modal-header">
@@ -208,7 +218,7 @@ hr {
           </div>
 
           <div class="modal-body">
-            <form ng-submit="ideaSubmit(ideaName, ideaDesc)">
+            <form ng-submit="postIdea(ideaName, ideaDesc)">
               <p> Idea Name: </p> <input ng-model="ideaName">
               <p> Description </p> <input ng-model="ideaDesc">
               <!-- TODO: diff b/w ng-click and ng-submit? -->
