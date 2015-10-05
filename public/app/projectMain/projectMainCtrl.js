@@ -28,7 +28,7 @@ angular.module('myApp.projectMain', [])
   }
 
   $scope.projSpecific = function(projName) {
-    $scope.projDisplay = vm.newProjects[projName];
+    $scope.projDisplay = newProjects[projName];
   }
 
   $scope.editProj = function(userID) {

@@ -49,7 +49,7 @@
   <div class="container">
 
   <!-- Project Submit Modal Button -->
-  <button id="project-submit-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
+  <button id="projectSubmitBUtton" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
   <!-- Project Submit Modal Button ends -->
 
  <!-- Standard Portfolio Modal - Images and Text -->
@@ -113,49 +113,6 @@
                       <button ng-show="editProj(project.userID)">Edit</button>
                   </div>
 
-     <!-- Trigger the Project Submit Modal with a button -->
-  <button id="projectSubmitBUtton" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
-
-    <!-- Project Submit Modal -->
-    <div id="myModal" class="modal fade"  role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-        <!-- Default Modal View -->
-         <div class="default-modal"  ng-hide="submission">
-
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Submit Your Project</h4>
-          </div>
-          <div class="modal-body">
-            <form ng-submit="projectSubmit(projectDescription, githubUrl, projName)">
-              Project Name:<br>
-              <input ng-model="projName" class="projName" type="text" placeholder="Name your project">
-              <br>
-              Project Description:<br>
-              <input ng-model="projectDescription" class="projectDescription" type="text" placeholder="Briefly describe your project">
-              <br>
-              Github Url:<br>
-              <input ng-model="githubUrl" type="text" placeholder="Github Url">
-              <br> <br>
-              Upload website screenshots: <br>
-              <input type="file" custom-on-change="uploadUserImage" />
-              <p id="status">Please select a file</p>
-              <img id="preview" src="{{imagePreview}}" />
-              <input type="submit" value="Add Image" />
-
-
-              <br/><br/>
-              <span class="pull-right">
-                <input type="submit" data-dismiss="modal" id="submit" class="btn btn-primary" value="Submit"/>
-              </span>
-              <br/><br/>
-            </form>
-          </div>
-         </div>
->>>>>>> [refactor] - idea page and render
-
                   <span class="pull-right">
                     <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
                   </span>
@@ -168,7 +125,7 @@
           </div>
 
       </div>
-        <!-- Standard Portfolio Modal - Images and Text ends -->
+        <!-- End Standard Portfolio Modal - Images and Text ends -->
 
 
     <section class="portfolio-1">
@@ -249,86 +206,12 @@
         </div>
         <!-- Standard Portfolio Modal - Images and Text ends -->
 
-                                  <div class="item">
-                                      <img src="../../img/portfolio/1.jpg" alt="">
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-4">
-                              <h3>Project Description:</h3>
-                              <p>{{project.description}}</p>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-8">
-                              <h3>Project Details:</h3>
-                              <ul class="list-unstyled project-details">
-                                  <li>
-                                      <strong>Client:</strong>Lorem Ipsum</li>
-                                  <li>
-                                      <strong>Services:</strong>Web Design, Photography</li>
-                                  <li>
-                                      <strong>Date:</strong>January 2015</li>
-                              </ul>
-                          </div>
-                          <button ng-click="" ng-show="editProj(project.userID)" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" data-target="#editModal">Edit</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
         </div>
 
       </div>
     </section>
 
 
-  <!-- Edit Project Modal -->
-
-    <div id="editModal" class="modal fade"  role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-        <!-- Default Modal View -->
-         <div class="default-modal"  ng-hide="submission">
-
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Submit Your Project</h4>
-          </div>
-          <div class="modal-body">
-            <form ng-submit="projectSubmit(projectDescription, githubUrl, projName)">
-              Project Name:<br>
-              <input ng-model="projName" class="projName" type="text" placeholder="Name your project">
-              <br>
-              Project Description:<br>
-              <input ng-model="projectDescription" class="projectDescription" type="text" placeholder="Briefly describe your project">
-              <br>
-              Github Url:<br>
-              <input ng-model="githubUrl" type="text" placeholder="Github Url">
-              <br> <br>
-              Upload website screenshots: <br>
-              <input type="file" custom-on-change="uploadUserImage" />
-              <p id="status">Please select a file</p>
-              <img id="preview" src="{{imagePreview}}" />
-              <input type="submit" value="Add Image" />
-
-
-              <br/><br/>
-              <span class="pull-right">
-                <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
-              </span>
-              <br/><br/>
-            </form>
-          </div>
-         </div>
-
-        </div>
-      </div>
-    </div>
-
-  <!-- End Edit Project Modal -->
-
-
   </div>
- </div>
+
 
