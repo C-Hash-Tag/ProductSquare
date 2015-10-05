@@ -81,12 +81,11 @@
                               </div>
                               <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveProjectImage(this)"/>
                               <p id="status">Please select a file</p>
-                              <p>In project Submit Modal</p>
                           </div>
                       </div>
                       <div class="col-md-4">
                           <h3>Project Description:</h3>
-                          <p><textarea rows="4" cols="50" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="projDesc" ></textarea></p>
+                          <p><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="projDesc" ></textarea></p>
                       </div>
                   </div>
 
@@ -184,20 +183,42 @@
                         </div>
                         <div class="col-md-4">
                             <h3 >Project Description:</h3>
-                            <p ng-show="edible"><input ng-model="project.description"></input></p>
+                            <p ng-show="edible"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="project.description" ></textarea></p>
                             <p ng-hide="edible">{{project.description}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                            <h3>Project Details:</h3>
-                            <ul class="list-unstyled project-details">
+                          <h3 ng-show="edible"> Edit Project Details:</h3>
+                            <h3 ng-hide="edible">Project Details:</h3>
+                            <ul ng-show="edible"class="list-unstyled project-details">
                                 <li>
-                                    <strong>Client:</strong>Lorem Ipsum</li>
+                                    <strong>Github URL: </strong>
+                                      <input ng-show"edible"rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="project.githubRepo">
+                                      </input>
+                                </li>
+                                <li ng-show"edible">
+                                    <strong>Project URL: </strong>
+                                      <input rows="1" cols="50" name="comment" ng-model="project.projUrl" type="text" placeholder="www.yourProjectHere.com">
+                                      </input>
+                                </li>
                                 <li>
-                                    <strong>Services:</strong>Web Design, Photography</li>
-                                <li>
-                                    <strong>Date:</strong>January 2015</li>
+                                    <strong>Team Members: </strong>
+                                    <input ng-show="edible" rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="project.githubRepo">
+                                    </input>
+                                </li>
+
+                            </ul>
+                            <ul ng-hide="edible" class="list-unstyled project-details">
+                                <li ng-hide="edible">
+                                    <strong>Github Url: </strong>{{project.githubRepo}}
+                                </li>
+                                <li ng-hide="edible">
+                                    <strong>Project Url: </strong>{{project.projUrl}}
+                                </li>
+                                <li ng-hide="edible">
+                                    <strong >Team Members: </strong>{{project.githubRepo}}
+                                </li>
                             </ul>
                         </div>
                         <button ng-hide="edible" ng-click="editModal()" ng-show="editProj(project.userID)">Edit</button>
