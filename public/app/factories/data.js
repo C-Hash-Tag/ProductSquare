@@ -87,12 +87,9 @@ angular.module('myApp.data', [])
     };
 
     // Get users data from Firebase
-    factory.getUsersData = function(userID){
+    factory.getUserData = function(userID){
       Ref.child("users").child(userID).on("value", function(data){
-
-        // Broadcast users data to all 'gotUsers' event listeners
-        var user = data.val();
-        $rootScope.$broadcast('gotUsers', user);
+        $rootScope.$broadcast('gotUser', data.val());
       });
     };
 
