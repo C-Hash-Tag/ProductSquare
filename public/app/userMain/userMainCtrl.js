@@ -1,18 +1,22 @@
 angular.module('myApp.UserMain', [])
 
-.controller('UserMainCtrl', ['$scope', '$http', '$routeParams', 'imageUpload', '$route', function($scope, $http, $routeParams, imageUpload, $route){
-  $scope.$route = $route;
-  var vm = this;
 
-  console.log("using user cntrl!");
+.controller('UserMainCtrl', ['$scope', '$http', 'data', '$routeParams', 'imageUpload', function($scope, $http, data, $routeParams, imageUpload){
 
-  $scope.$on('gotUsers', function(event, user){
-    console.log("ideas retrieved!", ideas);
-    //set the scope variables here in the future.
+  data.getUserData(localStorage.userID);
+  $scope.$on('gotUser', function (event, user){
+    console.log("got user!", user);
+    $scope.realName = user.name;
+    $scope.profileImage = user.profileImage;
+    $scope.$apply();
   });
 
+  if (localStorage.userID === $routeParams.userID) {
+    console.log("edible!");
+    $scope.edible = true;
+  }
+
   $scope.name = "Dylan Wright";
-  $scope.profilePic = "http://ds-wright.com/images/dylan-wright.png";
   $scope.projects = [
     {
       name: "Facebook",
