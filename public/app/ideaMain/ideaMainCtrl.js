@@ -13,7 +13,7 @@ angular.module('myApp.ideaMain', [])
     data.getIdeasData();
   }
 
-  $scope.getIdeasData()
+  $scope.getIdeasData();
 
   //TODO: add the username too
   $scope.postIdea = function(ideaName, description){

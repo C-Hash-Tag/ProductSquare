@@ -170,10 +170,9 @@ hr {
           </div>
 
           <div class="modal-body">
-            <!-- <form ng-submit="vm.postIdea(vm.name, vm.description, user)"> -->
-            <form>
-              <p> Name </p> <input ng-model="ideaName">
-              <p> Description </p> <input ng-model="description">
+            <form ng-submit="postIdea(ideaName, ideaDesc)">
+              <p> Idea Name: </p> <input ng-model="ideaName">
+              <p> Description </p> <input ng-model="ideaDesc">
               <!-- TODO: diff b/w ng-click and ng-submit? -->
               <button ng-click="postIdea(ideaName, description)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
             </form>
