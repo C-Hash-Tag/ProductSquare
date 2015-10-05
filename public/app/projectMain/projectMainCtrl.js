@@ -1,7 +1,7 @@
 angular.module('myApp.projectMain', [])
 
 .controller('ProjectMainCtrl', ['$scope', '$http', 'data', 'auth', 'imageUpload', function($scope, $http, data, auth, imageUpload) {
-  var vm = this;
+  // var vm = this;
 
 // flag declarations to show/hide views
   $scope.submission = false;
@@ -9,15 +9,15 @@ angular.module('myApp.projectMain', [])
 
   $scope.$on('gotProjects', function (event, projects) {
       console.log('projects retrieved', projects);
-      vm.newProjects = projects;
+      $scope.newProjects = projects;
       $scope.$apply();
     })
 
-  vm.getProjectsData = function() {
+  $scope.getProjectsData = function() {
     data.getProjectsData();
   }
 
-  vm.getProjectsData();
+  $scope.getProjectsData();
 
   var uniqProjID = function(str) {
     str = str.toLowerCase().split("");
@@ -28,7 +28,7 @@ angular.module('myApp.projectMain', [])
   }
 
   $scope.projSpecific = function(projName) {
-    $scope.projDisplay = vm.newProjects[projName];
+    $scope.projDisplay = newProjects[projName];
   }
 
   $scope.editProj = function(userID) {
@@ -70,7 +70,7 @@ angular.module('myApp.projectMain', [])
     }); //run the userImage upload from the imageUpload factory.
   };
 
-  return vm;
+  // return vm;
 
 }])
 

@@ -49,7 +49,7 @@
   <div class="container">
 
   <!-- Project Submit Modal Button -->
-  <button id="project-submit-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
+  <button id="projectSubmitBUtton" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
   <!-- Project Submit Modal Button ends -->
 
  <!-- Standard Portfolio Modal - Images and Text -->
@@ -113,9 +113,6 @@
                       <button ng-show="editProj(project.userID)">Edit</button>
                   </div>
 
-     <!-- Trigger the Project Submit Modal with a button -->
-  <button id="project-submit-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
-
                   <span class="pull-right">
                     <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
                   </span>
@@ -128,7 +125,7 @@
           </div>
 
       </div>
-        <!-- Standard Portfolio Modal - Images and Text ends -->
+        <!-- End Standard Portfolio Modal - Images and Text ends -->
 
 
     <section class="portfolio-1">
@@ -143,7 +140,7 @@
         </div>
 
           <!-- project card -->
-        <div ng-repeat="project in vm.newProjects">
+        <div ng-repeat="project in newProjects">
           <div  class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
             <a ng-attr-data-target="#{{project.projID}}" class="portfolio-item" data-toggle="modal">
               <div class="portfolio-link">
@@ -159,7 +156,7 @@
           </div>
         </div>
 
-        <div ng-repeat="project in vm.newProjects">
+        <div ng-repeat="project in newProjects">
 
         <!-- Standard Portfolio Modal - Images and Text -->
         <div ng-attr-id="{{project.projID}}" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -215,7 +212,6 @@
     </section>
 
 
-
   </div>
- </div>
+
 
