@@ -52,7 +52,7 @@
   <button id="project-submit-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
   <!-- Project Submit Modal Button ends -->
 
- <!-- Standard Portfolio Modal - Images and Text -->
+ <!-- Project Summit Modal Content - Standard Portfolio Modal - Images and Text -->
       <div id="modalID" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-content">
               <div class="close-modal" data-dismiss="modal">
@@ -81,6 +81,7 @@
                               </div>
                               <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveProjectImage(this)"/>
                               <p id="status">Please select a file</p>
+                              <p>In project Submit Modal</p>
                           </div>
                       </div>
                       <div class="col-md-4">
@@ -125,7 +126,7 @@
           </div>
 
       </div>
-        <!-- End Standard Portfolio Modal - Images and Text ends -->
+        <!-- End Project Submit Modal Content - Standard Portfolio Modal - Images and Text ends -->
 
 
     <section class="portfolio-1">
@@ -158,7 +159,7 @@
 
         <div ng-repeat="project in newProjects">
 
-        <!-- Standard Portfolio Modal - Images and Text -->
+        <!-- Start Specific Portfolio View - Standard Portfolio Modal - Images and Text -->
         <div ng-attr-id="{{project.projID}}" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-content">
                 <div class="close-modal" data-dismiss="modal">
@@ -170,7 +171,8 @@
                 <div class="container">
                     <div class="row first">
                         <div class="col-lg-12">
-                            <h2 class="page-header">{{project.projName}}</h2>
+                            <h2 class="page-header" ng-show="edible"><input ng-model="project.projName"></input></h2>
+                            <h2 class="page-header" ng-hide="edible">{{project.projName}}</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -183,8 +185,9 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <h3>Project Description:</h3>
-                            <p>{{project.description}}</p>
+                            <h3 >Project Description:</h3>
+                            <p ng-show="edible"><input ng-model="project.description"></input></p>
+                            <p ng-hide="edible">{{project.description}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -199,12 +202,13 @@
                                     <strong>Date:</strong>January 2015</li>
                             </ul>
                         </div>
-                        <button ng-show="editProj(project.userID)">Edit</button>
+                        <button ng-hide="edible" ng-click="editModal()" ng-show="editProj(project.userID)">Edit</button>
+                        <button ng-show="edible" ng-click="saveModal()" ng-show="editProj(project.userID)">Save</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Standard Portfolio Modal - Images and Text ends -->
+        <!-- End Specific Portfolio View - Standard Portfolio Modal - Images and Text ends -->
 
         </div>
 
