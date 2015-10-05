@@ -38,7 +38,18 @@ angular.module('myApp.projectMain', [])
     }
   }
 
-  // vm.newProjects;
+  $scope.edible = false;
+  $scope.editModal = function() {
+    console.log("in the edit function", $scope.edible)
+    // if ($scope.editProj(userID)) {
+      $scope.edible = true;
+  }
+
+  $scope.saveModal = function(){
+    // firebase logic
+    console.log("in the save function")
+    $scope.edible = false;
+  }
 
 
   $scope.projectSubmit = function(projDesc, githubUrl, projName, projUrl, projectImage) {
