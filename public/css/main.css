@@ -1,0 +1,132 @@
+
+/* User profile page styling */
+#user-page-left-col {
+  float: left;
+  width: 20%;
+  margin-right: 10%;
+}
+
+#user-page-profile-pic img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+#user-page-real-name {
+  font-size: 26px;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+#header-banner h1,
+#header-banner h2,
+#header-banner h3 {
+  text-align: center;
+  color: white;
+}
+
+#user-details {
+  margin-left:15px;
+}
+
+#project-title h3,
+#project-text h3 {
+  color: #003e54;
+  text-align: center;
+}
+
+#user-page-github {
+  margin-top:5px;
+}
+
+#user-page-github-logo img {
+  width: 20px;
+}
+
+#user-page-github-logo {
+  float: left;
+  margin-right: 10px;
+}
+
+#header-banner button,
+#project-text button {
+  margin: auto;
+  display: block;
+}
+
+#user-page-github-link {
+  float: left;
+  margin-top:1px;
+}
+
+#user-page-linkedin {
+  margin-top: 5px;
+}
+
+#user-page-linkedin-logo img {
+  width: 20px;
+  margin-left: 2px;
+}
+
+#user-page-linkedin-logo {
+  float: left;
+  margin-right: 10px;
+}
+
+#user-page-linkedin-link {
+  margin-top: 1px;
+  float:left;
+}
+
+#user-page-right-col {
+  float: right;
+  width: 70%;
+}
+
+
+/* User profile page styling */
+#user-page-left-col {
+  float: left;
+  width: 20%;
+  margin-right: 10%;
+}
+
+#user-page-profile-pic img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+#user-page-real-name {
+  font-size: 26px;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+#user-page-right-col {
+  float: right;
+  width: 70%;
+}
+
+/* Sign Up Modal Styles */
+#already-have-an-account,
+#dont-have-an-account {
+  text-align: center;
+}
+
+/* clearfix class for floats within divs */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */

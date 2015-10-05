@@ -1,0 +1,129 @@
+<nav-bar> </nav-bar>
+
+<style type="text/css">
+.btn-group-lg>.btn,.btn-lg {
+  display: block;
+}
+.cardContainer {
+  float:left;
+  position:relative;
+  margin: 15px 15px 15px 15px;
+  width: 300px;
+  height: 200px;
+  -webkit-perspective: 800px;
+  -ms-perspective: 800px
+;  perspective: 800px;
+  border-radius: 4px;
+}
+.card {
+  overflow: hidden;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+.card:hover {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+  -moz-box-shadow:    0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+  box-shadow:         0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+}
+p {
+  font-family: Helvetica;
+}
+.name {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  color: gray;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.glyphicon-container{
+  position: absolute;
+  bottom: -3px;
+  right: 10px;
+  top: 171px !important;
+  cursor: pointer;
+}
+.glyphicon {
+  font-size: 13px;
+  color: gray;
+}
+.liked {
+  background-color: orange;
+}
+</style>
+
+<div>
+  <div class="container" style="width:1350px">
+
+    <!-- Trigger the Project Submit Modal with a button -->
+    <button id="submit-an-idea-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit An Idea</button>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Ideas</h2>
+          <hr class="primary">
+        </div>
+      </div>
+    </div>
+
+    <div class="cardContainerContainer">
+      <div class="cardContainer" ng-repeat="idea in newIdeas">
+        <div class="card" style="background-image: url('{{idea.backgroundPath}}');">
+          <p class="name"> {{ idea.ideaName }} </p>
+          <hr>
+          <p class="description"> {{idea.description}} </p>
+
+          <div class="glyphicon-container">
+            <button  type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
+
+            <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}">
+              <span class="glyphicon glyphicon-thumbs-up"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Neat Non-Flippin Card ends -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalID" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content"> <!-- Modal content-->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Idea</h4>
+          </div>
+
+          <div class="modal-body">
+            <!-- <form ng-submit="vm.postIdea(vm.name, vm.description, user)"> -->
+            <form>
+              <p> Name </p> <input ng-model="ideaName">
+              <p> Description </p> <input ng-model="description">
+              <!-- TODO: diff b/w ng-click and ng-submit? -->
+              <button ng-click="postIdea(ideaName, description)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
+            </form>
+
+          </div>
+        </div> <!-- Modal content-->
+      </div>
+    </div>
+    <!-- Modal ends -->
+
+  </div>
+</div>

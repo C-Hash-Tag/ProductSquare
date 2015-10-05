@@ -1,0 +1,219 @@
+<style type="text/css">
+.modal-backdrop, .modal-backdrop.in{
+  display: none;
+}
+
+/*image container*/
+.portfolio-link {
+  display: block;
+  width 500px;
+  height: 200px;
+  margin: 0px;
+  text-align: left;
+  overflow: hidden;
+}
+
+
+/*image*/
+.portfolio-link img {
+  width: 100%;
+  /*border: 1px solid #d6d6d6;*/
+}
+
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+:-moz-placeholder {
+   font-style: italic;
+}
+::-moz-placeholder {
+   font-style: italic;
+}
+:-ms-input-placeholder {
+   font-style: italic;
+}
+
+</style>
+
+<nav-bar> </nav-bar>
+
+
+  <!-- Project Sort  -->
+<!--   <div class="btn-group" role="group" aria-label="project sorting">
+    <button type="button" class="btn btn-default">Most Recent</button>
+    <button type="button" class="btn btn-default">Most Liked</button>
+    <button type="button" class="btn btn-default">Staff Picks</button>
+  </div> -->
+
+
+  <div class="container">
+
+  <!-- Project Submit Modal Button -->
+  <button id="project-submit-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
+  <!-- Project Submit Modal Button ends -->
+
+ <!-- Project Summit Modal Content - Standard Portfolio Modal - Images and Text -->
+      <div id="modalID" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-content">
+              <div class="close-modal" data-dismiss="modal">
+                  <div class="lr">
+                      <div class="rl">
+                      </div>
+                  </div>
+              </div>
+
+              <div class="container" ng-hide="submission">
+                <form ng-submit="projectSubmit(projDesc, githubUrl, projName, projUrl, projectImage)">
+                  <div class="row first">
+                      <div class="col-lg-12">
+                          <h2 class="page-header">
+                            <textarea rows="1" cols="25" name="comment" type="text" placeholder="Project Name" ng-model="projName" ></textarea>
+                          </h2>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-8">
+                          <div id="project-details-carousel" class="owl-carousel owl-theme">
+
+                              <div class="item">
+                                  <img id="preview" src="{{projectImage}}" style="float:right" >
+                              </div>
+                              <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveProjectImage(this)"/>
+                              <p id="status">Please select a file</p>
+                              <p>In project Submit Modal</p>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <h3>Project Description:</h3>
+                          <p><textarea rows="4" cols="50" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="projDesc" ></textarea></p>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-8">
+                          <h3>Project Details:</h3>
+                          <ul class="list-unstyled project-details">
+                              <li>
+                                  <strong>Github URL: </strong>
+                                    <input rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl">
+                                    </input>
+                                  </li>
+                              <li>
+                                  <strong>Project URL: </strong>
+                                    <input rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com">
+                                    </input>
+                              </li>
+                              <li>
+                                  <strong>Team Members: </strong>
+                                  <input rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="githubUrl">
+                                  </input>
+                              </li>
+                          </ul>
+                      </div>
+                      <button ng-show="editProj(project.userID)">Edit</button>
+                  </div>
+
+                  <span class="pull-right">
+                    <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
+                  </span>
+                </form>
+              </div>
+              <div class="modal-body" ng-show="submission">
+                  <h4 class="modal-title"> Thanks for your Submission </h4>
+              </div>
+          </div>
+      </div>
+
+        <!-- End Project Submit Modal Content - Standard Portfolio Modal - Images and Text ends -->
+
+    <section class="portfolio-1">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2>Projects</h2>
+            <hr class="primary">
+          </div>
+        </div>
+
+          <!-- project card -->
+        <div ng-repeat="project in newProjects">
+          <div  class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
+            <a ng-attr-data-target="#{{project.projID}}" class="portfolio-item" data-toggle="modal">
+              <div class="portfolio-link">
+                <div class="caption">
+                  <div class="caption-content">
+                    <h3>{{project.projName}}</h3>
+                    <p> {{project.description}}</p>
+                  </div>
+                </div>
+                <img src="{{project.projectImage}}" class="img-centered" alt="" style="zoom:200%">
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div ng-repeat="project in newProjects">
+
+        <!-- Start Specific Portfolio View - Standard Portfolio Modal - Images and Text -->
+        <div ng-attr-id="{{project.projID}}" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row first">
+                        <div class="col-lg-12">
+                            <h2 class="page-header" ng-show="edible"><input ng-model="project.projName"></input></h2>
+                            <h2 class="page-header" ng-hide="edible">{{project.projName}}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div id="project-details-carousel" class="owl-carousel owl-theme">
+
+                                <div class="item">
+                                    <img src="../../img/portfolio/1.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 >Project Description:</h3>
+                            <p ng-show="edible"><input ng-model="project.description"></input></p>
+                            <p ng-hide="edible">{{project.description}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3>Project Details:</h3>
+                            <ul class="list-unstyled project-details">
+                                <li>
+                                    <strong>Client:</strong>Lorem Ipsum</li>
+                                <li>
+                                    <strong>Services:</strong>Web Design, Photography</li>
+                                <li>
+                                    <strong>Date:</strong>January 2015</li>
+                            </ul>
+                        </div>
+                        <button ng-hide="edible" ng-click="editModal()" ng-show="editProj(project.userID)">Edit</button>
+                        <button ng-show="edible" ng-click="saveModal()" ng-show="editProj(project.userID)">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Specific Portfolio View - Standard Portfolio Modal - Images and Text ends -->
+
+        </div>
+
+      </div>
+    </section>
+
+
+  </div>
+
+

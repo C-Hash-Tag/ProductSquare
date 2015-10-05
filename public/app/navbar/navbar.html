@@ -1,0 +1,167 @@
+<!-- Actual Navigation Bar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#/">
+        <!-- <img style="max-width:38px; margin-top: -10px;" src="../../img/ProductSquareLogo.png">  -->ProductSquare
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#/projects">Projects</a>
+        </li>
+        <li><a href="#/ideas">Ideas</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-hide="loggedIn">
+          <a data-toggle="modal" data-target="#signUpModal" style="cursor:pointer;">Sign Up</a>
+        </li>
+        <li ng-hide="loggedIn">
+          <a data-toggle="modal" data-target="#loginModal" style="cursor:pointer;">Login</a>
+        </li>
+        <li ng-show="loggedIn">
+          <a href="/#/user/{{userID}}/" style="cursor:pointer">My Profile</a>
+        </li>
+        <li ng-show="loggedIn">
+          <a data-toggle="modal" data-target="#logoutModal" style="cursor:pointer;">Logout</a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<!-- Sign Up Modal   NEED TO WORK ON FORM VALIDATION   -->
+<div id="signUpModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content -->
+    <div class="modal-content" style="min-height:33%; width: 500px; border-radius: 15px; margin: auto; position: relative; top: 50%; transform: translateY(-50%)">
+      <!-- Pre-Submission Modal View -->
+      <div class="default-modal">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Sign Up</h4>
+        </div>
+        <div class="modal-body">
+          <form ng-submit="newUserSubmit(realName, email, password)">
+            Full Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
+            Email Address: <input type="text" class="form-control" ng-model="email" /> <br/>
+            Password: <input type="password" class="form-control" ng-model="password" /> <br/>
+            <span class="pull-right">
+              <input type="submit" id="Submit" class="btn btn-primary" value="Submit"/>
+            </span>
+            <br/>
+            <br/>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <h5 id="already-have-an-account" style="text-align: center">Already have an account? <a data-toggle="modal" data-target="#signUpModal, #loginModal" style="cursor:pointer;">Log In</a> </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- User Image Modal -->
+<div id="profileImageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Upload a Profile Image </h4>
+      </div>
+      <div class="modal-body">
+        <form ng-submit="saveUserImage()">
+          <input type="file" id="file" name='file' onchange="angular.element(this).scope().uploadUserProfileImage(this)" />
+          <p id="status">Please select a file</p>
+          <img id="preview" src="{{userProfileImage}}" />
+          <input type="submit" value="Add Image" />
+        </form>
+        <a data-toggle="modal" data-target="#profileImageModal, #profileCompleteModal" style="cursor:pointer;">Skip this step</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Profile Complete Modal -->
+<div id="profileCompleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content" style="min-height:33%; width: 500px; border-radius: 15px; margin: auto; position: relative; top: 50%; transform: translateY(-50%)">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Welcome, {{realName}}! </h4>
+      </div>
+      <div class="modal-body">
+        <a href="/#/projects/"><button class="btn-primary btn">Latest Projects</button></a>
+
+        <a href="/#/ideas/"><button class="btn-primary btn">Latest Ideas</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Log In Modal -->
+<div ng-click="close()">
+  <div id="loginModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content" style="min-height:33%; width: 500px; border-radius: 15px; margin: auto; position: relative; top: 50%; transform: translateY(-50%)">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Log In</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            Email:
+            <br/>
+            <input class="form-control" type="text" ng-model="email"/>
+            <br/>
+            Password:
+            <br/>
+            <input class="form-control" type="password" ng-model="password"/>
+            <br/>
+            <button ng-click="login(email, password)" type="submit" data-dismiss="modal" class="btn btn-primary pull-right">Submit</button>
+            <br/>
+            <br/>
+          </form>
+        </div>
+          <div class="modal-footer">
+            <h5 id="dont-have-an-account" style="text-align: center">Don't have an account? <a data-toggle="modal" data-target="#loginModal, #signUpModal" style="cursor:pointer;">Sign Up</a> </h5>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Logout Modal -->
+<div ng-click="close()">
+  <div id="logoutModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content" style="min-height:10%; width: 500px; border-radius: 15px; margin: auto; position: relative; top: 50%; transform: translateY(-50%)">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Log Out</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            Are you sure?
+            <br/><br/>
+            <button ng-click="logout()" type="submit" data-dismiss="modal" class="btn btn-danger pull-right">Confirm</button>
+            <br/>
+            <br/>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
