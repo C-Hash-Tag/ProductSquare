@@ -48,7 +48,7 @@ angular.module('myApp.data', [])
         date: currentDate(),
         userID: userID,
         usersWhoLikeIt: {},
-        backgroundPath: "../background/wood" + getRandomInt(0,4)+".jpg"
+        backgroundPath: "../background/wood" + getRandomInt(1,4)+".jpg"
       });
 
       // Add the idea data to the user in Firebase
