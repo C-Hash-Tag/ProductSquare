@@ -1,6 +1,6 @@
 <nav-bar> </nav-bar>
 
-<div class="container">
+<div class="container" style="margin-top: 30px;">
   <div id="user-page-left-col">
     <div id="user-page-profile-pic" width="100%">
       <img src="{{profilePic}}" />
@@ -23,7 +23,15 @@
           <a href="https://www.linkedin.com/in/dylanswright">dylanswright</a>
         </div>
       </div>
-      <div id="user-page-blog"><a href="http://ds-wright.com/">http://ds-wright.com/</a></div>
+      <div id="user-page-blog">
+        <div id="user-page-blog-logo">
+          <img src="/img/blog_icon.png" width="18px" />
+        </div>
+        <div id="user-page-blog-link">
+          <a href="http://ds-wright.com/">http://ds-wright.com/</a>
+        </div>
+      </div>
+
       <div id="user-page-location">
         <div id="user-page-location-logo">
           <i class="fa fa-map-marker"></i>
@@ -32,18 +40,76 @@
           San Francisco, CA
         </div>
       </div>
-      <div id="user-page-org">MakerSquare</div>
+
+      <div id="user-page-organization">
+        <div id="user-page-organization-logo">
+          <img src="/img/corporation_logo.png" width="20px" />
+        </div>
+        <div id="user-page-organization-name">
+          MakerSquare
+        </div>
+      </div>
+    </div>
+    <div id="user-page-contact">
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">
+        Contact {{name}}
+      </button>
     </div>
   </div>
 
   <div id="user-page-right-col">
     <div id="user-page-projects">
       <div id="user-page-projects-header">
-        Projects By Dylan
+        <h2 style="margin-top:0px; padding-top: 0px;">Projects</h2>
       </div>
       
-      <div class="user-page-project">
-        Some project...
+
+      <div class="portfolio-1">
+        <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
+          <a class="portfolio-item" data-toggle="modal" data-target="#aaron-is-not-kewl">
+            <div class="portfolio-link">
+              <div class="caption">
+                <div class="caption-content">
+                  <h3 class="ng-binding">Aaron is not Kewl</h3>
+                  <p class="ng-binding"> he just is not</p>
+                </div>
+              </div>
+              <img src="https://productsquare.s3.amazonaws.com/profileImage-dswright-1444066129521" class="img-centered" alt="" style="zoom:200%">
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="portfolio-1">
+        <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
+          <a class="portfolio-item" data-toggle="modal" data-target="#aaron-is-not-kewl">
+            <div class="portfolio-link">
+              <div class="caption">
+                <div class="caption-content">
+                  <h3 class="ng-binding">Aaron is not Kewl</h3>
+                  <p class="ng-binding"> he just is not</p>
+                </div>
+              </div>
+              <img src="https://productsquare.s3.amazonaws.com/profileImage-dswright-1444066129521" class="img-centered" alt="" style="zoom:200%">
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="portfolio-1">
+        <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
+          <a class="portfolio-item" data-toggle="modal" data-target="#aaron-is-not-kewl">
+            <div class="portfolio-link">
+              <div class="caption">
+                <div class="caption-content">
+                  <h3 class="ng-binding">Aaron is not Kewl</h3>
+                  <p class="ng-binding"> he just is not</p>
+                </div>
+              </div>
+              <img src="https://productsquare.s3.amazonaws.com/profileImage-dswright-1444066129521" class="img-centered" alt="" style="zoom:200%">
+            </div>
+          </a>
+        </div>
       </div>
 
     </div>
@@ -76,7 +142,7 @@
 
     <h2> Contact </h2>
       <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">Contact {{name}}</button>
+    
 
     <!-- Modal -->
     <div class="modal fade" id="contactModal" role="dialog">
