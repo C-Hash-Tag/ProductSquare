@@ -23,9 +23,11 @@ angular.module('myApp.auth', [])
     }, function(error, authData) {
       if (error) {
         console.log("Login Failed!", error);
+        scope.loginUser = true;
+        scope.loginError = "Sorry! The email/password is incorrect, please try again."
+        scope.$apply();
       } else {
-        scope.loggedIn = true;
-        scope.userID = authData.id;
+        $('#loginModal').modal('hide');
         scope.$apply();
         console.log("Authenticated successfully with payload:", authData);
         factory.authLogin(scope);
@@ -47,8 +49,19 @@ angular.module('myApp.auth', [])
         password: password
       }, function(error, userData) {
         if (error) {
-          console.log("Error creating user:", error);
-        } else {
+          scope.createNewUser = true;
+          switch (error.code) {
+            case "EMAIL_TAKEN":
+              scope.error = "The new user account cannot be created because the email is already in use.";
+              break;
+            case "INVALID_EMAIL":
+              scope.error = "The specified email is not a valid email.";
+              break;
+            default:
+              scope.error = "Error creating user:" + error;
+          }
+          scope.$apply();
+        }else {
           scope.submission = true;
           scope.$apply()
           console.log("Successfully created user account with uid:", userData.uid);

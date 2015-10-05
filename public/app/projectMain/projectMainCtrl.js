@@ -68,7 +68,6 @@ angular.module('myApp.projectMain', [])
 
   $scope.close = function() {
     $scope.submission = false;
-    console.log("in close function!!!")
   }
 
   $scope.saveProjectImage = function() {
