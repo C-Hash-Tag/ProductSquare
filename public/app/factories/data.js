@@ -132,10 +132,6 @@ angular.module('myApp.data', [])
         return usersWhoLikeIt;
       })
 
-      factory.updateProject = function(projDesc, githubUrl, projName, projUrl, projectImage) {
-        // update
-      }
-
       //update users table to store ideas that users like
       Ref.child("users").child(username).child("likedIdeas").transaction(function(likedIdeas){
         if(likedIdeas === null){
