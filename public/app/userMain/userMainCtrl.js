@@ -1,6 +1,5 @@
 angular.module('myApp.UserMain', [])
 
-<<<<<<< HEAD
 
 .controller('UserMainCtrl', ['$scope', '$http', 'data', '$routeParams', 'imageUpload', function($scope, $http, data, $routeParams, imageUpload){
 
@@ -29,7 +28,7 @@ angular.module('myApp.UserMain', [])
     }
   }
 
-  data.getUserData(localStorage.userID);
+  data.getUserData($routeParams.userID);
   $scope.$on('gotUser', function (event, user){
     console.log("got user!", user);
     $scope.realName = user.name;
