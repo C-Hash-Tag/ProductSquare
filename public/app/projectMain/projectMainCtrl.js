@@ -50,16 +50,17 @@ angular.module('myApp.projectMain', [])
     }
   }
 
-  $scope.edible = false;
+  var temp;
   $scope.editModal = function() {
-    console.log("in the edit function", $scope.edible)
-    // if ($scope.editProj(userID)) {
-      $scope.edible = true;
+    temp = localStorage.userID
+    localStorage.userID = null;
+    $scope.edible = true;
   }
 
   $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage){
     // firebase logic
     console.log("in the save function");
+    localStorage.userID = temp;
     $scope.edible = false;
     data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage);
   }
