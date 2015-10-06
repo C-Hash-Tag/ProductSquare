@@ -1,11 +1,8 @@
-<nav-bar> </nav-bar>
-
 <style type="text/css">
 .btn-group-lg>.btn,.btn-lg {
   display: block;
 }
 .cardContainer {
-  float:left;
   position:relative;
   margin: 15px 15px 15px 15px;
   width: 300px;
@@ -67,49 +64,48 @@ hr {
 }
 </style>
 
-<div>
-  <div class="container" style="width:1350px">
+<nav-bar> </nav-bar>
 
-    <!-- Trigger the Project Submit Modal with a button -->
-    <button id="submit-an-idea-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit An Idea</button>
+<div class="container">
+  <!-- Trigger the Project Submit Modal with a button -->
+  <button id="submit-an-idea-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit An Idea</button>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2>Ideas</h2>
-          <hr class="primary">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>Ideas</h2>
+        <hr class="primary">
+      </div>
+    </div>
+  </div>
+
+  <div class="cardContainerContainer" style="text-align: center; display: block">
+    <div class="cardContainer" ng-repeat="idea in newIdeas" style="display: inline-block">
+      <div class="card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)),url('{{idea.backgroundPath}}');">
+        <p class="name" style="color: white"> {{ idea.ideaName }} </p>
+        <hr>
+        <p class="description" style="color: white"> {{idea.description}} </p>
+
+        <div class="glyphicon-container">
+          <button  type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
+
+          <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+          </button>
         </div>
       </div>
     </div>
+  </div>
+  <!-- Neat Non-Flippin Card ends -->
 
-    <div class="cardContainerContainer">
-      <div class="cardContainer" ng-repeat="idea in newIdeas">
-        <div class="card" style="background-image: url('{{idea.backgroundPath}}');">
-          <p class="name"> {{ idea.ideaName }} </p>
-          <hr>
-          <p class="description"> {{idea.description}} </p>
-
-          <div class="glyphicon-container">
-            <button  type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
-
-            <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}">
-              <span class="glyphicon glyphicon-thumbs-up"></span>
-            </button>
-          </div>
+  <!-- Modal -->
+  <div class="modal fade" id="modalID" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content"> <!-- Modal content-->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Idea</h4>
         </div>
-      </div>
-    </div>
-    <!-- Neat Non-Flippin Card ends -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="modalID" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content"> <!-- Modal content-->
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Idea</h4>
-          </div>
-
           <div class="modal-body">
             <!-- <form ng-submit="vm.postIdea(vm.name, vm.description, user)"> -->
             <form>
@@ -125,12 +121,21 @@ hr {
               <br/>
               <button ng-click="postIdea(ideaName, description, ideaImage)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
             </form>
+        </div>
+      </div> <!-- Modal content-->
+        <div class="modal-body">
+          <!-- <form ng-submit="vm.postIdea(vm.name, vm.description, user)"> -->
+          <form>
+            <p> Name </p> <input ng-model="ideaName">
+            <p> Description </p> <input ng-model="description">
+            <!-- TODO: diff b/w ng-click and ng-submit? -->
+            <button ng-click="postIdea(ideaName, description)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
+          </form>
 
-          </div>
-        </div> <!-- Modal content-->
-      </div>
+        </div>
+      </div> <!-- Modal content-->
     </div>
-    <!-- Modal ends -->
-
   </div>
+  <!-- Modal ends -->
+
 </div>

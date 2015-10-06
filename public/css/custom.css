@@ -21,8 +21,16 @@
   margin-top: 20px;
 }
 
+/* Portfolio */
 .portfolio-link {
   cursor: pointer;
+  height: 200px;
+  overflow: hidden;
+}
+/* Portfolio Image*/
+.portfolio-link img {
+  width: 100%;
+  /*border: 1px solid #d6d6d6;*/
 }
 
 .container {
@@ -1452,6 +1460,7 @@ a.light-text:focus {
   position: relative;
   max-width: 400px;
   margin: 0 auto;
+  border-radius: 6px;
 }
 .portfolio-1 .portfolio-item .portfolio-link .caption {
   background: #D86044;
@@ -1468,12 +1477,12 @@ a.light-text:focus {
 }
 .portfolio-1 .portfolio-item .portfolio-link .caption .caption-content {
   position: absolute;
-  width: 100%;
+  width: 90%;
   height: 20px;
   font-size: 20px;
   text-align: center;
-  top: 50%;
-  margin-top: -12px;
+  top: 10%;
+  left: 5%;
   color: #f4f5f7;
 }
 .portfolio-1 .portfolio-item .portfolio-link .caption .caption-content i {
