@@ -1,4 +1,9 @@
 <style type="text/css">
+
+.modal-backdrop, .modal-backdrop.in{
+  display: none;
+}
+
 .btn-group-lg>.btn,.btn-lg {
   display: block;
 }
@@ -79,33 +84,106 @@ hr {
     </div>
   </div>
 
-  <div class="cardContainerContainer" style="text-align: center; display: block">
+  <div class="cardContainerContainer" style="text-align: center; display: block"> 
     <div class="cardContainer" ng-repeat="idea in newIdeas" style="display: inline-block">
-      <div class="card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)),url('{{idea.backgroundPath}}');">
+      <div class="card" style="background-image: url('{{idea.backgroundPath}}');" ng-attr-data-target="#{{idea.ideaName}}" class="portfolio-item" data-toggle="modal" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)),url('{{idea.backgroundPath}}');">
         <p class="name" style="color: white"> {{ idea.ideaName }} </p>
         <hr>
         <p class="description" style="color: white"> {{idea.description}} </p>
+      </div>
+      <div class="glyphicon-container">
+        <button  type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
 
-        <div class="glyphicon-container">
-          <button  type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
-
-          <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}">
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-          </button>
-        </div>
+        <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}">
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+        </button>
       </div>
     </div>
-  </div>
-  <!-- Neat Non-Flippin Card ends -->
+    <!-- Neat Non-Flippin Card ends -->
 
-  <!-- Modal -->
-  <div class="modal fade" id="modalID" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content"> <!-- Modal content-->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Idea</h4>
-        </div>
+    <!-- Ideas View/ Edit Modal -->
+    <div ng-repeat="idea in newIdeas">
+      <div ng-attr-id="{{idea.ideaName}}" class="idea-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-content" id="idea-modal-content">
+              <div class="close-modal" data-dismiss="modal">
+                  <div class="lr">
+                      <div class="rl">
+                      </div>
+                  </div>
+              </div>
+              <div class="container">
+                  <div class="row first">
+                      <div class="col-lg-12">
+                          <h2 class="page-header" ng-show="edible"><input ng-model="idea.ideaName"></input></h2>
+                          <h2 class="page-header" ng-hide="edible">{{idea.ideaName}}</h2>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-8">
+                          <div id="idea-details-carousel" class="owl-carousel owl-theme">
+                          <!-- TODO -->
+                             <!--  <div class="item">
+                                  <img src="{{idea.ideaImage}}" alt="">
+                              </div> -->
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <h3 > Idea Description:</h3>
+                          <p ng-show="edible"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your idea. What problem do you want to solve?" ng-model="idea.description" ></textarea></p>
+                          <p ng-hide="edible">{{idea.description}}</p>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-8">
+                        <h3 ng-show="edible"> Edit Idea Details:</h3>
+                        <h3 ng-hide="edible">Idea Details:</h3>
+                          <ul ng-show="edible"class="list-unstyled project-details">
+                              <li>
+                                  <strong>Organization: </strong>
+                                    <!-- <input ng-show"edible"rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="project.githubRepo">
+                                    </input> -->
+                              </li>
+                              <!-- <li ng-show"edible">
+                                  <strong>Project URL: </strong>
+                                    <input rows="1" cols="50" name="comment" ng-model="project.projUrl" type="text" placeholder="www.yourProjectHere.com">
+                                    </input>
+                              </li>
+                              <li>
+                                  <strong>Team Members: </strong>
+                                  <input ng-show="edible" rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="project.githubRepo">
+                                  </input>
+                              </li> -->
+
+                          </ul>
+                          <ul ng-hide="edible" class="list-unstyled project-details">
+                              <li ng-hide="edible">
+                                  <strong>Organization: </strong><!-- {{FILLER ORGANIZATION}} -->
+                              </li>
+                              <!-- <li ng-hide="edible">
+                                  <strong>Project Url: </strong>{{project.projUrl}}
+                              </li>
+                              <li ng-hide="edible">
+                                  <strong >Team Members: </strong>{{project.githubRepo}}
+                              </li> -->
+                          </ul>
+                      </div>
+                      <button ng-hide="edible" ng-click="editModal()" ng-show="editIdea(idea.userID)">Edit</button>
+                      <button ng-show="edible" ng-click="saveModal(idea.ideaName, idea.description)" ng-show="editIdea(project.userID)">Save</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <!-- Ideas View/ Edit Modal ends -->
+
+    <!-- Submit Idea Modal -->
+    <div class="modal fade" id="modalID" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content"> <!-- Modal content-->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Idea</h4>
+          </div>
           <div class="modal-body">
             <!-- <form ng-submit="vm.postIdea(vm.name, vm.description, user)"> -->
             <form>
@@ -121,21 +199,10 @@ hr {
               <br/>
               <button ng-click="postIdea(ideaName, description, ideaImage)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
             </form>
-        </div>
-      </div> <!-- Modal content-->
-        <div class="modal-body">
-          <!-- <form ng-submit="vm.postIdea(vm.name, vm.description, user)"> -->
-          <form>
-            <p> Name </p> <input ng-model="ideaName">
-            <p> Description </p> <input ng-model="description">
-            <!-- TODO: diff b/w ng-click and ng-submit? -->
-            <button ng-click="postIdea(ideaName, description)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
-          </form>
+          </div> <!-- Modal body ends -->
+        </div> <!-- Modal content-->
+      </div>
+    </div> <!-- Submit idea modal ends -->
 
-        </div>
-      </div> <!-- Modal content-->
-    </div>
-  </div>
-  <!-- Modal ends -->
+</div> <!-- container ends -->
 
-</div>
