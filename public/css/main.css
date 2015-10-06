@@ -1,0 +1,286 @@
+
+/* Some random styles Not sure what they are for */
+
+#header-banner h1,
+#header-banner h2,
+#header-banner h3 {
+  text-align: center;
+  color: white;
+}
+
+#project-title h3,
+#project-text h3 {
+  color: #003e54;
+  text-align: center;
+}
+
+#header-banner button,
+#project-text button {
+  margin: auto;
+  display: block;
+}
+
+
+/* Styles for Ideas page */
+
+.modal-backdrop, .modal-backdrop.in{
+  display: none;
+}
+
+.btn-group-lg>.btn,.btn-lg {
+  display: block;
+}
+
+.cardContainer {
+  position:relative;
+  margin: 15px;
+  width: 350px;
+  height: 200px;
+  -webkit-perspective: 800px;
+  -ms-perspective: 800px
+;  perspective: 800px;
+  border-radius: 4px;
+}
+
+.card {
+  overflow: hidden;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.card:hover {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+  -moz-box-shadow:    0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+  box-shadow:         0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+}
+
+p {
+  font-family: Helvetica;
+}
+
+.name {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  color: gray;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.glyphicon-container{
+  position: absolute;
+  bottom: -3px;
+  right: 10px;
+  top: 171px !important;
+  cursor: pointer;
+}
+
+.glyphicon {
+  font-size: 13px;
+  color: gray;
+}
+
+.liked {
+  background-color: orange;
+}
+
+/* Styles for the project page */
+.modal-backdrop, .modal-backdrop.in{
+  display: none;
+}
+
+/*image container*/
+.portfolio-link {
+  display: block;
+  width 500px;
+  height: 200px;
+  margin: 0px;
+  text-align: left;
+  overflow: hidden;
+}
+
+/*image*/
+.portfolio-link img {
+  width: 100%;
+  /*border: 1px solid #d6d6d6;*/
+}
+
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+:-moz-placeholder {
+   font-style: italic;
+}
+::-moz-placeholder {
+   font-style: italic;
+}
+:-ms-input-placeholder {
+   font-style: italic;
+}
+
+
+
+/* User profile page styling */
+#user-page-left-col {
+  float: left;
+  width: 20%;
+  margin-right: 10%;
+}
+
+.user-profile-label {
+  width:200px;
+  float:left;
+}
+
+.user-profile-update-input {
+  width: 400px;
+}
+
+#user-page-edit-profile {
+  margin-bottom: 15px;
+}
+
+#user-profile-edit-labels {
+  float:left;
+  margin-right: 20px;
+}
+
+#user-page-profile-pic img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#user-page-real-name {
+  font-size: 26px;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+#user-details {
+  margin-left:0px;
+}
+
+#user-page-github {
+  margin-top:5px;
+}
+
+#user-page-github-logo img {
+  width: 20px;
+}
+
+#user-page-github-logo {
+  float: left;
+  margin-right: 10px;
+}
+
+#user-page-github-link {
+  float: left;
+  margin-top:1px;
+  text-overflow: ellipsis;
+}
+
+#user-page-linkedin {
+  margin-top: 5px;
+}
+
+#user-page-linkedin-logo {
+  float: left;
+  margin-right: 9px;
+}
+
+#user-page-linkedin-logo img {
+  width: 20px;
+  margin-left: 2px;
+}
+
+#user-page-linkedin-link {
+  margin-top: 1px;
+  margin-left: -1px;
+  float:left;
+}
+
+#user-page-blog {
+  margin-left: 2px;
+  margin-top: 5px;
+}
+
+#user-page-blog-logo {
+  float:left;
+  margin-right: 10px;
+}
+
+#user-page-location {
+  margin-top:5px;
+}
+
+#user-page-location-name {
+  margin-top: 1px;
+}
+
+#user-page-location-logo {
+  float: left;
+  margin-right: 14px;
+  margin-left: 6px;
+}
+
+#user-page-organization {
+  margin-top: 5px;
+}
+
+#user-page-organization-logo {
+  margin-left: 1px;
+  margin-right: 8px;
+  float: left;
+}
+
+#user-page-contact {
+  margin-top: 30px;
+}
+
+#user-page-contact button {
+}
+
+
+#user-page-right-col {
+  float: left;
+  width: 70%;
+}
+
+
+/* Sign Up Modal Styles */
+#already-have-an-account,
+#dont-have-an-account {
+  text-align: center;
+}
+
+/* clearfix class for floats within divs */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
