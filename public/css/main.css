@@ -23,20 +23,25 @@
 
 /* Styles for Ideas page */
 
+.modal-backdrop, .modal-backdrop.in{
+  display: none;
+}
+
 .btn-group-lg>.btn,.btn-lg {
   display: block;
 }
+
 .cardContainer {
-  float:left;
   position:relative;
-  margin: 15px 15px 15px 15px;
-  width: 300px;
+  margin: 15px;
+  width: 350px;
   height: 200px;
   -webkit-perspective: 800px;
   -ms-perspective: 800px
 ;  perspective: 800px;
   border-radius: 4px;
 }
+
 .card {
   overflow: hidden;
   padding: 10px;
@@ -52,6 +57,7 @@
   border-radius: 6px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
+
 .card:hover {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -60,19 +66,23 @@
   -moz-box-shadow:    0px 0px 30px 0px rgba(102, 204, 255, 0.67);
   box-shadow:         0px 0px 30px 0px rgba(102, 204, 255, 0.67);
 }
+
 p {
   font-family: Helvetica;
 }
+
 .name {
   text-transform: uppercase;
   text-align: center;
   font-weight: bold;
   color: gray;
 }
+
 hr {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 .glyphicon-container{
   position: absolute;
   bottom: -3px;
@@ -80,15 +90,15 @@ hr {
   top: 171px !important;
   cursor: pointer;
 }
+
 .glyphicon {
   font-size: 13px;
   color: gray;
 }
+
 .liked {
   background-color: orange;
 }
-
-
 
 /* Styles for the project page */
 .modal-backdrop, .modal-backdrop.in{
