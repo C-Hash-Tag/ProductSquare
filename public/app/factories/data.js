@@ -58,7 +58,7 @@ angular.module('myApp.data', [])
         idea: desc
       });
     };
-    
+
     factory.setUserProfileImage = function(url, userId) {
       Ref.child('users').child(userId).update({
         profileImage: url
