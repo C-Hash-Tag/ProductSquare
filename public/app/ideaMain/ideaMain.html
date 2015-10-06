@@ -15,7 +15,7 @@
 
   <div class="cardContainerContainer" style="text-align: center; display: block">
     <div class="cardContainer" ng-repeat="idea in newIdeas" style="display: inline-block">
-      <div class="card portfolio-item" ng-attr-data-target="#{{idea.ideaName}}" data-toggle="modal" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)),url('{{idea.backgroundPath}}');">
+      <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID)" data-target="#idea-info" data-toggle="modal" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)),url('{{idea.backgroundPath}}');">
         <p class="name" style="color: white"> {{ idea.ideaName }} </p>
         <hr>
         <p class="description" style="color: white"> {{idea.description}} </p>
@@ -31,8 +31,7 @@
     <!-- Neat Non-Flippin Card ends -->
 
     <!-- Ideas View/ Edit Modal -->
-    <div ng-repeat="idea in newIdeas">
-      <div ng-attr-id="{{idea.ideaName}}" class="idea-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div id="idea-info" class="idea-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-content" id="idea-modal-content">
               <div class="close-modal" data-dismiss="modal">
                   <div class="lr">
@@ -43,8 +42,8 @@
               <div class="container">
                   <div class="row first">
                       <div class="col-lg-12">
-                          <h2 class="page-header" ng-show="edible"><input ng-model="idea.ideaName"></input></h2>
-                          <h2 class="page-header" ng-hide="edible">{{idea.ideaName}}</h2>
+                          <h2 class="page-header" ng-show="edible"><input ng-model="specificIdeaName"></input></h2>
+                          <h2 class="page-header" ng-hide="edible">{{specificIdeaName}}</h2>
                       </div>
                   </div>
                   <div class="row">
@@ -58,8 +57,8 @@
                       </div>
                       <div class="col-md-4">
                           <h3 > Idea Description:</h3>
-                          <p ng-show="edible"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your idea. What problem do you want to solve?" ng-model="idea.description" ></textarea></p>
-                          <p ng-hide="edible">{{idea.description}}</p>
+                          <p ng-show="edible"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your idea. What problem do you want to solve?" ng-model="specificDescription" ></textarea></p>
+                          <p ng-hide="edible">{{specificDescription}}</p>
                       </div>
                   </div>
                   <div class="row">
@@ -96,13 +95,12 @@
                               </li> -->
                           </ul>
                       </div>
-                      <button ng-hide="edible" ng-click="editModal()" ng-show="editIdea(idea.userID)">Edit</button>
-                      <button ng-show="edible" ng-click="saveModal(idea.ideaName, idea.description)" ng-show="editIdea(project.userID)">Save</button>
+                      <button ng-hide="edible" ng-click="editModal()" ng-show="editIdea(specificUserID)">Edit</button>
+                      <button ng-show="edible" ng-click="saveModal(specificIdeaName, specificDescription, specificBackgroundPath)" ng-show="editIdea(specificUserID)">Save</button>
                   </div>
               </div>
           </div>
       </div>
-    </div>
     <!-- Ideas View/ Edit Modal ends -->
 
     <!-- Submit Idea Modal -->
