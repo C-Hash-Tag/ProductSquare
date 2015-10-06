@@ -31,7 +31,7 @@
                   <div class="row first">
                       <div class="col-lg-12">
                           <h2 class="page-header">
-                            <textarea rows="1" cols="25" name="comment" type="text" placeholder="Enter Project Name" ng-model="projName" ></textarea>
+                            <textarea rows="1" cols="25" name="comment" type="text" placeholder="Enter Project Name" ng-model="projName"></textarea>
                           </h2>
                       </div>
                   </div>
@@ -48,7 +48,7 @@
                       </div>
                       <div class="col-md-4" style="padding-right: 0; padding-left: 0">
                           <h3>Project Description:</h3>
-                          <p style="margin-bottom: 0"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or interesting?" ng-model="projDesc" ></textarea></p>
+                          <p style="margin-bottom: 0"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or interesting?" ng-model="projDesc" style="width:100%"></textarea></p>
                           <span class="pull-right">
                             <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
                           </span>
@@ -136,6 +136,8 @@
                           </h2>
                           <h2 class="page-header" ng-hide="edible">
                             {{specificProjName}}
+                            <button ng-click="editModal()" ng-show="editProj(project.userID) && checked" class="pull-right btn btn-success" style="position: relative; top: 8px">Edit</button>
+                            {{project.projName}}
                             <button ng-click="editModal()" ng-show="editProj(project.userID) && checked" class="pull-right btn btn-success">Edit</button>
                           </h2>
                       </div>
@@ -151,7 +153,7 @@
                       <div class="col-md-4" style="padding-right: 0; padding-left: 0">
                           <h3 >Project Description:</h3>
                           <p ng-show="edible" style="margin-bottom: 0;">
-                            <textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="specificDescription" ></textarea>
+                            <textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="specificDescription" style="width:100%"></textarea>
                           </p>
                           <p ng-hide="edible">
                             {{specificDescription}}
