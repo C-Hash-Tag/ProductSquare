@@ -50,20 +50,19 @@ angular.module('myApp.projectMain', [])
     }
   }
 
-  $scope.edible = false;
   $scope.editModal = function() {
-    console.log("in the edit function", $scope.edible)
-    // if ($scope.editProj(userID)) {
-      $scope.edible = true;
-  }
+    $scope.edible = true;
+    $scope.checked = false;
+  };
 
   $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage){
     // firebase logic
-    console.log("in the save function");
     $scope.edible = false;
+    $scope.checked = true;
     data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage);
-  }
+  };
 
+  $scope.checked = true;
 
   $scope.projectSubmit = function(projDesc, githubUrl, projName, projUrl, projectImage) {
     var projID = uniqueNumber(projName)
