@@ -3,23 +3,6 @@
   display: none;
 }
 
-/*image container*/
-.portfolio-link {
-  display: block;
-  width 500px;
-  height: 200px;
-  margin: 0px;
-  text-align: left;
-  overflow: hidden;
-}
-
-
-/*image*/
-.portfolio-link img {
-  width: 100%;
-  /*border: 1px solid #d6d6d6;*/
-}
-
 ::-webkit-input-placeholder {
    font-style: italic;
 }
@@ -32,7 +15,6 @@
 :-ms-input-placeholder {
    font-style: italic;
 }
-
 </style>
 
 <nav-bar> </nav-bar>
@@ -144,11 +126,11 @@
               <div class="portfolio-link">
                 <div class="caption">
                   <div class="caption-content">
-                    <h3>{{project.projName}}</h3>
+                    <h3>{{project.projName}}</h3> <hr>
                     <p> {{project.description}}</p>
                   </div>
                 </div>
-                <img src="{{project.projectImage}}" class="img-centered" alt="" style="zoom:200%">
+                <img src="{{project.projectImage}}" class="img-centered" alt="" style="zoom:200%;">
               </div>
             </a>
           </div>
