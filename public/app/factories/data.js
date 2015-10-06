@@ -58,7 +58,7 @@ angular.module('myApp.data', [])
         idea: desc
       });
     };
-    
+
     factory.setUserProfileImage = function(url, userId) {
       Ref.child('users').child(userId).update({
         profileImage: url
@@ -131,6 +131,10 @@ angular.module('myApp.data', [])
         console.log(Object.keys(usersWhoLikeIt).length); //how many likes for a given idea
         return usersWhoLikeIt;
       })
+
+      factory.updateProject = function(projDesc, githubUrl, projName, projUrl, projectImage) {
+        // update
+      }
 
       //update users table to store ideas that users like
       Ref.child("users").child(username).child("likedIdeas").transaction(function(likedIdeas){
