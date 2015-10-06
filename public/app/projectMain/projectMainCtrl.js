@@ -8,10 +8,10 @@ angular.module('myApp.projectMain', [])
   $scope.save = false;
 
   $scope.$on('gotProjects', function (event, projects) {
-      console.log('projects retrieved', projects);
-      $scope.newProjects = projects;
-      $scope.$apply();
-    })
+    console.log('projects retrieved', projects);
+    $scope.newProjects = projects;
+    $scope.$apply();
+  });
 
   $scope.getProjectsData = function() {
     data.getProjectsData();
@@ -25,6 +25,17 @@ angular.module('myApp.projectMain', [])
       str[i] = (str[i] === ' ' ? '-' : str[i].toLowerCase());
     }
     return str.join('');
+  }
+
+  function uniqueNumber(projName) {
+    var date = Date.now();
+    // If created at same millisecond as previous
+    if (date <= uniqueNumber.previous) {
+        date = ++uniqueNumber.previous;
+    } else {
+        uniqueNumber.previous = date;
+    }
+    return uniqProjID(projName)+date;
   }
 
   $scope.projSpecific = function(projName) {
@@ -44,16 +55,16 @@ angular.module('myApp.projectMain', [])
       $scope.edible = true;
   }
 
-  $scope.saveModal = function(projDesc, githubUrl, projName, projUrl, projectImage){
+  $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage){
     // firebase logic
     console.log("in the save function");
     $scope.edible = false;
-    data.createProject(projDesc, githubUrl, projName, projUrl, projID, projectImage);
+    data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage);
   }
 
 
   $scope.projectSubmit = function(projDesc, githubUrl, projName, projUrl, projectImage) {
-    var projID = uniqProjID(projName)
+    var projID = uniqueNumber(projName)
     if (projectImage === "") {
       projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
     }

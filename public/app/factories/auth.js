@@ -28,6 +28,9 @@ angular.module('myApp.auth', [])
         scope.$apply();
       } else {
         $('#loginModal').modal('hide');
+        scope.email = "";
+        scope.password = "";
+        scope.loginUser = false;
         scope.$apply();
         console.log("Authenticated successfully with payload:", authData);
         factory.authLogin(scope);
@@ -63,6 +66,9 @@ angular.module('myApp.auth', [])
           scope.$apply();
         }else {
           scope.submission = true;
+          scope.realName = "";
+          scope.email = "";
+          scope.password = "";
           scope.$apply()
           console.log("Successfully created user account with uid:", userData.uid);
           data.createUser(email, password, userData.uid, realName);

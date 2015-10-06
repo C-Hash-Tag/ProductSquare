@@ -2,7 +2,6 @@
 .modal-backdrop, .modal-backdrop.in{
   display: none;
 }
-
 ::-webkit-input-placeholder {
    font-style: italic;
 }
@@ -206,7 +205,7 @@
                           </ul>
                       </div>
                       <button ng-hide="edible" ng-click="editModal()" ng-show="editProj(project.userID)">Edit</button>
-                      <button ng-show="edible" ng-click="saveModal(project.projName, project.description)" ng-show="editProj(project.userID)">Save</button>
+                      <button ng-show="edible" ng-click="saveModal(project.projID, project.projName, project.description, project.githubRepo, project.projUrl, project.projectImage)" ng-show="editProj(project.userID)">Save</button>
                   </div>
               </div>
           </div>
