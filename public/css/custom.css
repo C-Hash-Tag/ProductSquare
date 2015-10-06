@@ -21,16 +21,45 @@
   margin-top: 20px;
 }
 
-/* Portfolio */
+/* Projects */
 .portfolio-link {
   cursor: pointer;
   height: 200px;
+  width: 350px;
   overflow: hidden;
 }
-/* Portfolio Image*/
+
+.projectCardsContainer {
+  text-align: center;
+  display: block;
+}
+
+.projectCardsContainer .col-sm-4 {
+  margin: 15px 15px 10px 15px;
+  padding: 0;
+}
+
+ .projectCardsContainer div {
+  display: inline-block;
+}
+
 .portfolio-link img {
   width: 100%;
   /*border: 1px solid #d6d6d6;*/
+}
+
+/* Ideas */
+.container .container .row {
+  width:1140px;
+}
+
+#page-title-ideas {
+  padding-left: 0;
+}
+
+.container .container .row .col-lg-12 {
+  padding-left:30px;
+  padding-right: 0;
 }
 
 .container {
