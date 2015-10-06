@@ -1,4 +1,4 @@
-angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUpload", function($window, auth, data, imageUpload) {
+angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUpload", '$location', function($window, auth, data, imageUpload, $location) {
 
   return {
     restrict: 'E',
@@ -6,6 +6,11 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUp
     link: function(scope, elem, attrs) {
       auth.authLogin(scope);
       
+      scope.changeRoute = function(){
+        $('#profileCompleteModal').modal('hide');
+        $location.path('/projects');
+      };
+
       //put the newuserSubmit function here.
       scope.newUserSubmit = function(realName, email, password) {
         auth.newUser(realName, email, password, scope);
