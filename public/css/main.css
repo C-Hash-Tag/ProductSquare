@@ -133,6 +133,24 @@ hr {
   margin-right: 10%;
 }
 
+.user-profile-label {
+  width:200px;
+  float:left;
+}
+
+.user-profile-update-input {
+  width: 400px;
+}
+
+#user-page-edit-profile {
+  margin-bottom: 15px;
+}
+
+#user-profile-edit-labels {
+  float:left;
+  margin-right: 20px;
+}
+
 #user-page-profile-pic img {
   width: 100%;
   border-radius: 10px;

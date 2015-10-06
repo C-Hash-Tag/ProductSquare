@@ -29,11 +29,22 @@ angular.module('myApp.data', [])
         projects: {},
         ideas: {},
         likedIdeas: {},
-        profileImage: '/img/default-user.png' //this will update with aws image when input by the user.
+        profileImage: '/img/default-user.png', //this will update with aws image when input by the user.
+        github: "",
+        linkedin: "",
+        blog: "",
+        location: "",
+        organization: ""
       };
       Ref.child("users").child(userId).set(user);
       $rootScope.$broadcast('userCreated', user);
     };
+
+    factory.updateUser = function(userId, newSettings) { //takes an object of settings and updates the users profile with those settings.
+      console.log("before update in data.js");
+      Ref.child("users").child(userId).update(newSettings);
+      console.log("user updated in data.js!");
+    }
 
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -43,7 +54,7 @@ angular.module('myApp.data', [])
     factory.createIdea = function(ideaName, desc){
       // Store the idea data in Firebase
       var image = (arguments[2] ? arguments[2] : "../background/wood" + getRandomInt(1,4)+".jpg");
-      console.log("In create idea!!!")
+
       Ref.child("ideas").child(ideaName).set({
         ideaName: ideaName,
         description: desc,
@@ -89,7 +100,9 @@ angular.module('myApp.data', [])
 
     // Get users data from Firebase
     factory.getUserData = function(userID){
-      Ref.child("users").child(userID).on("value", function(data){
+
+      Ref.child("users").child(userID).once("value", function(data){
+        console.log("inside get user data");
         $rootScope.$broadcast('gotUser', data.val());
       });
     };
