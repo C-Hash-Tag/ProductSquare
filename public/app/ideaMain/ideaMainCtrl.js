@@ -3,6 +3,7 @@ angular.module('myApp.ideaMain', [])
 .controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', 'imageUpload', '$route', function($scope, $http, data, $log, auth, imageUpload, $route){
   $scope.$route = $route;
 
+
   //NOTE: set the listener before you get the dat
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
@@ -14,12 +15,16 @@ angular.module('myApp.ideaMain', [])
     console.log("inside get Ideas Data")
     data.getIdeasData();
   }
-
   $scope.getIdeasData();
+
+  $scope.$on('gotUser', function(event, user){
+    $scope.userRealName = user.name;
+  })
+  data.getUserData(localStorage.userID);
 
   //TODO: add the username too
   $scope.postIdea = function(ideaName, description, ideaImage){
-    data.createIdea(ideaName, description, ideaImage);
+    data.createIdea(ideaName, description, $scope.userRealName, ideaImage);
     $scope.ideaName = "";
     $scope.description = "";
     $scope.ideaImage = "";

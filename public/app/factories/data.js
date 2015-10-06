@@ -51,17 +51,17 @@ angular.module('myApp.data', [])
     }
 
     // Collect idea data from createIdea and store it in Firebase
-    factory.createIdea = function(ideaName, desc){
+    factory.createIdea = function(ideaName, desc, userRealName){
       // Store the idea data in Firebase
-      var image = (arguments[2] ? arguments[2] : "../background/wood" + getRandomInt(1,4)+".jpg");
-
+      var image = (arguments[3] ? arguments[3] : "../background/wood" + getRandomInt(1,4)+".jpg");
       Ref.child("ideas").child(ideaName).set({
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
         userID: localStorage.userID,
         usersWhoLikeIt: {},
-        backgroundPath: image
+        backgroundPath: image,
+        userRealName: userRealName
       });
 
       // Add the idea data to the user in Firebase
@@ -100,7 +100,6 @@ angular.module('myApp.data', [])
 
     // Get users data from Firebase
     factory.getUserData = function(userID){
-
       Ref.child("users").child(userID).once("value", function(data){
         console.log("inside get user data");
         $rootScope.$broadcast('gotUser', data.val());
@@ -118,7 +117,7 @@ angular.module('myApp.data', [])
 
     // Get ideas data from Firebase
     factory.getIdeasData = function(){
-      Ref.child("ideas").on("value", function(data){
+      Ref.child("ideas").once("value", function(data){
         // Broadcast projects data to all 'gotProjects' event listeners
         var ideas = data.val();
         var arr = [];
