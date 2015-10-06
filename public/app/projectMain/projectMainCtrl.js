@@ -2,8 +2,14 @@ angular.module('myApp.projectMain', [])
 
 .controller('ProjectMainCtrl', ['$scope', '$http', 'data', 'auth', 'imageUpload', '$route', function($scope, $http, data, auth, imageUpload, $route) {
   $scope.$route = $route;
+  $scope.$on('gotUser', function(event, user){
+    $scope.userRealName = user.name;
+  });
+  
+  if(localStorage.userID){
+    data.getUserData(localStorage.userID);
+  }
 
-  // var vm = this;
 
   // flag declarations to show/hide views
   $scope.submission = false;
@@ -20,6 +26,7 @@ angular.module('myApp.projectMain', [])
   }
 
   $scope.getProjectsData();
+
 
   var uniqProjID = function(str) {
     str = str.split("");
@@ -69,7 +76,7 @@ angular.module('myApp.projectMain', [])
     if (projectImage === "") {
       projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
     }
-    data.createProject(projDesc, githubUrl, projName, projUrl, projID, projectImage);
+    data.createProject($scope.userRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage);
     $scope.projDesc = "";
     $scope.githubUrl = "";
     $scope.projName = "";
