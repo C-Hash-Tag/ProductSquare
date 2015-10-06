@@ -57,13 +57,11 @@ angular.module('myApp.projectMain', [])
 
   $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage){
     // firebase logic
-    console.log("in the save function");
-    localStorage.userID = temp;
     $scope.edible = false;
     $scope.checked = true;
     data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage);
   };
-  
+
   $scope.checked = true;
 
   $scope.projectSubmit = function(projDesc, githubUrl, projName, projUrl, projectImage) {
