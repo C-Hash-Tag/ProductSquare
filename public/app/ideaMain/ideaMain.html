@@ -84,9 +84,9 @@ hr {
     </div>
   </div>
 
-  <div class="cardContainerContainer" style="text-align: center; display: block"> 
+  <div class="cardContainerContainer" style="text-align: center; display: block">
     <div class="cardContainer" ng-repeat="idea in newIdeas" style="display: inline-block">
-      <div class="card" style="background-image: url('{{idea.backgroundPath}}');" ng-attr-data-target="#{{idea.ideaName}}" class="portfolio-item" data-toggle="modal" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)),url('{{idea.backgroundPath}}');">
+      <div class="card portfolio-item" ng-attr-data-target="#{{idea.ideaName}}" data-toggle="modal" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)),url('{{idea.backgroundPath}}');">
         <p class="name" style="color: white"> {{ idea.ideaName }} </p>
         <hr>
         <p class="description" style="color: white"> {{idea.description}} </p>
