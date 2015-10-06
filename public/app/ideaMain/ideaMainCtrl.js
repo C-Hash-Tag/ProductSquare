@@ -93,4 +93,14 @@ angular.module('myApp.ideaMain', [])
     $scope.submission = false;
   }
 
+  //INFO MODAL LOADING
+  $scope.passit = function(ideaName, description, backgroundPath, date, userID){
+    $scope.specificIdeaName = ideaName;
+    $scope.specificDescription = description;
+    $scope.specificBackgroundPath = backgroundPath; 
+    $scope.specificDate = date; 
+    $scope.specificUserID = userID; 
+  }
+
+
 }]);
