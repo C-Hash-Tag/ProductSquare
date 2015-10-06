@@ -39,15 +39,14 @@
                   <div class="row">
                       <div class="col-md-8">
                           <div id="project-details-carousel" class="owl-carousel owl-theme">
-
+                              <p id="status"> (Optional) Please upload an image file. </p>
                               <div class="item">
                                   <img id="preview" src="{{projectImage}}" style="float:right" >
                               </div>
                               <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveProjectImage(this)"/>
-                              <p id="status">Please upload an image file</p>
                           </div>
                       </div>
-                      <div class="col-md-4" style="padding-right: 0">
+                      <div class="col-md-4" style="padding-right: 0; padding-left: 0">
                           <h3>Project Description:</h3>
                           <p style="margin-bottom: 0"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or interesting?" ng-model="projDesc" ></textarea></p>
                           <span class="pull-right">
@@ -132,24 +131,34 @@
               <div class="container">
                   <div class="row first">
                       <div class="col-lg-12">
-                          <h2 class="page-header" ng-show="edible"><input ng-model="specificProjName"></input></h2>
-                          <h2 class="page-header" ng-hide="edible">{{specificProjName}}</h2>
+                          <h2 class="page-header" ng-show="edible">
+                            <input ng-model="specificProjName"></input>
+                          </h2>
+                          <h2 class="page-header" ng-hide="edible">
+                            {{specificProjName}}
+                            <button ng-click="editModal()" ng-show="editProj(project.userID) && checked" class="pull-right btn btn-success">Edit</button>
+                          </h2>
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-8">
                           <div id="project-details-carousel" class="owl-carousel owl-theme">
-
                               <div class="item">
                                   <img ng-src="{{specificProjectImage}}" alt="">
                               </div>
                           </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-4" style="padding-right: 0; padding-left: 0">
                           <h3 >Project Description:</h3>
-                          <p ng-show="edible"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="specificDescription" ></textarea></p>
-                          <p ng-hide="edible">{{specificDescription}}</p>
+                          <p ng-show="edible" style="margin-bottom: 0;">
+                            <textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="specificDescription" ></textarea>
+                          </p>
+                          <p ng-hide="edible">
+                            {{specificDescription}}
+                          </p>
+                          <button ng-show="edible" ng-click="saveModal(project.projID, project.projName, project.description, project.githubRepo, project.projUrl, project.projectImage)" class="pull-right btn btn-danger">Save</button>
                       </div>
+
                   </div>
                   <div class="row">
                       <div class="col-md-8">
