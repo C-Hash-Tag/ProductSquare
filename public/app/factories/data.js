@@ -143,5 +143,9 @@ angular.module('myApp.data', [])
 
     }
 
+    factory.updateProject = function(projDesc, projName, projID){
+      
+    }
+
     return factory;
 }]);
