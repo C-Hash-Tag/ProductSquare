@@ -46,7 +46,7 @@ angular.module('myApp.UserMain', [])
   if (localStorage.userID === $routeParams.userID) {
     console.log("edible!");
     $scope.edible = true;
-  } 
+  }
 
   $scope.updateUserProfileImage = function(){
     console.log("event", event);
@@ -80,7 +80,7 @@ angular.module('myApp.UserMain', [])
       $scope.profileImage = $scope.tempProfileImage;
     }
     data.updateUser(localStorage.userID, newSettings);
-    $('#profile-edit-modal').modal('hide'); 
+    $('#profile-edit-modal').modal('hide');
   }
 
 
