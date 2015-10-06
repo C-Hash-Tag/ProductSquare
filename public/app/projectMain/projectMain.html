@@ -203,8 +203,8 @@
                               </li>
                           </ul>
                       </div>
-                      <button ng-hide="edible" ng-click="editModal()" ng-show="editProj(project.userID)">Edit</button>
-                      <button ng-show="edible" ng-click="saveModal(project.projID, project.projName, project.description, project.githubRepo, project.projUrl, project.projectImage)" ng-show="editProj(project.userID)">Save</button>
+                      <button ng-click="editModal()" ng-show="editProj(project.userID)">Edit</button>
+                      <button ng-show="edible" ng-click="saveModal(project.projID, project.projName, project.description, project.githubRepo, project.projUrl, project.projectImage)" >Save</button>
                   </div>
               </div>
           </div>
