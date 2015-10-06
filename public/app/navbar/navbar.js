@@ -13,7 +13,20 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUp
 
       //put the newuserSubmit function here.
       scope.newUserSubmit = function(realName, email, password) {
-        auth.newUser(realName, email, password, scope);
+        if (password === "" || password === undefined) {
+          scope.createNewUser = true;
+          scope.error = "please enter a password!";
+        }
+        else {
+          if (realName === "" || realName === undefined){
+            scope.createNewUser = true;
+            scope.error = "please enter your name!";
+          }
+          else {
+            auth.newUser(realName, email, password, scope);
+          }
+        }
+        
       };
 
       console.log(localStorage.userID);

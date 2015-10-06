@@ -47,34 +47,40 @@ angular.module('myApp.auth', [])
   };
 
   factory.newUser = function(realName, email, password, scope){
-    Ref.createUser({
-        email: email,
-        password: password
-      }, function(error, userData) {
-        if (error) {
-          scope.createNewUser = true;
-          switch (error.code) {
-            case "EMAIL_TAKEN":
-              scope.error = "The new user account cannot be created because the email is already in use.";
-              break;
-            case "INVALID_EMAIL":
-              scope.error = "The specified email is not a valid email.";
-              break;
-            default:
-              scope.error = "Error creating user:" + error;
+    if (password === undefined) {
+      scope.error = "please add a password";
+      //scope.$apply();
+    }
+    else {
+      Ref.createUser({
+          email: email,
+          password: password
+        }, function(error, userData) {
+          if (error) {
+            scope.createNewUser = true;
+            switch (error.code) {
+              case "EMAIL_TAKEN":
+                scope.error = "The new user account cannot be created because the email is already in use.";
+                break;
+              case "INVALID_EMAIL":
+                scope.error = "The specified email is not a valid email.";
+                break;
+              default:
+                scope.error = "Error creating user:" + error;
+            }
+            scope.$apply();
+          }else {
+            scope.submission = true;
+            scope.realName = "";
+            scope.email = "";
+            scope.password = "";
+            scope.$apply()
+            console.log("Successfully created user account with uid:", userData.uid);
+            data.createUser(email, password, userData.uid, realName);
+            factory.authWithPass(email, password, scope);
           }
-          scope.$apply();
-        }else {
-          scope.submission = true;
-          scope.realName = "";
-          scope.email = "";
-          scope.password = "";
-          scope.$apply()
-          console.log("Successfully created user account with uid:", userData.uid);
-          data.createUser(email, password, userData.uid, realName);
-          factory.authWithPass(email, password, scope);
-        }
-      });
+        });
+      }
   };
 
   return factory;
