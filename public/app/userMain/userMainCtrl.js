@@ -1,7 +1,5 @@
 angular.module('myApp.UserMain', [])
 
-<<<<<<< HEAD
-
 .controller('UserMainCtrl', ['$scope', '$http', 'data', '$routeParams', 'imageUpload', function($scope, $http, data, $routeParams, imageUpload){
 
   var truncateText = function(text) {
