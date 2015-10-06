@@ -54,7 +54,6 @@ angular.module('myApp.data', [])
     factory.createIdea = function(ideaName, desc){
       // Store the idea data in Firebase
       var image = (arguments[2] ? arguments[2] : "../background/wood" + getRandomInt(1,4)+".jpg");
-
       Ref.child("ideas").child(ideaName).set({
         ideaName: ideaName,
         description: desc,
