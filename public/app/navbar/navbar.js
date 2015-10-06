@@ -47,7 +47,7 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUp
       scope.login = function(email, password) {
         auth.authWithPass(email, password, scope);
       };
-    
+
       scope.logout = function(){
         scope.loggedIn = false;
         auth.logout();

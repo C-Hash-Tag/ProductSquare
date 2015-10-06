@@ -42,6 +42,7 @@ angular.module('myApp.data', [])
     // Collect idea data from createIdea and store it in Firebase
     factory.createIdea = function(ideaName, desc){
       // Store the idea data in Firebase
+      var image = (arguments[2] ? arguments[2] : "../background/wood" + getRandomInt(1,4)+".jpg");
       console.log("In create idea!!!")
       Ref.child("ideas").child(ideaName).set({
         ideaName: ideaName,
@@ -49,7 +50,7 @@ angular.module('myApp.data', [])
         date: currentDate(),
         userID: localStorage.userID,
         usersWhoLikeIt: {},
-        backgroundPath: "../background/wood" + getRandomInt(1,4)+".jpg"
+        backgroundPath: image
       });
 
       // Add the idea data to the user in Firebase

@@ -51,6 +51,7 @@
             Full Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
             Email Address: <input type="text" class="form-control" ng-model="email" /> <br/>
             Password: <input type="password" class="form-control" ng-model="password" /> <br/>
+            <p style="color: red" ng-show="createNewUser">{{error}}</p>
             <span class="pull-right">
               <input type="submit" id="Submit" class="btn btn-primary" value="Submit"/>
             </span>
@@ -99,9 +100,8 @@
         <h4 class="modal-title">Welcome, {{realName}}! </h4>
       </div>
       <div class="modal-body">
-        <a href="/#/projects/"><button class="btn-primary btn">Latest Projects</button></a>
-
-        <a href="/#/ideas/"><button class="btn-primary btn">Latest Ideas</button></a>
+        <a href="#/projects"><button class="btn-primary btn">Latest Projects</button></a>
+        <a href="#/ideas"><button class="btn-primary btn">Latest Ideas</button></a>
       </div>
     </div>
   </div>
@@ -129,7 +129,8 @@
             <br/>
             <input class="form-control" type="password" ng-model="password"/>
             <br/>
-            <button ng-click="login(email, password)" type="submit" data-dismiss="modal" class="btn btn-primary pull-right">Submit</button>
+            <p style="color: red" ng-show="loginUser">{{ loginError }}</p>
+            <button ng-click="login(email, password)" type="submit" data-dismiss="{{ hi }}" class="btn btn-primary pull-right">Submit</button>
             <br/>
             <br/>
           </form>
