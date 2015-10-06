@@ -69,7 +69,7 @@ angular.module('myApp.data', [])
     // Collect project data from createProject and store it in Firebase
     factory.createProject = function(projDesc, githubUrl, projName, projUrl, projID, projectImage){
       // Store the project data in Firebase
-      Ref.child('projects').child(projName).set({
+      Ref.child('projects').child(projID).set({
         description: projDesc,
         githubRepo: githubUrl,
         projName: projName,
@@ -143,9 +143,28 @@ angular.module('myApp.data', [])
 
     }
 
-    factory.updateProject = function(projDesc, projName, projID){
-      
-    }
+    factory.updateProject = function(projID, projDesc, projName, githubUrl, projUrl, projectImage){
+      Ref.child('projects').child(projID).child('description').transaction(function(desc){
+        desc = projDesc;
+        return desc;
+      });
+      Ref.child('projects').child(projID).child('projName').transaction(function(name){
+        name = projName;
+        return name;
+      });
+      Ref.child('projects').child(projID).child('githubRepo').transaction(function(repo){
+        repo = githubUrl;
+        return repo;
+      });
+      Ref.child('projects').child(projID).child('projUrl').transaction(function(proj){
+        proj = projUrl;
+        return proj;
+      });
+      Ref.child('projects').child(projID).child('projectImage').transaction(function(image){
+        image = projectImage;
+        return image;
+      });
+    };
 
     return factory;
 }]);
