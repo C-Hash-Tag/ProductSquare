@@ -45,4 +45,47 @@ angular.module('myApp.ideaMain', [])
     }); //run the userImage upload from the imageUpload factory.
   };
 
+  //EDITING FEATURE -- TO DO! 
+  $scope.submission = false;
+  $scope.save = false;
+
+  $scope.editIdea = function(userID) {
+    if (localStorage.userID === userID) {
+      return true;
+    }
+  }
+
+  $scope.edible = false;
+  $scope.editModal = function() {
+    console.log("in the edit function", $scope.edible)
+    // if ($scope.editProj(userID)) {
+    $scope.edible = true;
+  }
+
+  $scope.saveModal = function(projDesc, githubUrl, projName, projUrl, projectImage){
+    // firebase logic
+    console.log("in the save function");
+    $scope.edible = false;
+    data.createProject(projDesc, githubUrl, projName, projUrl, projID, projectImage);
+  }
+
+
+  $scope.ideaSubmit = function(projDesc, githubUrl, projName, projUrl, projectImage) {
+    var projID = uniqProjID(projName)
+    if (projectImage === "") {
+      projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
+    }
+    data.createProject(projDesc, githubUrl, projName, projUrl, projID, projectImage);
+    $scope.projDesc = "";
+    $scope.githubUrl = "";
+    $scope.projName = "";
+    $scope.projUrl = "";
+    $scope.projectImage = "";
+    $scope.submission = true;
+  }
+
+  $scope.close = function() {
+    $scope.submission = false;
+  }
+
 }]);
