@@ -1,53 +1,92 @@
 angular.module('myApp.UserMain', [])
 
-.controller('UserMainCtrl', ['$scope', '$http', '$routeParams', 'imageUpload', '$route', function($scope, $http, $routeParams, imageUpload, $route){
-  $scope.$route = $route;
-  var vm = this;
+<<<<<<< HEAD
 
-  console.log("using user cntrl!");
+.controller('UserMainCtrl', ['$scope', '$http', 'data', '$routeParams', 'imageUpload', function($scope, $http, data, $routeParams, imageUpload){
 
-  $scope.$on('gotUsers', function(event, user){
-    console.log("ideas retrieved!", ideas);
-    //set the scope variables here in the future.
+  var truncateText = function(text) {
+    var returnText = text;
+    if (text.indexOf("www.") > -1){
+      returnText = returnText.replace("www.", "");
+    }
+    if (text.indexOf("http://") > -1){
+      returnText = returnText.replace("http://", "");
+    }
+    if (text.indexOf("https://") > -1){
+      returnText = returnText.replace("https://", "");
+    }
+    if (returnText.length > 23) {
+      returnText = returnText.slice(0,23)+"...";
+    }
+    return returnText;
+  }
+
+  $scope.stringFound = function(text) {
+    if (text !== "") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  data.getUserData(localStorage.userID);
+  $scope.$on('gotUser', function (event, user){
+    console.log("got user!", user);
+    $scope.realName = user.name;
+    $scope.profileImage = user.profileImage;
+    $scope.tempProfileImage = user.profileImage; //set the temp profile image to the userimage. This is used for the user edit modal.
+    $scope.githubLink = user.github;
+    $scope.githubText = truncateText(user.github);
+    $scope.blogLink = user.blog;
+    $scope.blogText = truncateText(user.blog);
+    $scope.linkedinLink = user.linkedin;
+    $scope.linkedinText = truncateText(user.linkedin);
+    $scope.location = truncateText(user.location);
+    $scope.organization = truncateText(user.organization);
+    $scope.$apply();
   });
 
-  $scope.name = "Dylan Wright";
-  $scope.profilePic = "http://ds-wright.com/images/dylan-wright.png";
-  $scope.projects = [
-    {
-      name: "Facebook",
-      pic: "http://tctechcrunch2011.files.wordpress.com/2008/09/facebooknew.jpg",
-      idea: "A social media website to connect friends, like mySpace, but better."
-    },
-    {
-      name: "Google",
-      pic: "http://brandthunder.com/wp/wp-content/uploads/2012/05/Google-Homepage-300x170.png",
-      idea: "A search engine for the internet. Like Yahoo, but better"
+  if (localStorage.userID === $routeParams.userID) {
+    console.log("edible!");
+    $scope.edible = true;
+  } 
+
+  $scope.updateUserProfileImage = function(){
+    console.log("event", event);
+    imageUpload.userImage($routeParams.userId, event, function(url){
+      $scope.tempProfileImage = url;
+      $scope.$apply();
+    });
+  };
+
+  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, organization) {
+    console.log("user profile updated!");
+    var newSettings = {
+      name: realName || "",
+      github: github || "",
+      linkedin: linkedin || "",
+      blog: blog || "",
+      location: location || "",
+      organization: organization || "",
+      profileImage: $scope.tempProfileImage
+    };
+    if (github !== ""){
+      $scope.githubText = truncateText(github);
     }
-  ];
-
-  $scope.ideas = [
-    {
-      name: "Product Square",
-      idea: "A website for sharing ideas for students to to turn into a reality.",
-    },
-    {
-      name: "Twitter",
-      idea: "a useless website where people post useless content, called Tweets, with a maximum of 140 characters, to ensure uselessness."
+    if (linkedin !== ""){
+      $scope.linkedinText = truncateText(linkedin);
     }
-  ];
+    if (blog !== ""){
+      $scope.blogText = truncateText(blog);
+    }
+    if ($scope.tempProfileImage !== $scope.profileImage){
+      $scope.profileImage = $scope.tempProfileImage;
+    }
+    data.updateUser(localStorage.userID, newSettings);
+    $('#profile-edit-modal').modal('hide'); 
+  }
 
-  console.log($routeParams.userID);
 
-  // $scope.imagePreview = "/img/default-user.png";
-
-  // $scope.uploadUserImage = function(){
-  //   console.log("event", event);
-  //   imageUpload.userImage($routeParams.userId, event, function(url){
-  //     $scope.imagePreview = url;
-  //     $scope.$apply();
-  //   }); //run the userImage upload from the imageUpload factory.
-  // };
 
   $scope.sendEmail = function(message) {
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
