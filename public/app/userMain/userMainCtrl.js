@@ -1,4 +1,5 @@
 angular.module('myApp.UserMain', [])
+
 .controller('UserMainCtrl', ['$scope', '$http', 'data', '$routeParams', 'imageUpload', function($scope, $http, data, $routeParams, imageUpload){
 
   var truncateText = function(text) {
@@ -26,7 +27,7 @@ angular.module('myApp.UserMain', [])
     }
   }
 
-  data.getUserData(localStorage.userID);
+  data.getUserData($routeParams.userID);
   $scope.$on('gotUser', function (event, user){
     console.log("got user!", user);
     $scope.realName = user.name;
