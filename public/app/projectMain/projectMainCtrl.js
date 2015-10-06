@@ -1,9 +1,11 @@
 angular.module('myApp.projectMain', [])
 
-.controller('ProjectMainCtrl', ['$scope', '$http', 'data', 'auth', 'imageUpload', function($scope, $http, data, auth, imageUpload) {
+.controller('ProjectMainCtrl', ['$scope', '$http', 'data', 'auth', 'imageUpload', '$route', function($scope, $http, data, auth, imageUpload, $route) {
+  $scope.$route = $route;
+
   // var vm = this;
 
-// flag declarations to show/hide views
+  // flag declarations to show/hide views
   $scope.submission = false;
   $scope.save = false;
 

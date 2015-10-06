@@ -11,10 +11,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>
+        <li ng-class="{active: $route.current.activetab == 'projects'}">
           <a href="#/projects">Projects</a>
         </li>
-        <li><a href="#/ideas">Ideas</a></li>
+        <li ng-class="{active: $route.current.activetab == 'ideas'}">
+          <a href="#/ideas">Ideas</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="loggedIn">
@@ -23,7 +25,7 @@
         <li ng-hide="loggedIn">
           <a data-toggle="modal" data-target="#loginModal" style="cursor:pointer;">Login</a>
         </li>
-        <li ng-show="loggedIn">
+        <li ng-show="loggedIn" ng-class="{active: $route.current.activetab == 'myprofile'}">
           <a href="/#/user/{{userID}}/" style="cursor:pointer">My Profile</a>
         </li>
         <li ng-show="loggedIn">
