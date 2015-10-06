@@ -54,6 +54,7 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUp
       };
 
       scope.logout = function(){
+        scope.edible = false;
         scope.loggedIn = false;
         auth.logout();
       };
