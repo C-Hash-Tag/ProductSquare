@@ -1,6 +1,7 @@
 angular.module('myApp.UserMain', [])
 
-.controller('UserMainCtrl', ['$scope', '$http', '$routeParams', 'imageUpload', function($scope, $http, $routeParams, imageUpload){
+.controller('UserMainCtrl', ['$scope', '$http', '$routeParams', 'imageUpload', '$route', function($scope, $http, $routeParams, imageUpload, $route){
+  $scope.$route = $route;
   var vm = this;
 
   console.log("using user cntrl!");
@@ -62,5 +63,5 @@ angular.module('myApp.UserMain', [])
       console.log("email error");
     });
   }
- 
+
 }])

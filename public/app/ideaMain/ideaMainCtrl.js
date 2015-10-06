@@ -1,6 +1,8 @@
 angular.module('myApp.ideaMain', [])
 
-.controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', 'imageUpload', function($scope, $http, data, $log, auth, imageUpload){
+.controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', 'imageUpload', '$route', function($scope, $http, data, $log, auth, imageUpload, $route){
+  $scope.$route = $route;
+
   //NOTE: set the listener before you get the dat
   $scope.$on('gotIdeas', function (event, ideas){
    console.log("ideas retrieved!", ideas);
@@ -26,11 +28,11 @@ angular.module('myApp.ideaMain', [])
 
   $scope.like = function(ideaName){
     //update css of the like button
-    
-    //update the database 
+
+    //update the database
     data.updateLike(localStorage.userID, ideaName);
       //TODO: if username liked it before, remove her; if username hasn't, add her
-      //add/ remove idea in user's liked ideas 
+      //add/ remove idea in user's liked ideas
   }
 
   $scope.saveIdeaImage = function() {

@@ -5,7 +5,7 @@ angular.module("myApp").directive("navBar", ['$window', "auth", "data", "imageUp
     templateUrl: 'app/navbar/navbar.html',
     link: function(scope, elem, attrs) {
       auth.authLogin(scope);
-      
+
       scope.changeRoute = function(){
         $('#profileCompleteModal').modal('hide');
         $location.path('/projects');

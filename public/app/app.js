@@ -20,18 +20,21 @@ angular.module('myApp', [
       templateUrl: './app/ideaMain/ideaMain.html',
       controller: 'IdeaMainCtrl',
       controllerAs: 'vm',
-      css: './app/ideaMain/ideaMain.css'
+      css: './app/ideaMain/ideaMain.css',
+      activetab:'ideas'
     })
     .when('/user/:userID/', {
       templateUrl: './app/userMain/userMain.html',
       controller: 'UserMainCtrl',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      activetab: 'myprofile'
     })
     .when('/projects', {
       templateUrl: './app/projectMain/projectMain.html',
       controller:'ProjectMainCtrl',
-      controllerAs: 'vm'
-    })
+      controllerAs: 'vm',
+      activetab: 'projects'
+    });
 
   // $httpProvider
   // do something
