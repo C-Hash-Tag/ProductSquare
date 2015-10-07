@@ -176,7 +176,7 @@ angular.module('myApp.data', [])
       });
     };
 
-    factory.updateIdea = function(ideaID, ideaDesc, ideaName, ideaImage){
+    factory.updateIdea = function(ideaID, ideaName, ideaDesc, ideaImage){
       Ref.child('ideas').child(ideaID).child('description').transaction(function(desc){
         desc = ideaDesc;
         return desc;
