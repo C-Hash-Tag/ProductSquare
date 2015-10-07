@@ -11,27 +11,26 @@
         <hr class="primary">
       </div>
     </div>
-  </div>
 
-  <div class="cardContainerContainer" style="text-align: center; display: block">
-    <div class="cardContainer" ng-repeat="idea in newIdeas" style="display: inline-block">
-      <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
+    <div class="cardContainerContainer" style="text-align: center; display: block">
+      <div class="cardContainer" ng-repeat="idea in newIdeas" style="display: inline-block">
+        <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
 
-        <p class="name" style="color: white"> {{ idea.ideaName }} </p>
-        <hr>
-        <p class="description" style="color: white"> {{idea.description}} </p>
+          <p class="name" style="color: white"> {{ idea.ideaName }} </p>
+          <hr>
+          <p class="description" style="color: white"> {{idea.description}} </p>
+        </div>
+        <div class="glyphicon-container">
+          <button  type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
+
+          <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+          </button>
+        </div>
       </div>
-      <div class="glyphicon-container">
-        <button  type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
+      <!-- Neat Non-Flippin Card ends -->
 
-        <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}">
-          <span class="glyphicon glyphicon-thumbs-up"></span>
-        </button>
-      </div>
-    </div>
-    <!-- Neat Non-Flippin Card ends -->
-
-    <!-- Ideas View/ Edit Modal -->
+      <!-- Ideas View/ Edit Modal -->
       <div id="idea-info" class="idea-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-content" id="idea-modal-content">
               <div class="close-modal" data-dismiss="modal">
@@ -81,29 +80,30 @@
                                   <strong>Team Members: </strong>
                                   <input ng-show="edible" rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="project.githubRepo">
                                   </input>
-                            </li> -->
-                        </ul>
-                        <ul ng-hide="edible" class="list-unstyled project-details">
-                            <li ng-hide="edible">
-                                <strong>Organization: </strong><!-- {{FILLER ORGANIZATION}} -->
-                            </li>
-                            <!-- <li ng-hide="edible">
-                                <strong>Project Url: </strong>{{project.projUrl}}
-                            </li>
-                            <li ng-hide="edible">
-                                <strong >Team Members: </strong>{{project.githubRepo}}
-                            </li> -->
-                        </ul>
-                    </div>
-                    <button ng-hide="edible" ng-click="editModal()" ng-show="editIdea(specificUserID)">Edit</button>
-                    <button ng-show="edible" ng-click="saveModal(specificIdeaName, specificDescription, specificBackgroundPath)" ng-show="editIdea(specificUserID)">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                              </li> -->
+
+                          </ul>
+                          <ul ng-hide="edible" class="list-unstyled project-details">
+                              <li ng-hide="edible">
+                                  <strong>Organization: </strong><!-- {{FILLER ORGANIZATION}} -->
+                              </li>
+                              <!-- <li ng-hide="edible">
+                                  <strong>Project Url: </strong>{{project.projUrl}}
+                              </li>
+                              <li ng-hide="edible">
+                                  <strong >Team Members: </strong>{{project.githubRepo}}
+                              </li> -->
+                          </ul>
+                      </div>
+                      <button ng-hide="edible" ng-click="editModal()" ng-show="editIdea(specificUserID)">Edit</button>
+                      <button ng-show="edible" ng-click="saveModal(specificIdeaID, specificIdeaName, specificDescription, specificBackgroundPath)" ng-show="editIdea(specificUserID)">Save</button>
+                  </div>
+              </div>
+          </div>
+      </div>
     <!-- Ideas View/ Edit Modal ends -->
 
-    <!-- Submit Idea Modal -->
+        <!-- Submit Idea Modal -->
     <div id="modalID" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
