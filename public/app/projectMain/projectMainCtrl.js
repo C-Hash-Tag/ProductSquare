@@ -62,6 +62,11 @@ angular.module('myApp.projectMain', [])
     $scope.checked = false;
   };
 
+  $scope.closeModal = function(){
+    $scope.edible = false;
+    $scope.checked = true;
+  }
+  
   $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage){
     // firebase logic
     $scope.edible = false;
