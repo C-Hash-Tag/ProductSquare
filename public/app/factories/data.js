@@ -53,7 +53,7 @@ angular.module('myApp.data', [])
     // Collect idea data from createIdea and store it in Firebase
     factory.createIdea = function(ideaName, desc, userRealName){
       // Store the idea data in Firebase
-      var image = (arguments[3] ? arguments[3] : "../background/wood" + getRandomInt(1,4)+".jpg");
+      var image = (arguments[3] ? arguments[3] : "../background/wood" + getRandomInt(1,3)+".jpg");
       Ref.child("ideas").child(ideaName).set({
         ideaName: ideaName,
         description: desc,
@@ -172,6 +172,41 @@ angular.module('myApp.data', [])
       Ref.child('projects').child(projID).child('projectImage').transaction(function(image){
         image = projectImage;
         return image;
+      });
+    };
+
+    var uniqIdeaID = function(str) {
+      str = str.split("");
+      for (var i = 0; i< str.length; i++) {
+        str[i] = (str[i] === ' ' ? '-' : str[i].toLowerCase());
+      }
+      return str.join('');
+    }
+
+    function uniqueNumber(ideaName) {
+      var date = Date.now();
+      // If created at same millisecond as previous
+      if (date <= uniqueNumber.previous) {
+          date = ++uniqueNumber.previous;
+      } else {
+          uniqueNumber.previous = date;
+      }
+      return uniqIdeaID(projName)+date;
+    }
+
+    factory.updateIdea = function(ideaDesc, ideaName, ideaImage){
+      var ideaID = uniqueNumber(ideaName);
+      Ref.child('ideas').child(ideaID).child('description').transaction(function(desc){
+        desc = ideaDesc;
+        return desc;
+      });
+      Ref.child('ideas').child(ideaID).child('ideaName').transaction(function(name){
+        name = ideaName;
+        return name;
+      });
+      Ref.child('ideas').child(ideaID).child('backgroundPath').transaction(function(path){
+        path = ideaImage;
+        return path;
       });
     };
 

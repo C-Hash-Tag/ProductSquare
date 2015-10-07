@@ -13,7 +13,6 @@ angular.module('myApp.ideaMain', [])
 
   //NOTE: set the listener before you get the dat
   $scope.$on('gotIdeas', function (event, ideas){
-   console.log("ideas retrieved!", ideas);
    $scope.newIdeas = ideas;
    $scope.$apply();
   });
@@ -36,7 +35,6 @@ angular.module('myApp.ideaMain', [])
 
   $scope.like = function(ideaName){
     //update css of the like button
-
     //update the database
     data.updateLike(localStorage.userID, ideaName);
       //TODO: if username liked it before, remove her; if username hasn't, add her
