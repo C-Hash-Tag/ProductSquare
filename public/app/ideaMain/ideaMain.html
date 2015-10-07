@@ -15,7 +15,8 @@
 
   <div class="cardContainerContainer" style="text-align: center; display: block">
     <div class="cardContainer" ng-repeat="idea in newIdeas" style="display: inline-block">
-      <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID)" data-target="#idea-info" data-toggle="modal" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)),url('{{idea.backgroundPath}}');">
+      <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
+
         <p class="name" style="color: white"> {{ idea.ideaName }} </p>
         <hr>
         <p class="description" style="color: white"> {{idea.description}} </p>
@@ -132,4 +133,3 @@
     </div> <!-- Submit idea modal ends -->
 
 </div> <!-- container ends -->
-
