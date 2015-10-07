@@ -2,7 +2,7 @@ angular.module('myApp.ideaMain', [])
 
 .controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', 'imageUpload', '$route', function($scope, $http, data, $log, auth, imageUpload, $route){
   $scope.$on('gotUser', function(event, user){
-    $scope.userRealName = user.name;
+    $scope.userRealName = user.name;)
   })
   
   if(localStorage.userID){
