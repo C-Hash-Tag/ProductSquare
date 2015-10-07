@@ -140,12 +140,12 @@
                 </div>
             </div>
 
-            <div class="container" ng-hide="submission">
-              <form ng-submit="projectSubmit(projDesc, githubUrl, projName, projUrl, projectImage)">
+            <div class="container" ng-hide="submission" style="text-align: left;">
+              <form ng-submit="ideaSubmit(projDesc, githubUrl, projName, projUrl, projectImage)">
                 <div class="row first">
                     <div class="col-lg-12">
                         <h2 class="page-header">
-                          <textarea rows="1" cols="25" name="comment" type="text" placeholder="Enter Project Name" ng-model="projName"></textarea>
+                          <textarea rows="1" cols="25" name="comment" type="text" placeholder="Enter Idea Name" ng-model="ideaName"></textarea>
                         </h2>
                     </div>
                 </div>
@@ -153,23 +153,25 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div id="project-details-carousel" class="owl-carousel owl-theme">
-                            <p id="status"> (Optional) Please upload an image file. </p>
-                            <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveProjectImage(this)"/>
+                            <p id="status"> (Required) Please upload an image file. </p>
+                            <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveIdeaImage(this)"/>
+
                             <div class="item">
-                                <img id="preview" src="{{projectImage}}" style="float:left" >
+                                <img id="preview" src="{{ideaImage}}" style="float:left" >
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4" style="padding-right: 0; padding-left: 0">
-                        <h3>Project Description:</h3>
-                        <p style="margin-bottom: 0"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or interesting?" ng-model="projDesc" style="width:100%"></textarea></p>
+                        <h3>Idea Description:</h3>
+                        <p style="margin-bottom: 0"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your idea. What is the problem you want to solve? For whom?" ng-model="description" style="width:100%"></textarea></p>
                         <span class="pull-right">
-                          <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
+                          <input ng-click="postIdea(ideaName, description, ideaImage)" type="submit" id="submit" data-dismiss="modal" class="btn btn-primary"></input>
                         </span>
+
                     </div>
                 </div>
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-8">
                         <h3>Project Details:</h3>
                         <ul class="list-unstyled project-details">
@@ -191,7 +193,8 @@
                         </ul>
                     </div>
                     <button ng-show="editProj(project.userID)">Edit</button>
-                </div>
+                </div> -->
+
               </form>
             </div>
             <div class="modal-body" ng-show="submission">
