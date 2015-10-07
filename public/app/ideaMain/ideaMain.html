@@ -104,34 +104,8 @@
     </div>
     <!-- Ideas View/ Edit Modal ends -->
 
-    <!-- Submit Idea Modal -->
-    <div class="modal fade" id="modalID" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content"> <!-- Modal content-->
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Idea</h4>
-          </div>
-          <div class="modal-body">
-            <form>
-              <p> Name </p> <input ng-model="ideaName">
-              <p> Description </p> <input ng-model="description">
-              <br/>
-              <br/>
-              <div class="item">
-                  <img id="preview" src="{{ideaImage}}" style="float:right" >
-              </div>
-              <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveIdeaImage(this)"/>
-              <!-- TODO: diff b/w ng-click and ng-submit? -->
-              <br/>
-              <button ng-click="postIdea(ideaName, description, ideaImage)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
-            </form>
-          </div> <!-- Modal body ends -->
-        </div> <!-- Modal content-->
-      </div>
-    </div> <!-- Submit idea modal ends -->
 
-    <!-- Project Submit Modal Content - Standard Portfolio Modal - Images and Text -->
+    <!-- Idea Submit Modal Content - Standard Portfolio Modal - Images and Text -->
     <div id="modalID" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
