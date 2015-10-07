@@ -34,4 +34,3 @@ We welcome anyone who wants to contribute to ProductSquare. Please fork this rep
 First, thanks for being a super hero! Please create a new GitHub issue on this repo that explains the bug and we will address it as soon as possible.
 
 See our current app at [ProductSquare](http://productsquare.herokuapp.com/ "Connecting devs with ideas").
-
