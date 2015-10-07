@@ -20,10 +20,10 @@ angular.module('myApp.data', [])
     }
 
     // Collect user data from sign up and store it in Firebase
-    factory.createUser = function(email, password, userId, name){
+    factory.createUser = function(email, password, userId, realName, cb){
       // Store the user data in Firebase
       var user = {
-        name: name,
+        realName: realName,
         email: email,
         userId: userId,
         projects: {},
@@ -37,13 +37,12 @@ angular.module('myApp.data', [])
         organization: ""
       };
       Ref.child("users").child(userId).set(user);
-      $rootScope.$broadcast('userCreated', user);
+      cb();
     };
 
     factory.updateUser = function(userId, newSettings) { //takes an object of settings and updates the users profile with those settings.
-      console.log("before update in data.js");
       Ref.child("users").child(userId).update(newSettings);
-      console.log("user updated in data.js!");
+      $rootScope.$broadcast('loggedInUserUpdated', userId);
     }
 
     function getRandomInt(min, max) {
@@ -99,6 +98,16 @@ angular.module('myApp.data', [])
         projID: projID
       });
     };
+
+    factory.getUser = function(userID, cb) {
+      Ref.child("users").child(userID).once("value", function(data){
+        console.log("userdata fetched from getUser!", data.val());
+        // $rootScope.$broadcast('gotUser', data.val());  //alert all controllers that the loggedin user has been modified.
+        cb(data.val());
+      });
+    };
+
+
 
     // Get users data from Firebase
     factory.getUserData = function(userID){
