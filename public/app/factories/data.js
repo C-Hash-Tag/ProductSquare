@@ -175,5 +175,40 @@ angular.module('myApp.data', [])
       });
     };
 
+    var uniqIdeaID = function(str) {
+      str = str.split("");
+      for (var i = 0; i< str.length; i++) {
+        str[i] = (str[i] === ' ' ? '-' : str[i].toLowerCase());
+      }
+      return str.join('');
+    }
+
+    function uniqueNumber(ideaName) {
+      var date = Date.now();
+      // If created at same millisecond as previous
+      if (date <= uniqueNumber.previous) {
+          date = ++uniqueNumber.previous;
+      } else {
+          uniqueNumber.previous = date;
+      }
+      return uniqIdeaID(projName)+date;
+    }
+
+    factory.updateIdea = function(ideaDesc, ideaName, ideaImage){
+      var ideaID = uniqueNumber(ideaName);
+      Ref.child('ideas').child(ideaID).child('description').transaction(function(desc){
+        desc = ideaDesc;
+        return desc;
+      });
+      Ref.child('ideas').child(ideaID).child('ideaName').transaction(function(name){
+        name = ideaName;
+        return name;
+      });
+      Ref.child('ideas').child(ideaID).child('backgroundPath').transaction(function(path){
+        path = ideaImage;
+        return path;
+      });
+    };
+
     return factory;
 }]);
