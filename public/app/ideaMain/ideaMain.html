@@ -32,76 +32,76 @@
     <!-- Neat Non-Flippin Card ends -->
 
     <!-- Ideas View/ Edit Modal -->
-      <div id="idea-info" class="idea-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-content" id="idea-modal-content">
-              <div class="close-modal" data-dismiss="modal">
-                  <div class="lr">
-                      <div class="rl">
-                      </div>
-                  </div>
-              </div>
-              <div class="container">
-                  <div class="row first">
-                      <div class="col-lg-12">
-                          <h2 class="page-header" ng-show="edible"><input ng-model="specificIdeaName"></input></h2>
-                          <h2 class="page-header" ng-hide="edible">{{specificIdeaName}}</h2>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-8">
-                          <div id="idea-details-carousel" class="owl-carousel owl-theme">
-                          <!-- TODO -->
-                             <!--  <div class="item">
-                                  <img src="{{idea.ideaImage}}" alt="">
-                              </div> -->
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <h3 > Idea Description:</h3>
-                          <p ng-show="edible"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your idea. What problem do you want to solve?" ng-model="specificDescription" ></textarea></p>
-                          <p ng-hide="edible">{{specificDescription}}</p>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-8">
-                        <h3 ng-show="edible"> Edit Idea Details:</h3>
-                        <h3 ng-hide="edible">Idea Details:</h3>
-                          <ul ng-show="edible"class="list-unstyled project-details">
-                              <li>
-                                  <strong>Organization: </strong>
-                                    <!-- <input ng-show"edible"rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="project.githubRepo">
-                                    </input> -->
-                              </li>
-                              <!-- <li ng-show"edible">
-                                  <strong>Project URL: </strong>
-                                    <input rows="1" cols="50" name="comment" ng-model="project.projUrl" type="text" placeholder="www.yourProjectHere.com">
-                                    </input>
-                              </li>
-                              <li>
-                                  <strong>Team Members: </strong>
-                                  <input ng-show="edible" rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="project.githubRepo">
+    <div id="idea-info" class="idea-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content" id="idea-modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row first">
+                    <div class="col-lg-12">
+                        <h2 class="page-header" ng-show="edible"><input ng-model="specificIdeaName"></input></h2>
+                        <h2 class="page-header" ng-hide="edible">{{specificIdeaName}}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div id="idea-details-carousel" class="owl-carousel owl-theme">
+                        <!-- TODO -->
+                           <!--  <div class="item">
+                                <img src="{{idea.ideaImage}}" alt="">
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 > Idea Description:</h3>
+                        <p ng-show="edible"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your idea. What problem do you want to solve?" ng-model="specificDescription" ></textarea></p>
+                        <p ng-hide="edible">{{specificDescription}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                      <h3 ng-show="edible"> Edit Idea Details:</h3>
+                      <h3 ng-hide="edible">Idea Details:</h3>
+                        <ul ng-show="edible"class="list-unstyled project-details">
+                            <li>
+                                <strong>Organization: </strong>
+                                  <!-- <input ng-show"edible"rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="project.githubRepo">
+                                  </input> -->
+                            </li>
+                            <!-- <li ng-show"edible">
+                                <strong>Project URL: </strong>
+                                  <input rows="1" cols="50" name="comment" ng-model="project.projUrl" type="text" placeholder="www.yourProjectHere.com">
                                   </input>
-                              </li> -->
+                            </li>
+                            <li>
+                                <strong>Team Members: </strong>
+                                <input ng-show="edible" rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="project.githubRepo">
+                                </input>
+                            </li> -->
 
-                          </ul>
-                          <ul ng-hide="edible" class="list-unstyled project-details">
-                              <li ng-hide="edible">
-                                  <strong>Organization: </strong><!-- {{FILLER ORGANIZATION}} -->
-                              </li>
-                              <!-- <li ng-hide="edible">
-                                  <strong>Project Url: </strong>{{project.projUrl}}
-                              </li>
-                              <li ng-hide="edible">
-                                  <strong >Team Members: </strong>{{project.githubRepo}}
-                              </li> -->
-                          </ul>
-                      </div>
-                      <button ng-hide="edible" ng-click="editModal()" ng-show="editIdea(specificUserID)">Edit</button>
-                      <button ng-show="edible" ng-click="saveModal(specificIdeaName, specificDescription, specificBackgroundPath)" ng-show="editIdea(specificUserID)">Save</button>
-                  </div>
-              </div>
-          </div>
-      </div>
+                        </ul>
+                        <ul ng-hide="edible" class="list-unstyled project-details">
+                            <li ng-hide="edible">
+                                <strong>Organization: </strong><!-- {{FILLER ORGANIZATION}} -->
+                            </li>
+                            <!-- <li ng-hide="edible">
+                                <strong>Project Url: </strong>{{project.projUrl}}
+                            </li>
+                            <li ng-hide="edible">
+                                <strong >Team Members: </strong>{{project.githubRepo}}
+                            </li> -->
+                        </ul>
+                    </div>
+                    <button ng-hide="edible" ng-click="editModal()" ng-show="editIdea(specificUserID)">Edit</button>
+                    <button ng-show="edible" ng-click="saveModal(specificIdeaName, specificDescription, specificBackgroundPath)" ng-show="editIdea(specificUserID)">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Ideas View/ Edit Modal ends -->
 
     <!-- Submit Idea Modal -->
@@ -130,5 +130,79 @@
         </div> <!-- Modal content-->
       </div>
     </div> <!-- Submit idea modal ends -->
+
+    <!-- Project Submit Modal Content - Standard Portfolio Modal - Images and Text -->
+    <div id="modalID" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" ng-hide="submission" style="text-align: left;">
+              <form ng-submit="ideaSubmit(projDesc, githubUrl, projName, projUrl, projectImage)">
+                <div class="row first">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">
+                          <textarea rows="1" cols="25" name="comment" type="text" placeholder="Enter Idea Name" ng-model="ideaName"></textarea>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div id="project-details-carousel" class="owl-carousel owl-theme">
+                            <p id="status"> (Required) Please upload an image file. </p>
+                            <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveIdeaImage(this)"/>
+
+                            <div class="item">
+                                <img id="preview" src="{{ideaImage}}" style="float:left" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="padding-right: 0; padding-left: 0">
+                        <h3>Idea Description:</h3>
+                        <p style="margin-bottom: 0"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your idea. What is the problem you want to solve? For whom?" ng-model="description" style="width:100%"></textarea></p>
+                        <span class="pull-right">
+                          <input ng-click="postIdea(ideaName, description, ideaImage)" type="submit" id="submit" data-dismiss="modal" class="btn btn-primary"></input>
+                        </span>
+
+                    </div>
+                </div>
+
+                <!-- <div class="row">
+                    <div class="col-md-8">
+                        <h3>Project Details:</h3>
+                        <ul class="list-unstyled project-details">
+                            <li>
+                                <strong>Github URL: </strong>
+                                  <input rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl">
+                                  </input>
+                                </li>
+                            <li>
+                                <strong>Project URL: </strong>
+                                  <input rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com">
+                                  </input>
+                            </li>
+                            <li>
+                                <strong>Team Members: </strong>
+                                <input rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="githubUrl">
+                                </input>
+                            </li>
+                        </ul>
+                    </div>
+                    <button ng-show="editProj(project.userID)">Edit</button>
+                </div> -->
+
+              </form>
+            </div>
+            <div class="modal-body" ng-show="submission">
+                <h4 class="modal-title"> Thanks for your Submission </h4>
+            </div>
+        </div>
+    </div>
+    <!-- End Project Submit Modal Content - Standard Portfolio Modal - Images and Text ends -->
 
 </div> <!-- container ends -->
