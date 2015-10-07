@@ -15,7 +15,7 @@
 
   <div class="cardContainerContainer" style="text-align: center; display: block">
     <div class="cardContainer" ng-repeat="idea in newIdeas" style="display: inline-block">
-      <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
+      <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
 
         <p class="name" style="color: white"> {{ idea.ideaName }} </p>
         <hr>
@@ -82,6 +82,7 @@
                                 <input ng-show="edible" rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="project.githubRepo">
                                 </input>
                             </li> -->
+
                         </ul>
                         <ul ng-hide="edible" class="list-unstyled project-details">
                             <li ng-hide="edible">
@@ -96,41 +97,14 @@
                         </ul>
                     </div>
                     <button ng-hide="edible" ng-click="editModal()" ng-show="editIdea(specificUserID)">Edit</button>
-                    <button ng-show="edible" ng-click="saveModal(specificIdeaID, specificIdeaName, specificDescription, specificBackgroundPath)" ng-show="editIdea(specificUserID)">Save</button>
+                    <button ng-show="edible" ng-click="saveModal(specificIdeaName, specificDescription, specificBackgroundPath)" ng-show="editIdea(specificUserID)">Save</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- Ideas View/ Edit Modal ends -->
 
-    <!-- Submit Idea Modal -->
-    <div class="modal fade" id="modalID" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content"> <!-- Modal content-->
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Idea</h4>
-          </div>
-          <div class="modal-body">
-            <form>
-              <p> Name </p> <input ng-model="ideaName">
-              <p> Description </p> <input ng-model="description">
-              <br/>
-              <br/>
-              <div class="item">
-                  <img id="preview" src="{{ideaImage}}" style="float:right" >
-              </div>
-              <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveIdeaImage(this)"/>
-              <!-- TODO: diff b/w ng-click and ng-submit? -->
-              <br/>
-              <button ng-click="postIdea(ideaName, description, ideaImage)" type="submit" data-dismiss="modal" class="btn btn-default">Submit</button>
-            </form>
-          </div> <!-- Modal body ends -->
-        </div> <!-- Modal content-->
-      </div>
-    </div> <!-- Submit idea modal ends -->
-
-    <!-- Project Submit Modal Content - Standard Portfolio Modal - Images and Text -->
+    <!-- Idea Submit Modal Content - Standard Portfolio Modal - Images and Text -->
     <div id="modalID" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -153,7 +127,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div id="project-details-carousel" class="owl-carousel owl-theme">
-                            <p id="status"> (Required) Please upload an image file. </p>
+                            <p id="status"> (Optional) Please upload an image file. </p>
                             <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveIdeaImage(this)"/>
 
                             <div class="item">
