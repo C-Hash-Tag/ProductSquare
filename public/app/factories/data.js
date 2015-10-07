@@ -78,7 +78,7 @@ angular.module('myApp.data', [])
     };
 
     // Collect project data from createProject and store it in Firebase
-    factory.createProject = function(projDesc, githubUrl, projName, projUrl, projID, projectImage){
+    factory.createProject = function(userRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage){
       // Store the project data in Firebase
       Ref.child('projects').child(projID).set({
         description: projDesc,
@@ -88,7 +88,8 @@ angular.module('myApp.data', [])
         projID: projID,
         date: currentDate(),
         userID: localStorage.userID,
-        projectImage: projectImage
+        projectImage: projectImage,
+        userRealName: userRealName
 
       });
 
@@ -101,7 +102,6 @@ angular.module('myApp.data', [])
     // Get users data from Firebase
     factory.getUserData = function(userID){
       Ref.child("users").child(userID).once("value", function(data){
-        console.log("inside get user data");
         $rootScope.$broadcast('gotUser', data.val());
       });
     };
