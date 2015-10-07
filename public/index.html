@@ -28,7 +28,9 @@
 
   </head>
   <body ng-app="myApp" id="page-top">
-    <div ng-view></div>
+    <div ng-controller="AppController">
+      <div ng-view></div>
+    </div>
 
     <!-- FireBase -->
     <script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>

@@ -6,8 +6,13 @@ angular.module('myApp', [
   'myApp.main',
   'myApp.ideaMain',
   'myApp.UserMain',
-  'myApp.auth'
-])
+  'myApp.auth',
+  'myApp.navBar'                                                                                                                                                                                                                                                                                
+
+//montiors stores top-level data for all of the pages on the entire app. 
+.controller('AppController', ['$scope', 'data', 'auth', '$route', function($scope, data, auth, $route) {
+  console.log("in the app controller!");
+}])
 
 .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
   $routeProvider
@@ -36,8 +41,4 @@ angular.module('myApp', [
       activetab: 'projects'
     });
 
-  // $httpProvider
-  // do something
 }])
-
-// .factory()
