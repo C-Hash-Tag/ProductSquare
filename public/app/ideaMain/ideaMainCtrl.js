@@ -4,11 +4,11 @@ angular.module('myApp.ideaMain', [])
   $scope.$on('gotUser', function(event, user){
     $scope.userRealName = user.name;
   })
-  
+
   if(localStorage.userID){
     data.getUserData(localStorage.userID);
   }
-  
+
   $scope.$route = $route;
 
   //NOTE: set the listener before you get the dat
@@ -51,7 +51,7 @@ angular.module('myApp.ideaMain', [])
     }); //run the userImage upload from the imageUpload factory.
   };
 
-  //EDITING FEATURE -- TO DO! 
+  //EDITING FEATURE -- TO DO!
   $scope.submission = false;
   $scope.save = false;
 
@@ -98,9 +98,9 @@ angular.module('myApp.ideaMain', [])
   $scope.passit = function(ideaName, description, backgroundPath, date, userID){
     $scope.specificIdeaName = ideaName;
     $scope.specificDescription = description;
-    $scope.specificBackgroundPath = backgroundPath; 
-    $scope.specificDate = date; 
-    $scope.specificUserID = userID; 
+    $scope.specificBackgroundPath = backgroundPath;
+    $scope.specificDate = date;
+    $scope.specificUserID = userID;
   }
 
 
