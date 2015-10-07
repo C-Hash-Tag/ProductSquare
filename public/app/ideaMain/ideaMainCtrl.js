@@ -22,11 +22,30 @@ angular.module('myApp.ideaMain', [])
     data.getIdeasData();
   }
   $scope.getIdeasData();
+  var uniqIdeaID = function(str) {
+    str = str.split("");
+    for (var i = 0; i< str.length; i++) {
+      str[i] = (str[i] === ' ' ? '-' : str[i].toLowerCase());
+    }
+    return str.join('');
+  }
+
+  function uniqueNumber(ideaName) {
+    var date = Date.now();
+    // If created at same millisecond as previous
+    if (date <= uniqueNumber.previous) {
+        date = ++uniqueNumber.previous;
+    } else {
+        uniqueNumber.previous = date;
+    }
+    return uniqIdeaID(ideaName)+date;
+  }
 
 
   //TODO: add the username too
   $scope.postIdea = function(ideaName, description, ideaImage){
-    data.createIdea(ideaName, description, $scope.userRealName, ideaImage);
+    var ideaID = uniqueNumber(ideaName);
+    data.createIdea(ideaID, ideaName, description, $scope.userRealName, ideaImage);
     $scope.ideaName = "";
     $scope.description = "";
     $scope.ideaImage = "";
@@ -68,39 +87,26 @@ angular.module('myApp.ideaMain', [])
     $scope.edible = true;
   }
 
-  $scope.saveModal = function(projDesc, githubUrl, projName, projUrl, projectImage){
+
+  $scope.saveModal = function(ideaID, ideaDesc, ideaName, ideaImage){
     // firebase logic
     console.log("in the save function");
     $scope.edible = false;
-    data.createProject(projDesc, githubUrl, projName, projUrl, projID, projectImage);
-  }
-
-
-  $scope.ideaSubmit = function(projDesc, githubUrl, projName, projUrl, projectImage) {
-    var projID = uniqProjID(projName)
-    if (projectImage === "") {
-      projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
-    }
-    data.createProject(projDesc, githubUrl, projName, projUrl, projID, projectImage);
-    $scope.projDesc = "";
-    $scope.githubUrl = "";
-    $scope.projName = "";
-    $scope.projUrl = "";
-    $scope.projectImage = "";
-    $scope.submission = true;
-  }
+    data.updateIdea(ideaID, ideaDesc, ideaName, ideaImage);
+  };
 
   $scope.close = function() {
     $scope.submission = false;
   }
 
   //INFO MODAL LOADING
-  $scope.passit = function(ideaName, description, backgroundPath, date, userID){
+  $scope.passit = function(ideaName, description, backgroundPath, date, userID, ideaID){
     $scope.specificIdeaName = ideaName;
     $scope.specificDescription = description;
     $scope.specificBackgroundPath = backgroundPath; 
     $scope.specificDate = date; 
     $scope.specificUserID = userID; 
+    $scope.specificIdeaID = ideaID;
   }
 
 
