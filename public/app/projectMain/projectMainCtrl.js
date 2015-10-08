@@ -87,7 +87,6 @@ angular.module('myApp.projectMain', [])
     if (projectImage === "") {
       projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
     }
-    console.log($scope.loggedInUserRealName);
     data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage);
     $scope.projDesc = "";
     $scope.githubUrl = "";
