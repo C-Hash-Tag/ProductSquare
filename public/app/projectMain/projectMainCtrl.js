@@ -57,7 +57,8 @@ angular.module('myApp.projectMain', [])
   }
 
   $scope.editProj = function(userID) {
-    if (localStorage.userID === userID) {
+    console.log("userID", userID);
+    if ($scope.loggedInUserID === userID) {
       return true;
     }
   }
