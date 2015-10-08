@@ -8,7 +8,7 @@ angular.module('myApp.projectMain', [])
 
   // $scope.$on('userFoundInLocal', function(event, user){
   //   if ($scope.loggedInUserID );
-  
+
   // })
 
   // flag declarations to show/hide views
@@ -55,7 +55,7 @@ angular.module('myApp.projectMain', [])
     $scope.edible = false;
     $scope.checked = true;
   }
-  
+
   $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage){
     // firebase logic
     $scope.edible = false;
@@ -110,10 +110,10 @@ angular.module('myApp.projectMain', [])
   $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID){
     $scope.specificProjName = projName;
     $scope.specificDescription = description;
-    $scope.specificProjUrl = projUrl; 
-    $scope.specificGithubRepo = githubRepo; 
-    $scope.specificProjectImage = projectImage; 
-    $scope.specificDate = date; 
+    $scope.specificProjUrl = projUrl;
+    $scope.specificGithubRepo = githubRepo;
+    $scope.specificProjectImage = projectImage;
+    $scope.specificDate = date;
     $scope.specificUserID = userID;
     $scope.specificProjID  = projID;
   }
