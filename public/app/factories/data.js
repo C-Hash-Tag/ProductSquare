@@ -110,11 +110,11 @@ angular.module('myApp.data', [])
 
 
     // Get users data from Firebase
-    factory.getUserData = function(userID){
-      Ref.child("users").child(userID).once("value", function(data){
-        $rootScope.$broadcast('gotUser', data.val());
-      });
-    };
+    // factory.getUserData = function(userID){
+    //   Ref.child("users").child(userID).once("value", function(data){
+    //     $rootScope.$broadcast('gotUser', data.val());
+    //   });
+    // };
 
     // Get projects data from Firebase
     factory.getProjectsData = function(){
@@ -126,16 +126,9 @@ angular.module('myApp.data', [])
     };
 
     // Get ideas data from Firebase
-    factory.getIdeasData = function(){
-      Ref.child("ideas").once("value", function(data){
-        // Broadcast projects data to all 'gotProjects' event listeners
-        var ideas = data.val();
-        var arr = [];
-        for(var prop in ideas){
-          arr.push(ideas[prop]);
-        }
-        console.log("inside getIdeasData factory", arr);
-        $rootScope.$broadcast('gotIdeas', arr);
+    factory.getIdeas = function(cb){
+      Ref.child("ideas").on("value", function(data){
+        cb(data.val());
       });
     };
 

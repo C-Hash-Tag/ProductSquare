@@ -12,9 +12,11 @@ angular.module('myApp', [
 
 //montiors stores top-level data for all of the pages on the entire app. 
 .controller('AppController', ['$scope', 'data', 'auth', '$route', function($scope, data, auth, $route) {
+  //check if local user is currently logged in
+  auth.authLogin($scope);
 
   //if the localStorage userID is set, retrieve that user using the data.getUser method.
-  if (localStorage.userID !== undefined){
+  if (localStorage.userID){
     data.getUser(localStorage.userID, function(user){
       console.log("userLoggedIn", user);
       $scope.loggedIn = true;
@@ -25,6 +27,11 @@ angular.module('myApp', [
       $scope.$broadcast("userFoundInLocal");
     });
   }
+
+  data.getIdeas(function(ideas){
+    $scope.newIdeas = ideas;
+    $scope.$apply();
+  })
 
   //when the user is retrieved, set these top level scope vars to user properties. This is also triggered by login.
   $scope.$on('userLoggedIn', function(event, user){
