@@ -91,7 +91,7 @@
                           </ul>
                       </div>
                       <button ng-click="editModal()" ng-show="editIdea(specificUserID) && checked">Edit</button>
-                      <button ng-show="edible" ng-click="saveModal(specificIdeaID, specificIdeaName, specificDescription, specificBackgroundPath)">Save</button>
+                      <button ng-show="edible && editIdea(specificUserID)" ng-click="saveModal(specificIdeaID, specificIdeaName, specificDescription, specificBackgroundPath)">Save</button>
                   </div>
               </div>
           </div>
