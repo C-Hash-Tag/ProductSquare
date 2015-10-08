@@ -1,27 +1,9 @@
 angular.module('myApp.ideaMain', [])
 
 .controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', 'imageUpload', '$route', function($scope, $http, data, $log, auth, imageUpload, $route){
-  $scope.$on('gotUser', function(event, user){
-    $scope.userRealName = user.name;
-  })
-
-  if(localStorage.userID){
-    data.getUserData(localStorage.userID);
-  }
-
   $scope.$route = $route;
 
-  //NOTE: set the listener before you get the dat
-  $scope.$on('gotIdeas', function (event, ideas){
-   $scope.newIdeas = ideas;
-   $scope.$apply();
-  });
-
-  $scope.getIdeasData = function(){
-    console.log("inside get Ideas Data")
-    data.getIdeasData();
-  }
-  $scope.getIdeasData();
+  //NOTE: set the listener before you get the data
   var uniqIdeaID = function(str) {
     str = str.split("");
     for (var i = 0; i< str.length; i++) {
@@ -34,9 +16,9 @@ angular.module('myApp.ideaMain', [])
     var date = Date.now();
     // If created at same millisecond as previous
     if (date <= uniqueNumber.previous) {
-        date = ++uniqueNumber.previous;
+      date = ++uniqueNumber.previous;
     } else {
-        uniqueNumber.previous = date;
+      uniqueNumber.previous = date;
     }
     return uniqIdeaID(ideaName)+date;
   }
@@ -45,7 +27,7 @@ angular.module('myApp.ideaMain', [])
   //TODO: add the username too
   $scope.postIdea = function(ideaName, description, ideaImage){
     var ideaID = uniqueNumber(ideaName);
-    data.createIdea(ideaID, ideaName, description, $scope.userRealName, ideaImage);
+    data.createIdea(ideaID, ideaName, description, $scope.loggedInUserRealName, ideaImage);
     $scope.ideaName = "";
     $scope.description = "";
     $scope.ideaImage = "";
@@ -55,7 +37,7 @@ angular.module('myApp.ideaMain', [])
   $scope.like = function(ideaName){
     //update css of the like button
     //update the database
-    data.updateLike(localStorage.userID, ideaName);
+    data.updateLike($scope.loggedInUserID, ideaName);
       //TODO: if username liked it before, remove her; if username hasn't, add her
       //add/ remove idea in user's liked ideas
   }
@@ -63,7 +45,7 @@ angular.module('myApp.ideaMain', [])
   $scope.saveIdeaImage = function() {
     console.log("selectedFile!!!");
     console.log("event", event);
-    imageUpload.ideaImage(localStorage.userID, event, function(url){
+    imageUpload.ideaImage($scope.loggedInUserID, event, function(url){
       console.log(url, "url!");
       $scope.ideaImage = url;
       $scope.$apply();
@@ -75,7 +57,7 @@ angular.module('myApp.ideaMain', [])
   $scope.save = false;
 
   $scope.editIdea = function(userID) {
-    if (localStorage.userID === userID) {
+    if ($scope.loggedInUserID === userID) {
       return true;
     }
   }
