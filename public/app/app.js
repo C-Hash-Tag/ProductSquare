@@ -29,6 +29,11 @@ angular.module('myApp', [
     });
   }
 
+  data.getProjects(function(projects){
+    $scope.newProjects = projects;
+    $scope.$apply();
+  });
+
   data.getIdeas(function(ideas){
     $scope.newIdeas = ideas;
     $scope.$apply();

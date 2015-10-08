@@ -108,11 +108,9 @@ angular.module('myApp.data', [])
     };
 
     // Get projects data from Firebase
-    factory.getProjectsData = function(){
+    factory.getProjects = function(cb){
       Ref.child("projects").on("value", function(data){
-        // Broadcast projects data to all 'gotProjects' event listeners
-        var projects = data.val();
-        $rootScope.$broadcast('gotProjects', projects);
+        cb(data.val());
       });
     };
 

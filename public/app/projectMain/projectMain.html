@@ -14,7 +14,7 @@
   <!-- Project Submit Modal Button ends -->
 
  <!-- Project Summit Modal Content - Standard Portfolio Modal - Images and Text -->
-      <div id="submitModalID" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
+      <div id="modalID" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-content">
               <div class="close-modal" data-dismiss="modal">
                   <div class="lr">
@@ -142,8 +142,15 @@
                           <div id="project-details-carousel" class="owl-carousel owl-theme">
                               <div class="item">
                                   <img ng-src="{{specificProjectImage}}" alt="">
+
                               </div>
                           </div>
+
+                          <div ng-show="edible">
+                            <p id="status"> (Optional) Update image file. </p>
+                            <input type="file" id="file" name='file' onchange="angular.element(this).scope().editProjectImage(this)"/>
+                          </div>
+
                       </div>
                       <div class="col-md-4" style="padding-right: 0; padding-left: 0">
                           <h3 >Project Description:</h3>

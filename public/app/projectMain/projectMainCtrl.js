@@ -15,19 +15,6 @@ angular.module('myApp.projectMain', [])
   $scope.submission = false;
   $scope.save = false;
 
-  $scope.$on('gotProjects', function (event, projects) {
-    console.log('projects retrieved', projects);
-    $scope.newProjects = projects;
-    $scope.$apply();
-  });
-
-  $scope.getProjectsData = function() {
-    data.getProjectsData();
-  }
-
-  $scope.getProjectsData();
-
-
   var uniqProjID = function(str) {
     str = str.split("");
     for (var i = 0; i< str.length; i++) {
@@ -47,9 +34,9 @@ angular.module('myApp.projectMain', [])
     return uniqProjID(projName)+date;
   }
 
-  $scope.projSpecific = function(projName) {
-    $scope.projDisplay = newProjects[projName];
-  }
+  // $scope.projSpecific = function(projName) {
+  //   $scope.projDisplay = newProjects[projName];
+  // }
 
   $scope.editProj = function(userID) {
     console.log("userID", userID);
@@ -58,6 +45,7 @@ angular.module('myApp.projectMain', [])
     }
   }
 
+  //HANDLES CLOSING MODALS WITHOUT SAVING EDITS
   $scope.editModal = function() {
     $scope.edible = true;
     $scope.checked = false;
@@ -102,6 +90,16 @@ angular.module('myApp.projectMain', [])
     imageUpload.projectImage("dswright", event, function(url){
       console.log(url, "url!");
       $scope.projectImage = url;
+      $scope.$apply();
+    }); //run the userImage upload from the imageUpload factory.
+  };
+
+  $scope.editProjectImage = function() {
+    console.log("selectedFile!!!");
+    console.log("event", event);
+    imageUpload.projectImage("dswright", event, function(url){
+      console.log(url, "url!");
+      $scope.specificProjectImage = url;
       $scope.$apply();
     }); //run the userImage upload from the imageUpload factory.
   };
