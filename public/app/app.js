@@ -8,12 +8,13 @@ angular.module('myApp', [
   'myApp.UserMain',
   'myApp.auth',
   'myApp.navBar'
-])                                                                                                                                                                                                                                                                             
+])
 
-//montiors stores top-level data for all of the pages on the entire app. 
+//montiors stores top-level data for all of the pages on the entire app.
 .controller('AppController', ['$scope', 'data', 'auth', '$route', function($scope, data, auth, $route) {
 
   $scope.target = "#signUpModal"; //if an organization has not logged in or not signed in, the default is that they will be sent to signUp modal when they want to submit a proposal
+  $scope.projTarget = "#signUpModal";
 
   //if the localStorage userID is set, retrieve that user using the data.getUser method
   if (localStorage.userID){
@@ -21,6 +22,7 @@ angular.module('myApp', [
       console.log("userLoggedIn", user);
       $scope.loggedIn = true;
       $scope.target = "#submitModalIdea";
+      $scope.projTarget = "#submitModalProject";
       $scope.loggedInUserID = user.userId;
       $scope.loggedInUserRealName = user.realName;
       $scope.loggedInUserProfileImage = user.profileImage;
@@ -44,6 +46,7 @@ angular.module('myApp', [
     console.log("userLoggedIn", user);
     $scope.loggedIn = true;
     $scope.target = "#submitModalIdea";
+    $scope.projTarget = "#submitModalProject";
     $scope.loggedInUserID = user.userId;
     $scope.loggedInUserRealName = user.realName;
     $scope.loggedInUserProfileImage = user.profileImage;
@@ -59,6 +62,7 @@ angular.module('myApp', [
     $scope.loggedInUserRealName = "";
     $scope.loggedInUserProfileImage = "";
     $scope.target = "#signUpModal";
+    $scope.projTarget = "#signUpModal";
   });
 
   $scope.$on('loggedInUserUpdated', function(event, userId) {
