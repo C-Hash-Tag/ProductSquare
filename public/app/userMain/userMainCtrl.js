@@ -103,11 +103,11 @@ angular.module('myApp.UserMain', [])
 
 }])
 
-.controller('ProfileEditCtrl', ['$scope', 'data', function($scope, data){
+.controller('ProfileEditCtrl', ['$scope', 'data', 'imageUpload', function($scope, data, imageUpload){
   //wrong scope. belongs on the profileEdit scope.
   $scope.updateUserProfileImage = function(){
     console.log("event", event);
-    imageUpload.userImage($routeParams.userId, event, function(url){
+    imageUpload.userImage($scope.loggedInUserID, event, function(url){
       $scope.tempProfileImage = url;
       $scope.$apply();
     });
