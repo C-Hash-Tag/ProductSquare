@@ -6,10 +6,15 @@ angular.module('myApp.projectMain', [])
     $scope.userRealName = user.name;
   });
   
-  if(localStorage.userID){
-    data.getUserData(localStorage.userID);
-  }
 
+  // if(localStorage.userID){
+  //   data.getUserData(localStorage.userID);
+  // }
+
+  // $scope.$on('userFoundInLocal', function(event, user){
+  //   if ($scope.loggedInUserID );
+  
+  // })
 
   // flag declarations to show/hide views
   $scope.submission = false;
@@ -52,7 +57,8 @@ angular.module('myApp.projectMain', [])
   }
 
   $scope.editProj = function(userID) {
-    if (localStorage.userID === userID) {
+    console.log("userID", userID);
+    if ($scope.loggedInUserID === userID) {
       return true;
     }
   }
@@ -76,12 +82,13 @@ angular.module('myApp.projectMain', [])
 
   $scope.checked = true;
 
+
   $scope.projectSubmit = function(projDesc, githubUrl, projName, projUrl, projectImage) {
     var projID = uniqueNumber(projName)
     if (projectImage === "") {
       projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
     }
-    data.createProject($scope.userRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage);
+    data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage);
     $scope.projDesc = "";
     $scope.githubUrl = "";
     $scope.projName = "";

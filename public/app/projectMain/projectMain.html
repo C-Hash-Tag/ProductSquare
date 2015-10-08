@@ -10,7 +10,7 @@
   <div class="container" ng-click="close()" style="padding-left: 0">
 
   <!-- Project Submit Modal Button -->
-  <button id="project-submit-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit A Project</button>
+  <button id="project-submit-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" data-target="#modalID">Submit A Project</button>
   <!-- Project Submit Modal Button ends -->
 
  <!-- Project Summit Modal Content - Standard Portfolio Modal - Images and Text -->
@@ -73,7 +73,7 @@
                               </li>
                           </ul>
                       </div>
-                      <button ng-show="editProj(project.userID)">Edit</button>
+                      <button ng-show="editProj($scope.loggedInUserID)">Edit</button>
                   </div>
                 </form>
               </div>
