@@ -68,7 +68,12 @@ angular.module('myApp.navBar', [])
             data.createUser(email, password, userData.uid, realName, iamThis, function(){
               //switch the modals that appear when a user is successfully created.
               $('#signUpModal').modal('hide');
-              $('#devProfileCompleteModal').modal('show');
+              if(iamThis === "organization"){
+                $('#finishOrgProfileModal').modal('show');
+              }
+              else{
+                $('#devProfileCompleteModal').modal('show');
+              }
               //after creating the user, login the user.
               auth.loginUser(email, password, $scope.loginCB);
             }, orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc);
