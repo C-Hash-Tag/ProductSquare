@@ -2,7 +2,7 @@
 
 <div class="container" style="text-align: center">
   <!-- Trigger the Project Submit Modal with a button -->
-  <button id="submit-an-idea-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" ng-attr-data-target="{{target}}">Submit An Idea</button>
+  <button id="submit-an-idea-button" type="button" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" data-target="{{target}}">Submit An Idea</button>
 
   <div class="container" style="display: inline;">
     <div class="row">
@@ -99,7 +99,7 @@
     <!-- Ideas View/ Edit Modal ends -->
 
         <!-- Submit Idea Modal -->
-    <div id="modalID" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
+    <div id="submitModalIdea" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">

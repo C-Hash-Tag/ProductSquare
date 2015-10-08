@@ -11,7 +11,7 @@ angular.module('myApp.ideaMain', [])
     }
     return str.join('');
   }
-
+  
   function uniqueNumber(ideaName) {
     var date = Date.now();
     // If created at same millisecond as previous
