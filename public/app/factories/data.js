@@ -107,15 +107,6 @@ angular.module('myApp.data', [])
       });
     };
 
-
-
-    // Get users data from Firebase
-    // factory.getUserData = function(userID){
-    //   Ref.child("users").child(userID).once("value", function(data){
-    //     $rootScope.$broadcast('gotUser', data.val());
-    //   });
-    // };
-
     // Get projects data from Firebase
     factory.getProjectsData = function(){
       Ref.child("projects").on("value", function(data){

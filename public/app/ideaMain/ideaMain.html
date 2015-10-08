@@ -33,7 +33,7 @@
       <!-- Ideas View/ Edit Modal -->
       <div id="idea-info" class="idea-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-content" id="idea-modal-content">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" ng-click="closeModal()" data-dismiss="modal">&times;</button>
               <div class="container">
                   <div class="row first">
                       <div class="col-lg-12">
@@ -90,8 +90,8 @@
                               </li> -->
                           </ul>
                       </div>
-                      <button ng-hide="edible" ng-click="editModal()" ng-show="editIdea(specificUserID)">Edit</button>
-                      <button ng-show="edible" ng-click="saveModal(specificIdeaID, specificIdeaName, specificDescription, specificBackgroundPath)" ng-show="editIdea(specificUserID)">Save</button>
+                      <button ng-click="editModal()" ng-show="editIdea(specificUserID) && checked">Edit</button>
+                      <button ng-show="edible && editIdea(specificUserID)" ng-click="saveModal(specificIdeaID, specificIdeaName, specificDescription, specificBackgroundPath)">Save</button>
                   </div>
               </div>
           </div>

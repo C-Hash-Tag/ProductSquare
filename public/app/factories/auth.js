@@ -14,7 +14,6 @@ angular.module('myApp.auth', [])
 
   factory.logout = function(){
     delete localStorage.userID;
-    delete localStorage.email;
     Ref.unauth();
     $rootScope.$broadcast('userLoggedOut');
   };
