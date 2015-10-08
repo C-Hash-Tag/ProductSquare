@@ -21,9 +21,7 @@ angular.module('myApp.navBar', [])
         console.log("USERTO LOGIN", user);
         $scope.$emit('userLoggedIn', user);
       });
-
       localStorage.userID = authData.uid;
-      localStorage.email = email;
     };
     $scope.$apply();
   };

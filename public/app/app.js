@@ -40,6 +40,7 @@ angular.module('myApp', [
     $scope.loggedInUserID = user.userId;
     $scope.loggedInUserRealName = user.realName;
     $scope.loggedInUserProfileImage = user.profileImage;
+    $scope.loggedInUserEmail = user.email;
     $scope.$apply();
     $scope.$broadcast("userNowLoggedIn");
   });

@@ -2,7 +2,6 @@ angular.module('myApp.ideaMain', [])
 
 .controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', 'imageUpload', '$route', function($scope, $http, data, $log, auth, imageUpload, $route){
   $scope.$route = $route;
-
   //NOTE: set the listener before you get the data
   var uniqIdeaID = function(str) {
     str = str.split("");
@@ -11,7 +10,7 @@ angular.module('myApp.ideaMain', [])
     }
     return str.join('');
   }
-  
+
   function uniqueNumber(ideaName) {
     var date = Date.now();
     // If created at same millisecond as previous
@@ -63,9 +62,12 @@ angular.module('myApp.ideaMain', [])
   }
 
   $scope.edible = false;
+  $scope.checked = true; //if user's current userId matches the idea's userId and this is true, then the edit button will show
+
   $scope.editModal = function() {
     console.log("in the edit function", $scope.edible)
     // if ($scope.editProj(userID)) {
+    $scope.checked = false; 
     $scope.edible = true;
   }
 
@@ -76,6 +78,11 @@ angular.module('myApp.ideaMain', [])
     $scope.edible = false;
     data.updateIdea(ideaID, ideaDesc, ideaName, ideaImage);
   };
+
+  $scope.closeModal = function(){
+    $scope.edible = false;
+    $scope.checked = true;
+  }
 
   $scope.close = function() {
     $scope.submission = false;
