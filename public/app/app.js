@@ -6,15 +6,63 @@ angular.module('myApp', [
   'myApp.main',
   'myApp.ideaMain',
   'myApp.UserMain',
-  'myApp.auth'
-])
+  'myApp.auth',
+  'myApp.navBar'
+])                                                                                                                                                                                                                                                                             
+
+//montiors stores top-level data for all of the pages on the entire app. 
+.controller('AppController', ['$scope', 'data', 'auth', '$route', function($scope, data, auth, $route) {
+
+  //if the localStorage userID is set, retrieve that user using the data.getUser method.
+  if (localStorage.userID !== undefined){
+    data.getUser(localStorage.userID, function(user){
+      console.log("userLoggedIn", user);
+      $scope.loggedIn = true;
+      $scope.loggedInUserID = user.userId;
+      $scope.loggedInUserRealName = user.realName;
+      $scope.loggedInUserProfileImage = user.profileImage;
+      $scope.$apply();
+      $scope.$broadcast("userFoundInLocal");
+    });
+  }
+
+  //when the user is retrieved, set these top level scope vars to user properties. This is also triggered by login.
+  $scope.$on('userLoggedIn', function(event, user){
+    console.log("userLoggedIn", user);
+    $scope.loggedIn = true;
+    $scope.loggedInUserID = user.userId;
+    $scope.loggedInUserRealName = user.realName;
+    $scope.loggedInUserProfileImage = user.profileImage;
+    $scope.$apply();
+    $scope.$broadcast("userNowLoggedIn");
+  });
+
+  //when the user logs out, reset these vars for the entire app.
+  $scope.$on('userLoggedOut', function(event){
+    $scope.loggedIn = false;
+    $scope.loggedInUserID = "";
+    $scope.loggedInUserRealName = "";
+    $scope.loggedInUserProfileImage = "";
+  });
+
+  $scope.$on('userLoggedInUpdated', function(event, userId) {
+    data.getUser(userId, function(event, user){
+      console.log("userLoggedIn", user);
+      $scope.loggedIn = true;
+      $scope.loggedInUserID = user.userId;
+      $scope.loggedInUserRealName = user.realName;
+      $scope.loggedInUserProfileImage = user.profileImage;
+      $scope.$apply();
+    });
+  });
+
+}])
 
 .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/', {
       templateUrl: './app/main/main.html',
       controller: 'MainCtrl',
-      controllerAs: 'vm'
     })
     .when('/ideas', {
       templateUrl: './app/ideaMain/ideaMain.html',
@@ -36,8 +84,4 @@ angular.module('myApp', [
       activetab: 'projects'
     });
 
-  // $httpProvider
-  // do something
-}])
-
-// .factory()
+}]);
