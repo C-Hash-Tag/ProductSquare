@@ -28,9 +28,7 @@ angular.module('myApp.UserMain', [])
     }
   }
 
-  //fetch the userData based on the routeID to generate the 
-  data.getUser($routeParams.userID, function(user) {
-    console.log("got this user..", user);
+  userPageLoadScopes = function(user){
     $scope.realName = user.realName;
     $scope.profileImage = user.profileImage;
     $scope.tempProfileImage = user.profileImage; //set the temp profile image to the userimage. This is used for the user edit modal.
@@ -43,6 +41,13 @@ angular.module('myApp.UserMain', [])
     $scope.location = truncateText(user.location);
     $scope.organization = truncateText(user.organization);
     $scope.$apply();
+  };
+
+  //fetch the userData based on the routeID to generate the 
+  data.getUser($routeParams.userID, userPageLoadScopes);
+
+  $scope.$on("loggedInUserUpdated", function(event, user){
+    data.getUser(user, userPageLoadScopes);
   });
 
   //when browsing between pages, the loggedInUserID will be inherited from app.js
@@ -77,43 +82,7 @@ angular.module('myApp.UserMain', [])
     $scope.edible = false;
   });
 
-   //wrong scope. belongs on the profileEdit scope.
-  $scope.updateUserProfileImage = function(){
-    console.log("event", event);
-    imageUpload.userImage($routeParams.userId, event, function(url){
-      $scope.tempProfileImage = url;
-      $scope.$apply();
-    });
-  };
-
-  //wrong scope. This needs to emit an event to the parent scope.
-  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, organization) {
-    console.log("user profile updated!");
-    var newSettings = {
-      name: realName || "",
-      github: github || "",
-      linkedin: linkedin || "",
-      blog: blog || "",
-      location: location || "",
-      organization: organization || "",
-      profileImage: $scope.tempProfileImage
-    };
-    if (github !== ""){
-      $scope.githubText = truncateText(github);
-    }
-    if (linkedin !== ""){
-      $scope.linkedinText = truncateText(linkedin);
-    }
-    if (blog !== ""){
-      $scope.blogText = truncateText(blog);
-    }
-    if ($scope.tempProfileImage !== $scope.profileImage){
-      $scope.profileImage = $scope.tempProfileImage;
-    }
-    console.log($scope.loggedInUserID);
-    data.updateUser($scope.loggedInUserID, newSettings);
-    $('#profile-edit-modal').modal('hide');
-  }
+  $scope.$on
 
 
   //probably the wrong scope.
@@ -132,11 +101,35 @@ angular.module('myApp.UserMain', [])
     });
   }
 
+}])
+
+.controller('ProfileEditCtrl', ['$scope', 'data', function($scope, data){
+  //wrong scope. belongs on the profileEdit scope.
+  $scope.updateUserProfileImage = function(){
+    console.log("event", event);
+    imageUpload.userImage($routeParams.userId, event, function(url){
+      $scope.tempProfileImage = url;
+      $scope.$apply();
+    });
+  };
+
+  //wrong scope. This needs to emit an event to the parent scope.
+  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, organization) {
+    console.log("user profile updated!");
+    var newSettings = {
+      realName: realName || "",
+      github: github || "",
+      linkedin: linkedin || "",
+      blog: blog || "",
+      location: location || "",
+      organization: organization || "",
+      profileImage: $scope.tempProfileImage
+    };
+    console.log($scope.loggedInUserID);
+    data.updateUser($scope.loggedInUserID, newSettings);
+    $('#profile-edit-modal').modal('hide');
+  }
+
 }]);
-
-// .controller('ProfileEditCtrl', ['$scope', function($scope){
-  
-
-// }]);
 
 
