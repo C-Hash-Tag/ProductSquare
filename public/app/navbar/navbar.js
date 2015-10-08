@@ -4,7 +4,7 @@ angular.module('myApp.navBar', [])
 .controller('NavBarCtrl', ['$scope', 'data', 'auth', 'imageUpload', '$location', function($scope, data, auth, imageUpload, $location) {
 
   //NavBar html is contained within the index.html file.
-  var loginCB = function(error, authData, email){
+  $scope.loginCB = function(error, authData, email){
     if (error) {
       $scope.loginErrorFound = true;
       $scope.loginError = "Sorry! The email/password is incorrect, please try again."
@@ -26,21 +26,23 @@ angular.module('myApp.navBar', [])
     $scope.$apply();
   };
 
-  $scope.login = function(email, password) {
-    auth.loginUser(email, password, loginCB);
-  };
-
-
   $scope.logout = function(){
     auth.logout();
   };
+}])
 
+.controller('UserSignUpCtrl', ['$scope', 'auth', 'data', function($scope, auth, data){
   //put the newuserSubmit function here.
-  $scope.createUser = function(realName, email, password) {
+  $scope.createUser = function(realName, email, password, iamThis, orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc) {
     console.log("user creation started!");
+    console.log(iamThis);
     if (password === "" || password === undefined) {
       $scope.errorFound = true;
       $scope.error = "please enter a password!";
+    }
+    else if(!iamThis){
+      $scope.errorFound = true;
+      $scope.error = "please select student developer or organization";
     }
     else {
       if (realName === "" || realName === undefined){
@@ -62,34 +64,26 @@ angular.module('myApp.navBar', [])
                 $scope.error = "Error creating user:" + error;
             }
           } else {
-
             //create a full user in the firebase database.
-            data.createUser(email, password, userData.uid, realName, function(){
-              
+            data.createUser(email, password, userData.uid, realName, iamThis, function(){
               //switch the modals that appear when a user is successfully created.
               $('#signUpModal').modal('hide');
               $('#devProfileCompleteModal').modal('show');
               //after creating the user, login the user.
-              auth.loginUser(email, password, loginCB);
-            });
-
-            
+              auth.loginUser(email, password, $scope.loginCB);
+            }, orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc);
           }
           $scope.$apply();
         });
       }
-    }
-    
+    }  
   };
-
-
 }])
 
-.controller('UserSignUpCtrl', ['$scope', function($scope){
-
-}])
-
-.controller('UserLoginCtrl', ['$scope', function($scope){
+.controller('UserLoginCtrl', ['$scope', 'auth', function($scope, auth){
+    $scope.login = function(email, password) {
+      auth.loginUser(email, password, $scope.loginCB);
+    };
 }])
 
 .controller('DevProfileCompleteCtrl', ['$scope', 'imageUpload', 'data', function($scope, imageUpload, data){

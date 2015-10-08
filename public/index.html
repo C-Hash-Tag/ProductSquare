@@ -78,11 +78,13 @@
                   <h4 class="modal-title">Sign Up</h4>
                 </div>
                 <div class="modal-body">
-                  <form ng-submit="createUser(realName, email, password)">
-                    Full Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
+                  <form ng-submit="createUser(realName, email, password, iamThis)">
+                    Your Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
                     Email Address: <input type="text" class="form-control" ng-model="email" /> <br/>
                     Password: <input type="password" class="form-control" ng-model="password" /> <br/>
-                    I am: <label class="radio-inline"><input type="radio" ng-model="iamThis" value="student" name="optradio"> a Student Developer </label> <label class="radio-inline"><input type="radio" ng-model="iamThis" value="organization" name="optradio"> an Organization </label><br/>{{iamThis}}
+                    Which of the following describes you? <br/> 
+                    <label class="radio-inline"><input type="radio" ng-model="iamThis" value="student" name="optradio"> Student Developer </label> 
+                    <label class="radio-inline"><input type="radio" ng-model="iamThis" value="organization" name="optradio"> Organization Representative </label><br/>{{iamThis}}<br/>
                     <p style="color: red" ng-show="errorFound">{{error}}</p>
                     <span class="pull-right">
                       <input type="submit" id="Submit" class="btn btn-primary" value="Submit"/>
