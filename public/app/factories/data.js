@@ -20,23 +20,42 @@ angular.module('myApp.data', [])
     }
 
     // Collect user data from sign up and store it in Firebase
-    factory.createUser = function(email, password, userId, realName, cb){
+    factory.createUser = function(email, password, userId, realName, iamThis, cb, orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc){
       // Store the user data in Firebase
       var user = {
         realName: realName,
         email: email,
         userId: userId,
         projects: {},
-        ideas: {},
         likedIdeas: {},
         profileImage: '/img/default-user.png', //this will update with aws image when input by the user.
+        iamThis: iamThis,
         github: "",
         linkedin: "",
         blog: "",
         location: "",
         school: ""
       };
-      Ref.child("users").child(userId).set(user);
+
+      var organization = {
+        realName: realName,
+        iamThis: iamThis,
+        email: email,
+        userId: userId,
+        orgName: "",
+        orgLink: "",
+        orgDesc: "",
+        orgRepTitle: "",
+        orgLogoImage: "",
+        orgLoc: "",
+      }
+
+      if(iamThis === "organization"){
+        Ref.child("users").child(userId).set(organization);
+      }
+      else{
+        Ref.child("users").child(userId).set(user);
+      }
       cb();
     };
 
