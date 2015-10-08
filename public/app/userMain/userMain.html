@@ -53,6 +53,16 @@
           {{organization}}
         </div>
       </div>
+
+      <div id="user-page-school" ng-show="stringFound(school)">
+        <div id="user-page-school-logo">
+          <i class="fa fa-graduation-cap"></i>
+        </div>
+        <div id="user-page-school-name">
+          {{school}}
+        </div>
+      </div>
+
     </div>
     <div id="user-page-contact">
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">
@@ -168,7 +178,7 @@
       <h2 class="page-header">Edit Profile</h2>
     </div>
       <div class="row"> 
-        <form ng-submit="updateUserProfile(realName, githubLink, linkedinLink, blogLink, location, organization)">
+        <form ng-submit="updateUserProfile(realName, githubLink, linkedinLink, blogLink, location, school)">
           <ul class="list-unstyled project-details">
             <li>
               <div class="user-profile-label">Name:</div>
@@ -192,8 +202,8 @@
               <input ng-model="location" class="user-profile-update-input" placeholder="Enter your current location here" value="{{location}}" />
             </li>
             <li>
-              <div class="user-profile-label">Organization:</div>
-              <input ng-model="organization" class="user-profile-update-input" placeholder="The organization you are currently associated with" value="{{organization}}" />
+              <div class="user-profile-label">School:</div>
+              <input ng-model="school" class="user-profile-update-input" placeholder="The development school you attended" value="{{school}}" />
             </li>
             <li class="clearfix">
               <div class="user-profile-label">Profile Image:</div>

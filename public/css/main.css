@@ -250,6 +250,17 @@ hr {
   float: left;
 }
 
+
+#user-page-school {
+  margin-top: 5px;
+}
+
+#user-page-school-logo {
+  margin-left: 1px;
+  margin-right: 8px;
+  float: left;
+}
+
 #user-page-contact {
   margin-top: 30px;
 }
