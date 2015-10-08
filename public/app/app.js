@@ -54,15 +54,15 @@ angular.module('myApp', [
     $scope.target = "#signUpModal";
   });
 
-  $scope.$on('userLoggedInUpdated', function(event, userId) {
+  $scope.$on('loggedInUserUpdated', function(event, userId) {
     data.getUser(userId, function(user){
       console.log("userLoggedIn", user);
       $scope.loggedIn = true;
       $scope.loggedInUserID = user.userId;
       $scope.loggedInUserRealName = user.realName;
       $scope.loggedInUserProfileImage = user.profileImage;
-      console.log($scope.target);
-      //$scope.$apply();
+      console.log("user updated!");
+      $scope.$apply();
     });
   });
 
