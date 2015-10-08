@@ -13,7 +13,7 @@ angular.module('myApp', [
 //montiors stores top-level data for all of the pages on the entire app. 
 .controller('AppController', ['$scope', 'data', 'auth', '$route', function($scope, data, auth, $route) {
 
-  $scope.target = "#signUpModal"; //if user has not logged in or not signed in, the default is that they will be sent to signUp modal when they want to submit a proposal
+  $scope.target = "#signUpModal"; //if an organization has not logged in or not signed in, the default is that they will be sent to signUp modal when they want to submit a proposal
 
   //if the localStorage userID is set, retrieve that user using the data.getUser method
   if (localStorage.userID){
