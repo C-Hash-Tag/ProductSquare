@@ -2,11 +2,6 @@ angular.module('myApp.projectMain', [])
 
 .controller('ProjectMainCtrl', ['$scope', '$http', 'data', 'auth', 'imageUpload', '$route', function($scope, $http, data, auth, imageUpload, $route) {
   $scope.$route = $route;
-  $scope.$on('gotUser', function(event, user){
-    $scope.userRealName = user.name;
-  });
-  
-
   // if(localStorage.userID){
   //   data.getUserData(localStorage.userID);
   // }

@@ -34,7 +34,7 @@ angular.module('myApp.data', [])
         linkedin: "",
         blog: "",
         location: "",
-        organization: ""
+        school: ""
       };
       Ref.child("users").child(userId).set(user);
       cb();

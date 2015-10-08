@@ -82,6 +82,7 @@
                     Full Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
                     Email Address: <input type="text" class="form-control" ng-model="email" /> <br/>
                     Password: <input type="password" class="form-control" ng-model="password" /> <br/>
+                    I am: <label class="radio-inline"><input type="radio" ng-model="iamThis" value="student" name="optradio"> a Student Developer </label> <label class="radio-inline"><input type="radio" ng-model="iamThis" value="organization" name="optradio"> an Organization </label><br/>{{iamThis}}
                     <p style="color: red" ng-show="errorFound">{{error}}</p>
                     <span class="pull-right">
                       <input type="submit" id="Submit" class="btn btn-primary" value="Submit"/>

@@ -12,8 +12,10 @@ angular.module('myApp', [
 
 //montiors stores top-level data for all of the pages on the entire app. 
 .controller('AppController', ['$scope', 'data', 'auth', '$route', function($scope, data, auth, $route) {
-  //if the localStorage userID is set, retrieve that user using the data.getUser method.
 
+  $scope.target = "#signUpModal"; //if an organization has not logged in or not signed in, the default is that they will be sent to signUp modal when they want to submit a proposal
+
+  //if the localStorage userID is set, retrieve that user using the data.getUser method
   if (localStorage.userID){
     data.getUser(localStorage.userID, function(user){
       console.log("userLoggedIn", user);
@@ -30,7 +32,7 @@ angular.module('myApp', [
   data.getIdeas(function(ideas){
     $scope.newIdeas = ideas;
     $scope.$apply();
-  })
+  });
 
   //when the user is retrieved, set these top level scope vars to user properties. This is also triggered by login.
   $scope.$on('userLoggedIn', function(event, user){
@@ -61,7 +63,6 @@ angular.module('myApp', [
       $scope.loggedInUserID = user.userId;
       $scope.loggedInUserRealName = user.realName;
       $scope.loggedInUserProfileImage = user.profileImage;
-      console.log("user updated!");
       $scope.$apply();
     });
   });
