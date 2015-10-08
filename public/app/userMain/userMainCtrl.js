@@ -30,8 +30,8 @@ angular.module('myApp.UserMain', [])
 
   //fetch the userData based on the routeID to generate the 
   data.getUser($routeParams.userID, function(user) {
-    console.log("got this user..");
-    $scope.realName = user.name;
+    console.log("got this user..", user);
+    $scope.realName = user.realName;
     $scope.profileImage = user.profileImage;
     $scope.tempProfileImage = user.profileImage; //set the temp profile image to the userimage. This is used for the user edit modal.
     $scope.githubLink = user.github;
@@ -86,7 +86,6 @@ angular.module('myApp.UserMain', [])
     });
   };
 
-  console.log("realName", $scope.realName)
   //wrong scope. This needs to emit an event to the parent scope.
   $scope.updateUserProfile = function(realName, github, linkedin, blog, location, organization) {
     console.log("user profile updated!");
@@ -111,7 +110,8 @@ angular.module('myApp.UserMain', [])
     if ($scope.tempProfileImage !== $scope.profileImage){
       $scope.profileImage = $scope.tempProfileImage;
     }
-    data.updateUser($scope.loggedInUserId, newSettings);
+    console.log($scope.loggedInUserID);
+    data.updateUser($scope.loggedInUserID, newSettings);
     $('#profile-edit-modal').modal('hide');
   }
 

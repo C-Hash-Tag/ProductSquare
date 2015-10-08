@@ -55,7 +55,7 @@ angular.module('myApp', [
   });
 
   $scope.$on('userLoggedInUpdated', function(event, userId) {
-    data.getUser(userId, function(event, user){
+    data.getUser(userId, function(user){
       console.log("userLoggedIn", user);
       $scope.loggedIn = true;
       $scope.loggedInUserID = user.userId;
