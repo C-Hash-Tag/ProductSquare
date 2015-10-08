@@ -32,7 +32,7 @@ angular.module('myApp', [
   data.getIdeas(function(ideas){
     $scope.newIdeas = ideas;
     $scope.$apply();
-  })
+  });
 
   //when the user is retrieved, set these top level scope vars to user properties. This is also triggered by login.
   $scope.$on('userLoggedIn', function(event, user){

@@ -83,6 +83,7 @@ angular.module('myApp.navBar', [])
 }])
 
 .controller('UserSignUpCtrl', ['$scope', function($scope){
+
 }])
 
 .controller('UserLoginCtrl', ['$scope', function($scope){
