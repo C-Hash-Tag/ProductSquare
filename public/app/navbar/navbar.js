@@ -30,6 +30,11 @@ angular.module('myApp.navBar', [])
     auth.loginUser(email, password, loginCB);
   };
 
+
+  $scope.logout = function(){
+    auth.logout();
+  };
+
   //put the newuserSubmit function here.
   $scope.createUser = function(realName, email, password) {
     console.log("user creation started!");
@@ -63,7 +68,7 @@ angular.module('myApp.navBar', [])
               
               //switch the modals that appear when a user is successfully created.
               $('#signUpModal').modal('hide');
-              $('#finishProfileModal').modal('show');
+              $('#devProfileCompleteModal').modal('show');
               //after creating the user, login the user.
               auth.loginUser(email, password, loginCB);
             });
@@ -77,9 +82,7 @@ angular.module('myApp.navBar', [])
     
   };
 
-  $scope.logout = function(){
-    auth.logout();
-  };
+
 }])
 
 .controller('UserSignUpCtrl', ['$scope', function($scope){
@@ -89,24 +92,28 @@ angular.module('myApp.navBar', [])
 .controller('UserLoginCtrl', ['$scope', function($scope){
 }])
 
-.controller('FinishProfileCtrl', ['$scope', function($scope){
+.controller('DevProfileCompleteCtrl', ['$scope', 'imageUpload', 'data', function($scope, imageUpload, data){
   
-  //this function updates the profile picture in the preview state. Not on the app scope.
   //before the userProfileImage is updated by this function, the initial state will be set on the app scope.
-  $scope.uploadUserProfileImage = function() {
-    console.log("selectedFile!!!");
-    console.log("event", event);
-    imageUpload.userImage($scope.loggedInUserID, event, function(url){
-      $scope.userProfileImage = url;
+  $scope.updateUserProfileImage = function() { //when a user changes their profile pic, immediately upload it to AWS, and reset the localScope.
+    imageUpload.userImage($scope.loggedInUserID, event, function(url){ //
+      $scope.loggedInUserProfileImage = url;
       $scope.$apply();
-    }); //run the userImage upload from the imageUpload factory.
+    });
   };
 
   //this function saves the additional profile attributes. The name needs to be updated.
-  $scope.saveUserImage = function() {
-    console.log("saving image in scope..!");
-    data.setUserProfileImage(scope.userProfileImage, localStorage.userID);
-    $('#profileImageModal').modal('hide'); //hide the signup modal.
-    $('#profileCompleteModal').modal('show'); //show the uploadImage modal.
+  $scope.finishDevProfile = function(githubLink, linkedinLink, blogLink, location, school) {
+    var newSettings = {
+      github: githubLink || "",
+      linkedin: linkedinLink || "",
+      blog: blogLink || "",
+      location: location || "",
+      school: school || "",
+      profileImage: $scope.loggedInUserProfileImage //loggedInUserProfileImage is set in the app.js when user logs in. Can be reset here if new pic is selected.
+    };
+    data.updateUser($scope.loggedInUserID, newSettings);
+    $('#devProfileCompleteModal').modal('hide'); //hide the signup modal.
   };
+
 }]);

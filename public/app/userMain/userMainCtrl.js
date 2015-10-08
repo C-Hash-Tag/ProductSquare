@@ -3,25 +3,28 @@ angular.module('myApp.UserMain', [])
 .controller('UserMainCtrl', ['$scope', '$http', 'data', '$routeParams', 'imageUpload', function($scope, $http, data, $routeParams, imageUpload){
 
   var truncateText = function(text) {
-    var returnText = text;
-    if (text.indexOf("www.") > -1){
-      returnText = returnText.replace("www.", "");
+    if (text !== undefined) {
+      var returnText = text;
+      if (text.indexOf("www.") > -1){
+        returnText = returnText.replace("www.", "");
+      }
+      if (text.indexOf("http://") > -1){
+        returnText = returnText.replace("http://", "");
+      }
+      if (text.indexOf("https://") > -1){
+        returnText = returnText.replace("https://", "");
+      }
+      if (returnText.length > 23) {
+        returnText = returnText.slice(0,23)+"...";
+      }
+      return returnText;
     }
-    if (text.indexOf("http://") > -1){
-      returnText = returnText.replace("http://", "");
-    }
-    if (text.indexOf("https://") > -1){
-      returnText = returnText.replace("https://", "");
-    }
-    if (returnText.length > 23) {
-      returnText = returnText.slice(0,23)+"...";
-    }
-    return returnText;
   }
 
 
   $scope.stringFound = function(text) {
-    if (text !== "") {
+    if (text !== "" && text != undefined) {
+      console.log("stringfound,", text);
       return true;
     } else {
       return false;
@@ -39,7 +42,7 @@ angular.module('myApp.UserMain', [])
     $scope.linkedinLink = user.linkedin;
     $scope.linkedinText = truncateText(user.linkedin);
     $scope.location = truncateText(user.location);
-    $scope.organization = truncateText(user.organization);
+    $scope.school = truncateText(user.school);
     $scope.$apply();
   };
 
@@ -82,9 +85,6 @@ angular.module('myApp.UserMain', [])
     $scope.edible = false;
   });
 
-  $scope.$on
-
-
   //probably the wrong scope.
   $scope.sendEmail = function(message) {
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
@@ -103,18 +103,18 @@ angular.module('myApp.UserMain', [])
 
 }])
 
-.controller('ProfileEditCtrl', ['$scope', 'data', function($scope, data){
+.controller('ProfileEditCtrl', ['$scope', 'data', 'imageUpload', function($scope, data, imageUpload){
   //wrong scope. belongs on the profileEdit scope.
   $scope.updateUserProfileImage = function(){
     console.log("event", event);
-    imageUpload.userImage($routeParams.userId, event, function(url){
+    imageUpload.userImage($scope.loggedInUserID, event, function(url){
       $scope.tempProfileImage = url;
       $scope.$apply();
     });
   };
 
   //wrong scope. This needs to emit an event to the parent scope.
-  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, organization) {
+  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school) {
     console.log("user profile updated!");
     var newSettings = {
       realName: realName || "",
@@ -122,7 +122,7 @@ angular.module('myApp.UserMain', [])
       linkedin: linkedin || "",
       blog: blog || "",
       location: location || "",
-      organization: organization || "",
+      school: school || "",
       profileImage: $scope.tempProfileImage
     };
     console.log($scope.loggedInUserID);
