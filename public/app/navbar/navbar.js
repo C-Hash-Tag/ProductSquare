@@ -94,12 +94,12 @@ angular.module('myApp.navBar', [])
     else{
       $scope.orgErrorFound = false;
       var orgSettings = {
-        orgName: orgName || "",
-        orgLink: orgLink || "",
-        orgDesc: orgDesc || "",
-        orgRepTitle: orgRepTitle || "",
+        orgName: orgName,
+        orgLink: orgLink,
+        orgDesc: orgDesc,
+        orgRepTitle: orgRepTitle,
         orgLogoImage: orgLogoImage || "https://www.softaculous.com/website/images/customlogo.gif",
-        orgLoc: orgLoc || ""
+        orgLoc: orgLoc
       }
       console.log("something");
       data.updateOrg($scope.loggedInUserID, orgSettings);
