@@ -1,5 +1,5 @@
 angular.module('myApp.data', [])
-.factory('data', ['$rootScope', function($rootScope){
+.factory('data', ['$rootScope', '$location', function($rootScope, $location){
     var factory = {};
     var Ref = new Firebase('https://productsquare.firebaseio.com/');
 
@@ -40,9 +40,14 @@ angular.module('myApp.data', [])
       cb();
     };
 
-    factory.updateUser = function(userId, newSettings) { //takes an object of settings and updates the users profile with those settings.
+    factory.updateLoggedInUser = function(userId, newSettings) { //takes an object of settings and updates the users profile with those settings.
       Ref.child("users").child(userId).update(newSettings);
       $rootScope.$broadcast('loggedInUserUpdated', userId);
+    }
+
+    factory.updateUser = function(userID, newSettings) { //takes an object of settings and updates the users profile with those settings.
+      Ref.child("users").child(userID).update(newSettings);
+      $location.path('/user/'+userID+"/");
     }
 
     function getRandomInt(min, max) {
