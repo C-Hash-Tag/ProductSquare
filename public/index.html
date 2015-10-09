@@ -97,7 +97,7 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <h5 id="already-have-an-account" style="text-align: center">Already have an account? <a data-toggle="modal" data-target="#signUpModal, #loginModal" style="cursor:pointer;">Log In</a> </h5>
+                  <h5 id="already-have-an-account" style="text-align: center">Already have an account? <a data-toggle="modal" ng-click="gotoLogin()" style="cursor:pointer;">Log In</a> </h5>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@
                 </form>
               </div>
                 <div class="modal-footer">
-                  <h5 id="dont-have-an-account" style="text-align: center">Don't have an account? <a data-toggle="modal" data-target="#signUpModal, #loginModal" style="cursor:pointer;">Sign Up</a> </h5>
+                  <h5 id="dont-have-an-account" style="text-align: center">Don't have an account? <a data-toggle="modal" ng-click="gotoSignup()" style="cursor:pointer;">Sign Up</a> </h5>
                 </div>
             </div>
           </div>
