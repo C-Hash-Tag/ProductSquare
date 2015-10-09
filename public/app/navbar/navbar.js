@@ -33,14 +33,14 @@ angular.module('myApp.navBar', [])
 
 .controller('UserSignUpCtrl', ['$scope', 'auth', 'data', function($scope, auth, data){
   //put the newuserSubmit function here.
-  $scope.createUser = function(realName, email, password, iamThis, orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc) {
+  $scope.createUser = function(realName, email, password, userType) {
     console.log("user creation started!");
-    console.log(iamThis);
+    console.log(userType);
     if (password === "" || password === undefined) {
       $scope.errorFound = true;
       $scope.error = "please enter a password!";
     }
-    else if(!iamThis){
+    else if(!userType){
       $scope.errorFound = true;
       $scope.error = "please select student developer or organization";
     }
@@ -65,23 +65,39 @@ angular.module('myApp.navBar', [])
             }
           } else {
             //create a full user in the firebase database.
-            data.createUser(email, password, userData.uid, realName, iamThis, function(){
+            data.createUser(email, password, userData.uid, realName, userType, function(){
               //switch the modals that appear when a user is successfully created.
+              //after creating the user, login the user.
               $('#signUpModal').modal('hide');
-              if(iamThis === "organization"){
+              if(userType === "organization"){
                 $('#finishOrgProfileModal').modal('show');
               }
               else{
                 $('#devProfileCompleteModal').modal('show');
               }
-              //after creating the user, login the user.
               auth.loginUser(email, password, $scope.loginCB);
-            }, orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc);
+            });
           }
           $scope.$apply();
         });
       }
     }  
+  };
+}])
+
+.controller('OrgProfileCompleteCtrl', ['$scope', 'imageUpload', 'data', function($scope, imageUpload, data){
+  $scope.finishOrgProfile = function(orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc){
+    var orgSettings = {
+      orgName: orgName || "",
+      orgLink: orgLink || "",
+      orgDesc: orgDesc || "",
+      orgRepTitle: orgRepTitle || "",
+      orgLogoImage: orgLogoImage || "https://www.softaculous.com/website/images/customlogo.gif",
+      orgLoc: orgLoc || ""
+    }
+    console.log("something");
+    data.updateOrg($scope.loggedInUserID, orgSettings);
+    $('#finishOrgProfileModal').modal('hide'); //hide the signup modal.
   };
 }])
 

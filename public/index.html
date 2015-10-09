@@ -78,13 +78,13 @@
                   <h4 class="modal-title">Sign Up</h4>
                 </div>
                 <div class="modal-body">
-                  <form ng-submit="createUser(realName, email, password, iamThis)">
+                  <form ng-submit="createUser(realName, email, password, userType)">
                     Your Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
                     Email Address: <input type="text" class="form-control" ng-model="email" /> <br/>
                     Password: <input type="password" class="form-control" ng-model="password" /> <br/>
                     Which of the following describes you? <br/> 
-                    <label class="radio-inline"><input type="radio" ng-model="iamThis" value="student" name="optradio"> Student Developer </label> 
-                    <label class="radio-inline"><input type="radio" ng-model="iamThis" value="organization" name="optradio"> Organization Representative </label><br/>{{iamThis}}<br/>
+                    <label class="radio-inline"><input type="radio" ng-model="userType" value="student" name="optradio"> Student Developer </label> 
+                    <label class="radio-inline"><input type="radio" ng-model="userType" value="organization" name="optradio"> Organization Representative </label><br/>{{userType}}<br/>
                     <p style="color: red" ng-show="errorFound">{{error}}</p>
                     <span class="pull-right">
                       <input type="submit" id="Submit" class="btn btn-primary" value="Submit"/>
@@ -175,7 +175,7 @@
         </div>
 
         <!-- Finish Organization Profile Modal -->
-        <div id="finishOrgProfileModal" class="modal fade" role="dialog">
+        <div ng-controller="OrgProfileCompleteCtrl" id="finishOrgProfileModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -183,7 +183,7 @@
                 <h4 class="modal-title">Tell Us More about Your Organization </h4>
               </div>
               <div class="modal-body">
-                <form ng-submit="saveUserImage(); createUser(realName, email, password, iamThis, orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc)">
+                <form ng-submit="finishOrgProfile(orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc)">
                   *Organization Name: <input type="text" class="form-control" ng-model='orgName' />  <br/>
                   *Organization Description: <input type="text" class="form-control" ng-model='orgDesc' />  <br/>
                   *Organization Website URL: <input type="text" class="form-control" ng-model='orgLink' />  <br/>
@@ -191,12 +191,13 @@
                   Organization Logo: <input type="file" id="file" name='file' onchange="angular.element(this).scope().uploadUserProfileImage(this)" />  <br/>
                   <img id="preview" src="{{userProfileImage}}" />
                   *Your Title: <input type="text" class="form-control" ng-model='orgRepTitle' /> <br/>
-                  <input type="submit" value="Submit" data-toggle="modal" data-dismiss="modal" style="cursor:pointer;"/> <br/><br/>
+                  <input type="submit" value="Submit" style="cursor:pointer;"/> <br/><br/>
                 </form>
               </div>
             </div>
           </div>
         </div>
+
       </nav>
 
 

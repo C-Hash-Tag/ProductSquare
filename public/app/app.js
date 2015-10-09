@@ -76,6 +76,17 @@ angular.module('myApp', [
     });
   });
 
+  $scope.$on('loggedInOrgUpdated', function(event, userId){
+    data.getUser(userId, function(user){
+      console.log("userLoggedIn", user);
+      $scope.loggedIn = true;
+      $scope.loggedInUserID = user.userId;
+      $scope.loggedInUserRealName = user.realName;
+      $scope.loggedInUserProfileImage = user.profileImage;
+      $scope.$apply();
+    });
+  });
+
 }])
 
 .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
