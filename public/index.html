@@ -183,13 +183,13 @@
                 <h4 class="modal-title">Tell Us More about Your Organization </h4>
               </div>
               <div class="modal-body">
-                <form ng-submit="finishOrgProfile(orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc)">
+                <form ng-submit="finishOrgProfile(orgName, orgLink, orgDesc, orgRepTitle, orgLoc)">
                   *Organization Name: <input type="text" class="form-control" ng-model='orgName' />  <br/>
                   *Organization Description: <input type="text" class="form-control" ng-model='orgDesc' />  <br/>
                   *Organization Website URL: <input type="text" class="form-control" ng-model='orgLink' />  <br/>
                   *Organization Location: <input type="text" class="form-control" ng-model='orgLoc' />  <br/>
-                  Organization Logo: <input type="file" id="file" name='file' onchange="angular.element(this).scope().uploadUserProfileImage(this)" />  <br/>
-                  <img id="preview" src="{{userProfileImage}}" />
+                  <img id="preview" src="{{loggedInUserProfileImage}}" height="42" width="42" />
+                  Organization Logo: <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateOrgLogoImage(this)" />  <br/>
                   *Your Title: <input type="text" class="form-control" ng-model='orgRepTitle' /> <br/>
                   <input type="submit" value="Submit" style="cursor:pointer;"/> <br/><br/>
                 </form>

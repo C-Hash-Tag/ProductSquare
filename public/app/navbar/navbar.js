@@ -86,19 +86,26 @@ angular.module('myApp.navBar', [])
 }])
 
 .controller('OrgProfileCompleteCtrl', ['$scope', 'imageUpload', 'data', function($scope, imageUpload, data){
-  $scope.finishOrgProfile = function(orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc){
+  $scope.updateOrgLogoImage = function() { //when a user changes their profile pic, immediately upload it to AWS, and reset the localScope.
+    imageUpload.userImage($scope.loggedInUserID, event, function(url){ //
+      $scope.loggedInUserProfileImage = url;
+      $scope.$apply();
+    });
+  };
+
+  $scope.finishOrgProfile = function(orgName, orgLink, orgDesc, orgRepTitle, orgLoc){
+    $scope.orgErrorFound = false;
     var orgSettings = {
       orgName: orgName || "",
       orgLink: orgLink || "",
       orgDesc: orgDesc || "",
       orgRepTitle: orgRepTitle || "",
-      orgLogoImage: orgLogoImage || "https://www.softaculous.com/website/images/customlogo.gif",
-      orgLoc: orgLoc || ""
+      orgLoc: orgLoc || "",
+      profileImage: $scope.loggedInUserProfileImage
     }
-    console.log("something");
     data.updateOrg($scope.loggedInUserID, orgSettings);
     $('#finishOrgProfileModal').modal('hide'); //hide the signup modal.
-  };
+  }
 }])
 
 .controller('UserLoginCtrl', ['$scope', 'auth', function($scope, auth){
