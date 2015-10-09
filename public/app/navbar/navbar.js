@@ -82,6 +82,11 @@ angular.module('myApp.navBar', [])
       }
     }
   };
+
+  $scope.gotoLogin = function(){
+    $('#signUpModal').modal('hide');
+    $('#loginModal').modal('show');
+  };
 }])
 
 .controller('OrgProfileCompleteCtrl', ['$scope', 'imageUpload', 'data', function($scope, imageUpload, data){
@@ -110,6 +115,11 @@ angular.module('myApp.navBar', [])
 .controller('UserLoginCtrl', ['$scope', 'auth', function($scope, auth){
     $scope.login = function(email, password) {
       auth.loginUser(email, password, $scope.loginCB);
+    };
+
+    $scope.gotoSignup = function(){
+      $('#loginModal').modal('hide');
+      $('#signUpModal').modal('show');
     };
 }])
 
