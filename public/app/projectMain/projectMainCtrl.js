@@ -38,6 +38,13 @@ angular.module('myApp.projectMain', [])
   //   $scope.projDisplay = newProjects[projName];
   // }
 
+  $scope.userProfLink = function(userId) {
+    var userLink = "http://127.0.0.1:3000/#/user/" + $scope.loggedInUserID;
+    console.log("in user prof link", userLink);
+    //concat url and loggedInUserID
+    return userLink;
+  }
+
   $scope.editProj = function(userID) {
     console.log("userID", userID);
     if ($scope.loggedInUserID === userID) {
@@ -107,7 +114,7 @@ angular.module('myApp.projectMain', [])
   // return vm;
 
   //INFO MODAL LOADING
-  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID, userRealName){
+  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID, userRealName, test){
     $scope.specificProjName = projName;
     $scope.specificDescription = description;
     $scope.specificProjUrl = projUrl;
@@ -117,6 +124,7 @@ angular.module('myApp.projectMain', [])
     $scope.specificUserID = userID;
     $scope.specificProjID  = projID;
     $scope.specificUserRealName = userRealName;
+    $scope.specificTest = "https://www.google.com"
   }
 
 }])

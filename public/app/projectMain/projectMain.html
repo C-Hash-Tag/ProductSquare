@@ -159,7 +159,7 @@
                           <p ng-hide="edible">
                             {{specificDescription}}
                           </p>
-                          <button ng-show="edible" ng-click="saveModal(specificProjID, specificProjName, specificDescription, specificGithubRepo, specificProjUrl, specificProjectImage)" class="pull-right btn btn-danger">Save</button>
+                          <button ng-show="edible" ng-click="saveModal(specificProjID, specificProjName, specificDescription, specificGithubRepo, specificProjUrl, specificProjectImage, specificTest)" class="pull-right btn btn-danger">Save</button>
 
                       </div>
 
@@ -194,7 +194,7 @@
                                   <strong>Project Url: </strong>{{specificProjUrl}}
                               </li>
                               <li>
-                                  <strong >Team Members: </strong>{{specificUserRealName}}
+                                  <strong >Team Members: </strong><a ng-model="specificTest" href="{{specificTest}}"> {{specificUserRealName}} </a>
                               </li>
                           </ul>
                       </div>
