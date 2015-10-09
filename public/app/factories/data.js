@@ -68,7 +68,8 @@ angular.module('myApp.data', [])
         usersWhoLikeIt: {},
         backgroundPath: "",
         userRealName: userRealName,
-        ideaID: ideaID
+        ideaID: ideaID,
+        count: 0
       });
 
       // Add the idea data to the user in Firebase
@@ -121,17 +122,32 @@ angular.module('myApp.data', [])
       });
     };
 
-    factory.updateLike = function(userID, ideaName){
+    factory.updateLike = function(userID, ideaID){
+      
+      //update ideas table to reflect current count
+      var count;
+      var counter = function(count){
+        Ref.child("ideas").child(ideaID).child("count").transaction(function(currentCount){
+          currentCount = count;
+          return currentCount;
+        })
+      }
+
       //update ideas table to store users who like it
-      Ref.child("ideas").child(ideaName).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
+      Ref.child("ideas").child(ideaID).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
         if(usersWhoLikeIt === null){
           usersWhoLikeIt = {};
         }
         usersWhoLikeIt[userID] = true;
 
-        console.log(Object.keys(usersWhoLikeIt).length); //how many likes for a given idea
+        count = Object.keys(usersWhoLikeIt).length; //how many likes for a given idea
+        counter(count);
         return usersWhoLikeIt;
       })
+
+
+
+
 
       //update users table to store ideas that users like
       Ref.child("users").child(username).child("likedIdeas").transaction(function(likedIdeas){

@@ -33,10 +33,16 @@ angular.module('myApp.ideaMain', [])
     $scope.$apply();
   }
 
-  $scope.like = function(ideaName){
+  // $scope.idea.liked = false;
+
+  $scope.like = function(ideaID){
+    //check if user already liked idea
+
     //update css of the like button
     //update the database
-    data.updateLike($scope.loggedInUserID, ideaName);
+    data.updateLike($scope.loggedInUserID, ideaID, function(usersWhoLikeItCount){
+      console.log("HERRRRRE", usersWhoLikeItCount);
+    });
       //TODO: if username liked it before, remove her; if username hasn't, add her
       //add/ remove idea in user's liked ideas
   }

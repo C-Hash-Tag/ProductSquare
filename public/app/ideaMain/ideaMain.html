@@ -21,9 +21,9 @@
           <p class="description" style="color: white"> {{idea.description}} </p>
         </div>
         <div class="glyphicon-container">
-          <button  type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-eye-open"> </span> </button>
-
-          <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}">
+          <!-- <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> -->
+          <button ng-click="like(idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
+          <!-- <button ng-click="like(idea.ideaName)"> </button> -->
             <span class="glyphicon glyphicon-thumbs-up"></span>
           </button>
         </div>
