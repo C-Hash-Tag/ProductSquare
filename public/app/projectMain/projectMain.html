@@ -99,7 +99,7 @@
         <!-- project card -->
         <div ng-repeat="project in newProjects">
           <div  class="col-sm-4 portfolio-col">
-            <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.userID, project.projID)" class="portfolio-item" data-toggle="modal">
+            <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.userID, project.projID, project.userRealName)" class="portfolio-item" data-toggle="modal">
               <div class="portfolio-link">
                 <div class="caption">
                   <div class="caption-content">
@@ -179,11 +179,11 @@
                                     <input rows="1" cols="50" name="comment" ng-model="specificProjUrl" type="text" placeholder="www.yourProjectHere.com">
                                     </input>
                               </li>
-                              <li>
+                          <!--     <li>
                                   <strong>Team Members: </strong>
-                                  <input ng-show="edible" rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="specificGithubRepo">
+                                  <input ng-show="edible" rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="specificUserRealName">
                                   </input>
-                              </li>
+                              </li> -->
 
                           </ul>
                           <ul ng-hide="edible" class="list-unstyled project-details">
@@ -193,8 +193,8 @@
                               <li ng-hide="edible">
                                   <strong>Project Url: </strong>{{specificProjUrl}}
                               </li>
-                              <li ng-hide="edible">
-                                  <strong >Team Members: </strong>{{specificGithubRepo}}
+                              <li>
+                                  <strong >Team Members: </strong>{{specificUserRealName}}
                               </li>
                           </ul>
                       </div>

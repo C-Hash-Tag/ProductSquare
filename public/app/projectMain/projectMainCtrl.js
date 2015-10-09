@@ -107,7 +107,7 @@ angular.module('myApp.projectMain', [])
   // return vm;
 
   //INFO MODAL LOADING
-  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID){
+  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID, userRealName){
     $scope.specificProjName = projName;
     $scope.specificDescription = description;
     $scope.specificProjUrl = projUrl;
@@ -116,6 +116,7 @@ angular.module('myApp.projectMain', [])
     $scope.specificDate = date;
     $scope.specificUserID = userID;
     $scope.specificProjID  = projID;
+    $scope.specificUserRealName = userRealName;
   }
 
 }])
