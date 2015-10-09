@@ -1,4 +1,4 @@
-angular.module('myApp.UserMain', [])
+angular.module('myApp.OrgMain', [])
 
 .controller('OrgMainCtrl', ['$scope', '$http', 'data', '$routeParams', 'imageUpload', function($scope, $http, data, $routeParams, imageUpload){
 
