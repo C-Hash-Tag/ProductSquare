@@ -34,8 +34,6 @@ angular.module('myApp.navBar', [])
 .controller('UserSignUpCtrl', ['$scope', 'auth', 'data', function($scope, auth, data){
   //put the newuserSubmit function here.
   $scope.createUser = function(realName, email, password, userType) {
-    console.log("user creation started!");
-    console.log(userType);
     if (password === "" || password === undefined) {
       $scope.errorFound = true;
       $scope.error = "please enter a password!";

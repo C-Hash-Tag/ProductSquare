@@ -19,7 +19,12 @@ angular.module('myApp', [
   //if the localStorage userID is set, retrieve that user using the data.getUser method
   if (localStorage.userID){
     data.getUser(localStorage.userID, function(user){
-      console.log("userLoggedIn", user);
+      if(user.userType === "organization"){
+        $scope.isOrg = true;
+      }
+      if(user.userType === "student"){
+        $scope.isStudent = true;
+      }
       $scope.loggedIn = true;
       $scope.target = "#submitModalIdea";
       $scope.projTarget = "#submitModalProject";
@@ -43,7 +48,12 @@ angular.module('myApp', [
 
   //when the user is retrieved, set these top level scope vars to user properties. This is also triggered by login.
   $scope.$on('userLoggedIn', function(event, user){
-    console.log("userLoggedIn", user);
+    if(user.userType === "organization"){
+      $scope.isOrg = true;
+    }
+    if(user.userType === "student"){
+      $scope.isStudent = true;
+    }
     $scope.loggedIn = true;
     $scope.target = "#submitModalIdea";
     $scope.projTarget = "#submitModalProject";
@@ -63,6 +73,9 @@ angular.module('myApp', [
     $scope.loggedInUserProfileImage = "";
     $scope.target = "#signUpModal";
     $scope.projTarget = "#signUpModal";
+    $scope.isOrg = false;
+    $scope.isStudent = false;
+    $scope.$apply();
   });
 
   $scope.$on('loggedInUserUpdated', function(event, userId) {
