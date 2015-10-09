@@ -87,17 +87,24 @@ angular.module('myApp.navBar', [])
 
 .controller('OrgProfileCompleteCtrl', ['$scope', 'imageUpload', 'data', function($scope, imageUpload, data){
   $scope.finishOrgProfile = function(orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc){
-    var orgSettings = {
-      orgName: orgName || "",
-      orgLink: orgLink || "",
-      orgDesc: orgDesc || "",
-      orgRepTitle: orgRepTitle || "",
-      orgLogoImage: orgLogoImage || "https://www.softaculous.com/website/images/customlogo.gif",
-      orgLoc: orgLoc || ""
+    if(!orgName || !orgLink || !orgDesc || !orgRepTitle || !orgLoc){
+      $scope.orgErrorFound = true;
+      $scope.orgError = "please fill in the required fields!";
     }
-    console.log("something");
-    data.updateOrg($scope.loggedInUserID, orgSettings);
-    $('#finishOrgProfileModal').modal('hide'); //hide the signup modal.
+    else{
+      $scope.orgErrorFound = false;
+      var orgSettings = {
+        orgName: orgName || "",
+        orgLink: orgLink || "",
+        orgDesc: orgDesc || "",
+        orgRepTitle: orgRepTitle || "",
+        orgLogoImage: orgLogoImage || "https://www.softaculous.com/website/images/customlogo.gif",
+        orgLoc: orgLoc || ""
+      }
+      console.log("something");
+      data.updateOrg($scope.loggedInUserID, orgSettings);
+      $('#finishOrgProfileModal').modal('hide'); //hide the signup modal.
+    }
   };
 }])
 

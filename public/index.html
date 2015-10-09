@@ -191,6 +191,7 @@
                   Organization Logo: <input type="file" id="file" name='file' onchange="angular.element(this).scope().uploadUserProfileImage(this)" />  <br/>
                   <img id="preview" src="{{userProfileImage}}" />
                   *Your Title: <input type="text" class="form-control" ng-model='orgRepTitle' /> <br/>
+                  <p style="color: red" ng-show="orgErrorFound">{{orgError}}</p><br/>
                   <input type="submit" value="Submit" style="cursor:pointer;"/> <br/><br/>
                 </form>
               </div>
