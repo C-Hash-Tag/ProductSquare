@@ -126,7 +126,7 @@ angular.module('myApp.UserMain', [])
       profileImage: $scope.tempProfileImage
     };
     console.log($scope.loggedInUserID);
-    data.updateUser($scope.loggedInUserID, newSettings);
+    data.updateLoggedInUser($scope.loggedInUserID, newSettings);
     $('#profile-edit-modal').modal('hide');
   }
 
