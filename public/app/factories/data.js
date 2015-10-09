@@ -21,14 +21,15 @@ angular.module('myApp.data', [])
 
     // Collect user data from sign up and store it in Firebase
     factory.createUser = function(email, password, userId, realName, userType, cb){
-      // Store the user data in Firebase      
+      // Store the user data in Firebase    
+      var profileImage = (userType === "organization" ? "https://www.softaculous.com/website/images/customlogo.gif" : '/img/default-user.png');
       var user = {
         realName: realName,
         email: email,
         userId: userId,
         projects: {},
         likedIdeas: {},
-        profileImage: '/img/default-user.png', //this will update with aws image when input by the user.
+        profileImage: profileImage, //this will update with aws image when input by the user.
         userType: userType,
       };
 
