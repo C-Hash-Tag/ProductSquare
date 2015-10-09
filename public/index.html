@@ -29,7 +29,7 @@
   </head>
   <body ng-app="myApp" id="page-top">
     <div ng-controller="AppController">
-      
+
       <!-- Actual Navigation Bar -->
       <nav ng-controller="NavBarCtrl" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -82,8 +82,8 @@
                     Your Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
                     Email Address: <input type="text" class="form-control" ng-model="email" /> <br/>
                     Password: <input type="password" class="form-control" ng-model="password" /> <br/>
-                    Which of the following describes you? <br/> 
-                    <label class="radio-inline"><input type="radio" ng-model="userType" value="student" name="optradio"> Student Developer </label> 
+                    Which of the following describes you? <br/>
+                    <label class="radio-inline"><input type="radio" ng-model="userType" value="student" name="optradio"> Student Developer </label>
                     <label class="radio-inline"><input type="radio" ng-model="userType" value="organization" name="optradio"> Organization Representative </label><br/>{{userType}}<br/>
                     <p style="color: red" ng-show="errorFound">{{error}}</p>
                     <span class="pull-right">
@@ -136,9 +136,8 @@
         <!-- Finish Profile Modal -->
         <div ng-controller="DevProfileCompleteCtrl" id="devProfileCompleteModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
-            <!-- Modal content-->
             <div class="modal-content">
-              
+
               <form ng-submit="finishDevProfile(githubLink, linkedinLink, blogLink, location, school)">
                 <ul class="list-unstyled project-details">
                   <li>
