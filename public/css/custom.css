@@ -1,5 +1,15 @@
 /* Custom CSS */
 /* Main */
+
+#header-message-container {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+.page-scroll {
+  text-align: center;
+}
+
 #founder {
   display:inline-block;
 }
