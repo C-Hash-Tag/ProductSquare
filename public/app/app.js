@@ -6,6 +6,7 @@ angular.module('myApp', [
   'myApp.main',
   'myApp.ideaMain',
   'myApp.UserMain',
+  'myApp.OrgMain',
   'myApp.auth',
   'myApp.navBar'
 ])
@@ -26,6 +27,8 @@ angular.module('myApp', [
         $scope.isStudent = true;
       }
       $scope.loggedIn = true;
+      $scope.userType = user.userType;  // organization or student
+      console.log("User Type is:", $scope.userType);
       $scope.target = "#submitModalIdea";
       $scope.projTarget = "#submitModalProject";
       $scope.loggedInUserID = user.userId;
@@ -55,6 +58,7 @@ angular.module('myApp', [
       $scope.isStudent = true;
     }
     $scope.loggedIn = true;
+    $scope.userType = user.userType;  // organization or student
     $scope.target = "#submitModalIdea";
     $scope.projTarget = "#submitModalProject";
     $scope.loggedInUserID = user.userId;
@@ -118,6 +122,12 @@ angular.module('myApp', [
     .when('/user/:userID/', {
       templateUrl: './app/userMain/userMain.html',
       controller: 'UserMainCtrl',
+      controllerAs: 'vm',
+      activetab: 'myprofile'
+    })
+    .when('/organization/:userID/', {
+      templateUrl: './app/userMain/orgMain.html',
+      controller: 'OrgMainCtrl',
       controllerAs: 'vm',
       activetab: 'myprofile'
     })

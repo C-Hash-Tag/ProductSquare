@@ -10,7 +10,7 @@ angular.module('myApp.navBar', [])
       $scope.loginError = "Sorry! The email/password is incorrect, please try again."
     } else {
       $('#loginModal').modal('hide');
-      
+
       //reset the login modal fields to blank.
       // $scope.password=""; //these fields need to be reset to blank on the login modal controller, not here.
       // $scope.email="";
@@ -31,6 +31,7 @@ angular.module('myApp.navBar', [])
   };
 }])
 
+// Sign Up for both organizations and students
 .controller('UserSignUpCtrl', ['$scope', 'auth', 'data', function($scope, auth, data){
   //put the newuserSubmit function here.
   $scope.createUser = function(realName, email, password, userType) {
@@ -79,7 +80,7 @@ angular.module('myApp.navBar', [])
           $scope.$apply();
         });
       }
-    }  
+    }
   };
 }])
 
@@ -113,7 +114,7 @@ angular.module('myApp.navBar', [])
 }])
 
 .controller('DevProfileCompleteCtrl', ['$scope', 'imageUpload', 'data', function($scope, imageUpload, data){
-  
+
   //before the userProfileImage is updated by this function, the initial state will be set on the app scope.
   $scope.updateUserProfileImage = function() { //when a user changes their profile pic, immediately upload it to AWS, and reset the localScope.
     imageUpload.userImage($scope.loggedInUserID, event, function(url){ //

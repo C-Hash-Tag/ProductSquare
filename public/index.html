@@ -57,8 +57,11 @@
               <li ng-hide="loggedIn">
                 <a data-toggle="modal" data-target="#loginModal" style="cursor:pointer;">Login</a>
               </li>
-              <li ng-show="loggedIn" ng-class="{active: $route.current.activetab == 'myprofile'}">
+              <li ng-show="loggedIn && userType==='student'" ng-class="{active: $route.current.activetab == 'myprofile'}">
                 <a href="/#/user/{{loggedInUserID}}/" style="cursor:pointer">{{loggedInUserRealName}}</a>
+              </li>
+              <li ng-show="loggedIn && userType==='organization'" ng-class="{active: $route.current.activetab == 'myprofile'}">
+                <a href="/#/organization/{{loggedInUserID}}/" style="cursor:pointer">{{loggedInUserRealName}}</a>
               </li>
               <li ng-show="loggedIn">
                 <a ng-click="logout()" style="cursor:pointer;">Logout</a>
@@ -222,6 +225,7 @@
     <script src="./app/main/mainCtrl.js"></script>
     <script src="./app/ideaMain/ideaMainCtrl.js"></script>
     <script src="./app/userMain/userMainCtrl.js"></script>
+    <script src="./app/userMain/orgMainCtrl.js"></script>
     <script src="./app/navbar/navbar.js"></script>
     <script src="./app/projectMain/projectMainCtrl.js"></script>
   </body>
