@@ -4,7 +4,7 @@ angular.module('myApp.navBar', [])
 .controller('NavBarCtrl', ['$scope', 'data', 'auth', 'imageUpload', '$location', function($scope, data, auth, imageUpload, $location) {
 
   //NavBar html is contained within the index.html file.
-  var loginCB = function(error, authData, email){
+  $scope.loginCB = function(error, authData, email){
     if (error) {
       $scope.loginErrorFound = true;
       $scope.loginError = "Sorry! The email/password is incorrect, please try again."
@@ -26,21 +26,23 @@ angular.module('myApp.navBar', [])
     $scope.$apply();
   };
 
-  $scope.login = function(email, password) {
-    auth.loginUser(email, password, loginCB);
-  };
-
-
   $scope.logout = function(){
     auth.logout();
   };
+}])
 
+.controller('UserSignUpCtrl', ['$scope', 'auth', 'data', function($scope, auth, data){
   //put the newuserSubmit function here.
-  $scope.createUser = function(realName, email, password) {
+  $scope.createUser = function(realName, email, password, userType) {
     console.log("user creation started!");
+    console.log(userType);
     if (password === "" || password === undefined) {
       $scope.errorFound = true;
       $scope.error = "please enter a password!";
+    }
+    else if(!userType){
+      $scope.errorFound = true;
+      $scope.error = "please select student developer or organization";
     }
     else {
       if (realName === "" || realName === undefined){
@@ -62,34 +64,47 @@ angular.module('myApp.navBar', [])
                 $scope.error = "Error creating user:" + error;
             }
           } else {
-
             //create a full user in the firebase database.
-            data.createUser(email, password, userData.uid, realName, function(){
-              
+            data.createUser(email, password, userData.uid, realName, userType, function(){
               //switch the modals that appear when a user is successfully created.
-              $('#signUpModal').modal('hide');
-              $('#devProfileCompleteModal').modal('show');
               //after creating the user, login the user.
-              auth.loginUser(email, password, loginCB);
+              $('#signUpModal').modal('hide');
+              if(userType === "organization"){
+                $('#finishOrgProfileModal').modal('show');
+              }
+              else{
+                $('#devProfileCompleteModal').modal('show');
+              }
+              auth.loginUser(email, password, $scope.loginCB);
             });
-
-            
           }
           $scope.$apply();
         });
       }
-    }
-    
+    }  
   };
-
-
 }])
 
-.controller('UserSignUpCtrl', ['$scope', function($scope){
-
+.controller('OrgProfileCompleteCtrl', ['$scope', 'imageUpload', 'data', function($scope, imageUpload, data){
+  $scope.finishOrgProfile = function(orgName, orgLink, orgDesc, orgRepTitle, orgLogoImage, orgLoc){
+    var orgSettings = {
+      orgName: orgName || "",
+      orgLink: orgLink || "",
+      orgDesc: orgDesc || "",
+      orgRepTitle: orgRepTitle || "",
+      orgLogoImage: orgLogoImage || "https://www.softaculous.com/website/images/customlogo.gif",
+      orgLoc: orgLoc || ""
+    }
+    console.log("something");
+    data.updateOrg($scope.loggedInUserID, orgSettings);
+    $('#finishOrgProfileModal').modal('hide'); //hide the signup modal.
+  };
 }])
 
-.controller('UserLoginCtrl', ['$scope', function($scope){
+.controller('UserLoginCtrl', ['$scope', 'auth', function($scope, auth){
+    $scope.login = function(email, password) {
+      auth.loginUser(email, password, $scope.loginCB);
+    };
 }])
 
 .controller('DevProfileCompleteCtrl', ['$scope', 'imageUpload', 'data', function($scope, imageUpload, data){
