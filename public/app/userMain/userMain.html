@@ -65,7 +65,7 @@
 
     </div>
     <div id="user-page-contact">
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">
+      <button type="button" class="btn btn-success btn-rounded btn-outline" data-toggle="modal" data-target="#contactModal">
         Contact {{name}}
       </button>
     </div>
@@ -177,7 +177,7 @@
     <div class="row first">
       <h2 class="page-header">Edit Profile</h2>
     </div>
-      <div class="row"> 
+      <div class="row">
         <form ng-submit="updateUserProfile(realName, githubLink, linkedinLink, blogLink, location, school)">
           <ul class="list-unstyled project-details">
             <li>
@@ -211,7 +211,7 @@
               <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left;" />
             </li>
           </ul>
-          <input type="submit" value="SAVE PROFILE" class="btn btn-default"/>
+          <input type="submit" value="SAVE PROFILE" class="btn btn-danger btn-rounded btn-outline pull-right"/>
         </form>
       </div>
     </div>
@@ -230,11 +230,8 @@
       <div class="modal-body">
        <form ng-submit="sendEmail(message)">
          <textarea ng-model="message" placeholder="Post your message to Dylan here." style="height:100px; width:500px;"></textarea>
-         <input type="submit" value="Send" class="btn btn-default" />
+         <input class="btn btn-success btn-rounded btn-outline" type="submit" value="Send"/>
       </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
