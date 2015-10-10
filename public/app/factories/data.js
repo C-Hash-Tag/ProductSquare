@@ -221,7 +221,7 @@ angular.module('myApp.data', [])
       });
     };
 
-    factory.updateIdea = function(ideaID, ideaName, ideaDesc, ideaImage){
+    factory.updateIdea = function(userID, ideaID, ideaName, ideaDesc, ideaImage){
       Ref.child('ideas').child(ideaID).child('description').transaction(function(desc){
         desc = ideaDesc;
         return desc;
@@ -231,6 +231,19 @@ angular.module('myApp.data', [])
         return name;
       });
       Ref.child('ideas').child(ideaID).child('backgroundPath').transaction(function(path){
+        path = ideaImage;
+        return path;
+      });
+
+      Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child('description').transaction(function(desc){
+        desc = ideaDesc;
+        return desc;
+      });
+      Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child('ideaName').transaction(function(name){
+        name = ideaName;
+        return name;
+      });
+      Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child('backgroundPath').transaction(function(path){
         path = ideaImage;
         return path;
       });

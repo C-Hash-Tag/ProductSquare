@@ -21,6 +21,9 @@ angular.module('myApp.OrgMain', [])
     }
   }
 
+  $scope.proposalEdible = false;
+  $scope.checked = true; //if user's current userId matches the idea's userId and this is true, then the edit button will show
+
   $scope.like = function(ideaID){
     //check if user already liked idea
 
@@ -31,6 +34,47 @@ angular.module('myApp.OrgMain', [])
     });
       //TODO: if username liked it before, remove her; if username hasn't, add her
       //add/ remove idea in user's liked ideas
+  }
+
+  $scope.editIdea = function(userID) {
+    if ($scope.loggedInUserID === userID) {
+      return true;
+    }
+  }
+
+  $scope.editModal = function() {
+    console.log("in the edit function", $scope.edible)
+    // if ($scope.editProj(userID)) {
+    $scope.checked = false; 
+    $scope.proposalEdible = true;
+  }
+
+
+  $scope.saveModal = function(ideaID, ideaDesc, ideaName, ideaImage){
+    // firebase logic
+    console.log("in the save function");
+    $scope.proposalEdible = false;
+    $scope.checked = true;
+    data.updateIdea(localStorage.userID, ideaID, ideaDesc, ideaName, ideaImage);
+  };
+
+  $scope.closeModal = function(){
+    $scope.proposalEdible = false;
+    $scope.checked = true;
+  }
+
+  $scope.close = function() {
+    $scope.submission = false;
+  }
+
+  //INFO MODAL LOADING
+  $scope.passit = function(ideaName, description, backgroundPath, date, userID, ideaID){
+    $scope.specificIdeaName = ideaName;
+    $scope.specificDescription = description;
+    $scope.specificBackgroundPath = backgroundPath;
+    $scope.specificDate = date;
+    $scope.specificUserID = userID;
+    $scope.specificIdeaID = ideaID;
   }
 
   $scope.stringFound = function(text) {
@@ -169,5 +213,4 @@ angular.module('myApp.OrgMain', [])
       });
     }
   }
-
 }]);
