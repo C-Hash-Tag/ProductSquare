@@ -1,6 +1,6 @@
 <div class="container" style="margin-top: 30px;">
   <div id="user-page-left-col">
-    <div id="user-page-edit-profile" ng-show="edible">
+    <div id="user-page-edit-profile" ng-show="proposalEdible">
       <button class="btn btn-danger btn-outline btn-rounded" data-toggle="modal" data-target="#profile-edit-modal">
         Edit my Profile
       </button>
@@ -53,21 +53,89 @@
 
   </div>
 
-  <div class="cardContainerContainer" style="text-align: center; display: block">
-    <div class="cardContainer" ng-repeat="idea in loggedInUserIdeas" style="display: inline-block">
-      <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
-        <p class="name" style="color: white"> {{ idea.ideaName }} </p>
-        <hr>
-        <p class="description" style="color: white"> {{idea.description}} </p>
-
-      </div>
-      <div class="glyphicon-container">
-        <!-- <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> -->
-        <button ng-click="like(idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
+    <div class="cardContainerContainer" style="text-align: center; display: block">
+      <!-- Neat Non-Flippin Card starts:: SORTED BY RECENT -->
+      <div class="cardContainer" ng-repeat="idea in loggedInUserIdeas" style="display: inline-block">
+        <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
+          <p class="name" style="color: white"> {{ idea.ideaName }} </p>
+          <hr>
+          <p class="description" style="color: white"> {{idea.description}} </p>
+        </div>
+        <div class="glyphicon-container">
+          <!-- <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> -->
+          <button ng-click="like(idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
           <span>{{idea.count || 0}} </span>
           <!-- <button ng-click="like(idea.ideaName)"> </button> -->
-          <span class="glyphicon glyphicon-thumbs-up"></span>
-        </button>
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ideas View/ Edit Modal -->
+      <div id="idea-info" class="idea-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-content" id="idea-modal-content">
+            <button type="button" class="close" ng-click="closeModal()" data-dismiss="modal">&times;</button>
+              <div class="container">
+                  <div class="row first">
+                      <div class="col-lg-12">
+                          <h2 class="page-header" ng-show="proposalEdible"><input ng-model="specificIdeaName"></input></h2>
+                          <h2 class="page-header" ng-hide="proposalEdible">{{specificIdeaName}}</h2>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-8">
+                          <div id="idea-details-carousel" class="owl-carousel owl-theme">
+                          <!-- TODO -->
+                             <!--  <div class="item">
+                                  <img src="{{idea.ideaImage}}" alt="">
+                              </div> -->
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <h3 > Idea Description:</h3>
+                          <p ng-show="proposalEdible"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your idea. What problem do you want to solve?" ng-model="specificDescription" ></textarea></p>
+                          <p ng-hide="proposalEdible">{{specificDescription}}</p>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-8">
+                        <h3 ng-show="proposalEdible"> Edit Idea Details:</h3>
+                        <h3 ng-hide="proposalEdible">Idea Details:</h3>
+                          <ul ng-show="proposalEdible"class="list-unstyled project-details">
+                              <li>
+                                  <strong>Organization: </strong>
+                                    <!-- <input ng-show"proposalEdible"rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="project.githubRepo">
+                                    </input> -->
+                              </li>
+                              <!-- <li ng-show"proposalEdible">
+                                  <strong>Project URL: </strong>
+                                    <input rows="1" cols="50" name="comment" ng-model="project.projUrl" type="text" placeholder="www.yourProjectHere.com">
+                                    </input>
+                              </li>
+                              <li>
+                                  <strong>Team Members: </strong>
+                                  <input ng-show="proposalEdible" rows="1" cols="50" name="comment" type="text" placeholder="John Doe" ng-model="project.githubRepo">
+                                  </input>
+                              </li> -->
+
+                          </ul>
+                          <ul ng-hide="proposalEdible" class="list-unstyled project-details">
+                              <li ng-hide="proposalEdible">
+                                  <strong>Organization: </strong><!-- {{FILLER ORGANIZATION}} -->
+                              </li>
+                              <!-- <li ng-hide="proposalEdible">
+                                  <strong>Project Url: </strong>{{project.projUrl}}
+                              </li>
+                              <li ng-hide="proposalEdible">
+                                  <strong >Team Members: </strong>{{project.githubRepo}}
+                              </li> -->
+                          </ul>
+                      </div>
+                      <button ng-click="editModal()" ng-show="editIdea(specificUserID) && checked">Edit</button>
+                      <button ng-show="proposalEdible && editIdea(specificUserID)" ng-click="saveModal(specificIdeaID, specificIdeaName, specificDescription, specificBackgroundPath)">Save</button>
+                  </div>
+              </div>
+          </div>
       </div>
     </div>
 

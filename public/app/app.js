@@ -49,6 +49,10 @@ angular.module('myApp', [
       updateLoggedInScopes(user);
       $scope.$broadcast("userFoundInLocal");
     });
+    data.getLoggedInUsersIdeas(localStorage.userID, function(ideasSubmitted){
+      $scope.loggedInUserIdeas = ideasSubmitted
+      $scope.$apply();
+    });
   }
 
   data.getProjects(function(projects){

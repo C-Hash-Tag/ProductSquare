@@ -82,7 +82,8 @@ angular.module('myApp.ideaMain', [])
     // firebase logic
     console.log("in the save function");
     $scope.edible = false;
-    data.updateIdea(ideaID, ideaDesc, ideaName, ideaImage);
+    $scope.checked = true;
+    data.updateIdea(localStorage.userID, ideaID, ideaDesc, ideaName, ideaImage);
   };
 
   $scope.closeModal = function(){
