@@ -12,10 +12,57 @@
       </div>
     </div>
 
-    <div class="cardContainerContainer" style="text-align: center; display: block">
-      <div class="cardContainer" ng-repeat="idea in newIdeas" style="display: inline-block">
-        <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
+      <!-- Project Sort  -->
+    <div class="btn-group" role="group" aria-label="project sorting">
+      <button type="button" ng-click="setSort('recent')" class="btn btn-default">Most Recent</button>
+      <button type="button" ng-click="setSort('mostLiked')" class="btn btn-default">Most Liked</button>
+      <button type="button" ng-click="setSort('oldest')" class="btn btn-default">Oldest</button>
+    </div>
 
+    <div class="cardContainerContainer" style="text-align: center; display: block">
+
+      <!-- Neat Non-Flippin Card starts:: SORTED BY RECENT -->
+      <div ng-show="selectedSort === 'recent'" class="cardContainer" ng-repeat="idea in newIdeas | orderObjectBy: 'date':false " style="display: inline-block">
+
+        <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
+          <p class="name" style="color: white"> {{ idea.ideaName }} </p>
+          <hr>
+          <p class="description" style="color: white"> {{idea.description}} </p>
+        </div>
+        <div class="glyphicon-container">
+          <!-- <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> -->
+          <button ng-click="like(idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
+          <span>{{idea.count || 0}} </span>
+          <!-- <button ng-click="like(idea.ideaName)"> </button> -->
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+          </button>
+        </div>
+      </div>
+      <!-- Neat Non-Flippin Card ends -->
+
+      <!-- Neat Non-Flippin Card starts -->
+      <div ng-show="selectedSort === 'mostLiked'" class="cardContainer" ng-repeat="idea in newIdeas | orderObjectBy: 'count':true" style="display: inline-block">
+
+        <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
+          <p class="name" style="color: white"> {{ idea.ideaName }} </p>
+          <hr>
+          <p class="description" style="color: white"> {{idea.description}} </p>
+        </div>
+        <div class="glyphicon-container">
+          <!-- <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> -->
+          <button ng-click="like(idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
+          <span>{{idea.count || 0}} </span>
+          <!-- <button ng-click="like(idea.ideaName)"> </button> -->
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+          </button>
+        </div>
+      </div>
+      <!-- Neat Non-Flippin Card ends -->
+
+      <!-- Neat Non-Flippin Card starts -->
+      <div ng-show="selectedSort === 'oldest'" class="cardContainer" ng-repeat="idea in newIdeas | orderObjectBy: 'date':false" style="display: inline-block">
+
+        <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
           <p class="name" style="color: white"> {{ idea.ideaName }} </p>
           <hr>
           <p class="description" style="color: white"> {{idea.description}} </p>

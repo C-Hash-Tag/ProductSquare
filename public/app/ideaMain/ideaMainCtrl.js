@@ -104,5 +104,13 @@ angular.module('myApp.ideaMain', [])
     $scope.specificIdeaID = ideaID;
   }
 
+  //SORTING FEATURE
+  $scope.selectedSort = "mostLiked";
+
+  $scope.setSort = function(type){
+   console.log($scope.selectedSort, "selectedSort") 
+   $scope.selectedSort = type;
+   console.log($scope.selectedSort, "selectedSort", " and type", type);
+  }
 
 }]);
