@@ -90,9 +90,8 @@ angular.module('myApp.projectMain', [])
     var projID = uniqueNumber(projName)
     if (projectImage === "") {
       projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
-    }console.log($scope.loggedInUserRealName, "and", $scope.loggedInUserCleanUrl)
-    data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, $scope.loggedInUserCleanUrl);
-    //$scope.loggedInUserCleanUrl = user.cleanUrl; //the url used to create the users profile.
+    }
+    data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage);
 
     $scope.projDesc = "";
     $scope.githubUrl = "";
@@ -128,8 +127,10 @@ angular.module('myApp.projectMain', [])
 
   // return vm;
 
+
+
   //INFO MODAL LOADING
-  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID, userRealName, userCleanUrl){
+  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID, userRealName){
     $scope.specificProjName = projName;
     $scope.specificDescription = description;
     $scope.specificProjUrl = projUrl;
@@ -139,10 +140,12 @@ angular.module('myApp.projectMain', [])
     $scope.specificUserID = userID;
     $scope.specificProjID  = projID;
     $scope.specificUserRealName = userRealName;
-    $scope.specificUserCleanUrl = "http://localhost:3000/#/user/" + userCleanUrl; //TODO: ADJUST WHEN PUSHING TO HEROKU
+    data.getUserCleanUrl(userID, function(userCleanUrl){
+      $scope.specificUserCleanUrl = "http://localhost:3000/#/user/" + userCleanUrl; //TODO: ADJUST WHEN PUSHING TO HEROKU
+    }); 
   }
 
-    //SORTING FEATURE
+  //SORTING FEATURE
   $scope.selectedSort = "recent";
 
   $scope.setSort = function(type){

@@ -85,7 +85,7 @@ angular.module('myApp.data', [])
     };
 
     // Collect project data from createProject and store it in Firebase
-    factory.createProject = function(userRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, userCleanUrl){
+    factory.createProject = function(userRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage){
       // Store the project data in Firebase
       Ref.child('projects').child(projID).set({
         description: projDesc,
@@ -97,8 +97,7 @@ angular.module('myApp.data', [])
         userID: localStorage.userID,
         projectImage: projectImage,
         userRealName: userRealName,
-        count: 0,
-        userCleanUrl: userCleanUrl
+        count: 0      
       });
 
       // Add the project data to the user in Firebase
@@ -311,6 +310,21 @@ angular.module('myApp.data', [])
         return path;
       });
     };
+
+    factory.getUserCleanUrl = function(userID,cb){
+      Ref.child("users").child(userID).child("cleanUrl").on("value", function(data){
+        console.log(data.val(), "dataVALLLLLL")
+        cb(data.val());
+
+      })
+    }
+
+    // factory.getIdeas = function(cb){
+    //   Ref.child("ideas").on("value", function(data){
+    //     cb(data.val());
+    //   });
+    // };
+
 
     return factory;
 }]);
