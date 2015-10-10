@@ -22,7 +22,7 @@
     <div class="cardContainerContainer" style="text-align: center; display: block">
 
       <!-- Neat Non-Flippin Card starts:: SORTED BY RECENT -->
-      <div ng-show="selectedSort === 'recent'" class="cardContainer" ng-repeat="idea in newIdeas | orderObjectBy: 'date':false " style="display: inline-block">
+      <div ng-show="selectedSort === 'recent'" class="cardContainer" ng-repeat="idea in newIdeas | orderObjectBy: 'date':true " style="display: inline-block">
 
         <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
           <p class="name" style="color: white"> {{ idea.ideaName }} </p>

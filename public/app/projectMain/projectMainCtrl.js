@@ -127,5 +127,15 @@ angular.module('myApp.projectMain', [])
     $scope.specificTest = "https://www.google.com"
   }
 
+    //SORTING FEATURE
+  $scope.selectedSort = "recent";
+
+  $scope.setSort = function(type){
+   console.log($scope.selectedSort, "selectedSort")
+   $scope.selectedSort = type;
+   console.log($scope.selectedSort, "selectedSort", " and type", type);
+  }
+
+
 }])
 
