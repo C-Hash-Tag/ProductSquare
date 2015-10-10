@@ -92,6 +92,7 @@ angular.module('myApp.projectMain', [])
       projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
     }
     data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage);
+
     $scope.projDesc = "";
     $scope.githubUrl = "";
     $scope.projName = "";
@@ -126,8 +127,10 @@ angular.module('myApp.projectMain', [])
 
   // return vm;
 
+
+
   //INFO MODAL LOADING
-  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID, userRealName, test){
+  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID, userRealName){
     $scope.specificProjName = projName;
     $scope.specificDescription = description;
     $scope.specificProjUrl = projUrl;
@@ -137,10 +140,12 @@ angular.module('myApp.projectMain', [])
     $scope.specificUserID = userID;
     $scope.specificProjID  = projID;
     $scope.specificUserRealName = userRealName;
-    $scope.specificTest = "https://www.google.com"
+    data.getUserCleanUrl(userID, function(userCleanUrl){
+      $scope.specificUserCleanUrl = "http://localhost:3000/#/user/" + userCleanUrl; //TODO: ADJUST WHEN PUSHING TO HEROKU
+    }); 
   }
 
-    //SORTING FEATURE
+  //SORTING FEATURE
   $scope.selectedSort = "recent";
 
   $scope.setSort = function(type){

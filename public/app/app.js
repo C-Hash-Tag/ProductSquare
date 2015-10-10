@@ -33,6 +33,7 @@ angular.module('myApp', [
       $scope.isStudent = true;
     }
     $scope.$apply();
+    console.log("inside app.js ",  $scope.loggedInUserCleanUrl, user.cleanUrl)
   };
 
   //if the localStorage userID is set, retrieve that user using the data.getUser method
