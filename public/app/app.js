@@ -34,6 +34,7 @@ angular.module('myApp', [
       $scope.loggedInUserID = user.userId;
       $scope.loggedInUserRealName = user.realName;
       $scope.loggedInUserProfileImage = user.profileImage;
+      $scope.loggedInUserEmail = user.email;
       $scope.$apply();
       $scope.$broadcast("userFoundInLocal");
     });
@@ -47,8 +48,13 @@ angular.module('myApp', [
   data.getIdeas(function(ideas){
     $scope.newIdeas = ideas;
     $scope.$apply();
-    console.log("ideas", ideas)
   });
+
+  //this gets the ideas that the current user submitted
+  data.getLoggedInUsersIdeas(localStorage.userID, function(ideasSubmitted){
+    $scope.loggedInUserIdeas = ideasSubmitted
+    $scope.$apply();
+  })
 
   //when the user is retrieved, set these top level scope vars to user properties. This is also triggered by login.
   $scope.$on('userLoggedIn', function(event, user){
@@ -96,7 +102,6 @@ angular.module('myApp', [
 
   $scope.$on('loggedInOrgUpdated', function(event, userId){
     data.getUser(userId, function(user){
-      console.log("userLoggedIn", user);
       $scope.loggedIn = true;
       $scope.loggedInUserID = user.userId;
       $scope.loggedInUserRealName = user.realName;
