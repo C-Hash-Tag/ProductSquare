@@ -34,6 +34,7 @@ angular.module('myApp.UserMain', [])
   userPageLoadScopes = function(user){
     $scope.realName = user.realName;
     $scope.profileImage = user.profileImage;
+    $scope.email = user.email;
     $scope.tempProfileImage = user.profileImage; //set the temp profile image to the userimage. This is used for the user edit modal.
     $scope.githubLink = user.github;
     $scope.githubText = truncateText(user.github);
@@ -43,18 +44,25 @@ angular.module('myApp.UserMain', [])
     $scope.linkedinText = truncateText(user.linkedin);
     $scope.location = truncateText(user.location);
     $scope.school = truncateText(user.school);
+    $scope.cleanUrl = user.cleanUrl;
+    if ($scope.loggedInUserCleanUrl === $scope.cleanUrl){
+      $scope.edible = true;
+    }
     $scope.$apply();
   };
 
   //fetch the userData based on the routeID to generate the 
-  data.getUser($routeParams.userID, userPageLoadScopes);
+  //data.getUser($routeParams.userID, userPageLoadScopes);
 
-  $scope.$on("loggedInUserUpdated", function(event, user){
-    data.getUser(user, userPageLoadScopes);
+  data.getUserByCleanUrl($routeParams.cleanUrl, userPageLoadScopes);
+
+  $scope.$on("loggedInUserUpdated", function(event, userID){
+    data.getUser(userID, userPageLoadScopes);
   });
 
+  console.log("userCtrl updated!", $scope.loggedInUserCleanUrl, $routeParams.cleanUrl);
   //when browsing between pages, the loggedInUserID will be inherited from app.js
-  if ($scope.loggedInUserID === $routeParams.userID) {
+  if ($scope.loggedInUserCleanUrl === $routeParams.cleanUrl) {
     console.log("edible!");
     $scope.edible = true;
   }
@@ -62,7 +70,7 @@ angular.module('myApp.UserMain', [])
   //when the userID is found in localStorage, set edible to true.
   //userFoundInLocal is broadcast from app.js
   $scope.$on('userFoundInLocal', function(event, data){
-    if ($scope.loggedInUserID === $routeParams.userID){
+    if ($scope.loggedInUserCleanUrl === $routeParams.cleanUrl){
       console.log("edible!");
       $scope.edible = true;
       $scope.$apply();
@@ -72,7 +80,7 @@ angular.module('myApp.UserMain', [])
   //user logs in while on the user profile page. Set edible to true.
   //userNowLoggedIn is broadcast from app.js
   $scope.$on('userNowLoggedIn', function(event){
-    if ($scope.loggedInUserID === $routeParams.userID){
+    if ($scope.loggedInUserCleanUrl === $routeParams.cleanUrl){
       console.log("edible!");
       $scope.edible = true;
       $scope.$apply();
@@ -90,9 +98,9 @@ angular.module('myApp.UserMain', [])
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
     console.log("in sendMail");
     $http.post('/email', {
-      email: "dylansamuelwright@gmail.com", //to be populated from the factory.
+      email: $scope.email, //to be populated from the factory.
       message: message,
-      username: "Dylan" //to be populated from the factory.
+      username: $scope.realName //to be populated from the factory.
     }).
     then(function(response) {
       console.log("email sent");
@@ -103,7 +111,7 @@ angular.module('myApp.UserMain', [])
 
 }])
 
-.controller('ProfileEditCtrl', ['$scope', 'data', 'imageUpload', function($scope, data, imageUpload){
+.controller('UserProfileEditCtrl', ['$scope', 'data', 'imageUpload', function($scope, data, imageUpload){
   //wrong scope. belongs on the profileEdit scope.
   $scope.updateUserProfileImage = function(){
     console.log("event", event);
@@ -113,9 +121,10 @@ angular.module('myApp.UserMain', [])
     });
   };
 
-  //wrong scope. This needs to emit an event to the parent scope.
-  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school) {
-    console.log("user profile updated!");
+  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school, cleanUrl) {
+    
+    var urlCleaner = cleanUrl.replace(/[^0-9a-z-]/g,""); //apply the urlCleaning function to the clean url.
+    
     var newSettings = {
       realName: realName || "",
       github: github || "",
@@ -123,11 +132,38 @@ angular.module('myApp.UserMain', [])
       blog: blog || "",
       location: location || "",
       school: school || "",
+      cleanUrl: urlCleaner,
       profileImage: $scope.tempProfileImage
     };
-    console.log($scope.loggedInUserID);
-    data.updateLoggedInUser($scope.loggedInUserID, newSettings);
-    $('#profile-edit-modal').modal('hide');
+
+    //need to put in some form validation for the clean URL to check for dups and blanks.
+    console.log("in user profile update");
+    if (cleanUrl === "" || cleanUrl === undefined){
+      console.log("clean URl is empty");
+      $scope.error = "Please provide a valid profile URL.";
+    }
+    else {
+      console.log("running the ellse");
+      data.getUserByCleanUrl(cleanUrl, function(user){
+        
+        //if a user is found, but the cleanUrl is the same as the loggedInCleanUrl, then that is fine.
+        if (user.cleanUrl === $scope.loggedInUserCleanUrl){
+          data.updateLoggedInUser($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
+          $('#profile-edit-modal').modal('hide');
+        }
+        else { //if this clean url is found, and not the current cleanUrl, then we should put out an error messagee!
+          $scope.errorFound = true;
+          $scope.error = "This profile url is already taken.";
+          $scope.$apply();
+          console.log("errorrrr, this url is in use!!")
+        }
+
+      }, function(error){ //if there is an error, then no user with this url was found, and it can be set for this user.
+        data.updateLoggedInUser($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
+        $('#profile-edit-modal').modal('hide');
+      });
+    }
+    
   }
 
 }]);

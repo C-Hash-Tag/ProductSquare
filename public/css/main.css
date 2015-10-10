@@ -281,6 +281,10 @@ hr {
 #user-page-contact button {
 }
 
+.error {
+  color: red;
+}
+
 
 #user-page-right-col {
   float: left;
