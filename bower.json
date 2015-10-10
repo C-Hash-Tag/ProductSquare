@@ -16,7 +16,6 @@
   "dependencies": {
     "angular": "~1.4.6",
     "angular-modal-service": "~0.6.7",
-    "angular-route": "~1.4.6",
-    "bootstrap": "~3.3.5"
+    "angular-route": "~1.4.6"
   }
 }

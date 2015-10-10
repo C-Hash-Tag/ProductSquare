@@ -23,8 +23,8 @@
     "bower": "^1.5.3",
     "express": "^4.13.3",
     "firebase": "^2.2.9",
-    "firebase-token-generator": "^2.0.0",
-    "jasmine": "^2.3.2",
+    "karma-mocha": "^0.2.0",
+    "mocha": "^2.3.3",
     "sendgrid": "^1.9.2"
   },
   "devDependencies": {

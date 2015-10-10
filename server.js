@@ -25,29 +25,6 @@ var sendgrid = require('sendgrid')(SENDGRID_API_KEY);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
-var dummyData = {
-  name: "Building a coffee app",
-  video: {"0":"youtubeURL", "1":"youtubeURL"},
-  images: {'0':"imgeURL"},
-  description: "this app help makes coffee",
-  githubRepo: "whatever@url.com",
-  users: {'0':"userId", '1':"userId"},
-  nonusers: {'0':"Dylan", '1':"Aaron", '2':"Ting"},
-  likes: 3,
-  dateCreated: "10/25/2015"
-}
-
-var dummyData1 = {
-  name: "Idea to make coffee app",
-  description: "making an app about coffee",
-  likes: 4,
-  name: "Aaron",
-  dateCreated: "10/25/2015"
-}
-
-
-
 app.post('/email', function(req, resp) {
   sendgrid.send({
     to: req.body.email,
