@@ -121,6 +121,44 @@
         </div> <!-- project card ends -->
       </div>
 
+      <div class="projectCardsContainer">
+        <!-- project card -->
+        <div ng-show="selectedSort === 'mostLiked'" ng-repeat="project in newProjects | orderObjectBy:'count':true">
+          <div  class="col-sm-4 portfolio-col">
+            <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.userID, project.projID, project.userRealName)" class="portfolio-item" data-toggle="modal">
+              <div class="portfolio-link">
+                <div class="caption">
+                  <div class="caption-content">
+                    <h3>{{project.projName}}</h3> <hr>
+                    <p> {{project.description}}</p>
+                  </div>
+                </div>
+                <img src="{{project.projectImage}}" class="img-centered" alt="" style="zoom:200%;">
+              </div>
+            </a>
+          </div>
+        </div> <!-- project card ends -->
+      </div>
+
+      <div class="projectCardsContainer">
+        <!-- project card -->
+        <div ng-show="selectedSort === 'oldest'" ng-repeat="project in newProjects | orderObjectBy:'date':false">
+          <div  class="col-sm-4 portfolio-col">
+            <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.userID, project.projID, project.userRealName)" class="portfolio-item" data-toggle="modal">
+              <div class="portfolio-link">
+                <div class="caption">
+                  <div class="caption-content">
+                    <h3>{{project.projName}}</h3> <hr>
+                    <p> {{project.description}}</p>
+                  </div>
+                </div>
+                <img src="{{project.projectImage}}" class="img-centered" alt="" style="zoom:200%;">
+              </div>
+            </a>
+          </div>
+        </div> <!-- project card ends -->
+      </div>
+
 
       <!-- Start Specific Portfolio View - Standard Portfolio Modal - Images and Text -->
       <div id="project-info" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -140,6 +178,7 @@
                           <h2 class="page-header" ng-hide="edible">
                             {{specificProjName}}
                             <button ng-click="editModal()" ng-show="editProj(specificUserID) && checked" class="pull-right btn btn-success" style="position: relative; top: 8px">Edit</button>
+                            <button ng-click="projectLike(specificProjID)" type="button" class="btn btn-default btn-md">Upvote Project</button>
                           </h2>
                       </div>
                   </div>

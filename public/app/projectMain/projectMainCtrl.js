@@ -45,6 +45,19 @@ angular.module('myApp.projectMain', [])
     return userLink;
   }
 
+   $scope.projectLike = function(projectID){
+    console.log("in project like", projectID);
+    //check if user already liked idea
+
+    //update css of the like button
+    //update the database
+    data.updateProjectLike($scope.loggedInUserID, projectID, function(usersWhoLikeItCount){
+      console.log("HERRRRRE", usersWhoLikeItCount);
+    });
+      //TODO: if username liked it before, remove her; if username hasn't, add her
+      //add/ remove idea in user's liked ideas
+  }
+
   $scope.editProj = function(userID) {
     console.log("userID", userID);
     if ($scope.loggedInUserID === userID) {

@@ -21,7 +21,7 @@ angular.module('myApp.data', [])
 
     // Collect user data from sign up and store it in Firebase
     factory.createUser = function(email, password, userId, realName, userType, cb){
-      // Store the user data in Firebase    
+      // Store the user data in Firebase
       var profileImage = (userType === "organization" ? "https://www.softaculous.com/website/images/customlogo.gif" : '/img/default-user.png');
       var cleanUrl = realName.toLowerCase().replace(/[^0-9a-z-]/g,"") +"-"+ Date.now();
  
@@ -96,13 +96,24 @@ angular.module('myApp.data', [])
         date: currentDate(),
         userID: localStorage.userID,
         projectImage: projectImage,
-        userRealName: userRealName
+        userRealName: userRealName,
+        count: 0
 
       });
 
       // Add the project data to the user in Firebase
-      Ref.child('users').child(localStorage.userID).child('projects').child(projName).set({
-        projID: projID
+      Ref.child('users').child(localStorage.userID).child('projects').child(projID).set({
+
+        description: projDesc,
+        githubRepo: githubUrl,
+        projName: projName,
+        projUrl: projUrl,
+        projID: projID,
+        date: currentDate(),
+        userID: localStorage.userID,
+        projectImage: projectImage,
+        userRealName: userRealName,
+        count: 0
       });
     };
 
@@ -150,7 +161,7 @@ angular.module('myApp.data', [])
     };
 
     factory.updateLike = function(userID, ideaID){
-      
+
       //update ideas table to reflect current count
       var count;
       var counter = function(count){
@@ -192,6 +203,58 @@ angular.module('myApp.data', [])
             count = Object.keys(likedIdeas).length; //how many likes for a given idea
             counter(count);
             return likedIdeas;
+          });
+        }
+      });
+
+    }
+
+    factory.updateProjectLike = function(userID, projectID, cb){
+
+      //update projects table to reflect current count
+      var count;
+      var counter = function(count){
+        Ref.child("projects").child(projectID).child("count").transaction(function(currentCount){
+          if (currentCount === undefined) {
+            count = 0;
+          }
+          currentCount = count;
+          return currentCount;
+        });
+
+        Ref.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).once('value', function(project){
+          if(project.val()){
+            Ref.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).child("count").transaction(function(currentCount){
+              currentCount = count;
+              return currentCount;
+            });
+          }
+        });
+      }
+
+      //update project table to store users who like it
+      Ref.child("projects").child(projectID).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
+        if(usersWhoLikeIt === null){
+          usersWhoLikeIt = {};
+        }
+        usersWhoLikeIt[userID] = true;
+
+        count = Object.keys(usersWhoLikeIt).length; //how many likes for a given projects
+        counter(count);
+        return usersWhoLikeIt;
+      });
+
+      //update users table to store projects that users like
+      Ref.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).once('value', function(project){
+        if(project.val()){
+          Ref.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).child("usersWhoLikeIt").transaction(function(likedIdeas){
+            if(likedProjects === null){
+              likedProjects = {};
+            }
+            likedProjects[userID] = true;
+            count = Object.keys(likedProjects).length; //how many likes for a given projects
+            counter(count);
+            return likedProjects;
           });
         }
       });

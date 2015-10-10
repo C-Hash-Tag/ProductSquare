@@ -35,7 +35,7 @@ angular.module('myApp.ideaMain', [])
 
   // $scope.idea.liked = false;
 
-  $scope.like = function(ideaID){
+  $scope.ideaLike = function(ideaID){
     //check if user already liked idea
 
     //update css of the like button
@@ -73,7 +73,7 @@ angular.module('myApp.ideaMain', [])
   $scope.editModal = function() {
     console.log("in the edit function", $scope.edible)
     // if ($scope.editProj(userID)) {
-    $scope.checked = false; 
+    $scope.checked = false;
     $scope.edible = true;
   }
 
@@ -109,7 +109,7 @@ angular.module('myApp.ideaMain', [])
   $scope.selectedSort = "mostLiked";
 
   $scope.setSort = function(type){
-   console.log($scope.selectedSort, "selectedSort") 
+   console.log($scope.selectedSort, "selectedSort")
    $scope.selectedSort = type;
    console.log($scope.selectedSort, "selectedSort", " and type", type);
   }
