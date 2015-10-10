@@ -129,7 +129,7 @@
 
 
 <!-- Profile edit Modal -->
-<div ng-controller="ProfileEditCtrl" id="profile-edit-modal" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div ng-controller="UserProfileEditCtrl" id="profile-edit-modal" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-content">
     <div class="close-modal" data-dismiss="modal">
       <div class="lr">
@@ -141,8 +141,8 @@
     <div class="row first">
       <h2 class="page-header">Edit Profile</h2>
     </div>
-      <div class="row">
-        <form ng-submit="updateUserProfile(realName, githubLink, linkedinLink, blogLink, location, school)">
+      <div class="row"> 
+        <form ng-submit="updateUserProfile(realName, githubLink, linkedinLink, blogLink, location, school, cleanUrl)">
           <ul class="list-unstyled project-details">
             <li>
               <div class="user-profile-label">Name:</div>
@@ -169,6 +169,12 @@
               <div class="user-profile-label">School:</div>
               <input ng-model="school" class="user-profile-update-input" placeholder="The development school you attended" value="{{school}}" />
             </li>
+            <li>
+              <div class="user-profile-label">Profile Url:</div>
+              <input ng-model="cleanUrl" class="user-profile-update-input" value="{{cleanUrl}}" />
+              http://productsquare.com/user/{{cleanUrl}}/
+            </li>
+
             <li class="clearfix">
               <div class="user-profile-label">Profile Image:</div>
               <img id="preview" src="{{tempProfileImage}}" style="float:left; margin-right:20px" width="150px"/>

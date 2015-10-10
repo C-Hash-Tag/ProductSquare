@@ -115,8 +115,7 @@ angular.module('myApp.OrgMain', [])
 
 }])
 
-.controller('ProfileEditCtrl', ['$scope', 'data', 'imageUpload', function($scope, data, imageUpload){
-  //wrong scope. belongs on the profileEdit scope.
+.controller('OrgProfileEditCtrl', ['$scope', 'data', 'imageUpload', function($scope, data, imageUpload){
   $scope.updateUserProfileImage = function(){
     console.log("event", event);
     imageUpload.userImage($scope.loggedInUserID, event, function(url){
@@ -125,7 +124,6 @@ angular.module('myApp.OrgMain', [])
     });
   };
 
-  //wrong scope. This needs to emit an event to the parent scope.
   $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school) {
     console.log("user profile updated!");
     var newSettings = {

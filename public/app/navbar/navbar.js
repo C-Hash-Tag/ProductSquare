@@ -143,7 +143,7 @@ angular.module('myApp.navBar', [])
       school: school || "",
       profileImage: $scope.loggedInUserProfileImage //loggedInUserProfileImage is set in the app.js when user logs in. Can be reset here if new pic is selected.
     };
-    data.updateUser($scope.loggedInUserID, newSettings);
+    data.updateLoggedInUser($scope.loggedInUserID, newSettings, $scope.loggedInUserCleanUrl);
     $('#devProfileCompleteModal').modal('hide'); //hide the signup modal.
   };
 

@@ -23,7 +23,10 @@ angular.module('myApp.data', [])
     factory.createUser = function(email, password, userId, realName, userType, cb){
       // Store the user data in Firebase    
       var profileImage = (userType === "organization" ? "https://www.softaculous.com/website/images/customlogo.gif" : '/img/default-user.png');
+      var cleanUrl = realName.toLowerCase().replace(/[^0-9a-z-]/g,"") +"-"+ Date.now();
+ 
       var user = {
+        cleanUrl: cleanUrl,
         realName: realName,
         email: email,
         userId: userId,
@@ -37,14 +40,10 @@ angular.module('myApp.data', [])
       cb();
     };
 
-    factory.updateLoggedInUser = function(userId, newSettings) { //takes an object of settings and updates the users profile with those settings.
+    factory.updateLoggedInUser = function(userId, newSettings, cleanUrl) { //takes an object of settings and updates the users profile with those settings.
       Ref.child("users").child(userId).update(newSettings);
       $rootScope.$broadcast('loggedInUserUpdated', userId);
-    }
-
-    factory.updateUser = function(userID, newSettings) { //takes an object of settings and updates the users profile with those settings.
-      Ref.child("users").child(userID).update(newSettings);
-      $location.path('/user/'+userID+"/");
+      $location.path('/user/'+cleanUrl+"/");
     }
 
     factory.updateOrg = function(userId, orgSettings){
@@ -111,6 +110,16 @@ angular.module('myApp.data', [])
         console.log("userdata fetched from getUser!", data.val());
         // $rootScope.$broadcast('gotUser', data.val());  //alert all controllers that the loggedin user has been modified.
         cb(data.val());
+      });
+    };
+
+    factory.getUserByCleanUrl = function(cleanUrl, cb){
+      Ref.child("users").orderByChild('cleanUrl').equalTo(cleanUrl).once("value", function(data){
+        var fetchedData = data.val();
+        for (var first in fetchedData){
+          console.log("data by CleanURL", fetchedData[first])
+          cb(fetchedData[first]);
+        }
       });
     };
 

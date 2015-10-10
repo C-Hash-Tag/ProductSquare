@@ -17,25 +17,36 @@ angular.module('myApp', [
   $scope.target = "#signUpModal"; //if an organization has not logged in or not signed in, the default is that they will be sent to signUp modal when they want to submit a proposal
   $scope.projTarget = "#signUpModal";
 
+  var updateLoggedInScopes = function(user){
+    $scope.loggedIn = true;
+    $scope.target = "#submitModalIdea";
+    $scope.projTarget = "#submitModalProject";
+    $scope.loggedInUserID = user.userId;
+    $scope.loggedInUserRealName = user.realName;
+    $scope.loggedInUserProfileImage = user.profileImage;
+    $scope.loggedInUserCleanUrl = user.cleanUrl; //the url used to create the users profile.
+    $scope.userType = user.userType; // organization or student
+    if(user.userType === "organization"){
+      $scope.isOrg = true;
+    }
+    if(user.userType === "student"){
+      $scope.isStudent = true;
+    }
+    $scope.$apply();
+  };
+
   //if the localStorage userID is set, retrieve that user using the data.getUser method
   if (localStorage.userID){
-    data.getUser(localStorage.userID, function(user){
-      if(user.userType === "organization"){
-        $scope.isOrg = true;
-      }
-      if(user.userType === "student"){
-        $scope.isStudent = true;
-      }
-      $scope.loggedIn = true;
-      $scope.userType = user.userType;  // organization or student
-      console.log("User Type is:", $scope.userType);
-      $scope.target = "#submitModalIdea";
-      $scope.projTarget = "#submitModalProject";
-      $scope.loggedInUserID = user.userId;
-      $scope.loggedInUserRealName = user.realName;
-      $scope.loggedInUserProfileImage = user.profileImage;
-      $scope.loggedInUserEmail = user.email;
+    //get the logged in users ideas.
+    data.getLoggedInUsersIdeas(localStorage.userID, function(ideasSubmitted){
+      $scope.loggedInUserIdeas = ideasSubmitted
       $scope.$apply();
+    });
+
+    //get the signed in users data.
+    data.getUser(localStorage.userID, function(user){
+      console.log("userLoggedIn", user);
+      updateLoggedInScopes(user);
       $scope.$broadcast("userFoundInLocal");
     });
   }
@@ -50,29 +61,10 @@ angular.module('myApp', [
     $scope.$apply();
   });
 
-  //this gets the ideas that the current user submitted
-  data.getLoggedInUsersIdeas(localStorage.userID, function(ideasSubmitted){
-    $scope.loggedInUserIdeas = ideasSubmitted
-    $scope.$apply();
-  })
-
   //when the user is retrieved, set these top level scope vars to user properties. This is also triggered by login.
   $scope.$on('userLoggedIn', function(event, user){
-    if(user.userType === "organization"){
-      $scope.isOrg = true;
-    }
-    if(user.userType === "student"){
-      $scope.isStudent = true;
-    }
-    $scope.loggedIn = true;
-    $scope.userType = user.userType;  // organization or student
-    $scope.target = "#submitModalIdea";
-    $scope.projTarget = "#submitModalProject";
-    $scope.loggedInUserID = user.userId;
-    $scope.loggedInUserRealName = user.realName;
-    $scope.loggedInUserProfileImage = user.profileImage;
-    $scope.loggedInUserEmail = user.email;
-    $scope.$apply();
+    console.log("userLoggedIn", user);
+    updateLoggedInScopes(user);
     $scope.$broadcast("userNowLoggedIn");
   });
 
@@ -82,6 +74,7 @@ angular.module('myApp', [
     $scope.loggedInUserID = "";
     $scope.loggedInUserRealName = "";
     $scope.loggedInUserProfileImage = "";
+    $scope.loggedInUserCleanUrl = "";
     $scope.target = "#signUpModal";
     $scope.projTarget = "#signUpModal";
     $scope.isOrg = false;
@@ -91,26 +84,21 @@ angular.module('myApp', [
 
   $scope.$on('loggedInUserUpdated', function(event, userId) {
     data.getUser(userId, function(user){
-      console.log("userLoggedIn", user);
-      $scope.loggedIn = true;
-      $scope.loggedInUserID = user.userId;
-      $scope.loggedInUserRealName = user.realName;
-      $scope.loggedInUserProfileImage = user.profileImage;
-      $scope.$apply();
+      console.log("logged in User updated!", user);
+      updateLoggedInScopes(user);
     });
   });
 
-  $scope.$on('loggedInOrgUpdated', function(event, userId){
-    data.getUser(userId, function(user){
-      $scope.loggedIn = true;
-      $scope.loggedInUserID = user.userId;
-      $scope.loggedInUserRealName = user.realName;
-      $scope.loggedInUserProfileImage = user.profileImage;
-      $scope.$apply();
-    });
-  });
+  // $scope.$on('loggedInOrgUpdated', function(event, userId){
+  //   data.getUser(userId, function(user){
+  //     $scope.loggedIn = true;
+  //     $scope.loggedInUserID = user.userId;
+  //     $scope.loggedInUserRealName = user.realName;
+  //     $scope.loggedInUserProfileImage = user.profileImage;
+  //     $scope.$apply();
+  //   });
+  // });
 
-  
 }])
 
 .filter('orderObjectBy', function() {
@@ -142,7 +130,7 @@ angular.module('myApp', [
       css: './app/ideaMain/ideaMain.css',
       activetab:'ideas'
     })
-    .when('/user/:userID/', {
+    .when('/user/:cleanUrl/', {
       templateUrl: './app/userMain/userMain.html',
       controller: 'UserMainCtrl',
       controllerAs: 'vm',
@@ -160,5 +148,4 @@ angular.module('myApp', [
       controllerAs: 'vm',
       activetab: 'projects'
     });
-
 }]);

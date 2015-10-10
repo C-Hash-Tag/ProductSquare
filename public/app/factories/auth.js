@@ -10,7 +10,7 @@ angular.module('myApp.auth', [])
     }, function(error, authData) {
       cb(error, authData, email);
     });
-   };
+  };
 
   factory.logout = function(){
     delete localStorage.userID;
