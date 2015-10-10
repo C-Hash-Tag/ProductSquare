@@ -58,8 +58,6 @@ angular.module('myApp.data', [])
 
     // Collect idea data from createIdea and store it in Firebase
     factory.createIdea = function(ideaID, ideaName, desc, userRealName){
-      // Store the idea data in Firebase
-      // var image = (arguments[3] ? arguments[3] : "../background/wood" + getRandomInt(1,3)+".jpg");
       Ref.child("ideas").child(ideaID).set({
         ideaName: ideaName,
         description: desc,
@@ -73,8 +71,16 @@ angular.module('myApp.data', [])
       });
 
       // Add the idea data to the user in Firebase
-      Ref.child('users').child(localStorage.userID).child('ideas').child(ideaName).set({
-        idea: desc
+      Ref.child('users').child(localStorage.userID).child('ideasThatIsubmitted').child(ideaID).set({
+        ideaName: ideaName,
+        description: desc,
+        date: currentDate(),
+        userID: localStorage.userID,
+        usersWhoLikeIt: {},
+        backgroundPath: "",
+        userRealName: userRealName,
+        ideaID: ideaID,
+        count: 0
       });
     };
 
@@ -115,6 +121,12 @@ angular.module('myApp.data', [])
       });
     };
 
+    factory.getLoggedInUsersIdeas = function(userID, cb){
+      Ref.child("users").child(userID).child('ideasThatIsubmitted').on("value", function(data){
+        cb(data.val());
+      });
+    }
+
     // Get ideas data from Firebase
     factory.getIdeas = function(cb){
       Ref.child("ideas").on("value", function(data){
@@ -130,7 +142,16 @@ angular.module('myApp.data', [])
         Ref.child("ideas").child(ideaID).child("count").transaction(function(currentCount){
           currentCount = count;
           return currentCount;
-        })
+        });
+
+        Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).once('value', function(idea){
+          if(idea.val()){
+            Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child("count").transaction(function(currentCount){
+              currentCount = count;
+              return currentCount;
+            });
+          }
+        });
       }
 
       //update ideas table to store users who like it
@@ -143,20 +164,22 @@ angular.module('myApp.data', [])
         count = Object.keys(usersWhoLikeIt).length; //how many likes for a given idea
         counter(count);
         return usersWhoLikeIt;
-      })
-
-
-
-
+      });
 
       //update users table to store ideas that users like
-      Ref.child("users").child(username).child("likedIdeas").transaction(function(likedIdeas){
-        if(likedIdeas === null){
-          likedIdeas = {};
+      Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).once('value', function(idea){
+        if(idea.val()){
+          Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child("usersWhoLikeIt").transaction(function(likedIdeas){
+            if(likedIdeas === null){
+              likedIdeas = {};
+            }
+            likedIdeas[userID] = true;
+            count = Object.keys(likedIdeas).length; //how many likes for a given idea
+            counter(count);
+            return likedIdeas;
+          });
         }
-        likedIdeas[ideaName] = true;
-        return likedIdeas;
-      })
+      });
 
     }
 
