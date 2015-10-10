@@ -107,7 +107,7 @@
         <div ng-show="selectedSort === 'recent'" ng-repeat="project in newProjects | orderObjectBy:'date':true">
           <div  class="col-sm-4 portfolio-col">
             <span class="proj-header">{{project.projName}}</span>
-            <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.userID, project.projID, project.userRealName)" class="portfolio-item" data-toggle="modal">
+            <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.userID, project.projID, project.userRealName, project.userCleanUrl)" class="portfolio-item" data-toggle="modal">
               <div class="portfolio-link">
                 <div class="caption">
                   <div class="caption-content">
@@ -246,7 +246,7 @@
                                   <strong>Project Url: </strong>{{specificProjUrl}}
                               </li>
                               <li>
-                                  <strong >Team Members: </strong><a ng-model="specificTest" href="{{specificTest}}"> {{specificUserRealName}} </a>
+                                  <strong >Team Members: </strong><a ng-model="specificTest" href="{{specificUserCleanUrl}}"> {{specificUserRealName}} </a>
                               </li>
                           </ul>
                       </div>
