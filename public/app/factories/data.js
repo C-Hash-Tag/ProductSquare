@@ -24,7 +24,7 @@ angular.module('myApp.data', [])
       // Store the user data in Firebase
       var profileImage = (userType === "organization" ? "https://www.softaculous.com/website/images/customlogo.gif" : '/img/default-user.png');
       var cleanUrl = realName.toLowerCase().replace(/[^0-9a-z-]/g,"") +"-"+ Date.now();
- 
+
       var user = {
         cleanUrl: cleanUrl,
         realName: realName,
