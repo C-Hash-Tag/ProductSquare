@@ -167,7 +167,7 @@ hr {
   margin-bottom: 10px;
 }
 
-#user-page-real-name {
+#user-page-real-name, #user-page-org-name {
   font-size: 26px;
   text-overflow: ellipsis;
   font-weight: bold;
@@ -221,9 +221,13 @@ hr {
   margin-top: 5px;
 }
 
-#user-page-blog-logo {
+#user-page-logo, #user-page-blog-logo, #user-page-org-text {
   float:left;
   margin-right: 10px;
+}
+#user-page-map {
+  float:left;
+  margin-right: 14px;
 }
 
 #user-page-location {
@@ -233,6 +237,14 @@ hr {
 #user-page-location-name {
   margin-top: 1px;
 }
+
+#user-page-detail {
+  clear: both;
+  float: left;
+  margin-right: 14px;
+  margin-left: 6px;
+}
+
 
 #user-page-location-logo {
   float: left;
@@ -262,7 +274,8 @@ hr {
 }
 
 #user-page-contact {
-  margin-top: 30px;
+  clear: both;
+  padding-top: 20px;
 }
 
 #user-page-contact button {
