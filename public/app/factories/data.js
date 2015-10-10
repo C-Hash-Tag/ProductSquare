@@ -113,12 +113,17 @@ angular.module('myApp.data', [])
       });
     };
 
-    factory.getUserByCleanUrl = function(cleanUrl, cb){
+    factory.getUserByCleanUrl = function(cleanUrl, cb, errorCb){
       Ref.child("users").orderByChild('cleanUrl').equalTo(cleanUrl).once("value", function(data){
         var fetchedData = data.val();
-        for (var first in fetchedData){
-          console.log("data by CleanURL", fetchedData[first])
-          cb(fetchedData[first]);
+        if (fetchedData === null){
+          errorCb();
+        }
+        else {
+          for (var first in fetchedData){
+            console.log("data by CleanURL", fetchedData[first])
+            cb(fetchedData[first]);
+          }
         }
       });
     };

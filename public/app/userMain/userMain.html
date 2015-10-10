@@ -156,7 +156,6 @@
               <div class="user-profile-label">LinkedIn URL:</div>
               <input ng-model="linkedinLink" class="user-profile-update-input" placeholder="Enter your LinkedIn profile URL here" value="{{linkedinLink}}" />
             </li>
-
             <li>
               <div class="user-profile-label">Personal Blog URL:</div>
               <input ng-model="blogLink" class="user-profile-update-input" placeholder="Enter your personal blog URL here" value="{{blogLink}}" />
@@ -174,13 +173,13 @@
               <input ng-model="cleanUrl" class="user-profile-update-input" value="{{cleanUrl}}" />
               http://productsquare.com/user/{{cleanUrl}}/
             </li>
-
             <li class="clearfix">
               <div class="user-profile-label">Profile Image:</div>
               <img id="preview" src="{{tempProfileImage}}" style="float:left; margin-right:20px" width="150px"/>
               <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left;" />
             </li>
           </ul>
+          <div class="error" ng-show="errorFound">{{error}}</div> 
           <input type="submit" value="SAVE PROFILE" class="btn btn-danger btn-rounded btn-outline pull-right"/>
         </form>
       </div>

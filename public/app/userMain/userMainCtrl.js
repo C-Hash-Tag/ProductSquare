@@ -123,8 +123,8 @@ angular.module('myApp.UserMain', [])
 
   $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school, cleanUrl) {
     
-    //need to put in some form validation for the clean URL to check for dups and blanks.
-    console.log("user profile updated!");
+    var urlCleaner = cleanUrl.replace(/[^0-9a-z-]/g,""); //apply the urlCleaning function to the clean url.
+    
     var newSettings = {
       realName: realName || "",
       github: github || "",
@@ -132,13 +132,39 @@ angular.module('myApp.UserMain', [])
       blog: blog || "",
       location: location || "",
       school: school || "",
-      cleanUrl: cleanUrl,
+      cleanUrl: urlCleaner,
       profileImage: $scope.tempProfileImage
     };
 
-    console.log("newSettings", newSettings);
-    data.updateLoggedInUser($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
-    $('#profile-edit-modal').modal('hide');
+    //need to put in some form validation for the clean URL to check for dups and blanks.
+    console.log("in user profile update");
+    if (cleanUrl === "" || cleanUrl === undefined){
+      console.log("clean URl is empty");
+      $scope.error = "Please provide a valid profile URL.";
+    }
+    else {
+      console.log("running the ellse");
+      data.getUserByCleanUrl(cleanUrl, function(user){
+        
+        //if a user is found, but the cleanUrl is the same as the loggedInCleanUrl, then that is fine.
+        if (user.cleanUrl === $scope.loggedInUserCleanUrl){
+          data.updateLoggedInUser($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
+          $('#profile-edit-modal').modal('hide');
+        }
+        else { //if this clean url is found, and not the current cleanUrl, then we should put out an error messagee!
+          $scope.errorFound = true;
+          $scope.error = "This profile url is already taken.";
+          $scope.$apply();
+          console.log("errorrrr, this url is in use!!")
+        }
+
+      }, function(error){ //if there is an error, then no user with this url was found, and it can be set for this user.
+        data.updateLoggedInUser($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
+        $('#profile-edit-modal').modal('hide');
+      });
+    }
+    // console.log("user profile updated!");
+    
   }
 
 }]);
