@@ -107,7 +107,7 @@ angular.module('myApp.navBar', [])
       orgLoc: orgLoc || "",
       profileImage: $scope.loggedInUserProfileImage
     }
-    data.updateOrg($scope.loggedInUserID, orgSettings);
+    data.updateOrg($scope.loggedInUserID, orgSettings, $scope.loggedInUserCleanUrl);
     $('#finishOrgProfileModal').modal('hide'); //hide the signup modal.
   }
 }])
