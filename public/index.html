@@ -44,7 +44,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li ng-class="{active: $route.current.activetab == 'projects'}">
-                <a href="#/projects">Projects</a>
+                <a href="#/projects">Student Projects</a>
               </li>
               <li ng-class="{active: $route.current.activetab == 'ideas'}">
                 <a href="#/ideas">Proposal Board</a>
@@ -64,7 +64,7 @@
                 <a href="/#/organization/{{loggedInUserID}}/" style="cursor:pointer">{{loggedInUserRealName}}</a>
               </li>
               <li ng-show="loggedIn">
-                <a ng-click="logout()" style="cursor:pointer;">Logout</a>
+                <a href="#/" ng-click="logout()" style="cursor:pointer;">Logout</a>
               </li>
             </ul>
           </div><!-- /.navbar-collapse -->
@@ -136,7 +136,7 @@
           </div>
         </div>
 
-        <!-- Finish Profile Modal -->
+        <!-- Finish User Profile Modal -->
         <div ng-controller="DevProfileCompleteCtrl" id="devProfileCompleteModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">

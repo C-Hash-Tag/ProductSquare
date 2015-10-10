@@ -8,66 +8,49 @@
     <div id="user-page-profile-pic" width="100%">
       <img src="{{profileImage}}" />
     </div>
-    <div id="user-page-real-name">{{realName}}</div>
-    <div id="user-details">
-      <div id="user-page-github" class="clearfix" ng-show="stringFound(githubLink)">
-        <div id="user-page-github-logo">
-          <img src="/img/Github-Mark-64px.png" />
-        </div>
-        <div id="user-page-github-link" >
-          <a href="{{githubLink}}">{{githubText}}</a>
-        </div>
-      </div>
-      <div id="user-page-linkedin" class="clearfix" ng-show="stringFound(linkedinLink)">
-        <div id="user-page-linkedin-logo">
-          <img src="/img/In-2C-81px-R.png" />
-        </div>
-        <div id="user-page-linkedin-link">
-          <a href="{{linkedinLink}}">{{linkedinText}}</a>
-        </div>
-      </div>
-      <div id="user-page-blog" ng-show="stringFound(blogLink)">
-        <div id="user-page-blog-logo">
-          <img src="/img/blog_icon.png" width="18px" />
-        </div>
-        <div id="user-page-blog-link">
-          <a href="{{blogLink}}">{{blogText}}</a>
-        </div>
-      </div>
 
-      <div id="user-page-location" ng-show="stringFound(location)">
-        <div id="user-page-location-logo">
+    <div id="user-page-org-name">{{orgName}}</div>
+    <div id="user-details">
+      <div id="user-page-detail" ng-show="stringFound(orgDesc)">
+        <div id="user-page-logo">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div id="user-page-org-text">
+          {{orgDesc}}
+        </div>
+      </div>
+      <div id="user-page-detail" ng-show="stringFound(orgLink)">
+        <div id="user-page-logo">
+          <span class="fa fa-link">
+        </div>
+        <div id="user-page-org-text">
+          <a href="{{orgLink}}">{{orgLink}}</a>
+        </div>
+      </div>
+      <div id="user-page-detail" ng-show="stringFound(realName)">
+        <div id="user-page-logo">
+          <i class="fa fa-user"></i>
+        </div>
+        <div id="user-page-org-text">
+          {{realName}} ({{orgRepTitle}})
+        </div>
+      </div>
+      <div id="user-page-detail" ng-show="stringFound(location)">
+        <div id="user-page-map">
           <i class="fa fa-map-marker"></i>
         </div>
-        <div id="user-page-location-name">
+        <div id="user-page-org-text">
           {{location}}
         </div>
       </div>
-
-      <div id="user-page-organization" ng-show="stringFound(organization)">
-        <div id="user-page-organization-logo">
-          <img src="/img/corporation_logo.png" width="20px" />
-        </div>
-        <div id="user-page-organization-name">
-          {{organization}}
-        </div>
-      </div>
-
-      <div id="user-page-school" ng-show="stringFound(school)">
-        <div id="user-page-school-logo">
-          <i class="fa fa-graduation-cap"></i>
-        </div>
-        <div id="user-page-school-name">
-          {{school}}
-        </div>
-      </div>
-
     </div>
+
     <div id="user-page-contact">
       <button type="button" class="btn btn-success btn-rounded btn-outline" data-toggle="modal" data-target="#contactModal">
         Contact {{name}}
       </button>
     </div>
+
   </div>
 
   <div class="cardContainerContainer" style="text-align: center; display: block">
@@ -76,6 +59,7 @@
         <p class="name" style="color: white"> {{ idea.ideaName }} </p>
         <hr>
         <p class="description" style="color: white"> {{idea.description}} </p>
+
       </div>
       <div class="glyphicon-container">
         <!-- <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> -->

@@ -43,16 +43,17 @@ angular.module('myApp.OrgMain', [])
   }
 
   userPageLoadScopes = function(user){
-    $scope.realName = user.realName;
+    $scope.realName = user.realName; // Org Rep Name
+    $scope.orgRepTitle = user.orgRepTitle; // Org Rep Title
+    $scope.orgName = user.orgName;
+    $scope.orgNameText = truncateText(user.orgName);
+    $scope.email = user.email;
+    $scope.orgDesc = user.orgDesc;
     $scope.profileImage = user.profileImage;
     $scope.tempProfileImage = user.profileImage; //set the temp profile image to the userimage. This is used for the user edit modal.
-    $scope.githubLink = user.github;
-    $scope.githubText = truncateText(user.github);
-    $scope.blogLink = user.blog;
-    $scope.blogText = truncateText(user.blog);
-    $scope.linkedinLink = user.linkedin;
-    $scope.linkedinText = truncateText(user.linkedin);
-    $scope.location = truncateText(user.location);
+    $scope.orgLink = user.orgLink;
+    $scope.orgLinkText = truncateText(user.orgLink);
+    $scope.location = truncateText(user.orgLoc);
     $scope.school = truncateText(user.school);
     $scope.$apply();
   };
