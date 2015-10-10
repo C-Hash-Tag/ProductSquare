@@ -38,6 +38,26 @@ angular.module('myApp.projectMain', [])
   //   $scope.projDisplay = newProjects[projName];
   // }
 
+  $scope.userProfLink = function(userId) {
+    var userLink = "http://127.0.0.1:3000/#/user/" + $scope.loggedInUserID;
+    console.log("in user prof link", userLink);
+    //concat url and loggedInUserID
+    return userLink;
+  }
+
+   $scope.projectLike = function(projectID){
+    console.log("in project like", projectID);
+    //check if user already liked idea
+
+    //update css of the like button
+    //update the database
+    data.updateProjectLike($scope.loggedInUserID, projectID, function(usersWhoLikeItCount){
+      console.log("HERRRRRE", usersWhoLikeItCount);
+    });
+      //TODO: if username liked it before, remove her; if username hasn't, add her
+      //add/ remove idea in user's liked ideas
+  }
+
   $scope.editProj = function(userID) {
     console.log("userID", userID);
     if ($scope.loggedInUserID === userID) {
@@ -107,7 +127,7 @@ angular.module('myApp.projectMain', [])
   // return vm;
 
   //INFO MODAL LOADING
-  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID, userRealName){
+  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID, userRealName, test){
     $scope.specificProjName = projName;
     $scope.specificDescription = description;
     $scope.specificProjUrl = projUrl;
@@ -117,7 +137,18 @@ angular.module('myApp.projectMain', [])
     $scope.specificUserID = userID;
     $scope.specificProjID  = projID;
     $scope.specificUserRealName = userRealName;
+    $scope.specificTest = "https://www.google.com"
   }
+
+    //SORTING FEATURE
+  $scope.selectedSort = "recent";
+
+  $scope.setSort = function(type){
+   console.log($scope.selectedSort, "selectedSort")
+   $scope.selectedSort = type;
+   console.log($scope.selectedSort, "selectedSort", " and type", type);
+  }
+
 
 }])
 
