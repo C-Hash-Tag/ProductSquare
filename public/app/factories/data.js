@@ -46,9 +46,10 @@ angular.module('myApp.data', [])
       $location.path('/user/'+cleanUrl+"/");
     }
 
-    factory.updateOrg = function(userId, orgSettings){
+    factory.updateOrg = function(userId, orgSettings, cleanUrl){
       Ref.child("users").child(userId).update(orgSettings);
       $rootScope.$broadcast('loggedInOrgUpdated', userId);
+      $location.path('/organization/'+cleanUrl+"/");
     }
 
     function getRandomInt(min, max) {

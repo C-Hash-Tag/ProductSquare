@@ -55,11 +55,15 @@ angular.module('myApp.OrgMain', [])
     $scope.orgLinkText = truncateText(user.orgLink);
     $scope.location = truncateText(user.orgLoc);
     $scope.school = truncateText(user.school);
+    $scope.cleanUrl = user.cleanUrl;
+    if ($scope.loggedInUserCleanUrl === $scope.cleanUrl){
+      $scope.edible = true;
+    }
     $scope.$apply();
   };
 
   //fetch the userData based on the routeID to generate the
-  data.getUser($routeParams.userID, userPageLoadScopes);
+  data.getUserByCleanUrl($routeParams.cleanUrl, userPageLoadScopes);
 
   $scope.$on("loggedInUserUpdated", function(event, user){
     data.getUser(user, userPageLoadScopes);
@@ -74,7 +78,7 @@ angular.module('myApp.OrgMain', [])
   //when the userID is found in localStorage, set edible to true.
   //userFoundInLocal is broadcast from app.js
   $scope.$on('userFoundInLocal', function(event, data){
-    if ($scope.loggedInUserID === $routeParams.userID){
+    if ($scope.loggedInUserCleanUrl === $routeParams.cleanUrl){
       console.log("edible!");
       $scope.edible = true;
       $scope.$apply();
@@ -84,7 +88,7 @@ angular.module('myApp.OrgMain', [])
   //user logs in while on the user profile page. Set edible to true.
   //userNowLoggedIn is broadcast from app.js
   $scope.$on('userNowLoggedIn', function(event){
-    if ($scope.loggedInUserID === $routeParams.userID){
+    if ($scope.loggedInUserCleanUrl === $routeParams.cleanUrl){
       console.log("edible!");
       $scope.edible = true;
       $scope.$apply();
@@ -102,9 +106,9 @@ angular.module('myApp.OrgMain', [])
     $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
     console.log("in sendMail");
     $http.post('/email', {
-      email: "dylansamuelwright@gmail.com", //to be populated from the factory.
+      email: $scope.email, //to be populated from the factory.
       message: message,
-      username: "Dylan" //to be populated from the factory.
+      username: $scope.realName //to be populated from the factory.
     }).
     then(function(response) {
       console.log("email sent");
@@ -124,7 +128,10 @@ angular.module('myApp.OrgMain', [])
     });
   };
 
-  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school) {
+  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school, cleanUrl) {
+    
+    var urlCleaner = cleanUrl.replace(/[^0-9a-z-]/g,""); //apply the urlCleaning function to the clean url.
+
     console.log("user profile updated!");
     var newSettings = {
       realName: realName || "",
@@ -133,11 +140,34 @@ angular.module('myApp.OrgMain', [])
       blog: blog || "",
       location: location || "",
       school: school || "",
-      profileImage: $scope.tempProfileImage
+      profileImage: $scope.tempProfileImage,
+      cleanUrl: urlCleaner
     };
-    console.log($scope.loggedInUserID);
-    data.updateLoggedInUser($scope.loggedInUserID, newSettings);
-    $('#profile-edit-modal').modal('hide');
+    if (cleanUrl === "" || cleanUrl === undefined){
+      console.log("clean URl is empty");
+      $scope.error = "Please provide a valid profile URL.";
+    }
+    else {
+      console.log("running the ellse");
+      data.getUserByCleanUrl(cleanUrl, function(user){
+        
+        //if a user is found, but the cleanUrl is the same as the loggedInCleanUrl, then that is fine.
+        if (user.cleanUrl === $scope.loggedInUserCleanUrl){
+          data.updateOrg($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
+          $('#profile-edit-modal').modal('hide');
+        }
+        else { //if this clean url is found, and not the current cleanUrl, then we should put out an error messagee!
+          $scope.errorFound = true;
+          $scope.error = "This profile url is already taken.";
+          $scope.$apply();
+          console.log("errorrrr, this url is in use!!")
+        }
+
+      }, function(error){ //if there is an error, then no user with this url was found, and it can be set for this user.
+        data.updateOrg($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
+        $('#profile-edit-modal').modal('hide');
+      });
+    }
   }
 
 }]);

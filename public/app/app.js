@@ -89,15 +89,11 @@ angular.module('myApp', [
     });
   });
 
-  // $scope.$on('loggedInOrgUpdated', function(event, userId){
-  //   data.getUser(userId, function(user){
-  //     $scope.loggedIn = true;
-  //     $scope.loggedInUserID = user.userId;
-  //     $scope.loggedInUserRealName = user.realName;
-  //     $scope.loggedInUserProfileImage = user.profileImage;
-  //     $scope.$apply();
-  //   });
-  // });
+  $scope.$on('loggedInOrgUpdated', function(event, userId){
+    data.getUser(userId, function(user){
+      updateLoggedInScopes(user);
+    });
+  });
 
 }])
 
@@ -136,7 +132,7 @@ angular.module('myApp', [
       controllerAs: 'vm',
       activetab: 'myprofile'
     })
-    .when('/organization/:userID/', {
+    .when('/organization/:cleanUrl/', {
       templateUrl: './app/userMain/orgMain.html',
       controller: 'OrgMainCtrl',
       controllerAs: 'vm',

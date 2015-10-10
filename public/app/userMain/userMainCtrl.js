@@ -163,7 +163,6 @@ angular.module('myApp.UserMain', [])
         $('#profile-edit-modal').modal('hide');
       });
     }
-    // console.log("user profile updated!");
     
   }
 
