@@ -60,7 +60,6 @@ angular.module('myApp', [
   $scope.$on('userLoggedIn', function(event, user){
     if(user.userType === "organization"){
       $scope.isOrg = true;
-      $scope.loggedInUserIdeas = user.ideasThatIsubmitted;
     }
     if(user.userType === "student"){
       $scope.isStudent = true;
