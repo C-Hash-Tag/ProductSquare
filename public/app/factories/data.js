@@ -1,7 +1,6 @@
 angular.module('myApp.data', [])
 .factory('data', ['$rootScope', '$location', function($rootScope, $location){
     var factory = {};
-    factory.name = "aaron";
     var Ref = new Firebase('https://productsquare.firebaseio.com/');
 
     // Return today's date in mm/dd/yyyy format
