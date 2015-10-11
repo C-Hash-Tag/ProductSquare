@@ -45,7 +45,7 @@ angular.module('myApp.OrgMain', [])
   $scope.editModal = function() {
     console.log("in the edit function", $scope.edible)
     // if ($scope.editProj(userID)) {
-    $scope.checked = false; 
+    $scope.checked = false;
     $scope.proposalEdible = true;
   }
 
@@ -87,6 +87,7 @@ angular.module('myApp.OrgMain', [])
   }
 
   userPageLoadScopes = function(user){
+    console.log("iser in user page load scope", user);
     $scope.realName = user.realName; // Org Rep Name
     $scope.orgRepTitle = user.orgRepTitle; // Org Rep Title
     $scope.orgName = user.orgName;
@@ -100,10 +101,12 @@ angular.module('myApp.OrgMain', [])
     $scope.location = truncateText(user.orgLoc);
     $scope.school = truncateText(user.school);
     $scope.cleanUrl = user.cleanUrl;
+    $scope.ideasThatIsubmitted = user.ideasThatIsubmitted;
     if ($scope.loggedInUserCleanUrl === $scope.cleanUrl){
       $scope.edible = true;
     }
     $scope.$apply();
+    console.log("iser in user page load scope bottom", user);
   };
 
   //fetch the userData based on the routeID to generate the
@@ -173,7 +176,7 @@ angular.module('myApp.OrgMain', [])
   };
 
   $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school, cleanUrl) {
-    
+
     var urlCleaner = cleanUrl.replace(/[^0-9a-z-]/g,""); //apply the urlCleaning function to the clean url.
 
     console.log("user profile updated!");
@@ -194,7 +197,7 @@ angular.module('myApp.OrgMain', [])
     else {
       console.log("running the ellse");
       data.getUserByCleanUrl(cleanUrl, function(user){
-        
+
         //if a user is found, but the cleanUrl is the same as the loggedInCleanUrl, then that is fine.
         if (user.cleanUrl === $scope.loggedInUserCleanUrl){
           data.updateOrg($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
