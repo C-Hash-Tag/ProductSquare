@@ -160,8 +160,8 @@
               <input ng-model="realName" class="user-profile-update-input" placeholder="Enter your name here" value="{{realName}}" />
             </li>
             <li>
-              <div class="user-profile-label">Github Profile URL:</div>
-              <input ng-model="githubLink" class="user-profile-update-input" placeholder="Enter your github profile URL here" value="{{githubLink}}" />
+              <div class="user-profile-label">Organization Website:</div>
+              <input ng-model="orgLink" class="user-profile-update-input" placeholder="Enter your organization's website" value="{{orgLink}}" />
             </li>
             <li>
               <div class="user-profile-label">LinkedIn URL:</div>
@@ -191,6 +191,7 @@
               <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left;" />
             </li>
           </ul>
+          <div class="error" ng-show="errorFound">{{error}}</div>
           <input type="submit" value="SAVE PROFILE" class="btn btn-danger btn-rounded btn-outline pull-right"/>
         </form>
       </div>

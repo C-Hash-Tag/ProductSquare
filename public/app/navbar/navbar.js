@@ -107,8 +107,14 @@ angular.module('myApp.navBar', [])
       orgLoc: orgLoc || "",
       profileImage: $scope.loggedInUserProfileImage
     }
-    data.updateOrg($scope.loggedInUserID, orgSettings, $scope.loggedInUserCleanUrl);
-    $('#finishOrgProfileModal').modal('hide'); //hide the signup modal.
+    if (orgSettings.orgLink.indexOf("http://") === -1 && orgSettings.orgLink.indexOf("https://") === -1 && orgSettings.orgLink !== ""){
+      $scope.errorFound = true;
+      $scope.error = "Please provide a complete link to your organization - 'http://organziation.com'";
+    }
+    else {
+      data.updateOrg($scope.loggedInUserID, orgSettings, $scope.loggedInUserCleanUrl);
+      $('#finishOrgProfileModal').modal('hide'); //hide the signup modal.
+    }
   }
 }])
 
@@ -143,8 +149,28 @@ angular.module('myApp.navBar', [])
       school: school || "",
       profileImage: $scope.loggedInUserProfileImage //loggedInUserProfileImage is set in the app.js when user logs in. Can be reset here if new pic is selected.
     };
-    data.updateLoggedInUser($scope.loggedInUserID, newSettings, $scope.loggedInUserCleanUrl);
-    $('#devProfileCompleteModal').modal('hide'); //hide the signup modal.
+
+    if (newSettings.github.indexOf("http://") === -1 && newSettings.github.indexOf("https://") === -1 && newSettings.github !== ""){
+      console.log("github invalid");
+      $scope.errorFound = true;
+      $scope.error = "Please provide a complete link to your Github - 'https://github.com/user'";
+    }
+    else {
+      if (newSettings.linkedin.indexOf("http://") === -1 && newSettings.linkedin.indexOf("https://") === -1 && newSettings.linkedin !== ""){
+        $scope.errorFound = true;
+        $scope.error = "Please provide a complete link to your LinkedIn profile - https://linkedin.com/in/name"
+      }
+      else {
+        if (newSettings.blog.indexOf("http://") === -1 && newSettings.blog.indexOf("https://") === -1 && newSettings.blog !== ""){
+          $scope.errorFound = true;
+          $scope.error = "Please provide a complete link to your blog - 'http://blog.com'";
+        }
+        else {
+          data.updateLoggedInUser($scope.loggedInUserID, newSettings, $scope.loggedInUserCleanUrl);
+          $('#devProfileCompleteModal').modal('hide'); //hide the signup modal.
+        }
+      }
+    }
   };
 
 }]);

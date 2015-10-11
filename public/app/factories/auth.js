@@ -1,5 +1,5 @@
 angular.module('myApp.auth', [])
-.factory('auth', ['data', '$rootScope', function(data, $rootScope){
+.factory('auth', ['data', '$rootScope', '$location', function(data, $rootScope, $location){
   var factory = {};
   var Ref = new Firebase('https://productsquare.firebaseio.com/');
 
@@ -16,6 +16,7 @@ angular.module('myApp.auth', [])
     delete localStorage.userID;
     Ref.unauth();
     $rootScope.$broadcast('userLoggedOut');
+    $location.path('/');
   };
 
   factory.newUser = function(realName, email, password, cb){

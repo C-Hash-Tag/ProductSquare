@@ -138,30 +138,53 @@ angular.module('myApp.UserMain', [])
 
     //need to put in some form validation for the clean URL to check for dups and blanks.
     console.log("in user profile update");
-    if (cleanUrl === "" || cleanUrl === undefined){
-      console.log("clean URl is empty");
-      $scope.error = "Please provide a valid profile URL.";
+    
+    if (newSettings.github.indexOf("http://") === -1 && newSettings.github.indexOf("https://") === -1 && newSettings.github !== ""){
+      console.log("github invalid");
+      $scope.errorFound = true;
+      $scope.error = "Please provide a complete link to your Github - 'https://github.com/user'";
     }
     else {
-      console.log("running the ellse");
-      data.getUserByCleanUrl(cleanUrl, function(user){
-        
-        //if a user is found, but the cleanUrl is the same as the loggedInCleanUrl, then that is fine.
-        if (user.cleanUrl === $scope.loggedInUserCleanUrl){
-          data.updateLoggedInUser($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
-          $('#profile-edit-modal').modal('hide');
-        }
-        else { //if this clean url is found, and not the current cleanUrl, then we should put out an error messagee!
+      if (newSettings.linkedin.indexOf("http://") === -1 && newSettings.linkedin.indexOf("https://") === -1 && newSettings.linkedin !== ""){
+        $scope.errorFound = true;
+        $scope.error = "Please provide a complete link to your LinkedIn profile - https://linkedin.com/in/name"
+      }
+      else {
+        if (newSettings.blog.indexOf("http://") === -1 && newSettings.blog.indexOf("https://") === -1 && newSettings.blog !== ""){
           $scope.errorFound = true;
-          $scope.error = "This profile url is already taken.";
-          $scope.$apply();
-          console.log("errorrrr, this url is in use!!")
+          $scope.error = "Please provide a complete link to your blog - 'http://blog.com'";
         }
+        else {
 
-      }, function(error){ //if there is an error, then no user with this url was found, and it can be set for this user.
-        data.updateLoggedInUser($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
-        $('#profile-edit-modal').modal('hide');
-      });
+          if (cleanUrl === "" || cleanUrl === undefined){
+            console.log("clean URl is empty");
+            $scope.errorFound = true;
+            $scope.error = "Please provide a valid profile URL.";
+          }
+          else {
+            console.log("running the ellse");
+            data.getUserByCleanUrl(cleanUrl, function(user){
+              
+              //if a user is found, but the cleanUrl is the same as the loggedInCleanUrl, then that is fine.
+              if (user.cleanUrl === $scope.loggedInUserCleanUrl){
+                data.updateLoggedInUser($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
+                $('#profile-edit-modal').modal('hide');
+              }
+              else { //if this clean url is found, and not the current cleanUrl, then we should put out an error messagee!
+                $scope.errorFound = true;
+                $scope.error = "This profile url is already taken.";
+                $scope.$apply();
+
+                console.log("errorrrr, this url is in use!!")
+              }
+
+            }, function(error){ //if there is an error, then no user with this url was found, and it can be set for this user.
+              data.updateLoggedInUser($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
+              $('#profile-edit-modal').modal('hide');
+            });
+          }
+        }
+      }
     }
     
   }

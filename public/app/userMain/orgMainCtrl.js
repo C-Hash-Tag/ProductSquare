@@ -175,14 +175,13 @@ angular.module('myApp.OrgMain', [])
     });
   };
 
-  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school, cleanUrl) {
-
+  $scope.updateUserProfile = function(realName, orgLink, linkedin, blog, location, school, cleanUrl) {
     var urlCleaner = cleanUrl.replace(/[^0-9a-z-]/g,""); //apply the urlCleaning function to the clean url.
 
     console.log("user profile updated!");
     var newSettings = {
       realName: realName || "",
-      github: github || "",
+      orgLink: orgLink || "",
       linkedin: linkedin || "",
       blog: blog || "",
       location: location || "",
@@ -190,30 +189,36 @@ angular.module('myApp.OrgMain', [])
       profileImage: $scope.tempProfileImage,
       cleanUrl: urlCleaner
     };
-    if (cleanUrl === "" || cleanUrl === undefined){
-      console.log("clean URl is empty");
-      $scope.error = "Please provide a valid profile URL.";
+    if (newSettings.orgLink.indexOf("http://") === -1 && newSettings.orgLink.indexOf("https://") === -1 && newSettings.orgLink !== ""){
+      $scope.errorFound = true;
+      $scope.error = "Please provide a complete link to your organization - 'http://organziation.com'";
     }
     else {
-      console.log("running the ellse");
-      data.getUserByCleanUrl(cleanUrl, function(user){
+      if (cleanUrl === "" || cleanUrl === undefined){
+        console.log("clean URl is empty");
+        $scope.error = "Please provide a valid profile URL.";
+      }
+      else {
+        console.log("running the ellse");
+        data.getUserByCleanUrl(cleanUrl, function(user){
+          
+          //if a user is found, but the cleanUrl is the same as the loggedInCleanUrl, then that is fine.
+          if (user.cleanUrl === $scope.loggedInUserCleanUrl){
+            data.updateOrg($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
+            $('#profile-edit-modal').modal('hide');
+          }
+          else { //if this clean url is found, and not the current cleanUrl, then we should put out an error messagee!
+            $scope.errorFound = true;
+            $scope.error = "This profile url is already taken.";
+            $scope.$apply();
+            console.log("errorrrr, this url is in use!!")
+          }
 
-        //if a user is found, but the cleanUrl is the same as the loggedInCleanUrl, then that is fine.
-        if (user.cleanUrl === $scope.loggedInUserCleanUrl){
+        }, function(error){ //if there is an error, then no user with this url was found, and it can be set for this user.
           data.updateOrg($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
           $('#profile-edit-modal').modal('hide');
-        }
-        else { //if this clean url is found, and not the current cleanUrl, then we should put out an error messagee!
-          $scope.errorFound = true;
-          $scope.error = "This profile url is already taken.";
-          $scope.$apply();
-          console.log("errorrrr, this url is in use!!")
-        }
-
-      }, function(error){ //if there is an error, then no user with this url was found, and it can be set for this user.
-        data.updateOrg($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
-        $('#profile-edit-modal').modal('hide');
-      });
+        });
+      }
     }
   }
 }]);
