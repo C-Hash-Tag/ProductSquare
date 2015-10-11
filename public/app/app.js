@@ -84,7 +84,6 @@ angular.module('myApp', [
     $scope.projTarget = "#signUpModal";
     $scope.isOrg = false;
     $scope.isStudent = false;
-    $scope.$apply();
   });
 
   $scope.$on('loggedInUserUpdated', function(event, userId) {

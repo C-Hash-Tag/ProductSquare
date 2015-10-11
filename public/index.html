@@ -169,9 +169,10 @@
                     <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left;" />
                   </li>
                 </ul>
+                <div ng-show="errorFound" class="error">{{error}}</div>
                 <input type="submit" value="SAVE PROFILE" class="btn btn-default" />
               </form>
-              <a data-toggle="modal" data-target="#devProfileCompleteModal" style="cursor:pointer;">Skip this step</a>
+              <a data-toggle="modal" data-target="#devProfileCompleteModal" href="/#/user/{{loggedInUserCleanUrl}}/">Skip this step</a>
             </div>
           </div>
         </div>
@@ -193,6 +194,7 @@
                   <img id="preview" src="{{loggedInUserProfileImage}}" height="100" width="100" />
                   Organization Logo: <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateOrgLogoImage(this)" />  <br/>
                   Your Title: <input type="text" class="form-control" ng-model='orgRepTitle' /> <br/>
+                  <div ng-show="errorFound" class="error">{{error}}</div>
                   <input class="btn btn-success btn-rounded" type="submit" value="Submit" style="cursor:pointer;"/> <br/><br/>
                 </form>
                 <a data-toggle="modal" data-target="#devProfileCompleteModal" style="cursor:pointer;">Skip this step</a>
