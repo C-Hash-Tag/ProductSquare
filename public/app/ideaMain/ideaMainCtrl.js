@@ -2,6 +2,13 @@ angular.module('myApp.ideaMain', [])
 
 .controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', 'imageUpload', '$route', function($scope, $http, data, $log, auth, imageUpload, $route){
   $scope.$route = $route;
+
+  $scope.songs = 'Here Comes The Sun';
+
+  $scope.addSong = function(song) {
+    $scope.songs.push(song);
+  };
+
   //NOTE: set the listener before you get the data
   var uniqIdeaID = function(str) {
     str = str.split("");
