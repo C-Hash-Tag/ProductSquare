@@ -2,6 +2,7 @@ angular.module('myApp.ideaMain', [])
 
 .controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', 'imageUpload', '$route', function($scope, $http, data, $log, auth, imageUpload, $route){
   $scope.$route = $route;
+
   //NOTE: set the listener before you get the data
   var uniqIdeaID = function(str) {
     str = str.split("");
