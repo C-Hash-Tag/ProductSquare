@@ -141,8 +141,8 @@ angular.module('myApp.projectMain', [])
     $scope.specificProjID  = projID;
     $scope.specificUserRealName = userRealName;
     data.getUserCleanUrl(userID, function(userCleanUrl){
-      $scope.specificUserCleanUrl = "http://localhost:3000/#/user/" + userCleanUrl; //TODO: ADJUST WHEN PUSHING TO HEROKU
-    }); 
+      $scope.specificUserCleanUrl = "#/user/" + userCleanUrl;
+    });
   }
 
   //SORTING FEATURE

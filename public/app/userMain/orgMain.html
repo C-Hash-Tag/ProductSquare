@@ -55,7 +55,7 @@
 
     <div class="cardContainerContainer" style="text-align: center; display: block">
       <!-- Neat Non-Flippin Card starts:: SORTED BY RECENT -->
-      <div class="cardContainer" ng-repeat="idea in loggedInUserIdeas" style="display: inline-block">
+      <div class="cardContainer" ng-repeat="idea in ideasThatIsubmitted" style="display: inline-block">
         <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  radial-gradient(ellipse at center, rgba(255,191,112,1) 0%, rgba(255,159,41,1) 100%);">
           <p class="name" style="color: white"> {{ idea.ideaName }} </p>
           <hr>
@@ -78,7 +78,7 @@
               <div class="container">
                   <div class="row first">
                       <div class="col-lg-12">
-                          <h2 class="page-header" ng-show="proposalEdible"><input ng-model="specificIdeaName"></input></h2>
+                          <h2 class="page-header" ng-show="proposalEdible"><input ng-model="specificIdeaName"></input>Ideas</h2>
                           <h2 class="page-header" ng-hide="proposalEdible">{{specificIdeaName}}</h2>
                       </div>
                   </div>
