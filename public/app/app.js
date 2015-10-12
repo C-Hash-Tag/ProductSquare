@@ -95,6 +95,7 @@ angular.module('myApp', [
 
   $scope.$on('loggedInOrgUpdated', function(event, userId){
     data.getUser(userId, function(user){
+      console.log("logged In ORg UPDATEDDD!!", user);
       updateLoggedInScopes(user);
     });
   });

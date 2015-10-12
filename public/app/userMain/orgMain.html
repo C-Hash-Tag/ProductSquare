@@ -153,32 +153,27 @@
       <h2 class="page-header">Edit Profile</h2>
     </div>
       <div class="row">
-        <form ng-submit="updateUserProfile(realName, githubLink, linkedinLink, blogLink, location, school, cleanUrl)">
+        <form ng-submit="updateUserProfile(realName, orgName, orgDesc, orgLink, location, cleanUrl)">
           <ul class="list-unstyled project-details">
             <li>
-              <div class="user-profile-label">Name:</div>
-              <input ng-model="realName" class="user-profile-update-input" placeholder="Enter your name here" value="{{realName}}" />
+              <div class="user-profile-label">Your Name:</div>
+              <input ng-model="realName" class="user-profile-update-input" placeholder="Your name here" value="{{realName}}" />
+            </li>
+            <li>
+              <div class="user-profile-label">Org Name:</div>
+              <input ng-model="orgName" class="user-profile-update-input" placeholder="Organization name here" value="{{orgName}}" />
+            </li>
+            <li>
+              <div class="user-profile-label">Org Description:</div>
+              <input ng-model="orgDesc" class="user-profile-update-input" placeholder="Organization description" value="{{orgDesc}}" />
             </li>
             <li>
               <div class="user-profile-label">Organization Website:</div>
               <input ng-model="orgLink" class="user-profile-update-input" placeholder="Enter your organization's website" value="{{orgLink}}" />
             </li>
             <li>
-              <div class="user-profile-label">LinkedIn URL:</div>
-              <input ng-model="linkedinLink" class="user-profile-update-input" placeholder="Enter your LinkedIn profile URL here" value="{{linkedinLink}}" />
-            </li>
-
-            <li>
-              <div class="user-profile-label">Personal Blog URL:</div>
-              <input ng-model="blogLink" class="user-profile-update-input" placeholder="Enter your personal blog URL here" value="{{blogLink}}" />
-            </li>
-            <li>
-              <div class="user-profile-label">Location:</div>
+              <div class="user-profile-label">Org Location:</div>
               <input ng-model="location" class="user-profile-update-input" placeholder="Enter your current location here" value="{{location}}" />
-            </li>
-            <li>
-              <div class="user-profile-label">School:</div>
-              <input ng-model="school" class="user-profile-update-input" placeholder="The development school you attended" value="{{school}}" />
             </li>
             <li>
               <div class="user-profile-label">Profile Url:</div>
@@ -186,7 +181,7 @@
               http://productsquare.com/orgization/{{cleanUrl}}/
             </li>
             <li class="clearfix">
-              <div class="user-profile-label">Profile Image:</div>
+              <div class="user-profile-label">Organization Image:</div>
               <img id="preview" src="{{tempProfileImage}}" style="float:left; margin-right:20px" width="150px"/>
               <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left;" />
             </li>
