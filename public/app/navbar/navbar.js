@@ -140,16 +140,18 @@ angular.module('myApp.navBar', [])
   };
 
   //this function saves the additional profile attributes. The name needs to be updated.
-  $scope.finishDevProfile = function(githubLink, linkedinLink, blogLink, location, school) {
+  $scope.finishDevProfile = function(githubLink, linkedinLink, blogLink, location, school, skills) {
     var newSettings = {
       github: githubLink || "",
       linkedin: linkedinLink || "",
       blog: blogLink || "",
       location: location || "",
       school: school || "",
+      skills: skills || "",
       profileImage: $scope.loggedInUserProfileImage //loggedInUserProfileImage is set in the app.js when user logs in. Can be reset here if new pic is selected.
     };
 
+    // Validate Links
     if (newSettings.github.indexOf("http://") === -1 && newSettings.github.indexOf("https://") === -1 && newSettings.github !== ""){
       console.log("github invalid");
       $scope.errorFound = true;
