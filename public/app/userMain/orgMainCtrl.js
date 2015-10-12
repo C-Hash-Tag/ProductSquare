@@ -29,7 +29,7 @@ angular.module('myApp.OrgMain', [])
 
     //update css of the like button
     //update the database
-    data.updateLike($scope.loggedInUserID, ideaID, function(usersWhoLikeItCount){
+    data.updateLike($scope.loggedInUserID, ideaSubmiterID, ideaID, function(usersWhoLikeItCount){
       console.log("HERRRRRE", usersWhoLikeItCount);
     });
       //TODO: if username liked it before, remove her; if username hasn't, add her

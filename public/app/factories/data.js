@@ -56,7 +56,7 @@ angular.module('myApp.data', [])
     }
 
     // Collect idea data from createIdea and store it in Firebase
-    factory.createIdea = function(ideaID, ideaName, desc, userRealName){
+    factory.createIdea = function(ideaID, ideaName, desc, userRealName, ideaSubmitterID){
       firebase.child("ideas").child(ideaID).set({
         ideaName: ideaName,
         description: desc,
@@ -65,6 +65,7 @@ angular.module('myApp.data', [])
         usersWhoLikeIt: {},
         backgroundPath: "",
         userRealName: userRealName,
+        ideaSubmitterID: ideaSubmitterID,
         ideaID: ideaID,
         count: 0
       });
@@ -78,6 +79,7 @@ angular.module('myApp.data', [])
         usersWhoLikeIt: {},
         backgroundPath: "",
         userRealName: userRealName,
+        ideaSubmitterID: ideaSubmitterID,
         ideaID: ideaID,
         count: 0
       });
@@ -158,7 +160,7 @@ angular.module('myApp.data', [])
       });
     };
 
-    factory.updateLike = function(userID, ideaID){
+    factory.updateLike = function(userID, ideaSubmiterID, ideaID){
 
       //update ideas table to firebaselect current count
       var count;
@@ -168,9 +170,9 @@ angular.module('myApp.data', [])
           return currentCount;
         });
 
-        firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).once('value', function(idea){
+        firebase.child("users").child(ideaSubmiterID).child("ideasThatIsubmitted").child(ideaID).once('value', function(idea){
           if(idea.val()){
-            firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child("count").transaction(function(currentCount){
+            firebase.child("users").child(ideaSubmiterID).child("ideasThatIsubmitted").child(ideaID).child("count").transaction(function(currentCount){
               currentCount = count;
               return currentCount;
             });
@@ -191,15 +193,13 @@ angular.module('myApp.data', [])
       });
 
       //update users table to store ideas that users like
-      firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).once('value', function(idea){
+      firebase.child("users").child(ideaSubmiterID).child("ideasThatIsubmitted").child(ideaID).once('value', function(idea){
         if(idea.val()){
-          firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child("usersWhoLikeIt").transaction(function(likedIdeas){
+          firebase.child("users").child(ideaSubmiterID).child("ideasThatIsubmitted").child(ideaID).child("usersWhoLikeIt").transaction(function(likedIdeas){
             if(likedIdeas === null){
               likedIdeas = {};
             }
             likedIdeas[userID] = true;
-            count = Object.keys(likedIdeas).length; //how many likes for a given idea
-            counter(count);
             return likedIdeas;
           });
         }
