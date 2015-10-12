@@ -1,8 +1,6 @@
 angular.module('myApp.data', [])
-.factory('data', ['$rootScope', '$location', function($rootScope, $location){
+.factory('data', ['$rootScope', '$location', 'firebase', function($rootScope, $location, firebase){
     var factory = {};
-    var Ref = new Firebase('https://productsquare.firebaseio.com/');
-
     // Return today's date in mm/dd/yyyy format
     function currentDate(){
       var today = new Date();
@@ -36,18 +34,18 @@ angular.module('myApp.data', [])
         userType: userType,
       };
 
-      Ref.child("users").child(userId).set(user);
+      firebase.child("users").child(userId).set(user);
       cb();
     };
 
     factory.updateLoggedInUser = function(userId, newSettings, cleanUrl) { //takes an object of settings and updates the users profile with those settings.
-      Ref.child("users").child(userId).update(newSettings);
+      firebase.child("users").child(userId).update(newSettings);
       $rootScope.$broadcast('loggedInUserUpdated', userId);
       $location.path('/user/'+cleanUrl+"/");
     }
 
     factory.updateOrg = function(userId, orgSettings, cleanUrl){
-      Ref.child("users").child(userId).update(orgSettings);
+      firebase.child("users").child(userId).update(orgSettings);
       $rootScope.$broadcast('loggedInOrgUpdated', userId);
       $location.path('/organization/'+cleanUrl+"/");
       console.log("update org function run, should run broadcast", orgSettings);
@@ -59,7 +57,7 @@ angular.module('myApp.data', [])
 
     // Collect idea data from createIdea and store it in Firebase
     factory.createIdea = function(ideaID, ideaName, desc, userRealName){
-      Ref.child("ideas").child(ideaID).set({
+      firebase.child("ideas").child(ideaID).set({
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
@@ -72,7 +70,7 @@ angular.module('myApp.data', [])
       });
 
       // Add the idea data to the user in Firebase
-      Ref.child('users').child(localStorage.userID).child('ideasThatIsubmitted').child(ideaID).set({
+      firebase.child('users').child(localStorage.userID).child('ideasThatIsubmitted').child(ideaID).set({
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
@@ -88,7 +86,7 @@ angular.module('myApp.data', [])
     // Collect project data from createProject and store it in Firebase
     factory.createProject = function(userRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage){
       // Store the project data in Firebase
-      Ref.child('projects').child(projID).set({
+      firebase.child('projects').child(projID).set({
         description: projDesc,
         githubRepo: githubUrl,
         projName: projName,
@@ -102,7 +100,7 @@ angular.module('myApp.data', [])
       });
 
       // Add the project data to the user in Firebase
-      Ref.child('users').child(localStorage.userID).child('projects').child(projID).set({
+      firebase.child('users').child(localStorage.userID).child('projects').child(projID).set({
 
         description: projDesc,
         githubRepo: githubUrl,
@@ -118,7 +116,7 @@ angular.module('myApp.data', [])
     };
 
     factory.getUser = function(userID, cb) {
-      Ref.child("users").child(userID).once("value", function(data){
+      firebase.child("users").child(userID).on("value", function(data){
         console.log("userdata fetched from getUser!", data.val());
         // $rootScope.$broadcast('gotUser', data.val());  //alert all controllers that the loggedin user has been modified.
         cb(data.val());
@@ -126,7 +124,7 @@ angular.module('myApp.data', [])
     };
 
     factory.getUserByCleanUrl = function(cleanUrl, cb, errorCb){
-      Ref.child("users").orderByChild('cleanUrl').equalTo(cleanUrl).once("value", function(data){
+      firebase.child("users").orderByChild('cleanUrl').equalTo(cleanUrl).once("value", function(data){
         var fetchedData = data.val();
         if (fetchedData === null){
           errorCb();
@@ -142,37 +140,37 @@ angular.module('myApp.data', [])
 
     // Get projects data from Firebase
     factory.getProjects = function(cb){
-      Ref.child("projects").on("value", function(data){
+      firebase.child("projects").on("value", function(data){
         cb(data.val());
       });
     };
 
     factory.getLoggedInUsersIdeas = function(userID, cb){
-      Ref.child("users").child(userID).child('ideasThatIsubmitted').on("value", function(data){
+      firebase.child("users").child(userID).child('ideasThatIsubmitted').on("value", function(data){
         cb(data.val());
       });
     }
 
     // Get ideas data from Firebase
     factory.getIdeas = function(cb){
-      Ref.child("ideas").on("value", function(data){
+      firebase.child("ideas").on("value", function(data){
         cb(data.val());
       });
     };
 
     factory.updateLike = function(userID, ideaID){
 
-      //update ideas table to reflect current count
+      //update ideas table to firebaselect current count
       var count;
       var counter = function(count){
-        Ref.child("ideas").child(ideaID).child("count").transaction(function(currentCount){
+        firebase.child("ideas").child(ideaID).child("count").transaction(function(currentCount){
           currentCount = count;
           return currentCount;
         });
 
-        Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).once('value', function(idea){
+        firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).once('value', function(idea){
           if(idea.val()){
-            Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child("count").transaction(function(currentCount){
+            firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child("count").transaction(function(currentCount){
               currentCount = count;
               return currentCount;
             });
@@ -181,7 +179,7 @@ angular.module('myApp.data', [])
       }
 
       //update ideas table to store users who like it
-      Ref.child("ideas").child(ideaID).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
+      firebase.child("ideas").child(ideaID).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
         if(usersWhoLikeIt === null){
           usersWhoLikeIt = {};
         }
@@ -193,9 +191,9 @@ angular.module('myApp.data', [])
       });
 
       //update users table to store ideas that users like
-      Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).once('value', function(idea){
+      firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).once('value', function(idea){
         if(idea.val()){
-          Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child("usersWhoLikeIt").transaction(function(likedIdeas){
+          firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child("usersWhoLikeIt").transaction(function(likedIdeas){
             if(likedIdeas === null){
               likedIdeas = {};
             }
@@ -211,10 +209,10 @@ angular.module('myApp.data', [])
 
     factory.updateProjectLike = function(userID, projectID, cb){
 
-      //update projects table to reflect current count
+      //update projects table to firebaselect current count
       var count;
       var counter = function(count){
-        Ref.child("projects").child(projectID).child("count").transaction(function(currentCount){
+        firebase.child("projects").child(projectID).child("count").transaction(function(currentCount){
           if (currentCount === undefined) {
             count = 0;
           }
@@ -222,9 +220,9 @@ angular.module('myApp.data', [])
           return currentCount;
         });
 
-        Ref.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).once('value', function(project){
+        firebase.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).once('value', function(project){
           if(project.val()){
-            Ref.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).child("count").transaction(function(currentCount){
+            firebase.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).child("count").transaction(function(currentCount){
               currentCount = count;
               return currentCount;
             });
@@ -233,7 +231,7 @@ angular.module('myApp.data', [])
       }
 
       //update project table to store users who like it
-      Ref.child("projects").child(projectID).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
+      firebase.child("projects").child(projectID).child("usersWhoLikeIt").transaction(function(usersWhoLikeIt){
         if(usersWhoLikeIt === null){
           usersWhoLikeIt = {};
         }
@@ -245,9 +243,9 @@ angular.module('myApp.data', [])
       });
 
       //update users table to store projects that users like
-      Ref.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).once('value', function(project){
+      firebase.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).once('value', function(project){
         if(project.val()){
-          Ref.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).child("usersWhoLikeIt").transaction(function(likedIdeas){
+          firebase.child("users").child(userID).child("projectsThatIsubmitted").child(projectID).child("usersWhoLikeIt").transaction(function(likedIdeas){
             if(likedProjects === null){
               likedProjects = {};
             }
@@ -262,58 +260,58 @@ angular.module('myApp.data', [])
     }
 
     factory.updateProject = function(projID, projDesc, projName, githubUrl, projUrl, projectImage){
-      Ref.child('projects').child(projID).child('description').transaction(function(desc){
+      firebase.child('projects').child(projID).child('description').transaction(function(desc){
         desc = projDesc;
         return desc;
       });
-      Ref.child('projects').child(projID).child('projName').transaction(function(name){
+      firebase.child('projects').child(projID).child('projName').transaction(function(name){
         name = projName;
         return name;
       });
-      Ref.child('projects').child(projID).child('githubRepo').transaction(function(repo){
+      firebase.child('projects').child(projID).child('githubRepo').transaction(function(repo){
         repo = githubUrl;
         return repo;
       });
-      Ref.child('projects').child(projID).child('projUrl').transaction(function(proj){
+      firebase.child('projects').child(projID).child('projUrl').transaction(function(proj){
         proj = projUrl;
         return proj;
       });
-      Ref.child('projects').child(projID).child('projectImage').transaction(function(image){
+      firebase.child('projects').child(projID).child('projectImage').transaction(function(image){
         image = projectImage;
         return image;
       });
     };
 
     factory.updateIdea = function(userID, ideaID, ideaName, ideaDesc, ideaImage){
-      Ref.child('ideas').child(ideaID).child('description').transaction(function(desc){
+      firebase.child('ideas').child(ideaID).child('description').transaction(function(desc){
         desc = ideaDesc;
         return desc;
       });
-      Ref.child('ideas').child(ideaID).child('ideaName').transaction(function(name){
+      firebase.child('ideas').child(ideaID).child('ideaName').transaction(function(name){
         name = ideaName;
         return name;
       });
-      Ref.child('ideas').child(ideaID).child('backgroundPath').transaction(function(path){
+      firebase.child('ideas').child(ideaID).child('backgroundPath').transaction(function(path){
         path = ideaImage;
         return path;
       });
 
-      Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child('description').transaction(function(desc){
+      firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child('description').transaction(function(desc){
         desc = ideaDesc;
         return desc;
       });
-      Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child('ideaName').transaction(function(name){
+      firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child('ideaName').transaction(function(name){
         name = ideaName;
         return name;
       });
-      Ref.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child('backgroundPath').transaction(function(path){
+      firebase.child("users").child(userID).child("ideasThatIsubmitted").child(ideaID).child('backgroundPath').transaction(function(path){
         path = ideaImage;
         return path;
       });
     };
 
     factory.getUserCleanUrl = function(userID,cb){
-      Ref.child("users").child(userID).child("cleanUrl").on("value", function(data){
+      firebase.child("users").child(userID).child("cleanUrl").on("value", function(data){
         console.log(data.val(), "dataVALLLLLL")
         cb(data.val());
 
@@ -321,7 +319,7 @@ angular.module('myApp.data', [])
     }
 
     // factory.getIdeas = function(cb){
-    //   Ref.child("ideas").on("value", function(data){
+    //   firebase.child("ideas").on("value", function(data){
     //     cb(data.val());
     //   });
     // };

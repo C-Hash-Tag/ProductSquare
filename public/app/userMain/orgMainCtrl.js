@@ -86,7 +86,13 @@ angular.module('myApp.OrgMain', [])
     }
   }
 
-  userPageLoadScopes = function(user){
+  // data.getLoggedInUsersIdeas(localStorage.userID, function(ideasSubmitted){
+  //   $scope.loggedInUserIdeas = ideasSubmitted
+  //   $scope.$apply();
+  // });
+
+
+  var userPageLoadScopes = function(user){
     console.log("iser in user page load scope", user);
     $scope.realName = user.realName; // Org Rep Name
     $scope.orgRepTitle = user.orgRepTitle; // Org Rep Title

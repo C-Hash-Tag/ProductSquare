@@ -1,10 +1,9 @@
 angular.module('myApp.auth', [])
-.factory('auth', ['data', '$rootScope', '$location', function(data, $rootScope, $location){
+.factory('auth', ['data', '$rootScope', '$location', 'firebase', function(data, $rootScope, $location, firebase){
   var factory = {};
-  var Ref = new Firebase('https://productsquare.firebaseio.com/');
 
   factory.loginUser = function(email, password, cb){
-    Ref.authWithPassword({
+    firebase.authWithPassword({
       email: email,
       password: password
     }, function(error, authData) {
@@ -14,13 +13,13 @@ angular.module('myApp.auth', [])
 
   factory.logout = function(){
     delete localStorage.userID;
-    Ref.unauth();
+    firebase.unauth();
     $rootScope.$broadcast('userLoggedOut');
     $location.path('/');
   };
 
   factory.newUser = function(realName, email, password, cb){
-    Ref.createUser({
+    firebase.createUser({
       email: email,
       password: password
     }, function(error, userData) {

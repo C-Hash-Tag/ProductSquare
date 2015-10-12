@@ -8,7 +8,8 @@ angular.module('myApp', [
   'myApp.UserMain',
   'myApp.OrgMain',
   'myApp.auth',
-  'myApp.navBar'
+  'myApp.navBar',
+  'myApp.firebase'
 ])
 
 //montiors stores top-level data for all of the pages on the entire app.
@@ -39,20 +40,16 @@ angular.module('myApp', [
   //if the localStorage userID is set, retrieve that user using the data.getUser method
   if (localStorage.userID){
     //get the logged in users ideas.
-    data.getLoggedInUsersIdeas(localStorage.userID, function(ideasSubmitted){
-      $scope.loggedInUserIdeas = ideasSubmitted
-      $scope.$apply();
-    });
+    // data.getLoggedInUsersIdeas(localStorage.userID, function(ideasSubmitted){
+    //   $scope.loggedInUserIdeas = ideasSubmitted
+    //   $scope.$apply();
+    // });
 
     //get the signed in users data.
     data.getUser(localStorage.userID, function(user){
       console.log("userLoggedIn", user);
       updateLoggedInScopes(user);
       $scope.$broadcast("userFoundInLocal");
-    });
-    data.getLoggedInUsersIdeas(localStorage.userID, function(ideasSubmitted){
-      $scope.loggedInUserIdeas = ideasSubmitted
-      $scope.$apply();
     });
   }
 
@@ -150,3 +147,4 @@ angular.module('myApp', [
       activetab: 'projects'
     });
 }]);
+

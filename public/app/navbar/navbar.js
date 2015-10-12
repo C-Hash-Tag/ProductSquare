@@ -17,10 +17,10 @@ angular.module('myApp.navBar', [])
       $scope.loginErrorFound = false;
       $scope.loginError = "";
 
-      data.getUser(authData.uid, function(user){
-        console.log("USERTO LOGIN", user);
-        $scope.$emit('userLoggedIn', user);
-      });
+      // data.getUser(authData.uid, function(user){
+      //   console.log("USERTO LOGIN", user);
+      //   $scope.$emit('userLoggedIn', user);
+      // });
       localStorage.userID = authData.uid;
     };
     $scope.$apply();
