@@ -112,7 +112,8 @@ angular.module('myApp.OrgMain', [])
   //fetch the userData based on the routeID to generate the
   data.getUserByCleanUrl($routeParams.cleanUrl, userPageLoadScopes);
 
-  $scope.$on("loggedInUserUpdated", function(event, user){
+  $scope.$on("loggedInOrgUpdated", function(event, user){
+    console.log("logged in user updaetd on org page");
     data.getUser(user, userPageLoadScopes);
   });
 
@@ -175,17 +176,16 @@ angular.module('myApp.OrgMain', [])
     });
   };
 
-  $scope.updateUserProfile = function(realName, orgLink, linkedin, blog, location, school, cleanUrl) {
+  $scope.updateUserProfile = function(realName, orgName, orgDesc, orgLink, location, cleanUrl) {
     var urlCleaner = cleanUrl.replace(/[^0-9a-z-]/g,""); //apply the urlCleaning function to the clean url.
 
     console.log("user profile updated!");
     var newSettings = {
       realName: realName || "",
+      orgName: orgName || "",
+      orgDesc: orgDesc || "",
       orgLink: orgLink || "",
-      linkedin: linkedin || "",
-      blog: blog || "",
       location: location || "",
-      school: school || "",
       profileImage: $scope.tempProfileImage,
       cleanUrl: urlCleaner
     };

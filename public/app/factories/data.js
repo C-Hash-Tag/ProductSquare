@@ -50,6 +50,7 @@ angular.module('myApp.data', [])
       Ref.child("users").child(userId).update(orgSettings);
       $rootScope.$broadcast('loggedInOrgUpdated', userId);
       $location.path('/organization/'+cleanUrl+"/");
+      console.log("update org function run, should run broadcast", orgSettings);
     }
 
     function getRandomInt(min, max) {
