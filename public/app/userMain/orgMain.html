@@ -32,7 +32,7 @@
           <i class="fa fa-user"></i>
         </div>
         <div id="user-page-org-text">
-          {{realName}} ({{orgRepTitle}})
+          {{realName}} {{orgRepTitle}}
         </div>
       </div>
       <div id="user-page-detail" ng-show="stringFound(location)">
@@ -63,7 +63,7 @@
         </div>
         <div class="glyphicon-container">
           <!-- <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> -->
-          <button ng-click="like(idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
+          <button ng-click="like(idea.ideaSubmitterID, idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
           <span>{{idea.count || 0}} </span>
           <!-- <button ng-click="like(idea.ideaName)"> </button> -->
             <span class="glyphicon glyphicon-thumbs-up"></span>

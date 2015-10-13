@@ -27,7 +27,7 @@ angular.module('myApp.ideaMain', [])
   //TODO: add the username too
   $scope.postIdea = function(ideaName, description, ideaImage){
     var ideaID = uniqueNumber(ideaName);
-    data.createIdea(ideaID, ideaName, description, $scope.loggedInUserRealName, ideaImage);
+    data.createIdea(ideaID, ideaName, description, $scope.loggedInUserRealName, $scope.loggedInUserID, ideaImage);
     $scope.ideaName = "";
     $scope.description = "";
     $scope.ideaImage = "";
@@ -36,12 +36,12 @@ angular.module('myApp.ideaMain', [])
 
   // $scope.idea.liked = false;
 
-  $scope.ideaLike = function(ideaID){
+  $scope.ideaLike = function(ideaSubmiterID, ideaID){
     //check if user already liked idea
 
     //update css of the like button
     //update the database
-    data.updateLike($scope.loggedInUserID, ideaID, function(usersWhoLikeItCount){
+    data.updateLike($scope.loggedInUserID, ideaSubmiterID, ideaID, function(usersWhoLikeItCount){
       console.log("HERRRRRE", usersWhoLikeItCount);
     });
       //TODO: if username liked it before, remove her; if username hasn't, add her

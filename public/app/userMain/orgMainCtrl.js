@@ -29,7 +29,7 @@ angular.module('myApp.OrgMain', [])
 
     //update css of the like button
     //update the database
-    data.updateLike($scope.loggedInUserID, ideaID, function(usersWhoLikeItCount){
+    data.updateLike($scope.loggedInUserID, ideaSubmiterID, ideaID, function(usersWhoLikeItCount){
       console.log("HERRRRRE", usersWhoLikeItCount);
     });
       //TODO: if username liked it before, remove her; if username hasn't, add her
@@ -86,7 +86,13 @@ angular.module('myApp.OrgMain', [])
     }
   }
 
-  userPageLoadScopes = function(user){
+  // data.getLoggedInUsersIdeas(localStorage.userID, function(ideasSubmitted){
+  //   $scope.loggedInUserIdeas = ideasSubmitted
+  //   $scope.$apply();
+  // });
+
+
+  var userPageLoadScopes = function(user){
     console.log("iser in user page load scope", user);
     $scope.realName = user.realName; // Org Rep Name
     $scope.orgRepTitle = user.orgRepTitle; // Org Rep Title

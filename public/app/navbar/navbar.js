@@ -64,6 +64,7 @@ angular.module('myApp.navBar', [])
             }
           } else {
             //create a full user in the firebase database.
+            $scope.loggedIn = true;
             data.createUser(email, password, userData.uid, realName, userType, function(){
               //switch the modals that appear when a user is successfully created.
               //after creating the user, login the user.
