@@ -91,53 +91,25 @@
       <div id="user-page-projects-header">
         <h2 style="margin-top:0px; padding-top: 0px;">Projects</h2>
       </div>
-      <div class="portfolio-1">
+
+      <div class="portfolio-1" ng-repeat="projectObject in projectObjects">
         <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
           <a class="portfolio-item" data-toggle="modal" data-target="#aaron-is-not-kewl">
             <div class="portfolio-link">
               <div class="caption">
                 <div class="caption-content">
-                  <h3 class="ng-binding">Aaron is not Kewl</h3>
-                  <p class="ng-binding"> he just is not</p>
+                  <h3 class="ng-binding">{{projectObject.projName}}</h3>
+                  <p class="ng-binding">{{projectObject.description}}</p>
                 </div>
               </div>
-              <img src="https://productsquare.s3.amazonaws.com/profileImage-dswright-1444066129521" class="img-centered" alt="" style="zoom:200%">
+              <img src="{{projectObject.projectImage}}" class="img-centered" alt="" style="zoom:200%">
             </div>
           </a>
         </div>
       </div>
 
-      <div class="portfolio-1">
-        <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
-          <a class="portfolio-item" data-toggle="modal" data-target="#aaron-is-not-kewl">
-            <div class="portfolio-link">
-              <div class="caption">
-                <div class="caption-content">
-                  <h3 class="ng-binding">Aaron is not Kewl</h3>
-                  <p class="ng-binding"> he just is not</p>
-                </div>
-              </div>
-              <img src="https://productsquare.s3.amazonaws.com/profileImage-dswright-1444066129521" class="img-centered" alt="" style="zoom:200%">
-            </div>
-          </a>
-        </div>
-      </div>
+      
 
-      <div class="portfolio-1">
-        <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
-          <a class="portfolio-item" data-toggle="modal" data-target="#aaron-is-not-kewl">
-            <div class="portfolio-link">
-              <div class="caption">
-                <div class="caption-content">
-                  <h3 class="ng-binding">Aaron is not Kewl</h3>
-                  <p class="ng-binding"> he just is not</p>
-                </div>
-              </div>
-              <img src="https://productsquare.s3.amazonaws.com/profileImage-dswright-1444066129521" class="img-centered" alt="" style="zoom:200%">
-            </div>
-          </a>
-        </div>
-      </div>
     </div>
   </div>
 </div>

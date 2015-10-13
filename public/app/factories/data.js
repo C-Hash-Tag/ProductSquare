@@ -150,6 +150,12 @@ angular.module('myApp.data', [])
       });
     };
 
+    factory.getProject = function(projID, cb){
+      firebase.child("projects").child(projID).on("value", function(projectObject){
+        cb(projectObject.val());
+      })
+    };
+
     factory.getLoggedInUsersIdeas = function(userID, cb){
       firebase.child("users").child(userID).child('ideasThatIsubmitted').on("value", function(data){
         cb(data.val());

@@ -47,7 +47,16 @@ angular.module('myApp.UserMain', [])
     $scope.cleanUrl = user.cleanUrl;
     $scope.skills = user.skills;
     $scope.overview = user.overview;
-    $scope.projectsThatIsubmitted = user.projectsThatIsubmitted;
+    $scope.projects = user.projects;
+
+    $scope.projectObjects = [];
+    for (var i=0; i<user.projects.length; i++){
+      data.getProject(user.projects[i], function(projectObject){
+        $scope.projectObjects.push(projectObject);
+        console.log("projectObjects", $scope.projectObjects);
+      });
+    }
+
     if ($scope.loggedInUserCleanUrl === $scope.cleanUrl){
       $scope.edible = true;
     }
