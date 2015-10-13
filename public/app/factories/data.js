@@ -65,7 +65,6 @@ angular.module('myApp.data', [])
         usersWhoLikeIt: {},
         backgroundPath: "",
         userRealName: userRealName,
-        ideaSubmitterID: ideaSubmitterID,
         ideaID: ideaID,
         count: 0
       });
@@ -79,7 +78,6 @@ angular.module('myApp.data', [])
         usersWhoLikeIt: {},
         backgroundPath: "",
         userRealName: userRealName,
-        ideaSubmitterID: ideaSubmitterID,
         ideaID: ideaID,
         count: 0
       });
@@ -102,7 +100,7 @@ angular.module('myApp.data', [])
       });
 
       // Add the project data to the user in Firebase
-      firebase.child('users').child(localStorage.userID).child('projects').child(projID).set({
+      firebase.child('users').child(localStorage.userID).child('projectsThatIsubmitted').child(projID).set({
 
         description: projDesc,
         githubRepo: githubUrl,
@@ -126,7 +124,7 @@ angular.module('myApp.data', [])
     };
 
     factory.getUserByCleanUrl = function(cleanUrl, cb, errorCb){
-      firebase.child("users").orderByChild('cleanUrl').equalTo(cleanUrl).once("value", function(data){
+      firebase.child("users").orderByChild('cleanUrl').equalTo(cleanUrl).on("value", function(data){
         var fetchedData = data.val();
         if (fetchedData === null){
           errorCb();
