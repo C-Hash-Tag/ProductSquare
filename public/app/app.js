@@ -77,6 +77,7 @@ angular.module('myApp', [
     //create initial array of teamMembers for new project submission.
 
     $scope.newProjTeamMembers = [user.userId];
+    $scope.newProjTeamMemberObjects = [user];
     $scope.$apply();
     console.log("inside app.js ",  $scope.loggedInUserCleanUrl, user.cleanUrl)
   };
