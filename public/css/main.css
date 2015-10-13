@@ -20,6 +20,11 @@
   display: block;
 }
 
+/* Styles for Student Developer Sign Up Modal */
+#tags-input .tags-list .input {
+  width: 100%;
+}
+
 
 /* Styles for Ideas page */
 

@@ -13,18 +13,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="./css/main.css"> -->
 
-    <!-- css from the imported template for Landing page & Project page -->
+    <!-- CSS from the imported template for Landing page & Project page -->
     <link rel="stylesheet" type="text/css" href="./css/custom.css">
 
-    <!-- custom css written by us -->
+    <!-- Custom CSS written by C-hashtag -->
     <link rel="stylesheet" type="text/css" href="./css/main.css">
 
-    <!-- font awesome icons  -->
+    <!-- Font Awesome Icons  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- NG Tags Input -->
+    <link rel="stylesheet" type="text/css" href="./bower_components/ng-tags-input/ng-tags-input.css">
 
   </head>
   <body ng-app="myApp" id="page-top">
@@ -136,7 +139,7 @@
           </div>
         </div>
 
-        <!-- Finish User Profile Modal -->
+        <!-- Finish User Profile (Enter Additional Info) Modal -->
         <div ng-controller="DevProfileCompleteCtrl" id="devProfileCompleteModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -165,7 +168,9 @@
                   </li>
                   <li>
                     <div class="user-profile-label">Skills:</div>
-                    <input ng-model="skills" class="user-profile-update-input" placeholder="Enter your tech skills (e.g., HTML, CSS, JavaScript)" value="{{skills}}" />
+                    <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" placeholder="Enter your tech skills (e.g., HTML, CSS, JavaScript)" value="{{skills}}">
+                      <auto-complete source="loadTags($query)"></auto-complete>
+                    </tags-input>
                   </li>
                   <li class="clearfix">
                     <div class="user-profile-label">Profile Image:</div>
@@ -220,11 +225,13 @@
     <!-- FireBase -->
     <script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
 
-    <!-- Angular -->
+    <!-- JS Plug-Ins -->
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-route/angular-route.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.28/angular-resource.min.js"></script>
+    <script src="./bower_components/ng-tags-input/ng-tags-input.js"></script>
 
     <!-- Angular  -->
     <script src="./app/app.js"></script>
