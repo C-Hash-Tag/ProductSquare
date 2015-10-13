@@ -21,6 +21,19 @@
 }
 
 
+/* Styles for the Main Page */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important;
+}
+
+/* Styles for Student Developer Sign Up Modal */
+#tags-input .tags-list .input {
+  width: 100%;
+}
+
+
 /* Styles for Ideas page */
 
 .modal-backdrop, .modal-backdrop.in{

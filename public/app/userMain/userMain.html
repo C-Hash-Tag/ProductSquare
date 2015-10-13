@@ -78,9 +78,7 @@
         <div id="user-page-projects-header">
           <h2 style="margin-top:0px; padding-top: 0px;">Skills</h2>
         </div>
-        <div>
-          {{skills}}
-        </div>
+        <tags-input id="user-page-projects-tags" ng-model="skills" value="{{skills}}" ng-disabled="true">
       </div>
 
       <div id="user-page-projects-header">
@@ -154,7 +152,7 @@
       <div class="row">
         <form ng-submit="updateUserProfile(realName, githubLink, linkedinLink, blogLink, location, school, cleanUrl, skills)">
           <ul class="list-unstyled project-details">
-            <li>
+            <li style="padding-top:15px">
               <div class="user-profile-label">Name:</div>
               <input ng-model="realName" class="user-profile-update-input" placeholder="Enter your name here" value="{{realName}}" />
             </li>
@@ -164,7 +162,8 @@
             </li>
             <li>
               <div class="user-profile-label">Skills:</div>
-              <input ng-model="skills" class="user-profile-update-input" placeholder="Enter your skills here" value="{{skills}}" />
+              <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" placeholder="Enter your tech skills (e.g., HTML, CSS, JavaScript)" value="{{skills}}">
+
             </li>
             <li>
               <div class="user-profile-label">LinkedIn URL:</div>

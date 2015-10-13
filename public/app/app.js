@@ -9,11 +9,51 @@ angular.module('myApp', [
   'myApp.OrgMain',
   'myApp.auth',
   'myApp.navBar',
-  'myApp.firebase'
+  'myApp.firebase',
+  'ngTagsInput',
+  'ngResource'
 ])
 
 //montiors stores top-level data for all of the pages on the entire app.
-.controller('AppController', ['$scope', 'data', 'auth', '$route', function($scope, data, auth, $route) {
+.controller('AppController', ['$scope', 'data', 'auth', '$route', '$resource', '$q', '$filter', function($scope, data, auth, $route, $resource, $q, $filter) {
+
+  $scope.tags = [
+    { text: 'HTML' },
+    { text: 'CSS' },
+    { text: 'JavaScript' }
+  ];
+
+  $scope.loadTags = function(query) {
+    // return tags.query().$promise;
+    var deferred = $q.defer();
+    var autoCompleteTags =
+    [
+      { "text": "HTML" },
+      { "text": "CSS" },
+      { "text": "JavaScript" },
+      { "text": "AngularJS" },
+      { "text": "ReactJS" },
+      { "text": "NodeJS" },
+      { "text": "MongoDB" },
+      { "text": "Ruby" },
+      { "text": "Rails" },
+      { "text": "SQL" },
+      { "text": "Firebase" },
+      { "text": "BackboneJS" },
+      { "text": "EmberJS" },
+      { "text": "Swift" },
+      { "text": "Java" },
+      { "text": "Objective-C" },
+      { "text": "Python" },
+      { "text": "Django" },
+      { "text": "Scala" },
+      { "text": "C++" },
+      { "text": "C" },
+      { "text": "C#" }
+    ];
+    deferred.resolve($filter('filter')(autoCompleteTags, {text: query}));
+    return deferred.promise;
+  };
 
   $scope.target = "#signUpModal"; //if an organization has not logged in or not signed in, the default is that they will be sent to signUp modal when they want to submit a proposal
   $scope.projTarget = "#signUpModal";
