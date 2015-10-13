@@ -45,13 +45,14 @@ angular.module('myApp.UserMain', [])
     $scope.location = truncateText(user.location);
     $scope.school = truncateText(user.school);
     $scope.cleanUrl = user.cleanUrl;
+    $scope.skills = user.skills;
     if ($scope.loggedInUserCleanUrl === $scope.cleanUrl){
       $scope.edible = true;
     }
     $scope.$apply();
   };
 
-  //fetch the userData based on the routeID to generate the 
+  //fetch the userData based on the routeID to generate the
   //data.getUser($routeParams.userID, userPageLoadScopes);
 
   data.getUserByCleanUrl($routeParams.cleanUrl, userPageLoadScopes);
@@ -121,10 +122,10 @@ angular.module('myApp.UserMain', [])
     });
   };
 
-  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school, cleanUrl) {
-    
+  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school, cleanUrl, skills) {
+
     var urlCleaner = cleanUrl.replace(/[^0-9a-z-]/g,""); //apply the urlCleaning function to the clean url.
-    
+
     var newSettings = {
       realName: realName || "",
       github: github || "",
@@ -133,12 +134,13 @@ angular.module('myApp.UserMain', [])
       location: location || "",
       school: school || "",
       cleanUrl: urlCleaner,
+      skills: skills || "",
       profileImage: $scope.tempProfileImage
     };
 
     //need to put in some form validation for the clean URL to check for dups and blanks.
     console.log("in user profile update");
-    
+
     if (newSettings.github.indexOf("http://") === -1 && newSettings.github.indexOf("https://") === -1 && newSettings.github !== ""){
       console.log("github invalid");
       $scope.errorFound = true;
@@ -164,7 +166,7 @@ angular.module('myApp.UserMain', [])
           else {
             console.log("running the ellse");
             data.getUserByCleanUrl(cleanUrl, function(user){
-              
+
               //if a user is found, but the cleanUrl is the same as the loggedInCleanUrl, then that is fine.
               if (user.cleanUrl === $scope.loggedInUserCleanUrl){
                 data.updateLoggedInUser($scope.loggedInUserID, newSettings, newSettings.cleanUrl);
@@ -186,7 +188,7 @@ angular.module('myApp.UserMain', [])
         }
       }
     }
-    
+
   }
 
 }]);

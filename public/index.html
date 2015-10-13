@@ -141,7 +141,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
 
-              <form ng-submit="finishDevProfile(githubLink, linkedinLink, blogLink, location, school)">
+              <form ng-submit="finishDevProfile(githubLink, linkedinLink, blogLink, location, school, skills)">
                 <ul class="list-unstyled project-details">
                   <li>
                     <div class="user-profile-label">Github Profile URL:</div>
@@ -162,6 +162,10 @@
                   <li>
                     <div class="user-profile-label">School:</div>
                     <input ng-model="school" class="user-profile-update-input" placeholder="The development school you attended" value="{{school}}" />
+                  </li>
+                  <li>
+                    <div class="user-profile-label">Skills:</div>
+                    <input ng-model="skills" class="user-profile-update-input" placeholder="Enter your tech skills (e.g., HTML, CSS, JavaScript)" value="{{skills}}" />
                   </li>
                   <li class="clearfix">
                     <div class="user-profile-label">Profile Image:</div>

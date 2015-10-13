@@ -73,6 +73,16 @@
 
   <div id="user-page-right-col">
     <div id="user-page-projects" class="clearfix">
+
+      <div ng-show="stringFound(skills)">
+        <div id="user-page-projects-header">
+          <h2 style="margin-top:0px; padding-top: 0px;">Skills</h2>
+        </div>
+        <div>
+          {{skills}}
+        </div>
+      </div>
+
       <div id="user-page-projects-header">
         <h2 style="margin-top:0px; padding-top: 0px;">Projects</h2>
       </div>
@@ -128,7 +138,7 @@
 </div>
 
 
-<!-- Profile edit Modal -->
+<!-- Dev Profile Edit Modal -->
 <div ng-controller="UserProfileEditCtrl" id="profile-edit-modal" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-content">
     <div class="close-modal" data-dismiss="modal">
@@ -141,8 +151,8 @@
     <div class="row first">
       <h2 class="page-header">Edit Profile</h2>
     </div>
-      <div class="row"> 
-        <form ng-submit="updateUserProfile(realName, githubLink, linkedinLink, blogLink, location, school, cleanUrl)">
+      <div class="row">
+        <form ng-submit="updateUserProfile(realName, githubLink, linkedinLink, blogLink, location, school, cleanUrl, skills)">
           <ul class="list-unstyled project-details">
             <li>
               <div class="user-profile-label">Name:</div>
@@ -151,6 +161,10 @@
             <li>
               <div class="user-profile-label">Github Profile URL:</div>
               <input ng-model="githubLink" class="user-profile-update-input" placeholder="Enter your github profile URL here" value="{{githubLink}}" />
+            </li>
+            <li>
+              <div class="user-profile-label">Skills:</div>
+              <input ng-model="skills" class="user-profile-update-input" placeholder="Enter your skills here" value="{{skills}}" />
             </li>
             <li>
               <div class="user-profile-label">LinkedIn URL:</div>
@@ -179,7 +193,7 @@
               <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left;" />
             </li>
           </ul>
-          <div class="error" ng-show="errorFound">{{error}}</div> 
+          <div class="error" ng-show="errorFound">{{error}}</div>
           <input type="submit" value="SAVE PROFILE" class="btn btn-danger btn-rounded btn-outline pull-right"/>
         </form>
       </div>
