@@ -40,7 +40,7 @@
                 <div class="item">
                   <img id="preview" src="{{projectImage}}" style="float:left" >
                 </div>
-              </div>orderby
+              </div>
             </div>
             <div class="col-md-4" style="padding-right: 0; padding-left: 0">
               <h3>Project Description:</h3>
@@ -66,7 +66,7 @@
                 <li>
                     <strong>Team Members:</strong>
                     <ul>
-                      <li ng-repeat="newProjTeamMember in newProjTeamMemberObjects">{{newProjTeamMember.realName}} <span ng-click="removeTeamMember($index, newProjTeamMembers, newProjTeamMemberObjects)">X</span></li>
+                      <li ng-repeat="newProjTeamMember in newProjTeamMemberObjects">{{newProjTeamMember.realName}} <span ng-click="removeTeamMember($index, newProjTeamMemberObjects); removeTeamMember($index, newProjTeamMembers)">X</span></li>
                     </ul>
                     <input rows="1" cols="50" name="addTeamMembers" type="text" placeholder="John Doe" ng-model="teamMember" ng-change="userLookUp(teamMember, newProjTeamMembers)"/>
                     <ul ng-show="teamMember">
@@ -217,7 +217,7 @@
                 <p ng-hide="edible">
                   {{specificDescription}}
                 </p>
-                <button ng-show="edible" ng-click="saveModal(specificProjID, specificProjName, specificDescription, specificGithubRepo, specificProjUrl, specificProjectImage, specificTeamMembers, specificTeamMembersRemoved)" class="pull-right btn btn-danger">Save</button>
+                <button ng-show="edible" ng-click="saveModal(specificProjID, specificProjName, specificDescription, specificGithubRepo, specificProjUrl, specificProjectImage, specificTeamMembers)" class="pull-right btn btn-danger">Save</button>
               </div>
 
             </div>
@@ -239,7 +239,7 @@
                       <ul ng-show="(specificTeamMembers.length>0)">
                         <li ng-repeat="teamMemberObject in specificTeamMemberObjects">
                           {{teamMemberObject.realName}}
-                          <span ng-click="removeTeamMember($index, specificTeamMembers, specificTeamMemberObjects, specificTeamMembersRemoved);"> X </span>
+                          <span ng-click="removeTeamMember($index, specificTeamMemberObjects); removeTeamMember($index, specificTeamMembers);"> X </span>
                         </li>
                       </ul>
 

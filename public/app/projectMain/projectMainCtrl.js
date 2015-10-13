@@ -38,13 +38,9 @@ angular.module('myApp.projectMain', [])
   //   $scope.projDisplay = newProjects[projName];
   // }
 
-  $scope.removeTeamMember = function(index, teamMemberIds, teamMemberObjects, teamMembersRemoved){
-    if(teamMemberIds.length > 1){
-      if (teamMembersRemoved !== undefined){
-        teamMembersRemoved.push(teamMemberIds[index]);
-      }
-      teamMemberIds.splice(index, 1);
-      teamMemberObjects.splice(index, 1);
+  $scope.removeTeamMember = function(index, teamMemberArray){
+    if(teamMemberArray.length > 1){
+      teamMemberArray.splice(index, 1);
     } else {
       $scope.error = "Projects must have at least one project owner."
       $scope.errorFound = true;
@@ -142,12 +138,11 @@ angular.module('myApp.projectMain', [])
     $scope.checked = true;
   }
 
-  $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved){
+  $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers){
     // firebase logic
     $scope.edible = false;
     $scope.checked = true;
-    console.log(teamMembersRemoved, "removed in savemodal ")
-    data.updateProject(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved);
+    data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage, teamMembers);
   };
 
   $scope.checked = true;
@@ -208,9 +203,8 @@ angular.module('myApp.projectMain', [])
     $scope.specificProjID  = projID;
     $scope.specificTeamMembers = teamMembers;
     $scope.specificTeamMemberObjects = [];
-    $scope.specificTeamMembersRemoved = [];
     if (teamMembers !== undefined){
-      for(var i=0; i < teamMembers.length; i++){
+      for(var i=0; i<teamMembers.length; i++){
         data.getUser(teamMembers[i], function(user){
           $scope.specificTeamMemberObjects.push(user);
           $scope.$apply();
