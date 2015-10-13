@@ -74,6 +74,13 @@
   <div id="user-page-right-col">
     <div id="user-page-projects" class="clearfix">
 
+      <div ng-show="stringFound(overview)">
+        <div id="user-page-projects-header">
+          <h2 style="margin-top:0px; padding-top: 0px;">Overview</h2>
+        </div>
+        <div ng-model="overview"> {{overview}} </div>
+      </div>
+
       <div ng-show="stringFound(skills)">
         <div id="user-page-projects-header">
           <h2 style="margin-top:0px; padding-top: 0px;">Skills</h2>
@@ -150,11 +157,15 @@
       <h2 class="page-header">Edit Profile</h2>
     </div>
       <div class="row">
-        <form ng-submit="updateUserProfile(realName, githubLink, linkedinLink, blogLink, location, school, cleanUrl, skills)">
+        <form ng-submit="updateUserProfile(realName, overview, githubLink, linkedinLink, blogLink, location, school, cleanUrl, skills)">
           <ul class="list-unstyled project-details">
             <li style="padding-top:15px">
               <div class="user-profile-label">Name:</div>
               <input ng-model="realName" class="user-profile-update-input" placeholder="Enter your name here" value="{{realName}}" />
+            </li>
+            <li>
+              <div class="user-profile-label">Overview:</div>
+              <input ng-model="overview" class="user-profile-update-input" placeholder="Describe yourself" value="{{overview}}" />
             </li>
             <li>
               <div class="user-profile-label">Github Profile URL:</div>

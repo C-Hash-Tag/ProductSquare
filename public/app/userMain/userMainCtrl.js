@@ -46,6 +46,7 @@ angular.module('myApp.UserMain', [])
     $scope.school = truncateText(user.school);
     $scope.cleanUrl = user.cleanUrl;
     $scope.skills = user.skills;
+    $scope.overview = user.overview;
     $scope.projectsThatIsubmitted = user.projectsThatIsubmitted;
     if ($scope.loggedInUserCleanUrl === $scope.cleanUrl){
       $scope.edible = true;
@@ -123,12 +124,13 @@ angular.module('myApp.UserMain', [])
     });
   };
 
-  $scope.updateUserProfile = function(realName, github, linkedin, blog, location, school, cleanUrl, skills) {
+  $scope.updateUserProfile = function(realName, overview, github, linkedin, blog, location, school, cleanUrl, skills) {
 
     var urlCleaner = cleanUrl.replace(/[^0-9a-z-]/g,""); //apply the urlCleaning function to the clean url.
 
     var newSettings = {
       realName: realName || "",
+      overview: overview || "",
       github: github || "",
       linkedin: linkedin || "",
       blog: blog || "",
