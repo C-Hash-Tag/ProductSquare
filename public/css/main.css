@@ -36,6 +36,13 @@
 
 /* Styles for Ideas page */
 
+#idea-info {
+  width: 50%;
+  height: 80%;
+  top: 7%;
+  margin: auto;
+}
+
 .modal-backdrop, .modal-backdrop.in{
   display: none;
 }
