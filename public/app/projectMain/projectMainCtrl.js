@@ -38,6 +38,31 @@ angular.module('myApp.projectMain', [])
   //   $scope.projDisplay = newProjects[projName];
   // }
 
+  $scope.removeTeamMember = function(index, teamMemberArray){
+    teamMemberArray.splice(index, 1);
+  }
+
+  $scope.userLookUp = function(inputUser){
+    console.log("theUserInput", inputUser);
+    data.filterForUser(inputUser, function(filteredUsers){
+      $scope.filteredUsers = filteredUsers;
+      $scope.$apply();
+    });
+  }
+
+  $scope.addTeamMember = function(userId){
+    $scope.newProjTeamMembers.push(userId);
+  }
+
+  $scope.addSpecificTeamMember = function(userId){
+    $scope.specificTeamMembers.push(userId);
+    data.getUser(userId, function(user){
+      $scope.teamMemberObjects.push(user);
+      $scope.$apply();
+    });
+    console.log("in add specfic team member");
+  };
+
   $scope.userProfLink = function(userId) {
     var userLink = "http://127.0.0.1:3000/#/user/" + $scope.loggedInUserID;
     console.log("in user prof link", userLink);
@@ -58,11 +83,16 @@ angular.module('myApp.projectMain', [])
       //add/ remove idea in user's liked ideas
   }
 
-  $scope.editProj = function(userID) {
-    console.log("userID", userID);
-    if ($scope.loggedInUserID === userID) {
-      return true;
+  $scope.editProj = function() {
+    if ($scope.specificTeamMembers !== undefined) {
+      for (var i=0; i<$scope.specificTeamMembers.length; i++){
+        if ($scope.loggedInUserID === $scope.specificTeamMembers[i]) {
+          return true;
+        }
+      }
+      return false;
     }
+    return false;
   }
 
   //HANDLES CLOSING MODALS WITHOUT SAVING EDITS
@@ -76,23 +106,23 @@ angular.module('myApp.projectMain', [])
     $scope.checked = true;
   }
 
-  $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage){
+  $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers){
     // firebase logic
     $scope.edible = false;
     $scope.checked = true;
-    data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage);
+    data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage, teamMembers);
   };
 
   $scope.checked = true;
-
 
   $scope.projectSubmit = function(projDesc, githubUrl, projName, projUrl, projectImage) {
     var projID = uniqueNumber(projName)
     if (projectImage === "") {
       projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
     }
-    data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage);
+    data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, $scope.newProjTeamMembers);
 
+    $scope.newProjTeamMembers = [$scope.loggedInUser];
     $scope.projDesc = "";
     $scope.githubUrl = "";
     $scope.projName = "";
@@ -130,19 +160,24 @@ angular.module('myApp.projectMain', [])
 
 
   //INFO MODAL LOADING
-  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, userID, projID, userRealName){
+  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, projID, teamMembers){
     $scope.specificProjName = projName;
     $scope.specificDescription = description;
     $scope.specificProjUrl = projUrl;
     $scope.specificGithubRepo = githubRepo;
     $scope.specificProjectImage = projectImage;
     $scope.specificDate = date;
-    $scope.specificUserID = userID;
     $scope.specificProjID  = projID;
-    $scope.specificUserRealName = userRealName;
-    data.getUserCleanUrl(userID, function(userCleanUrl){
-      $scope.specificUserCleanUrl = "#/user/" + userCleanUrl;
-    });
+    $scope.specificTeamMembers = teamMembers;
+    $scope.teamMemberObjects = [];
+    if (teamMembers !== undefined){
+      for(var i=0; i<teamMembers.length; i++){
+        data.getUser(teamMembers[i], function(user){
+          $scope.teamMemberObjects.push(user);
+          $scope.$apply();
+        })
+      }
+    }
   }
 
   //SORTING FEATURE

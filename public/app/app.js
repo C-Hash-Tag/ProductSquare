@@ -60,6 +60,7 @@ angular.module('myApp', [
 
   var updateLoggedInScopes = function(user){
     $scope.loggedIn = true;
+    $scope.loggedInUser = user;
     $scope.target = "#submitModalIdea";
     $scope.projTarget = "#submitModalProject";
     $scope.loggedInUserID = user.userId;
@@ -73,6 +74,9 @@ angular.module('myApp', [
     if(user.userType === "student"){
       $scope.isStudent = true;
     }
+    //create initial array of teamMembers for new project submission.
+
+    $scope.newProjTeamMembers = [user.userId];
     $scope.$apply();
     console.log("inside app.js ",  $scope.loggedInUserCleanUrl, user.cleanUrl)
   };
@@ -149,7 +153,6 @@ angular.module('myApp', [
       return (a[field] > b[field] ? 1 : -1);
     });
     if(reverse) filtered.reverse();
-    console.log(filtered);
     return filtered;
   };
 })
