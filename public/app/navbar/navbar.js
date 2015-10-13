@@ -17,10 +17,10 @@ angular.module('myApp.navBar', [])
       $scope.loginErrorFound = false;
       $scope.loginError = "";
 
-      // data.getUser(authData.uid, function(user){
-      //   console.log("USERTO LOGIN", user);
-      //   $scope.$emit('userLoggedIn', user);
-      // });
+      data.getUser(authData.uid, function(user){
+        console.log("USERTO LOGIN", user);
+        $scope.$emit('userLoggedIn', user);
+      });
       localStorage.userID = authData.uid;
     };
     $scope.$apply();
@@ -64,6 +64,7 @@ angular.module('myApp.navBar', [])
             }
           } else {
             //create a full user in the firebase database.
+            $scope.loggedIn = true;
             data.createUser(email, password, userData.uid, realName, userType, function(){
               //switch the modals that appear when a user is successfully created.
               //after creating the user, login the user.

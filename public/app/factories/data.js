@@ -118,7 +118,7 @@ angular.module('myApp.data', [])
     };
 
     factory.getUser = function(userID, cb) {
-      firebase.child("users").child(userID).on("value", function(data){
+      firebase.child("users").child(userID).once("value", function(data){
         console.log("userdata fetched from getUser!", data.val());
         // $rootScope.$broadcast('gotUser', data.val());  //alert all controllers that the loggedin user has been modified.
         cb(data.val());
