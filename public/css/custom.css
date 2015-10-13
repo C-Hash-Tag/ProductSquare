@@ -1587,7 +1587,6 @@ a.light-text:focus {
   border-bottom: 1px solid #d6dae2;
 }
 .portfolio-modal ul.project-details li:first-child {
-  padding-top: 15px;
   border-top: 1px solid #d6dae2;
 }
 ul#filters {

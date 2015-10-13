@@ -17,8 +17,6 @@ angular.module('myApp', [
 //montiors stores top-level data for all of the pages on the entire app.
 .controller('AppController', ['$scope', 'data', 'auth', '$route', '$resource', '$q', '$filter', function($scope, data, auth, $route, $resource, $q, $filter) {
 
-  var tags = $resource('./tags.json');
-
   $scope.tags = [
     { text: 'HTML' },
     { text: 'CSS' },
