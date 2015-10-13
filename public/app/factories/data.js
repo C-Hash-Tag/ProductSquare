@@ -84,7 +84,7 @@ angular.module('myApp.data', [])
     };
 
     // Collect project data from createProject and store it in Firebase
-    factory.createProject = function(userRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage){
+    factory.createProject = function(userRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, teamMembers){
       // Store the project data in Firebase
       firebase.child('projects').child(projID).set({
         description: projDesc,
@@ -93,10 +93,10 @@ angular.module('myApp.data', [])
         projUrl: projUrl,
         projID: projID,
         date: currentDate(),
-        userID: localStorage.userID,
+        // userID: localStorage.userID,
         projectImage: projectImage,
-        userRealName: userRealName,
-        count: 0      
+        count: 0,
+        teamMembers: teamMembers
       });
 
       // Add the project data to the user in Firebase
@@ -114,6 +114,13 @@ angular.module('myApp.data', [])
         count: 0
       });
     };
+
+    factory.filterForUser = function(userString, cb){
+      firebase.child("users").orderByChild('realName').startAt(userString).endAt(userString+"\uf8ff").once("value", function(data){
+        console.log("filteredUser", data.val());
+        cb(data.val());
+      });
+    }
 
     factory.getUser = function(userID, cb) {
       firebase.child("users").child(userID).once("value", function(data){
@@ -257,7 +264,7 @@ angular.module('myApp.data', [])
 
     }
 
-    factory.updateProject = function(projID, projDesc, projName, githubUrl, projUrl, projectImage){
+    factory.updateProject = function(projID, projDesc, projName, githubUrl, projUrl, projectImage, teamMembers){
       firebase.child('projects').child(projID).child('description').transaction(function(desc){
         desc = projDesc;
         return desc;
@@ -277,6 +284,10 @@ angular.module('myApp.data', [])
       firebase.child('projects').child(projID).child('projectImage').transaction(function(image){
         image = projectImage;
         return image;
+      });
+      firebase.child('projects').child(projID).child('teamMembers').transaction(function(teamMemberIds){
+        teamMemberIds = teamMembers;
+        return teamMemberIds;
       });
     };
 
