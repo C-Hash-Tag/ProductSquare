@@ -39,29 +39,61 @@ angular.module('myApp.projectMain', [])
   // }
 
   $scope.removeTeamMember = function(index, teamMemberArray){
-    teamMemberArray.splice(index, 1);
+    if(teamMemberArray.length > 1){
+      teamMemberArray.splice(index, 1);
+    } else {
+      $scope.error = "Projects must have at least one project owner."
+      $scope.errorFound = true;
+      window.setTimeout(function(){
+        $scope.errorFound = false;
+        $scope.$apply(); 
+      }, 5000) 
+
+    }
   }
 
-  $scope.userLookUp = function(inputUser){
+  $scope.userLookUp = function(inputUser, teamMemberIdArray){
     console.log("theUserInput", inputUser);
     data.filterForUser(inputUser, function(filteredUsers){
+      console.log(filteredUsers, "filteredUsers before filter")
+      
+      for (var key in filteredUsers){
+        if (teamMemberIdArray.indexOf(filteredUsers[key].userId) !== -1){
+          delete filteredUsers[key];
+        }
+      }
+
       $scope.filteredUsers = filteredUsers;
+      console.log(filteredUsers, "filteredUsers!")
       $scope.$apply();
     });
   }
 
-  $scope.addTeamMember = function(userId){
-    $scope.newProjTeamMembers.push(userId);
-  }
 
-  $scope.addSpecificTeamMember = function(userId){
-    $scope.specificTeamMembers.push(userId);
+  $scope.addTeamMember = function(userId, teamMemberIdArray, teamMemberObjectsArray){
+    // $scope.newProjTeamMembers.push(userId);
+    teamMemberIdArray.push(userId);
     data.getUser(userId, function(user){
-      $scope.teamMemberObjects.push(user);
+      teamMemberObjectsArray.push(user);
+      for (var key in $scope.filteredUsers){
+        if ($scope.filteredUsers[key].userId === userId){
+          delete $scope.filteredUsers[key];
+          break;
+        }
+      }
       $scope.$apply();
     });
-    console.log("in add specfic team member");
-  };
+
+  }
+
+  // $scope.addSpecificTeamMember = function(userId){
+  //   $scope.specificTeamMembers.push(userId);
+  //   data.getUser(userId, function(user){
+  //     $scope.teamMemberObjects.push(user);
+  //     $scope.$apply();
+  //   });
+  //   console.log("in add specfic team member");
+  // };
 
   $scope.userProfLink = function(userId) {
     var userLink = "http://127.0.0.1:3000/#/user/" + $scope.loggedInUserID;
@@ -122,7 +154,8 @@ angular.module('myApp.projectMain', [])
     }
     data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, $scope.newProjTeamMembers);
 
-    $scope.newProjTeamMembers = [$scope.loggedInUser];
+    $scope.newProjTeamMemberObjects = [$scope.loggedInUser];
+
     $scope.projDesc = "";
     $scope.githubUrl = "";
     $scope.projName = "";
@@ -169,11 +202,11 @@ angular.module('myApp.projectMain', [])
     $scope.specificDate = date;
     $scope.specificProjID  = projID;
     $scope.specificTeamMembers = teamMembers;
-    $scope.teamMemberObjects = [];
+    $scope.specificTeamMemberObjects = [];
     if (teamMembers !== undefined){
       for(var i=0; i<teamMembers.length; i++){
         data.getUser(teamMembers[i], function(user){
-          $scope.teamMemberObjects.push(user);
+          $scope.specificTeamMemberObjects.push(user);
           $scope.$apply();
         })
       }

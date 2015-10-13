@@ -66,19 +66,20 @@
                 <li>
                     <strong>Team Members:</strong>
                     <ul>
-                      <li ng-repeat="newProjTeamMember in newProjTeamMembers">{{newProjTeamMember}} <span ng-click="removeTeamMember($index, newProjTeamMembers)">X</span></li>
+                      <li ng-repeat="newProjTeamMember in newProjTeamMemberObjects">{{newProjTeamMember.realName}} <span ng-click="removeTeamMember($index, newProjTeamMemberObjects); removeTeamMember($index, newProjTeamMembers)">X</span></li>
                     </ul>
-                    <input rows="1" cols="50" name="addTeamMembers" type="text" placeholder="John Doe" ng-model="teamMember" ng-change="userLookUp(teamMember)"/>
+                    <input rows="1" cols="50" name="addTeamMembers" type="text" placeholder="John Doe" ng-model="teamMember" ng-change="userLookUp(teamMember, newProjTeamMembers)"/>
                     <ul ng-show="teamMember">
                     <!-- make the loggedin user a default team member.
                     some scope variable, thats an array. that holds team members to be submitted, on submit. 
                     
                     -->
-                      <li class="filtered-users" ng-click="addTeamMember(value.userId)" ng-repeat="(key, value) in filteredUsers">{{value.realName}}</li>
+                      <li class="filtered-users" ng-click="addTeamMember(value.userId, newProjTeamMembers, newProjTeamMemberObjects)" ng-repeat="(key, value) in filteredUsers">{{value.realName}}</li>
                     </ul>
 
                 </li>
               </ul>
+              <div ng-show="errorFound" class="error"> {{error}}</div>
             </div>
           </div>
         </form>
@@ -236,18 +237,19 @@
                     <li>
                       <strong>Team Members: </strong>
                       <ul ng-show="(specificTeamMembers.length>0)">
-                        <li ng-repeat="teamMemberObject in teamMemberObjects">
+                        <li ng-repeat="teamMemberObject in specificTeamMemberObjects">
                           {{teamMemberObject.realName}}
-                          <span ng-click="removeTeamMember($index, teamMemberObjects); removeTeamMember($index, specificTeamMembers);"> X </span>
+                          <span ng-click="removeTeamMember($index, specificTeamMemberObjects); removeTeamMember($index, specificTeamMembers);"> X </span>
                         </li>
                       </ul>
 
-                      <input ng-show="edible" ng-change="userLookUp(inputUser)" rows="1" cols="50" name="projectTeamMembers" type="text" placeholder="John Doe" ng-model="inputUser" />
+                      <input ng-show="edible" ng-change="userLookUp(inputUser, specificTeamMembers)" rows="1" cols="50" name="projectTeamMembers" type="text" placeholder="John Doe" ng-model="inputUser" />
                       <ul ng-show="inputUser">
-                        <li class="filtered-users" ng-click="addSpecificTeamMember(value.userId)" ng-repeat="(key, value) in filteredUsers">{{value.realName}}</li>
+                        <li class="filtered-users" ng-click="addTeamMember(value.userId, specificTeamMembers, specificTeamMemberObjects)" ng-repeat="(key, value) in filteredUsers">{{value.realName}}</li>
                       </ul>
                     </li>
                   </ul>
+                  <div ng-show="errorFound" class="error"> {{error}}</div>
                   <ul ng-hide="edible" class="list-unstyled project-details">
                     <li ng-hide="edible">
                       <strong>Github Url: </strong>{{specificGithubRepo}}
@@ -258,7 +260,7 @@
                     <li>
                       <strong > Project Owner: </strong>
                         <ul>
-                          <li ng-repeat="teamMemberObject in teamMemberObjects">
+                          <li ng-repeat="teamMemberObject in specificTeamMemberObjects">
                             <a href="/#/user/{{teamMemberObject.cleanUrl}}/">
                               {{teamMemberObject.realName}}
                             </a>
