@@ -46,16 +46,25 @@ angular.module('myApp.projectMain', [])
       $scope.errorFound = true;
       window.setTimeout(function(){
         $scope.errorFound = false;
-        $scope.$apply();
+        $scope.$apply(); 
       }, 5000) 
 
     }
   }
 
-  $scope.userLookUp = function(inputUser){
+  $scope.userLookUp = function(inputUser, teamMemberIdArray){
     console.log("theUserInput", inputUser);
     data.filterForUser(inputUser, function(filteredUsers){
+      console.log(filteredUsers, "filteredUsers before filter")
+      
+      for (var key in filteredUsers){
+        if (teamMemberIdArray.indexOf(filteredUsers[key].userId) !== -1){
+          delete filteredUsers[key];
+        }
+      }
+
       $scope.filteredUsers = filteredUsers;
+      console.log(filteredUsers, "filteredUsers!")
       $scope.$apply();
     });
   }
@@ -66,8 +75,15 @@ angular.module('myApp.projectMain', [])
     teamMemberIdArray.push(userId);
     data.getUser(userId, function(user){
       teamMemberObjectsArray.push(user);
+      for (var key in $scope.filteredUsers){
+        if ($scope.filteredUsers[key].userId === userId){
+          delete $scope.filteredUsers[key];
+          break;
+        }
+      }
       $scope.$apply();
-    })
+    });
+
   }
 
   // $scope.addSpecificTeamMember = function(userId){

@@ -68,7 +68,7 @@
                     <ul>
                       <li ng-repeat="newProjTeamMember in newProjTeamMemberObjects">{{newProjTeamMember.realName}} <span ng-click="removeTeamMember($index, newProjTeamMemberObjects); removeTeamMember($index, newProjTeamMembers)">X</span></li>
                     </ul>
-                    <input rows="1" cols="50" name="addTeamMembers" type="text" placeholder="John Doe" ng-model="teamMember" ng-change="userLookUp(teamMember)"/>
+                    <input rows="1" cols="50" name="addTeamMembers" type="text" placeholder="John Doe" ng-model="teamMember" ng-change="userLookUp(teamMember, newProjTeamMembers)"/>
                     <ul ng-show="teamMember">
                     <!-- make the loggedin user a default team member.
                     some scope variable, thats an array. that holds team members to be submitted, on submit. 
@@ -243,7 +243,7 @@
                         </li>
                       </ul>
 
-                      <input ng-show="edible" ng-change="userLookUp(inputUser)" rows="1" cols="50" name="projectTeamMembers" type="text" placeholder="John Doe" ng-model="inputUser" />
+                      <input ng-show="edible" ng-change="userLookUp(inputUser, specificTeamMembers)" rows="1" cols="50" name="projectTeamMembers" type="text" placeholder="John Doe" ng-model="inputUser" />
                       <ul ng-show="inputUser">
                         <li class="filtered-users" ng-click="addTeamMember(value.userId, specificTeamMembers, specificTeamMemberObjects)" ng-repeat="(key, value) in filteredUsers">{{value.realName}}</li>
                       </ul>
