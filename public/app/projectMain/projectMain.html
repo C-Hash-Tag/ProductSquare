@@ -31,7 +31,7 @@
               </h2>
             </div>
           </div>
-          
+
           <div class="row">
             <div class="col-md-8">
               <div id="project-details-carousel" class="owl-carousel owl-theme">
@@ -71,8 +71,8 @@
                     <input rows="1" cols="50" name="addTeamMembers" type="text" placeholder="John Doe" ng-model="teamMember" ng-change="userLookUp(teamMember, newProjTeamMembers)"/>
                     <ul ng-show="teamMember">
                     <!-- make the loggedin user a default team member.
-                    some scope variable, thats an array. that holds team members to be submitted, on submit. 
-                    
+                    some scope variable, thats an array. that holds team members to be submitted, on submit.
+
                     -->
                       <li class="filtered-users" ng-click="addTeamMember(value.userId, newProjTeamMembers, newProjTeamMemberObjects)" ng-repeat="(key, value) in filteredUsers">{{value.realName}}</li>
                     </ul>
@@ -116,14 +116,16 @@
           <div  class="col-sm-4 portfolio-col">
             <span class="proj-header">{{project.projName}}</span>
             <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.projID, project.teamMembers, project.userCleanUrl)" class="portfolio-item" data-toggle="modal">
-              <div class="portfolio-link">
+              <div class="portfolio-link" >
                 <div class="caption">
                   <div class="caption-content">
                     <h3>{{project.projName}}</h3> <hr>
                     <p> {{project.description}}</p>
                   </div>
                 </div>
-                <img src="{{project.projectImage}}" class="img-centered" alt="" style="zoom:200%;">
+               <!--  <div style="position:relative; top:50%; transform: translateY(-50%)"> -->
+                  <img src="{{project.projectImage}}" class="img-centered" alt="" style="position:relative; top:50%; transform: translateY(-50%)">
+                <!-- </div> -->
               </div>
             </a>
             <span> Upvotes: {{project.count}} </span>

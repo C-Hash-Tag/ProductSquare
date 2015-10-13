@@ -31,12 +31,12 @@
   margin-top: 20px;
 }
 
-/* Projects */
 .portfolio-link {
   cursor: pointer;
   height: 200px;
   width: 350px;
   overflow: hidden;
+  background-color: black;
 }
 
 .projectCardsContainer {
@@ -1502,6 +1502,7 @@ a.light-text:focus {
   width: 100%;
   height: 100%;
   opacity: 0;
+  z-index: 100;
   transition: all ease 0.5s;
   -webkit-transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;

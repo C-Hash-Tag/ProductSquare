@@ -128,12 +128,6 @@ hr {
   overflow: hidden;
 }
 
-/*image*/
-.portfolio-link img {
-  width: 100%;
-  /*border: 1px solid #d6d6d6;*/
-}
-
 ::-webkit-input-placeholder {
    font-style: italic;
 }
@@ -146,8 +140,6 @@ hr {
 :-ms-input-placeholder {
    font-style: italic;
 }
-
-
 
 /* User profile page styling */
 #user-page-left-col {
