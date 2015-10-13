@@ -31,7 +31,7 @@ angular.module('myApp.UserMain', [])
     }
   }
 
-  userPageLoadScopes = function(user){
+  var userPageLoadScopes = function(user){
     $scope.realName = user.realName;
     $scope.profileImage = user.profileImage;
     $scope.email = user.email;
@@ -46,6 +46,7 @@ angular.module('myApp.UserMain', [])
     $scope.school = truncateText(user.school);
     $scope.cleanUrl = user.cleanUrl;
     $scope.skills = user.skills;
+    $scope.projectsThatIsubmitted = user.projectsThatIsubmitted;
     if ($scope.loggedInUserCleanUrl === $scope.cleanUrl){
       $scope.edible = true;
     }
