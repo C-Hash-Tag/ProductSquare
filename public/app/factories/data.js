@@ -100,18 +100,19 @@ angular.module('myApp.data', [])
       });
 
       // Add the project data to the user in Firebase
-      console.log(teamMembers, "teamMembers in data.js")
-      for (var i = 0; i < teamMembers.length; i++){
-        firebase.child('users').child(teamMembers[i]).child('projects').transaction(function(projIDs){
-          if (projIDs === null){
-            projIDs = [];
-          }
-          if (projIDs.indexOf(projID) === -1) {
-            projIDs.push(projID);  
-          }
-          return projIDs;
-        });
-      }
+      firebase.child('users').child(localStorage.userID).child('projectsThatIsubmitted').child(projID).set({
+
+        description: projDesc,
+        githubRepo: githubUrl,
+        projName: projName,
+        projUrl: projUrl,
+        projID: projID,
+        date: currentDate(),
+        userID: localStorage.userID,
+        projectImage: projectImage,
+        userRealName: userRealName,
+        count: 0
+      });
     };
 
     factory.filterForUser = function(userString, cb){
@@ -263,7 +264,7 @@ angular.module('myApp.data', [])
 
     }
 
-    factory.updateProject = function(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved){
+    factory.updateProject = function(projID, projDesc, projName, githubUrl, projUrl, projectImage, teamMembers){
       firebase.child('projects').child(projID).child('description').transaction(function(desc){
         desc = projDesc;
         return desc;
@@ -288,36 +289,6 @@ angular.module('myApp.data', [])
         teamMemberIds = teamMembers;
         return teamMemberIds;
       });
-
-      //update users projects
-      console.log(teamMembers);
-      for (var i = 0; i < teamMembers.length; i++){
-        firebase.child('users').child(teamMembers[i]).child('projects').transaction(function(projIDs){
-          if (projIDs === null || projIDs === undefined){
-            projIDs = [];
-          }
-          if (projIDs.indexOf(projID) === -1) {
-            projIDs.push(projID);  
-          }
-          return projIDs;
-        });
-      }
-
-      console.log(teamMembersRemoved, "removed!!");
-      for (var i = 0; i < teamMembersRemoved.length; i++){
-        firebase.child('users').child(teamMembersRemoved[i]).child('projects').transaction(function(projIDs){
-          console.log("projects of removed user", projIDs);
-          if (projIDs !== null && projIDs !== undefined){
-            var projectIndex = projIDs.indexOf(projID);
-            if (projectIndex !== -1){
-              projIDs.splice(projectIndex, 1);
-            }
-          }
-          return projIDs;
-        })
-      }
-
-
     };
 
     factory.updateIdea = function(userID, ideaID, ideaName, ideaDesc, ideaImage){
