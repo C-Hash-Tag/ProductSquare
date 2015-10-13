@@ -24,12 +24,12 @@ angular.module('myApp.OrgMain', [])
   $scope.proposalEdible = false;
   $scope.checked = true; //if user's current userId matches the idea's userId and this is true, then the edit button will show
 
-  $scope.like = function(ideaID){
+  $scope.like = function(ideaSubmitterID, ideaID){
     //check if user already liked idea
 
     //update css of the like button
     //update the database
-    data.updateLike($scope.loggedInUserID, ideaSubmiterID, ideaID, function(usersWhoLikeItCount){
+    data.updateLike($scope.loggedInUserID, ideaSubmitterID, ideaID, function(usersWhoLikeItCount){
       console.log("HERRRRRE", usersWhoLikeItCount);
     });
       //TODO: if username liked it before, remove her; if username hasn't, add her
