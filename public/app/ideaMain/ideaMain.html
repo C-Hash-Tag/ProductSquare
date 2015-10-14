@@ -14,64 +14,22 @@
 
       <!-- Project Sort  -->
     <div class="btn-group" role="group" aria-label="project sorting">
-      <button type="button" ng-click="setSort('recent')" class="btn btn-default">Latest</button>
-      <button type="button" ng-click="setSort('mostLiked')" class="btn btn-default">Most Popular</button>
-      <button type="button" ng-click="setSort('oldest')" class="btn btn-default">Featured</button>
+      <button type="button" ng-click="doSort('date')" class="btn btn-default">Latest</button>
+      <button type="button" ng-click="doSort('count')" class="btn btn-default">Most Popular</button>
     </div>
 
     <div class="cardContainerContainer" style="text-align: center; display: block">
 
-      <!-- Neat Non-Flippin Card starts:: SORTED BY RECENT -->
-      <div ng-show="selectedSort === 'recent'" class="cardContainer" ng-repeat="idea in newIdeas | orderObjectBy: 'date':true " style="display: inline-block">
-
-        <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  #ffc;">
-          <p class="name" style="color: black"> {{ idea.ideaName }} </p>
-          <hr>
-          <p class="description" style="color: black"> {{idea.description}} </p>
-        </div>
-        <div class="glyphicon-container">
-          <!-- <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> -->
-          <button ng-click="ideaLike(idea.userID, idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
-          <span>{{idea.count || 0}} </span>
-          <!-- <button ng-click="like(idea.ideaName)"> </button> -->
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-          </button>
-        </div>
-      </div>
-      <!-- Neat Non-Flippin Card ends -->
-
       <!-- Neat Non-Flippin Card starts -->
-      <div ng-show="selectedSort === 'mostLiked'" class="cardContainer" ng-repeat="idea in newIdeas | orderObjectBy: 'count':true" style="display: inline-block">
-
+      <div class="cardContainer" ng-repeat="idea in newIdeas | orderBy:sortBy:reverse" style="display: inline-block">
         <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  #ffc;">
           <p class="name" style="color: black"> {{ idea.ideaName }} </p>
           <hr>
           <p class="description" style="color: black"> {{idea.description}} </p>
         </div>
         <div class="glyphicon-container">
-          <!-- <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> -->
           <button ng-click="ideaLike(idea.userID, idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
           <span>{{idea.count || 0}} </span>
-          <!-- <button ng-click="like(idea.ideaName)"> </button> -->
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-          </button>
-        </div>
-      </div>
-      <!-- Neat Non-Flippin Card ends -->
-
-      <!-- Neat Non-Flippin Card starts -->
-      <div ng-show="selectedSort === 'oldest'" class="cardContainer" ng-repeat="idea in newIdeas | orderObjectBy: 'date':false" style="display: inline-block">
-
-        <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  #ffc;">
-          <p class="name" style="color: black"> {{ idea.ideaName }} </p>
-          <hr>
-          <p class="description" style="color: black"> {{idea.description}} </p>
-        </div>
-        <div class="glyphicon-container">
-          <!-- <button ng-click="like(idea.ideaName); idea.liked = !idea.liked" type="button" class="btn btn-default btn-xs" ng-class="{'liked' : idea.liked === true}"> -->
-          <button ng-click="ideaLike(idea.userID, idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
-          <span>{{idea.count || 0}} </span>
-          <!-- <button ng-click="like(idea.ideaName)"> </button> -->
             <span class="glyphicon glyphicon-thumbs-up"></span>
           </button>
         </div>

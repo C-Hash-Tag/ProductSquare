@@ -104,7 +104,7 @@ angular.module('myApp', [
   });
 
   data.getIdeas(function(ideas){
-    $scope.newIdeas = ideas;
+    $scope.newIdeas = _.values(ideas);
     $scope.$apply();
   });
 
