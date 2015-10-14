@@ -13,6 +13,7 @@ angular.module('myApp.projEditModal', [])
         scope.edible = false;
         data.updateProject(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved);
       };
+
       console.log("scope in directive", scope);
       scope.edible = false;
       scope.projEdit = false;
@@ -84,6 +85,19 @@ angular.module('myApp.projEditModal', [])
           }, 5000) 
 
         }
+      }
+
+      //HANDLES CLOSING MODALS WITHOUT SAVING EDITS
+      scope.checked= true; 
+
+      scope.editModal = function() {
+        scope.edible = true;
+        scope.checked = false;
+      };
+
+      scope.closeModal = function(){
+        scope.edible = false;
+        scope.checked = true;
       }
     }
   }

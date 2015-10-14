@@ -145,14 +145,25 @@ angular.module('myApp.data', [])
     factory.getProjects = function(cb){
       firebase.child("projects").on("value", function(data){
         cb(data.val());
+        console.log("proj Obs", data.val());
       });
     };
+
 
     factory.getProject = function(projID, cb){
       firebase.child("projects").child(projID).on("value", function(projectObject){
         cb(projectObject.val());
       })
     };
+
+    factory.getUserProjects = function(projIds, cb){
+      var result = [];
+      for (var i=0; i<projIds.length; i++){
+        factory.getProject(projIds[i], function(projObj){
+          result.push(projObj);
+        })
+      }
+    }
 
     factory.getLoggedInUsersIdeas = function(userID, cb){
       firebase.child("users").child(userID).child('ideasThatIsubmitted').on("value", function(data){
@@ -302,6 +313,7 @@ angular.module('myApp.data', [])
           if (projIDs.indexOf(projID) === -1) {
             projIDs.push(projID);  
           }
+          console.log(projIDs, "projIDS on firebase updated")
           return projIDs;
         });
       }

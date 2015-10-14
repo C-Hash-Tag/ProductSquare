@@ -31,6 +31,7 @@ angular.module('myApp.UserMain', [])
   }
 
   var userPageLoadScopes = function(user){
+    console.log("user", user)
     $scope.realName = user.realName;
     $scope.profileImage = user.profileImage;
     $scope.email = user.email;
@@ -50,10 +51,29 @@ angular.module('myApp.UserMain', [])
 
     $scope.projEditObj = {prop: "Hello"}
     $scope.projectObjects = [];
-    for (var i=0; i<user.projects.length; i++){
-      data.getProject(user.projects[i], function(projectObject){
-        $scope.projectObjects.push(projectObject);
-      });
+
+    //handles updating projects on user page: prevents duplicate projects on edit
+    if (user.projects){
+      for (var i=0; i<user.projects.length; i++){
+        data.getProject(user.projects[i], function(projectObject){
+          console.log("projectsObs", $scope.projectObjects);
+
+          var foundAt;
+          var found = false;
+          for (var i=0; i<$scope.projectObjects.length; i++){
+            if ($scope.projectObjects[i].projID === projectObject.projID){
+              found = true;
+              foundAt = i;
+            }
+          }
+          if (found){
+            $scope.projectObjects[foundAt] = projectObject;
+          }
+          else {
+            $scope.projectObjects.push(projectObject);
+          }
+        });
+      }
     }
 
     if ($scope.loggedInUserCleanUrl === $scope.cleanUrl){
