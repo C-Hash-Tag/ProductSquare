@@ -1,21 +1,21 @@
 angular.module('myApp', [
   'ngRoute',
+  // 'ngResource',
   'myApp.data',
   'myApp.projectMain',
   'myApp.imageUpload',
   'myApp.main',
   'myApp.ideaMain',
+  'myApp.firebase',
   'myApp.UserMain',
   'myApp.OrgMain',
   'myApp.auth',
   'myApp.navBar',
-  'myApp.firebase',
-  'ngTagsInput',
-  'ngResource'
+  'ngTagsInput'
 ])
 
-//montiors stores top-level data for all of the pages on the entire app.
-.controller('AppController', ['$scope', 'data', 'auth', '$route', '$resource', '$q', '$filter', function($scope, data, auth, $route, $resource, $q, $filter) {
+//montiors stores top-level data for all of the pages on the entire app. maybe add ngResource
+.controller('AppController', ['$scope', 'data', 'auth', '$route', '$q', '$filter', function($scope, data, auth, $route, $q, $filter) {
 
   $scope.tags = [
     { text: 'HTML' },
@@ -190,5 +190,27 @@ angular.module('myApp', [
       controllerAs: 'vm',
       activetab: 'projects'
     });
-}]);
+}])
+.factory('firebaseMock', [function(){
+  var factory = {};
+  var Ref = new Firebase('https://popping-heat-272.firebaseio.com/');
+  
+  factory.createUser = function(name, age, orgnaization){
+    // Store the project data in Firebase
+    Ref.child(name).set({
+      name: name,
+      age: age,
+      orgnaization: orgnaization
+    });
+  };
+  return factory;
+}])
+
+.factory('basicService', function(firebaseMock){
+  var factory = {};
+  factory.sendData = function(name, age, orgnaization){
+    firebaseMock.createUser(name, age, orgnaization);
+  }
+  return factory;
+});
 

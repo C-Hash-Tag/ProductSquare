@@ -16,9 +16,12 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
     './node_modules/angular/angular.js',
+    './node_modules/angular-route/angular-route.js',
     './node_modules/angular-mocks/angular-mocks.js',
+    './node_modules/ng-tags-input/build/ng-tags-input.js',
+    './node_modules/ng-tags-input/lib/angular-resource.js',
     './public/app/app.js',
-    './public/app/factories/data.js',
+    './public/app/**/*.js',
     './public/tests/spec.js'
     ],
 
