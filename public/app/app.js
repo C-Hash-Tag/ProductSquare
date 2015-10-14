@@ -191,6 +191,8 @@ angular.module('myApp', [
       activetab: 'projects'
     });
 }])
+
+//--> for testing purposes
 .factory('firebaseMock', [function(){
   var factory = {};
   var Ref = new Firebase('https://popping-heat-272.firebaseio.com/');
