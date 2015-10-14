@@ -3,6 +3,11 @@ angular.module('myApp.ideaMain', [])
 .controller('IdeaMainCtrl', ['$scope', '$http', 'data', '$log', 'auth', 'imageUpload', '$route', function($scope, $http, data, $log, auth, imageUpload, $route){
   $scope.$route = $route;
 
+  $scope.sortBy = 'date';
+  $scope.reverse = false;
+
+  $scope.newIdeasInArray = _.values($scope.newIdeas);
+
   //NOTE: set the listener before you get the data
   var uniqIdeaID = function(str) {
     str = str.split("");
@@ -107,12 +112,13 @@ angular.module('myApp.ideaMain', [])
   }
 
   //SORTING FEATURE
-  $scope.selectedSort = "mostLiked";
-
-  $scope.setSort = function(type){
-   console.log($scope.selectedSort, "selectedSort")
-   $scope.selectedSort = type;
-   console.log($scope.selectedSort, "selectedSort", " and type", type);
+  $scope.doSort = function(type){
+   console.log(_.values($scope.newIdeas));
+   console.log('type', type)
+   $scope.sortBy = type;
+   console.log('reverse:before', $scope.reverse);
+   $scope.reverse = !$scope.reverse;
+   console.log('reverse:after', $scope.reverse);
   }
 
 }]);

@@ -36,6 +36,13 @@
 
 /* Styles for Ideas page */
 
+#idea-info {
+  width: 50%;
+  height: 80%;
+  top: 7%;
+  margin: auto;
+}
+
 .modal-backdrop, .modal-backdrop.in{
   display: none;
 }
@@ -128,12 +135,6 @@ hr {
   overflow: hidden;
 }
 
-/*image*/
-.portfolio-link img {
-  width: 100%;
-  /*border: 1px solid #d6d6d6;*/
-}
-
 ::-webkit-input-placeholder {
    font-style: italic;
 }
@@ -146,8 +147,6 @@ hr {
 :-ms-input-placeholder {
    font-style: italic;
 }
-
-
 
 /* User profile page styling */
 #user-page-left-col {
