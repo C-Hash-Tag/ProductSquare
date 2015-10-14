@@ -49,6 +49,8 @@ angular.module('myApp.UserMain', [])
     $scope.overview = user.overview;
     $scope.projects = user.projects;
 
+    $scope.projEditObj = {prop: "Hello"};
+
     $scope.projectObjects = [];
     for (var i=0; i<user.projects.length; i++){
       data.getProject(user.projects[i], function(projectObject){

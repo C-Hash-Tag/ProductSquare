@@ -11,7 +11,11 @@ angular.module('myApp', [
   'myApp.OrgMain',
   'myApp.auth',
   'myApp.navBar',
-  'ngTagsInput'
+  'ngTagsInput',
+  'myApp.firebase',
+  'ngTagsInput',
+  'ngResource',
+  'myApp.projEditModal'
 ])
 
 //montiors stores top-level data for all of the pages on the entire app. maybe add ngResource
