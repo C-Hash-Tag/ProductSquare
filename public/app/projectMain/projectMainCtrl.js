@@ -99,13 +99,6 @@ angular.module('myApp.projectMain', [])
   //   console.log("in add specfic team member");
   // };
 
-  $scope.userProfLink = function(userId) {
-    var userLink = "http://127.0.0.1:3000/#/user/" + $scope.loggedInUserID;
-    console.log("in user prof link", userLink);
-    //concat url and loggedInUserID
-    return userLink;
-  }
-
    $scope.projectLike = function(projectID){
     console.log("in project like", projectID);
     //check if user already liked idea

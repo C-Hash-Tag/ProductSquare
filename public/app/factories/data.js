@@ -122,7 +122,6 @@ angular.module('myApp.data', [])
 
     factory.getUser = function(userID, cb) {
       firebase.child("users").child(userID).once("value", function(data){
-        console.log("userdata fetched from getUser!", data.val());
         // $rootScope.$broadcast('gotUser', data.val());  //alert all controllers that the loggedin user has been modified.
         cb(data.val());
       });
@@ -136,7 +135,6 @@ angular.module('myApp.data', [])
         }
         else {
           for (var first in fetchedData){
-            console.log("data by CleanURL", fetchedData[first])
             cb(fetchedData[first]);
           }
         }
