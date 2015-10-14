@@ -1,6 +1,6 @@
 angular.module('myApp.projEditModal', [])
 
-.directive('projEditModal', ['data', function(data){
+.directive('projEditModal', ['data', 'imageUpload', function(data, imageUpload){
   return {
     restrict: 'E',
     scope: { 
@@ -26,8 +26,33 @@ angular.module('myApp.projEditModal', [])
           console.log("HERRRRRE", usersWhoLikeItCount);
         });
       }
+
+      scope.editProjectImage = function() {
+        console.log("selectedFile!!!");
+        console.log("event", event);
+        imageUpload.projectImage(scope.obj.projID, event, function(url){
+          console.log(url, "url!");
+          scope.obj.projectImage = url;
+          scope.$apply();
+        }); //run the userImage upload from the imageUpload factory.
+      };
+
+      scope.userLookUp = function(inputUser, teamMemberIdArray){
+        console.log("theUserInput", inputUser);
+        data.filterForUser(inputUser, function(filteredUsers){
+          console.log(filteredUsers, "filteredUsers before filter")
+          
+          for (var key in filteredUsers){
+            if (teamMemberIdArray.indexOf(filteredUsers[key].userId) !== -1){
+              delete filteredUsers[key];
+            }
+          }
+          scope.filteredUsers = filteredUsers;
+          console.log(filteredUsers, "filteredUsers!")
+          scope.$apply();
+        });
+      }
     }
-    
   }
 }])
 
