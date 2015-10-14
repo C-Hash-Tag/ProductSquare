@@ -76,6 +76,7 @@ angular.module('myApp.projectMain', [])
 
   $scope.addTeamMember = function(userId, teamMemberIdArray, teamMemberObjectsArray){
     // $scope.newProjTeamMembers.push(userId);
+    console.log(userId);
     teamMemberIdArray.push(userId);
     data.getUser(userId, function(user){
       teamMemberObjectsArray.push(user);

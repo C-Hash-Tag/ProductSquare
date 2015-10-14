@@ -52,11 +52,44 @@ angular.module('myApp.projEditModal', [])
           scope.$apply();
         });
       }
+
+      scope.addTeamMember = function(userId, teamMemberIdArray, teamMemberObjectsArray){
+        // scope.newProjTeamMembers.push(userId);
+        console.log(userId);
+        teamMemberIdArray.push(userId);
+        data.getUser(userId, function(user){
+          teamMemberObjectsArray.push(user);
+          for (var key in scope.filteredUsers){
+            if (scope.filteredUsers[key].userId === userId){
+              delete scope.filteredUsers[key];
+              break;
+            }
+          }
+        });
+      }
+
+      scope.removeTeamMember = function(index, teamMemberIds, teamMemberObjects, teamMembersRemoved){
+        if(teamMemberIds.length > 1){
+          if (teamMembersRemoved !== undefined){
+            teamMembersRemoved.push(teamMemberIds[index]);
+          }
+          teamMemberIds.splice(index, 1);
+          teamMemberObjects.splice(index, 1);
+        } else {
+          scope.error = "Projects must have at least one project owner."
+          scope.errorFound = true;
+          window.setTimeout(function(){
+            scope.errorFound = false;
+            scope.$apply();
+          }, 5000) 
+
+        }
+      }
     }
   }
 }])
 
-// .controller('ProjEditModalCtrl', ['$scope', function($scope){
+// .controller('ProjEditModalCtrl', ['scope', function($scope){
 
 // }])
 
