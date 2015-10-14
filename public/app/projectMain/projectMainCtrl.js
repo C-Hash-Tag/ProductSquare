@@ -154,7 +154,7 @@ angular.module('myApp.projectMain', [])
 
   $scope.projectSubmit = function(projDesc, githubUrl, projName, projUrl, projectImage) {
     var projID = uniqueNumber(projName)
-    if (projectImage === "") {
+    if (!projectImage) {
       projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
     }
     data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, $scope.newProjTeamMembers);
