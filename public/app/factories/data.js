@@ -16,7 +16,6 @@ angular.module('myApp.data', [])
       today = mm+'/'+dd+'/'+yyyy;
       return today;
     }
-
     // Collect user data from sign up and store it in Firebase
     factory.createUser = function(email, password, userId, realName, userType, cb){
       // Store the user data in Firebase
