@@ -17,10 +17,8 @@ angular.module('myApp.projEditModal', [])
       console.log("scope in directive", scope);
       scope.edible = false;
       scope.projEdit = false;
-      scope.editModal = function(){
-        scope.edible = true;
-        console.log("edible?", scope.edible);
-      };
+
+    
 
       scope.projectLike = function(projID){
         data.updateProjectLike(scope.obj.loggedInUserID, projID, function(usersWhoLikeItCount){

@@ -1,10 +1,5 @@
 <div ng-controller="UserMainCtrl" class="container" style="margin-top: 30px;">
   <div id="user-page-left-col">
-    <div id="user-page-edit-profile" ng-show="edible">
-      <button class="btn btn-danger btn-outline btn-rounded" data-toggle="modal" data-target="#profile-edit-modal">
-        Edit my Profile
-      </button>
-    </div>
     <div id="user-page-profile-pic" width="100%">
       <img src="{{profileImage}}" />
     </div>
@@ -72,7 +67,9 @@
 
   <div id="user-page-right-col">
     <div id="user-page-projects" class="clearfix">
-
+      <button id="user-page-edit-profile" ng-show="edible" class="btn btn-danger btn-outline btn-rounded" data-toggle="modal" data-target="#profile-edit-modal" style="float:right">
+       Edit my Profile
+      </button>
       <div ng-show="stringFound(overview)">
         <div id="user-page-projects-header">
           <h2 style="margin-top:0px; padding-top: 0px;">Overview</h2>
@@ -145,8 +142,8 @@
               <input ng-model="githubLink" class="user-profile-update-input" placeholder="Enter your github profile URL here" value="{{githubLink}}" />
             </li>
             <li>
-              <div class="user-profile-label">Skills:</div>
-              <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" placeholder="Enter your tech skills (e.g., HTML, CSS, JavaScript)" value="{{skills}}">
+              <div class="user-profile-label">Technical Skills:</div>
+              <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" value="{{skills}}" style="width: 596px">
 
             </li>
             <li>
@@ -167,8 +164,8 @@
             </li>
             <li>
               <div class="user-profile-label">Profile Url:</div>
-              <input ng-model="cleanUrl" class="user-profile-update-input" value="{{cleanUrl}}" />
-              http://productsquare.com/user/{{cleanUrl}}/
+              http://productsquare.com/user/
+              <input ng-model="cleanUrl" class="user-profile-update-input" value="{{cleanUrl}}" style="width: 176px"/>
             </li>
             <li class="clearfix">
               <div class="user-profile-label">Profile Image:</div>
