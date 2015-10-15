@@ -3,7 +3,7 @@
 
 #header-message-container {
   margin-top: 150px;
-  margin-bottom: 150px;
+  margin-bottom: 110px;
 }
 
 .page-scroll {
@@ -1412,7 +1412,7 @@ a.light-text:focus {
 .bg-parallax-light,
 .bg-parallax-dark {
   width: 100%;
-  height: 632px;
+  height: calc(100vh - 50px);
   background-attachment: scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
