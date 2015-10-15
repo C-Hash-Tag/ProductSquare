@@ -1,6 +1,7 @@
 # ProductSquare
 
 === Product Square ===
+
 Contributors: codeNameAtlas, viinasu, jkf91, sinwailam193, dswright
 Requires at least: 0.0.1
 Tested up to: 0.0.1
@@ -13,7 +14,7 @@ Every 7 weeks, professionally trained student engineers are creating new product
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+This section describes how to install the app and get it working on your local host
 
 1. Fork the repository at 'https://github.com/C-Hash-Tag/ProductSquare'
 2. Clone it down to your local machine
