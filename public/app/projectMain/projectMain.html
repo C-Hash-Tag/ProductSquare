@@ -1,85 +1,84 @@
 
   <!-- Project Sort  -->
-  <div class="container" ng-click="close()" style="padding-left: 0; padding-right: 0">
+
+<div class="container" style="padding-left: 0">
 
   <!-- Project Submit Modal Button -->
   <button id="project-submit-button" type="button" ng-hide="isOrg" class="btn btn-danger btn-rounded pull-right" data-toggle="modal" data-target="{{projTarget}}">Submit A Project</button>
   <!-- Project Submit Modal Button ends -->
 
   <!-- Project Submit Modal Content - Standard Portfolio Modal - Images and Text -->
-  <div id="submitModalProject" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-      <div class="close-modal" data-dismiss="modal">
-        <div class="lr">
-          <div class="rl"></div>
+  <div id="submitModalProject" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-large">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button ng-click="projectSubmit(projDesc, githubUrl, projName, projUrl, projectImage)" class="pull-right btn btn-danger project-modal-edit">Submit Project</button>
+          <h3>
+            <input placeholder="New Project Name" ng-model="projName" />
+          </h3>
+        </div>
+
+        <div class="modal-body clearfix">
+          <div class="col-md-8 project-modal-left-col">
+            <p id="status"> Update project image</p>
+              <input type="file" id="file" name='file' onchange="angular.element(this).scope().editProjectImage(this)"/>
+            <div class="project-modal-image">
+              <img ng-src="{{projectImage}}" alt="" />
+            </div>
+            
+            <p style="margin-bottom: 0;">
+              <textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="projDesc" style="width:100%"></textarea>
+            </p>
+          </div>
+          <div class="col-md-4 project-modal-right-col">
+
+            <ul class="list-unstyled project-modal-details">
+              <li>
+                <h3 style="margin:auto;text-align:center;">Team</h3>
+                <ul class="project-modal-team-list">
+                  <li ng-repeat="teamMemberObject in newProjTeamMemberObjects" class="clearfix">
+                    <div class="project-modal-team-list-profile-image">
+                      <img src="{{teamMemberObject.profileImage}}" alt="" />
+                    </div> 
+                    <div class="project-modal-class-list-real-name">
+                      {{teamMemberObject.realName}}
+                      <span ng-click="removeTeamMember($index, newProjTeamMembers, newProjTeamMemberObjects);"> X </span>
+                    </div>
+                    
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <input class="form-control" ng-change="userLookUp(inputUser, newProjTeamMembers)" rows="1" cols="50" name="projectTeamMembers" type="text" placeholder="Add new Team Member" ng-model="inputUser" />
+                <ul ng-show="inputUser" class="project-modal-team-list">
+                  <li class="filtered-users" ng-click="addTeamMember(value.userId, newProjTeamMembers, newProjTeamMemberObjects)" ng-repeat="(key, value) in filteredUsers">
+                    <div class="project-modal-team-list-profile-image">
+                      <img src="{{value.profileImage}}" alt="" />
+                    </div> 
+                    <div class="project-modal-class-list-real-name">
+                      {{value.realName}}
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Github URL: </strong>
+                  <input ng-show"edible"rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl" />
+              </li>
+              <li ng-show"edible">
+                <strong>Live Project URL: </strong>
+                  <input rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com" />
+              </li>
+
+              <div ng-show="errorFound" class="error">
+                {{error}}
+              </div>
+              
+            </ul>
+          </div>
         </div>
       </div>
-
-      <div class="container">
-        <form ng-submit="projectSubmit(projDesc, githubUrl, projName, projUrl, projectImage)">
-          <div class="row first">
-            <div class="col-lg-12">
-              <h2 class="page-header">
-                <textarea rows="1" cols="25" name="comment" type="text" placeholder="Enter Project Name" ng-model="projName"></textarea>
-              </h2>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-8">
-              <div id="project-details-carousel" class="owl-carousel owl-theme">
-                <p id="status"> Please upload an image file. </p>
-                <input type="file" style="width:105px" title="" id="file" name='file' onchange="angular.element(this).scope().saveProjectImage(this)"/>
-                <div class="item">
-                  <img id="preview" src="{{projectImage}}" style="float:left" >
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4" style="padding-right: 0; padding-left: 0">
-              <h3>Project Description:</h3>
-              <p style="margin-bottom: 0"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or interesting?" ng-model="projDesc" style="width:100%"></textarea></p>
-              <span class="pull-right">
-                <input type="submit" id="submit" class="btn btn-primary" value="Submit"/>
-              </span>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-8">
-              <h3>Project Details:</h3>
-              <ul class="list-unstyled project-details">
-                <li>
-                  <strong>Github URL: </strong>
-                  <input rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl" value="{{githubUrl}}"/>
-                </li>
-                <li>
-                  <strong>Project URL: </strong>
-                  <input rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com" value="{{projUrl}}"/>
-                </li>
-                <li>
-                    <strong>Team Members:</strong>
-                    <ul>
-                      <li ng-repeat="newProjTeamMember in newProjTeamMemberObjects">{{newProjTeamMember.realName}} <span ng-click="removeTeamMember($index, newProjTeamMembers, newProjTeamMemberObjects)">X</span></li>
-                    </ul>
-                    <input rows="1" cols="50" name="addTeamMembers" type="text" placeholder="John Doe" ng-model="teamMember" ng-change="userLookUp(teamMember, newProjTeamMembers)"/>
-                    <ul ng-show="teamMember">
-                    <!-- make the loggedin user a default team member.
-                    some scope variable, thats an array. that holds team members to be submitted, on submit.
-
-                    -->
-                      <li class="filtered-users" ng-click="addTeamMember(value.userId, newProjTeamMembers, newProjTeamMemberObjects)" ng-repeat="(key, value) in filteredUsers">{{value.realName}}</li>
-                    </ul>
-
-                </li>
-              </ul>
-              <div ng-show="errorFound" class="error"> {{error}}</div>
-            </div>
-          </div>
-        </form>
-      </div>
-     <!--  <div class="modal-body" ng-show="submission">
-          <h4 class="modal-title"> Thanks for your Submission </h4>
-      </div> -->
     </div>
   </div>
 
@@ -107,8 +106,8 @@
 
         <!-- project card -->
         <div ng-show="selectedSort === 'recent'" ng-repeat="project in newProjects | orderObjectBy:'date':true">
-          <div class="col-sm-12 portfolio-col" style="margin-bottom: 20px;">
-            <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);">
+          <div class="col-sm-12 portfolio-col">
+            <div class="proj-header">
               <h4>{{project.projName | uppercase}}<h4>
             </div>
             <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.projID, project.teamMembers, project.userCleanUrl)" class="portfolio-item" data-toggle="modal">
@@ -123,7 +122,7 @@
                 <!-- </div> -->
               </div>
             </a>
-            <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); padding-right: 15px">
+            <div class="proj-footer">
               <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray"></i> {{project.count}} </h5>
             </div>
           </div>
