@@ -21,25 +21,7 @@
 
     <div class="cardContainerContainer" style="text-align: center; display: block">
 
-      <!-- Idea Card starts -->
-     <!--
-       <div class="cardContainer" ng-repeat="idea in newIdeas | orderBy:sortBy:reverse" style="display: inline-block">
-        <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  #ffc;">
-          <p class="name" style="color: black"> {{ idea.ideaName }} </p>
-          <hr>
-          <p class="description" style="color: black"> {{idea.description}} </p>
-        </div>
-        <div class="glyphicon-container">
-          <button ng-click="ideaLike(idea.userID, idea.ideaID); idea.liked = true;" type="button" class="btn btn-default btn-xs">
-          <span>{{idea.count || 0}} </span>
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-          </button>
-        </div>
-      </div> -->
-      <!-- Idea Card ends -->
-
-
-      <!-- Project Card -->
+      <!-- Idea Card -->
         <div ng-repeat="idea in newIdeas | orderBy:sortBy:reverse" class="portfolio-1">
           <div class="col-sm-4 portfolio-col">
             <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
@@ -62,7 +44,7 @@
             </div>
           </div>
         </div>
-      <!-- Project Card ends -->
+      <!-- Idea Card ends -->
 
 
         <!-- Submit Idea Modal -->
