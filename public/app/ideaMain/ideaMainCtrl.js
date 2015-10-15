@@ -32,7 +32,7 @@ angular.module('myApp.ideaMain', [])
   //TODO: add the username too
   $scope.postIdea = function(ideaName, description, ideaImage){
     var ideaID = uniqueNumber(ideaName);
-    data.createIdea(ideaID, ideaName, description, $scope.loggedInUserRealName, $scope.loggedInUserID, ideaImage);
+    data.createIdea(ideaID, ideaName, description, $scope.loggedInUserRealName, $scope.loggedInUserID, $scope.loggedInUserCleanUrl, ideaImage);
     $scope.ideaName = "";
     $scope.description = "";
     $scope.ideaImage = "";
