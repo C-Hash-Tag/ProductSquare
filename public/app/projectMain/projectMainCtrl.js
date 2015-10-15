@@ -15,6 +15,7 @@ angular.module('myApp.projectMain', [])
   // $scope.submission = false;
 
   $scope.save = false;
+  $scope.projectImage = "/img/default-product-image.png";
 
   var uniqProjID = function(str) {
     str = str.split("");
@@ -78,6 +79,7 @@ angular.module('myApp.projectMain', [])
   $scope.addTeamMember = function(userId, teamMemberIdArray, teamMemberObjectsArray){
     // $scope.newProjTeamMembers.push(userId);
     console.log(userId);
+    $scope.inputUser = "";
     teamMemberIdArray.push(userId);
     data.getUser(userId, function(user){
       teamMemberObjectsArray.push(user);
@@ -259,10 +261,6 @@ angular.module('myApp.projectMain', [])
   //   }
   // };
 
-  $scope.close = function() {
-    // $scope.submission = false;
-  }
-
   $scope.saveProjectImage = function() {
     console.log("selectedFile!!!");
     console.log("event", event);
@@ -278,7 +276,7 @@ angular.module('myApp.projectMain', [])
     console.log("event", event);
     imageUpload.projectImage("dswright", event, function(url){
       console.log(url, "url!");
-      $scope.specificProjectImage = url;
+      $scope.projectImage = url;
       $scope.$apply();
     }); //run the userImage upload from the imageUpload factory.
   };

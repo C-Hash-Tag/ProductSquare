@@ -1,103 +1,124 @@
 
 <!-- Start Specific Portfolio View - Standard Portfolio Modal - Images and Text -->
-
-<div id="project-info" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content" id="project-modal-content">
-    <div class="close-modal" ng-click="closeModal()" data-dismiss="modal">
-      <div class="lr">
-        <div class="rl"></div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row first">
-        <div class="col-lg-12">
-          <h2 class="page-header" ng-show="edible">
+<div id="project-info" class="modal large fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-large">
+    <div class="modal-content" id="project-modal-content">
+      <div class="modal-header" style="margin-left:10px;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div ng-hide="edible">
+          <button ng-click="editModal()" ng-show="obj.editProj" class="pull-right btn btn-success project-modal-edit" >Edit</button>
+          <h3 style="margin-bottom:5px;">{{obj.projName}}</h3>
+          <h6>{{obj.date}}</h6>
+          <button ng-click="projectLike(obj.projID)" type="button" class="btn btn-default btn-md">Upvote Project</button>
+        </div>
+        <div ng-show="edible">
+          <button ng-click="saveModal(obj.projID, obj.projName, obj.description, obj.githubRepo, obj.projUrl, obj.projectImage, obj.teamMembers, obj.teamMembersRemoved)" class="pull-right btn btn-danger project-modal-edit">Save</button>
+          <button ng-click="stopEditModal()" class="pull-right btn btn-danger project-modal-edit">Stop Editing</button>
+          <h3>
             <input ng-model="obj.projName" />
-          </h2>
-          <h2 class="page-header" ng-hide="edible">
-            {{obj.projName}}
-            <button ng-click="editModal()" ng-show="obj.editProj" class="pull-right btn btn-success" style="position: relative; top: 8px">Edit</button>
-            <button ng-click="projectLike(obj.projID)" type="button" class="btn btn-default btn-md">Upvote Project</button>
-          </h2>
+          </h3>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-8">
-          <div id="project-details-carousel" class="owl-carousel owl-theme">
-            <div class="item">
-              <img ng-src="{{obj.projectImage}}" alt="" />
+        <div class="modal-body clearfix">
+          <div class="col-md-8 project-modal-left-col">
+            <div ng-hide="edible">
+              <div class="project-modal-image">
+                <img ng-src="{{obj.projectImage}}" alt="" />
+              </div>
+              <div class="project-modal-description">
+                {{obj.description}}
+              </div>
             </div>
+            <div ng-show="edible">
+              <p id="status"> Update project image</p>
+                <input type="file" id="file" name='file' onchange="angular.element(this).scope().editProjectImage(this)"/>
+              <div class="project-modal-image">
+                <img ng-src="{{obj.projectImage}}" alt="" />
+              </div>
+              
+              <p style="margin-bottom: 0;">
+                <textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="obj.description" style="width:100%"></textarea>
+              </p>
+
+            </div>
+
           </div>
-
-          <div ng-show="edible">
-            <p id="status"> (Optional) Update image file. </p>
-            <input type="file" id="file" name='file' onchange="angular.element(this).scope().editProjectImage(this)"/>
-          </div>
-
-        </div>
-        <div class="col-md-4" style="padding-right: 0; padding-left: 0">
-          <h3 >Project Description:</h3>
-          <p ng-show="edible" style="margin-bottom: 0;">
-            <textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="obj.description" style="width:100%"></textarea>
-          </p>
-          <p ng-hide="edible">
-            {{obj.description}}
-          </p>
-
-          <button ng-show="edible" ng-click="saveModal(obj.projID, obj.projName, obj.description, obj.githubRepo, obj.projUrl, obj.projectImage, obj.teamMembers, obj.teamMembersRemoved)" class="pull-right btn btn-danger">Save</button>
-        </div>
-
-      </div>
-      <div class="row">
-        <div class="col-md-8">
-          <h3 ng-show="edible"> Edit Project Details:</h3>
-            <h3 ng-hide="edible">Project Details:</h3>
-            <ul ng-show="edible"class="list-unstyled project-details">
-              <li>
-                <strong>Github URL: </strong>
-                  <input ng-show"edible"rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="obj.githubRepo" />
-              </li>
-              <li ng-show"edible">
-                <strong>Project URL: </strong>
-                  <input rows="1" cols="50" name="comment" ng-model="obj.projUrl" type="text" placeholder="www.yourProjectHere.com" />
-              </li>
-              <li>
-                <strong>Team Members: </strong>
-                <ul ng-show="(obj.teamMembers.length>0)">
-                  <li ng-repeat="teamMemberObject in obj.teamMemberObjects">
-                    {{teamMemberObject.realName}}
-                    <span ng-click="removeTeamMember($index, obj.teamMembers, obj.teamMemberObjects, obj.teamMembersRemoved);"> X </span>
-                  </li>
-                </ul>
-
-                <input ng-show="edible" ng-change="userLookUp(inputUser, obj.teamMembers)" rows="1" cols="50" name="projectTeamMembers" type="text" placeholder="John Doe" ng-model="inputUser" />
-                <ul ng-show="inputUser">
-                  <li class="filtered-users" ng-click="addTeamMember(value.userId, obj.teamMembers, obj.teamMemberObjects)" ng-repeat="(key, value) in filteredUsers">{{value.realName}}</li>
-                </ul>
-              </li>
-            </ul>
-            <div ng-show="errorFound" class="error"> {{error}}</div>
-            <ul ng-hide="edible" class="list-unstyled project-details">
-              <li ng-hide="edible">
-                <strong>Github Url: </strong>{{obj.githubRepo}}
-              </li>
-              <li ng-hide="edible">
-                <strong>Project Url: </strong>{{obj.projUrl}}
-              </li>
-              <li>
-                <strong > Project Owner: </strong>
-                  <ul>
-                    <li ng-repeat="teamMemberObject in obj.teamMemberObjects">
-                      <a href="/#/user/{{teamMemberObject.cleanUrl}}/">
+          <div class="col-md-4 project-modal-right-col">
+            <div ng-hide="edible">
+              <ul class="list-unstyled project-modal-details">
+                <li>
+                  <h3 style="margin:auto;text-align:center;">Team</h3>
+                  <ul class="project-modal-team-list">
+                    <li ng-repeat="teamMemberObject in obj.teamMemberObjects" class="clearfix">
+                      <div class="project-modal-team-list-profile-image">
+                        <img src="{{teamMemberObject.profileImage}}" alt="" />
+                      </div> 
+                      <div class="project-modal-class-list-real-name">
                         {{teamMemberObject.realName}}
-                      </a>
+                      </div>
                     </li>
                   </ul>
-              </li>
-            </ul>
+                </li>
+                <li ng-hide="edible">
+                  <strong>Github Url: </strong>{{obj.githubRepo}}
+                </li>
+                <li ng-hide="edible">
+                  <strong>Project Url: </strong>{{obj.projUrl}}
+                </li>
+              </ul>
+
+            </div>
+
+            <div ng-show="edible">
+              <ul class="list-unstyled project-modal-details">
+                <li>
+                  <h3 style="margin:auto;text-align:center;">Team</h3>
+                  <ul class="project-modal-team-list">
+                    <li ng-repeat="teamMemberObject in obj.teamMemberObjects" class="clearfix">
+                      <div class="project-modal-team-list-profile-image">
+                        <img src="{{teamMemberObject.profileImage}}" alt="" />
+                      </div> 
+                      <div class="project-modal-class-list-real-name">
+                        {{teamMemberObject.realName}}
+                        <span ng-click="removeTeamMember($index, obj.teamMembers, obj.teamMemberObjects, obj.teamMembersRemoved);"> X </span>
+                      </div>
+                      
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input class="form-control" ng-change="userLookUp(inputUser, obj.teamMembers)" rows="1" cols="50" name="projectTeamMembers" type="text" placeholder="Add new Team Member" ng-model="inputUser" />
+                  <ul ng-show="inputUser" class="project-modal-team-list">
+                    <li class="filtered-users" ng-click="addTeamMember(value.userId, obj.teamMembers, obj.teamMemberObjects)" ng-repeat="(key, value) in filteredUsers">
+                      <div class="project-modal-team-list-profile-image">
+                        <img src="{{value.profileImage}}" alt="" />
+                      </div> 
+                      <div class="project-modal-class-list-real-name">
+                        {{value.realName}}
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Github URL: </strong>
+                    <input rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="obj.githubRepo" />
+                </li>
+                <li ng-show"edible">
+                  <strong>Project URL: </strong>
+                    <input rows="1" cols="50" name="comment" ng-model="obj.projUrl" type="text" placeholder="www.yourProjectHere.com" />
+                </li>
+                
+              </ul>
+            </div>
+            
+        
+            <div ng-show="errorFound" class="error"> {{error}}</div>
+          </div>
         </div>
-      </div>
     </div>
   </div>
-<!-- </div> -->
+</div>
+
+
 <!-- End obj. Portfolio View - Standard Portfolio Modal - Images and Text ends -->
+
