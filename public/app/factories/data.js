@@ -55,14 +55,14 @@ angular.module('myApp.data', [])
     }
 
     // Collect idea data from createIdea and store it in Firebase
-    factory.createIdea = function(ideaID, ideaName, desc, userRealName, ideaSubmitterID){
+    factory.createIdea = function(ideaID, ideaName, desc, userRealName, ideaSubmitterID, ideaImage){
       firebase.child("ideas").child(ideaID).set({
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
         userID: localStorage.userID,
         usersWhoLikeIt: {},
-        backgroundPath: "",
+        backgroundPath: ideaImage,
         userRealName: userRealName,
         ideaID: ideaID,
         count: 0
@@ -106,7 +106,7 @@ angular.module('myApp.data', [])
             projIDs = [];
           }
           if (projIDs.indexOf(projID) === -1) {
-            projIDs.push(projID);  
+            projIDs.push(projID);
           }
           return projIDs;
         });
@@ -311,7 +311,7 @@ angular.module('myApp.data', [])
             projIDs = [];
           }
           if (projIDs.indexOf(projID) === -1) {
-            projIDs.push(projID);  
+            projIDs.push(projID);
           }
           console.log(projIDs, "projIDS on firebase updated")
           return projIDs;
