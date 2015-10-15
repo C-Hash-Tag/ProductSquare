@@ -1,16 +1,9 @@
 
   <!-- Project Sort  -->
-<!--   <div class="btn-group" role="group" aria-label="project sorting">
-    <button type="button" class="btn btn-default">Most Recent</button>
-    <button type="button" class="btn btn-default">Most Liked</button>
-    <button type="button" class="btn btn-default">Staff Picks</button>
-  </div> -->
-
-
-<div class="container" ng-click="close()" style="padding-left: 0">
+  <div class="container" ng-click="close()" style="padding-left: 0; padding-right: 0">
 
   <!-- Project Submit Modal Button -->
-  <button id="project-submit-button" type="button" ng-hide="isOrg" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" data-target="{{projTarget}}">Submit A Project</button>
+  <button id="project-submit-button" type="button" ng-hide="isOrg" class="btn btn-danger btn-rounded pull-right" data-toggle="modal" data-target="{{projTarget}}">Submit A Project</button>
   <!-- Project Submit Modal Button ends -->
 
   <!-- Project Submit Modal Content - Standard Portfolio Modal - Images and Text -->
@@ -35,7 +28,7 @@
           <div class="row">
             <div class="col-md-8">
               <div id="project-details-carousel" class="owl-carousel owl-theme">
-                <p id="status"> (Optional) Please upload an image file. </p>
+                <p id="status"> Please upload an image file. </p>
                 <input type="file" style="width:90px" title="" id="file" name='file' onchange="angular.element(this).scope().saveProjectImage(this)"/>
                 <div class="item">
                   <img id="preview" src="{{projectImage}}" style="float:left" >
@@ -97,24 +90,24 @@
     <div class="container" style="display:inline">
 
       <div class="row">
-        <div class="col-lg-12 text-center">
+        <div class="col-lg-12 text-center" id="page-title-ideas" style="padding-left: 60px;">
           <h2>Projects</h2>
           <hr class="primary">
         </div>
       </div>
 
       <!-- Project Sort  -->
-      <div style="margin: 0 auto; width:50%;" class="btn-group" role="group" aria-label="project sorting">
+      <div class="btn-group" role="group" aria-label="project sorting" style="position: absolute; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); display: block">
         <button type="button" ng-click="setSort('recent')" class="btn btn-primary btn-outline">Latest</button>
         <button type="button" ng-click="setSort('mostLiked')" class="btn btn-primary btn-outline">Popular</button>
         <button type="button" ng-click="setSort('oldest')" class="btn btn-primary btn-outline">Featured</button>
       </div>
 
-      <div class="projectCardsContainer">
+      <div class="projectCardsContainer" style="margin-top: 48px; ">
 
         <!-- project card -->
         <div ng-show="selectedSort === 'recent'" ng-repeat="project in newProjects | orderObjectBy:'date':true">
-          <div class="col-sm-12 portfolio-col">
+          <div class="col-sm-12 portfolio-col" style="margin-bottom: 20px;">
             <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);">
               <h4>{{project.projName | uppercase}}<h4>
             </div>
