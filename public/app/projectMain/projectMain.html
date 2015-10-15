@@ -13,7 +13,7 @@
   <button id="project-submit-button" type="button" ng-hide="isOrg" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" data-target="{{projTarget}}">Submit A Project</button>
   <!-- Project Submit Modal Button ends -->
 
-  <!-- Project Summit Modal Content - Standard Portfolio Modal - Images and Text -->
+  <!-- Project Submit Modal Content - Standard Portfolio Modal - Images and Text -->
   <div id="submitModalProject" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
       <div class="close-modal" data-dismiss="modal">
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="container" ng-hide="submission">
+      <div class="container">
         <form ng-submit="projectSubmit(projDesc, githubUrl, projName, projUrl, projectImage)">
           <div class="row first">
             <div class="col-lg-12">
@@ -57,11 +57,11 @@
               <ul class="list-unstyled project-details">
                 <li>
                   <strong>Github URL: </strong>
-                  <input rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl" />
+                  <input rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl" value="{{githubUrl}}"/>
                 </li>
                 <li>
                   <strong>Project URL: </strong>
-                  <input rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com" />
+                  <input rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com" value="{{projUrl}}"/>
                 </li>
                 <li>
                     <strong>Team Members:</strong>
@@ -84,9 +84,9 @@
           </div>
         </form>
       </div>
-      <div class="modal-body" ng-show="submission">
+     <!--  <div class="modal-body" ng-show="submission">
           <h4 class="modal-title"> Thanks for your Submission </h4>
-      </div>
+      </div> -->
     </div>
   </div>
 

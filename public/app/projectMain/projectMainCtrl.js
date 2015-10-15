@@ -12,7 +12,7 @@ angular.module('myApp.projectMain', [])
   // })
 
   // flag declarations to show/hide views
-  $scope.submission = false;
+  // $scope.submission = false;
   $scope.save = false;
 
   var uniqProjID = function(str) {
@@ -50,8 +50,8 @@ angular.module('myApp.projectMain', [])
       $scope.errorFound = true;
       window.setTimeout(function(){
         $scope.errorFound = false;
-        $scope.$apply(); 
-      }, 5000) 
+        $scope.$apply();
+      }, 5000)
 
     }
   }
@@ -60,7 +60,7 @@ angular.module('myApp.projectMain', [])
     console.log("theUserInput", inputUser);
     data.filterForUser(inputUser, function(filteredUsers){
       console.log(filteredUsers, "filteredUsers before filter")
-      
+
       for (var key in filteredUsers){
         if (teamMemberIdArray.indexOf(filteredUsers[key].userId) !== -1){
           delete filteredUsers[key];
@@ -138,10 +138,44 @@ angular.module('myApp.projectMain', [])
 
   $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved){
     // firebase logic
-    $scope.edible = false;
-    $scope.checked = true;
-    console.log(teamMembersRemoved, "removed in savemodal ")
-    data.updateProject(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved);
+    //$scope.edible = false;
+    //$scope.checked = true;
+
+      var projSaveSetting = {
+        gitRepo: githubUrl || "",
+        projectLink: projUrl || "",
+        projDesc: projDesc || "",
+        projName: projName || ""
+    };
+    console.log("in project save", githubUrl, projUrl);
+    if (projSaveSetting.gitRepo.indexOf("http://") === -1 && projSaveSetting.gitRepo.indexOf("https://") === -1) {
+      console.log("in project save save settings");
+      // throw err
+      // $scope.submission = true;
+      $scope.errorFound = true;
+      $scope.error = "Please provide a complete link to your github repository - https://github.com/yourRepoHere"
+    }
+    else {
+      if (projSaveSetting.projectLink.indexOf("http://") === -1 && projSaveSetting.projectLink.indexOf("https://") === -1) {
+        $scope.errorFound = true;
+        $scope.error = "Please provide a complete link to your hosted project - https://myproject.com/"
+      }
+      else {
+        //data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, $scope.newProjTeamMembers);
+        data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved);
+        console.log("in save section of projectMainCtrl")
+        // $scope.githubUrl = "";
+        // $scope.projName = "";
+        // $scope.projUrl = "";
+        // $scope.projectImage = "";
+        // $scope.projDesc = "";
+        // $scope.newProjTeamMemberObjects = [$scope.loggedInUser];
+        $scope.error = "";
+        $scope.errorFound = false;
+        $scope.edible = false;
+        $scope.checked = true;
+      }
+    }
   };
 
   $scope.checked = true;
@@ -151,20 +185,81 @@ angular.module('myApp.projectMain', [])
     if (!projectImage) {
       projectImage = "http://nexo-sa.com/images/systems/small/category_small_ps.jpg"
     }
-    data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, $scope.newProjTeamMembers);
+    var projSubmitSetting = {
+      gitRepo: githubUrl || "",
+      projectLink: projUrl || "",
+      projDesc: projDesc || "",
+      projName: projName || ""
+    };
+    console.log("in project submit", githubUrl, projUrl);
+    if (projSubmitSetting.gitRepo.indexOf("http://") === -1 && projSubmitSetting.gitRepo.indexOf("https://") === -1) {
+      console.log("in project submit settings");
+      // throw err
+      // $scope.submission = true;
+      $scope.errorFound = true;
+      $scope.error = "Please provide a complete link to your github repository - https://github.com/yourRepoHere"
+    }
+    else {
+      if (projSubmitSetting.projectLink.indexOf("http://") === -1 && projSubmitSetting.projectLink.indexOf("https://") === -1) {
+        $scope.errorFound = true;
+        $scope.error = "Please provide a complete link to your hosted project - https://myproject.com/"
+      }
+      else {
+        data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, $scope.newProjTeamMembers);
+        $scope.githubUrl = "";
+        $scope.projName = "";
+        $scope.projUrl = "";
+        $scope.projectImage = "";
+        $scope.projDesc = "";
+        $scope.newProjTeamMemberObjects = [$scope.loggedInUser];
+        $scope.error = "";
+        $scope.errorFound = false;
+        $('#submitModalProject').modal('hide');
+      }
+    }
 
-    $scope.newProjTeamMemberObjects = [$scope.loggedInUser];
 
-    $scope.projDesc = "";
-    $scope.githubUrl = "";
-    $scope.projName = "";
-    $scope.projUrl = "";
-    $scope.projectImage = "";
-    $scope.submission = true;
+    // $scope.submission = true;
   }
 
+    // this function saves the additional profile attributes. The name needs to be updated.
+    // $scope.finishDevProfile = function(githubLink, linkedinLink, blogLink, location, school, skills) {
+    // var newSettings = {
+    //   github: githubLink || "",
+    //   linkedin: linkedinLink || "",
+    //   blog: blogLink || "",
+    //   location: location || "",
+    //   school: school || "",
+    //   skills: skills || "",
+    //   profileImage: $scope.loggedInUserProfileImage //loggedInUserProfileImage is set in the app.js when user logs in. Can be reset here if new pic is selected.
+    // };
+
+  //   // Validate Links
+  //   if (newSettings.github.indexOf("http://") === -1 && newSettings.github.indexOf("https://") === -1 && newSettings.github !== ""){
+  //     console.log("github invalid");
+  //     $scope.errorFound = true;
+  //     $scope.error = "Please provide a complete link to your Github - 'https://github.com/user'";
+  //   }
+  //   else {
+  //     if (newSettings.linkedin.indexOf("http://") === -1 && newSettings.linkedin.indexOf("https://") === -1 && newSettings.linkedin !== ""){
+  //       $scope.errorFound = true;
+  //       $scope.error = "Please provide a complete link to your LinkedIn profile - https://linkedin.com/in/name"
+  //     }
+  //     else {
+  //       if (newSettings.blog.indexOf("http://") === -1 && newSettings.blog.indexOf("https://") === -1 && newSettings.blog !== ""){
+  //         $scope.errorFound = true;
+  //         $scope.error = "Please provide a complete link to your blog - 'http://blog.com'";
+  //       }
+  //       else {
+  //         data.updateLoggedInUser($scope.loggedInUserID, newSettings, $scope.loggedInUserCleanUrl);
+  //         $('#devProfileCompleteModal').modal('hide'); //hide the signup modal.
+  //       }
+  //     }
+  //   }
+  // };
+
   $scope.close = function() {
-    $scope.submission = false;
+    // $scope.submission = false;
   }
 
   $scope.saveProjectImage = function() {
