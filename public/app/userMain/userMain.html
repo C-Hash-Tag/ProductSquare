@@ -91,7 +91,6 @@
       <div id="user-page-projects-header">
         <h2 style="margin-top:0px; padding-top: 0px;">Projects</h2>
       </div>
-      UserId: {{loggedInUserID}}
       <div class="portfolio-1" ng-repeat="projectObject in projectObjects">
         <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
           <a class="portfolio-item" data-toggle="modal" data-target="#project-info" ng-click="passit(projectObject.projName, projectObject.description, projectObject.projUrl, projectObject.githubRepo, projectObject.projectImage, projectObject.date, projectObject.projID, projectObject.teamMembers, loggedInUserID)">
