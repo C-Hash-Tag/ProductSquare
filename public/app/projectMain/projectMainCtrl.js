@@ -138,6 +138,9 @@ angular.module('myApp.projectMain', [])
 
   $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved){
     // firebase logic
+    //$scope.edible = false;
+    //$scope.checked = true;
+
       var projSaveSetting = {
         gitRepo: githubUrl || "",
         projectLink: projUrl || "",
@@ -159,7 +162,8 @@ angular.module('myApp.projectMain', [])
       }
       else {
         //data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, $scope.newProjTeamMembers);
-        data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage, teamMembers);
+        data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved);
+        console.log("in save section of projectMainCtrl")
         // $scope.githubUrl = "";
         // $scope.projName = "";
         // $scope.projUrl = "";
