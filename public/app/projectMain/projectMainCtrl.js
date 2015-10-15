@@ -76,6 +76,7 @@ angular.module('myApp.projectMain', [])
 
   $scope.addTeamMember = function(userId, teamMemberIdArray, teamMemberObjectsArray){
     // $scope.newProjTeamMembers.push(userId);
+    console.log(userId);
     teamMemberIdArray.push(userId);
     data.getUser(userId, function(user){
       teamMemberObjectsArray.push(user);
@@ -98,13 +99,6 @@ angular.module('myApp.projectMain', [])
   //   });
   //   console.log("in add specfic team member");
   // };
-
-  $scope.userProfLink = function(userId) {
-    var userLink = "http://127.0.0.1:3000/#/user/" + $scope.loggedInUserID;
-    console.log("in user prof link", userLink);
-    //concat url and loggedInUserID
-    return userLink;
-  }
 
    $scope.projectLike = function(projectID){
     console.log("in project like", projectID);

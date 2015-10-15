@@ -24,7 +24,6 @@ angular.module('myApp.UserMain', [])
 
   $scope.stringFound = function(text) {
     if (text !== "" && text != undefined) {
-      console.log("stringfound,", text);
       return true;
     } else {
       return false;
@@ -32,6 +31,7 @@ angular.module('myApp.UserMain', [])
   }
 
   var userPageLoadScopes = function(user){
+    console.log("user", user)
     $scope.realName = user.realName;
     $scope.profileImage = user.profileImage;
     $scope.email = user.email;
@@ -47,7 +47,35 @@ angular.module('myApp.UserMain', [])
     $scope.cleanUrl = user.cleanUrl;
     $scope.skills = user.skills;
     $scope.overview = user.overview;
-    $scope.projectsThatIsubmitted = user.projectsThatIsubmitted;
+    $scope.projects = user.projects;
+
+    $scope.projEditObj = {prop: "Hello"}
+    $scope.projectObjects = [];
+
+    //handles updating projects on user page: prevents duplicate projects on edit
+    if (user.projects){
+      for (var i=0; i<user.projects.length; i++){
+        data.getProject(user.projects[i], function(projectObject){
+          console.log("projectsObs", $scope.projectObjects);
+
+          var foundAt;
+          var found = false;
+          for (var i=0; i<$scope.projectObjects.length; i++){
+            if ($scope.projectObjects[i].projID === projectObject.projID){
+              found = true;
+              foundAt = i;
+            }
+          }
+          if (found){
+            $scope.projectObjects[foundAt] = projectObject;
+          }
+          else {
+            $scope.projectObjects.push(projectObject);
+          }
+        });
+      }
+    }
+
     if ($scope.loggedInUserCleanUrl === $scope.cleanUrl){
       $scope.edible = true;
     }
@@ -110,6 +138,60 @@ angular.module('myApp.UserMain', [])
     }, function(response) {
       console.log("email error");
     });
+  }
+
+  //HANDLES TRIGGERING PROJECT MODALS
+  // $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, projID, teamMembers){
+  //   console.log("passing it!!!", projName, description);
+  //   $scope.specificProjName = projName;
+  //   $scope.specificDescription = description;
+  //   $scope.specificProjUrl = projUrl;
+  //   $scope.specificGithubRepo = githubRepo;
+  //   $scope.specificProjectImage = projectImage;
+  //   $scope.specificDate = date;
+  //   $scope.specificProjID  = projID;
+  //   $scope.specificTeamMembers = teamMembers;
+  //   $scope.specificTeamMemberObjects = [];
+  //   $scope.specificTeamMembersRemoved = [];
+  //   if (teamMembers !== undefined){
+  //     for(var i=0; i < teamMembers.length; i++){
+  //       data.getUser(teamMembers[i], function(user){
+  //         $scope.specificTeamMemberObjects.push(user);
+  //         $scope.$apply();
+  //       })
+  //     }
+  //   }
+  // }
+
+  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, projID, teamMembers, loggedInUserID){
+    $scope.projEditObj = {
+      loggedInUserID: loggedInUserID,
+      editProj: false,
+      projName: projName,
+      description: description,
+      projUrl: projUrl,
+      githubRepo: githubRepo,
+      projectImage: projectImage,
+      date: date,
+      projID: projID,
+      teamMembers: teamMembers,
+      teamMemberObjects: [],
+      teamMembersRemoved: [],
+    }
+    console.log(teamMembers, "teamMembers!");
+    if (teamMembers !== undefined){
+      for(var i=0; i <teamMembers.length; i++){
+        if (teamMembers[i] === $scope.projEditObj.loggedInUserID){
+          $scope.projEditObj.editProj = true;
+        }
+        data.getUser(teamMembers[i], function(user){
+          console.log(user);
+          $scope.projEditObj.teamMemberObjects.push(user);
+        });
+      }
+      
+    }
+    
   }
 
 }])

@@ -34,10 +34,10 @@ angular.module('myApp.imageUpload', [])
       console.log(file);
     },
 
-    projectImage: function(userId, event, cb) {
+    projectImage: function(projID, event, cb) {
       var file = event.target.files[0]; //get the file from the change event.
       $http.post('/sign_s3', {
-        fileName: "profileImage-"+userId+"-"+Date.now(), //append a timestamp to create a unique image file name on AWS.
+        fileName: "projectImage-"+projID+"-"+Date.now(), //append a timestamp to create a unique image file name on AWS.
         fileType: file.type
       }).
       then(function(response) {
@@ -48,10 +48,10 @@ angular.module('myApp.imageUpload', [])
       console.log(file);
     },
 
-    ideaImage: function(userId, event, cb) {
+    ideaImage: function(ideaID, event, cb) {
       var file = event.target.files[0]; //get the file from the change event.
       $http.post('/sign_s3', {
-        fileName: "profileImage-"+userId+"-"+Date.now(), //append a timestamp to create a unique image file name on AWS.
+        fileName: "ideaImage-"+ideaID+"-"+Date.now(), //append a timestamp to create a unique image file name on AWS.
         fileType: file.type
       }).
       then(function(response) {
