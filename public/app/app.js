@@ -19,7 +19,11 @@ angular.module('myApp', [
 ])
 
 //montiors stores top-level data for all of the pages on the entire app. maybe add ngResource
-.controller('AppController', ['$scope', 'data', 'auth', '$route', '$q', '$filter', function($scope, data, auth, $route, $q, $filter) {
+.controller('AppController', ['$scope', 'data', 'auth', '$route', '$q', '$filter', '$location', function($scope, data, auth, $route, $q, $filter, $location) {
+
+  $scope.isActive = function(route) {
+    return route === $location.path();
+  };
 
   $scope.tags = [
     { text: 'HTML' },
@@ -173,26 +177,22 @@ angular.module('myApp', [
       templateUrl: './app/ideaMain/ideaMain.html',
       controller: 'IdeaMainCtrl',
       controllerAs: 'vm',
-      css: './app/ideaMain/ideaMain.css',
-      activetab:'ideas'
+      css: './app/ideaMain/ideaMain.css'
     })
     .when('/user/:cleanUrl/', {
       templateUrl: './app/userMain/userMain.html',
       controller: 'UserMainCtrl',
-      controllerAs: 'vm',
-      activetab: 'myprofile'
+      controllerAs: 'vm'
     })
     .when('/organization/:cleanUrl/', {
       templateUrl: './app/userMain/orgMain.html',
       controller: 'OrgMainCtrl',
-      controllerAs: 'vm',
-      activetab: 'myprofile'
+      controllerAs: 'vm'
     })
     .when('/projects', {
       templateUrl: './app/projectMain/projectMain.html',
       controller:'ProjectMainCtrl',
-      controllerAs: 'vm',
-      activetab: 'projects'
+      controllerAs: 'vm'
     });
 }])
 
