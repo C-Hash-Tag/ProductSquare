@@ -2217,6 +2217,7 @@ fieldset[disabled] .btn-danger.active {
   background-color: transparent;
 }
 .btn-outline.btn-primary:hover,
+.btn-outline.btn-primary:active,
 .btn-outline.btn-primary:focus {
   border: 1px solid #d86044;
   outline: none;
