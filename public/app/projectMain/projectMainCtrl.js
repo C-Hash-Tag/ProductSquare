@@ -14,6 +14,11 @@ angular.module('myApp.projectMain', [])
   // flag declarations to show/hide views
   // $scope.submission = false;
 
+  $scope.sortBy = 'date';
+  $scope.reverse = false;
+
+  $scope.newProjectsInArray = _.values($scope.newProjects);
+
   $scope.save = false;
   $scope.projectImage = "/img/default-product-image.png";
 
@@ -315,19 +320,18 @@ angular.module('myApp.projectMain', [])
           $scope.projEditObj.teamMemberObjects.push(user);
           $scope.$apply();
         });
-      } 
+      }
     }
   }
 
   //SORTING FEATURE
-  $scope.selectedSort = "recent";
+  $scope.doSort = function(type){
+   console.log("newProjects", $scope.newProjects);
+   $scope.sortBy = type;
+   console.log('type', $scope.sortBy);
+   console.log('reverse:before', $scope.reverse);
+   $scope.reverse = !$scope.reverse;
+   console.log('reverse:after', $scope.reverse);
+  };
 
-  $scope.setSort = function(type){
-   console.log($scope.selectedSort, "selectedSort")
-   $scope.selectedSort = type;
-   console.log($scope.selectedSort, "selectedSort", " and type", type);
-  }
-
-
-}])
-
+}]);

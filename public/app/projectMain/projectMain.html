@@ -26,7 +26,7 @@
             <div class="project-modal-image">
               <img ng-src="{{projectImage}}" alt="" />
             </div>
-            
+
             <p style="margin-bottom: 0;">
               <textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="projDesc" style="width:100%"></textarea>
             </p>
@@ -40,12 +40,12 @@
                   <li ng-repeat="teamMemberObject in newProjTeamMemberObjects" class="clearfix">
                     <div class="project-modal-team-list-profile-image">
                       <img src="{{teamMemberObject.profileImage}}" alt="" />
-                    </div> 
+                    </div>
                     <div class="project-modal-class-list-real-name">
                       {{teamMemberObject.realName}}
                       <span ng-click="removeTeamMember($index, newProjTeamMembers, newProjTeamMemberObjects);"> X </span>
                     </div>
-                    
+
                   </li>
                 </ul>
               </li>
@@ -55,7 +55,7 @@
                   <li class="filtered-users" ng-click="addTeamMember(value.userId, newProjTeamMembers, newProjTeamMemberObjects)" ng-repeat="(key, value) in filteredUsers">
                     <div class="project-modal-team-list-profile-image">
                       <img src="{{value.profileImage}}" alt="" />
-                    </div> 
+                    </div>
                     <div class="project-modal-class-list-real-name">
                       {{value.realName}}
                     </div>
@@ -74,7 +74,7 @@
               <div ng-show="errorFound" class="error">
                 {{error}}
               </div>
-              
+
             </ul>
           </div>
         </div>
@@ -97,19 +97,22 @@
 
       <!-- Project Sort  -->
       <div class="btn-group" role="group" aria-label="project sorting" style="position: absolute; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); display: block">
-        <button type="button" ng-click="setSort('recent')" class="btn btn-primary btn-outline">Latest</button>
-        <button type="button" ng-click="setSort('mostLiked')" class="btn btn-primary btn-outline">Popular</button>
-        <button type="button" ng-click="setSort('oldest')" class="btn btn-primary btn-outline">Featured</button>
+        <button type="button" ng-click="doSort('date')" class="btn btn-primary btn-outline">Latest</button>
+        <button type="button" ng-click="doSort('count')" class="btn btn-primary btn-outline">Popular</button>
+        <button type="button" class="btn btn-primary btn-outline">Featured</button>
       </div>
 
-      <div class="projectCardsContainer" style="margin-top: 48px; ">
+      <div class="projectCardsContainer" style="margin-top: 48px;" >
 
-        <!-- project card -->
-        <div ng-show="selectedSort === 'recent'" ng-repeat="project in newProjects | orderObjectBy:'date':true">
-          <div class="col-sm-12 portfolio-col">
-            <div class="proj-header">
+        <!-- Project Card -->
+        <div ng-repeat="project in newProjects | orderBy:sortBy:reverse" class="portfolio-1">
+
+          <div class="col-sm-12 portfolio-col" style="margin-bottom: 20px;">
+
+            <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
               <h4>{{project.projName | uppercase}}<h4>
             </div>
+
             <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.projID, project.teamMembers, project.userCleanUrl)" class="portfolio-item" data-toggle="modal">
               <div class="portfolio-link" >
                 <div class="caption">
@@ -117,69 +120,26 @@
                     <p> {{project.description}}</p>
                   </div>
                 </div>
-               <!--  <div style="position:relative; top:50%; transform: translateY(-50%)"> -->
                 <img src="{{project.projectImage}}" class="img-centered" alt="" style="position:relative; top:50%; transform: translateY(-50%)">
-                <!-- </div> -->
               </div>
             </a>
-            <div class="proj-footer">
-              <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray"></i> {{project.count}} </h5>
+
+            <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); padding-right: 15px; display: inline-block;">
+              <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray"></i> {{project.count || 0}} </h5>
             </div>
+
           </div>
+
         </div>
-        <!-- project card ends -->
+        <!-- End of Project Card -->
 
       </div>
 
-      <div class="projectCardsContainer">
-        <!-- project card -->
-        <div ng-show="selectedSort === 'mostLiked'" ng-repeat="project in newProjects | orderObjectBy:'count':true">
-          <div  class="col-sm-4 portfolio-col">
-            <span class="proj-header">{{project.projName}}</span>
-            <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.userID, project.projID, project.userRealName)" class="portfolio-item" data-toggle="modal">
-              <div class="portfolio-link">
-                <div class="caption">
-                  <div class="caption-content">
-                    <h3>{{project.projName}}</h3> <hr>
-                    <p> {{project.description}}</p>
-                 </div>
-                </div>
-                <img src="{{project.projectImage}}" class="img-centered" alt="" style="zoom:200%;">
-              </div>
-            </a>
-            <span> Upvotes: {{project.count}}</span>
-          </div>
-        </div> <!-- project card ends -->
-      </div>
-
-      <div class="projectCardsContainer">
-        <!-- project card -->
-        <div ng-show="selectedSort === 'oldest'" ng-repeat="project in newProjects | orderObjectBy:'date':false">
-
-          <div  class="col-sm-4 portfolio-col">
-            <span class="proj-header">{{project.projName}}</span>
-            <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.projID, project.teamMembers)" class="portfolio-item" data-toggle="modal">
-              <div class="portfolio-link">
-                <div class="caption">
-                  <div class="caption-content">
-                    <h3>{{project.projName}}</h3> <hr>
-                    <p> {{project.description}}</p>
-                  </div>
-                </div>
-                <img src="{{project.projectImage}}" class="img-centered" alt="" style="zoom:200%;">
-              </div>
-            </a>
-            <span> Upvotes: {{project.count}}</span>
-          </div>
-        </div> <!-- project card ends -->
-      </div>
-
-
-      <!-- Start Specific Portfolio View - Standard Portfolio Modal - Images and Text -->
-      <proj-edit-modal obj="projEditObj"></proj-edit-modal>
-      <!-- End Specific Portfolio View - Standard Portfolio Modal - Images and Text ends -->
-      </div>
     </div>
+
+    <!-- Start Specific Portfolio View - Standard Portfolio Modal - Images and Text -->
+    <proj-edit-modal obj="projEditObj"></proj-edit-modal>
+    <!-- End Specific Portfolio View - Standard Portfolio Modal - Images and Text ends -->
   </section>
 </div>
 

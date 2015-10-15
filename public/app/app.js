@@ -107,8 +107,8 @@ angular.module('myApp', [
   }
 
   data.getProjects(function(projects){
-    $scope.newProjects = projects;
-    // $scope.$apply();
+    $scope.newProjects = _.values(projects);
+    $scope.$apply();
   });
 
   data.getIdeas(function(ideas){
