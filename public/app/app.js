@@ -200,7 +200,7 @@ angular.module('myApp', [
 .factory('firebaseMock', [function(){
   var factory = {};
   var Ref = new Firebase('https://popping-heat-272.firebaseio.com/');
-  
+
   factory.createUser = function(name, age, orgnaization){
     // Store the project data in Firebase
     Ref.child(name).set({
