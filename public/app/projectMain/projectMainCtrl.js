@@ -13,6 +13,7 @@ angular.module('myApp.projectMain', [])
 
   // flag declarations to show/hide views
   // $scope.submission = false;
+
   $scope.save = false;
 
   var uniqProjID = function(str) {
@@ -287,24 +288,35 @@ angular.module('myApp.projectMain', [])
 
 
   //INFO MODAL LOADING
-  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, projID, teamMembers){
-    $scope.specificProjName = projName;
-    $scope.specificDescription = description;
-    $scope.specificProjUrl = projUrl;
-    $scope.specificGithubRepo = githubRepo;
-    $scope.specificProjectImage = projectImage;
-    $scope.specificDate = date;
-    $scope.specificProjID  = projID;
-    $scope.specificTeamMembers = teamMembers;
-    $scope.specificTeamMemberObjects = [];
-    $scope.specificTeamMembersRemoved = [];
+  $scope.projEditObj = {prop: "Hello"}
+  $scope.projectObjects = [];
+
+  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, projID, teamMembers, loggedInUserID){
+   $scope.projEditObj = {
+      loggedInUserID: loggedInUserID,
+      editProj: false,
+      projName: projName,
+      description: description,
+      projUrl: projUrl,
+      githubRepo: githubRepo,
+      projectImage: projectImage,
+      date: date,
+      projID: projID,
+      teamMembers: teamMembers,
+      teamMemberObjects: [],
+      teamMembersRemoved: [],
+    }
+    console.log(teamMembers, "teamMembers!");
     if (teamMembers !== undefined){
-      for(var i=0; i < teamMembers.length; i++){
+      for(var i=0; i <teamMembers.length; i++){
+        if (teamMembers[i] === $scope.projEditObj.loggedInUserID){
+          $scope.projEditObj.editProj = true;
+        }
         data.getUser(teamMembers[i], function(user){
-          $scope.specificTeamMemberObjects.push(user);
+          $scope.projEditObj.teamMemberObjects.push(user);
           $scope.$apply();
-        })
-      }
+        });
+      } 
     }
   }
 
