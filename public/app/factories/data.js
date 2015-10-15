@@ -55,8 +55,9 @@ angular.module('myApp.data', [])
     }
 
     // Collect idea data from createIdea and store it in Firebase
-    factory.createIdea = function(ideaID, ideaName, desc, userRealName, ideaSubmitterID, ideaImage){
+    factory.createIdea = function(ideaID, ideaName, desc, userRealName, ideaSubmitterID, cleanURL, ideaImage){
       firebase.child("ideas").child(ideaID).set({
+        usersCleanURL: cleanURL,
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
@@ -70,12 +71,13 @@ angular.module('myApp.data', [])
 
       // Add the idea data to the user in Firebase
       firebase.child('users').child(localStorage.userID).child('ideasThatIsubmitted').child(ideaID).set({
+        usersCleanURL: cleanURL,
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
         userID: localStorage.userID,
         usersWhoLikeIt: {},
-        backgroundPath: ideaImage || "",
+        backgroundPath: ideaImage,
         userRealName: userRealName,
         ideaID: ideaID,
         count: 0
