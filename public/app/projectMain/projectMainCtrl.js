@@ -138,10 +138,40 @@ angular.module('myApp.projectMain', [])
 
   $scope.saveModal = function(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved){
     // firebase logic
-    $scope.edible = false;
-    $scope.checked = true;
-    console.log(teamMembersRemoved, "removed in savemodal ")
-    data.updateProject(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved);
+      var projSaveSetting = {
+        gitRepo: githubUrl || "",
+        projectLink: projUrl || "",
+        projDesc: projDesc || "",
+        projName: projName || ""
+    };
+    console.log("in project save", githubUrl, projUrl);
+    if (projSaveSetting.gitRepo.indexOf("http://") === -1 && projSaveSetting.gitRepo.indexOf("https://") === -1) {
+      console.log("in project save save settings");
+      // throw err
+      // $scope.submission = true;
+      $scope.errorFound = true;
+      $scope.error = "Please provide a complete link to your github repository - https://github.com/yourRepoHere"
+    }
+    else {
+      if (projSaveSetting.projectLink.indexOf("http://") === -1 && projSaveSetting.projectLink.indexOf("https://") === -1) {
+        $scope.errorFound = true;
+        $scope.error = "Please provide a complete link to your hosted project - https://myproject.com/"
+      }
+      else {
+        //data.createProject($scope.loggedInUserRealName, projDesc, githubUrl, projName, projUrl, projID, projectImage, $scope.newProjTeamMembers);
+        data.updateProject(projID, projDesc, projName, githubUrl, projUrl, projectImage, teamMembers);
+        // $scope.githubUrl = "";
+        // $scope.projName = "";
+        // $scope.projUrl = "";
+        // $scope.projectImage = "";
+        // $scope.projDesc = "";
+        // $scope.newProjTeamMemberObjects = [$scope.loggedInUser];
+        $scope.error = "";
+        $scope.errorFound = false;
+        $scope.edible = false;
+        $scope.checked = true;
+      }
+    }
   };
 
   $scope.checked = true;
@@ -180,6 +210,7 @@ angular.module('myApp.projectMain', [])
         $scope.newProjTeamMemberObjects = [$scope.loggedInUser];
         $scope.error = "";
         $scope.errorFound = false;
+        $('#submitModalProject').modal('hide');
       }
     }
 
