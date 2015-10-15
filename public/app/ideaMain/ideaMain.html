@@ -1,7 +1,7 @@
 <nav-bar> </nav-bar>
 
 <div class="container" style="text-align: center">
-  <!-- Trigger the Project Submit Modal with a button -->
+  <!-- Trigger the Idea Submit Modal with a button -->
   <button id="submit-an-idea-button" type="button" ng-hide="isStudent" class="btn btn-danger btn-outline btn-rounded pull-right" data-toggle="modal" data-target="{{target}}">Submit A Proposal</button>
 
   <div class="container" style="display: inline;">
@@ -12,16 +12,18 @@
       </div>
     </div>
 
-      <!-- Project Sort  -->
+      <!-- Idea Sort  -->
     <div class="btn-group" role="group" aria-label="project sorting">
       <button type="button" ng-click="doSort('date')" class="btn btn-default">Latest</button>
-      <button type="button" ng-click="doSort('count')" class="btn btn-default">Most Popular</button>
+      <button type="button" ng-click="doSort('count')" class="btn btn-default">Popular</button>
+      <button type="button" class="btn btn-default">Featured</button>
     </div>
 
     <div class="cardContainerContainer" style="text-align: center; display: block">
 
-      <!-- Neat Non-Flippin Card starts -->
-      <div class="cardContainer" ng-repeat="idea in newIdeas | orderBy:sortBy:reverse" style="display: inline-block">
+      <!-- Idea Card starts -->
+     <!--
+       <div class="cardContainer" ng-repeat="idea in newIdeas | orderBy:sortBy:reverse" style="display: inline-block">
         <div class="card portfolio-item" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" data-target="#idea-info" data-toggle="modal" style="background:  #ffc;">
           <p class="name" style="color: black"> {{ idea.ideaName }} </p>
           <hr>
@@ -33,8 +35,35 @@
             <span class="glyphicon glyphicon-thumbs-up"></span>
           </button>
         </div>
-      </div>
-      <!-- Neat Non-Flippin Card ends -->
+      </div> -->
+      <!-- Idea Card ends -->
+
+
+      <!-- Project Card -->
+        <div ng-repeat="idea in newIdeas | orderBy:sortBy:reverse">
+          <div class="col-sm-4 portfolio-col">
+            <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
+              <h4>{{idea.ideaName | uppercase}}<h4>
+            </div>
+            <a data-target="#idea-info" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" class="portfolio-item" data-toggle="modal">
+              <div class="portfolio-link" >
+                <div class="caption">
+                  <div class="caption-content">
+                    <p> {{idea.description}}</p>
+                  </div>
+                </div>
+               <!--  <div style="position:relative; top:50%; transform: translateY(-50%)"> -->
+                <img src="{{idea.ideaImage}}" class="img-centered" alt="" style="position:relative; top:50%; transform: translateY(-50%)">
+                <!-- </div> -->
+              </div>
+            </a>
+            <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); padding-right: 15px; display: inline-block;">
+              <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray" ng-click="ideaLike(idea.userID, idea.ideaID); idea.liked = true;"></i> {{idea.count || 0}} </h5>
+            </div>
+          </div>
+        </div>
+      <!-- Project Card ends -->
+
 
       <!-- Ideas View/ Edit Modal -->
       <div id="idea-info" class="idea-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">

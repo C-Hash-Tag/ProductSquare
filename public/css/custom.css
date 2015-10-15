@@ -1494,8 +1494,8 @@ a.light-text:focus {
   position: relative;
   max-width: 400px;
   margin: 0 auto;
-  border-radius: 6px;
-}
+/*  border-radius: 6px;
+*/}
 .portfolio-1 .portfolio-item .portfolio-link .caption {
   background: #D86044;
   position: absolute;
