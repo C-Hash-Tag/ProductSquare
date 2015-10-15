@@ -14,6 +14,10 @@ angular.module('myApp.projEditModal', [])
         data.updateProject(projID, projName, projDesc, githubUrl, projUrl, projectImage, teamMembers, teamMembersRemoved);
       };
 
+      scope.stopEditModal = function() {
+        scope.edible = false;    
+      };
+
       console.log("scope in directive", scope);
       scope.edible = false;
       scope.projEdit = false;
@@ -55,6 +59,7 @@ angular.module('myApp.projEditModal', [])
       scope.addTeamMember = function(userId, teamMemberIdArray, teamMemberObjectsArray){
         // scope.newProjTeamMembers.push(userId);
         console.log(userId);
+        scope.inputUser = "";
         teamMemberIdArray.push(userId);
         data.getUser(userId, function(user){
           teamMemberObjectsArray.push(user);
