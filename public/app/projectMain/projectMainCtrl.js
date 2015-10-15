@@ -291,9 +291,10 @@ angular.module('myApp.projectMain', [])
   $scope.projEditObj = {prop: "Hello"}
   $scope.projectObjects = [];
 
-  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, projID, teamMembers, loggedInUserID){
+  $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, projID, teamMembers){
+   console.log($scope.loggedInUserID, "loggedInUserID!!!");
    $scope.projEditObj = {
-      loggedInUserID: loggedInUserID,
+      loggedInUserID: $scope.loggedInUserID,
       editProj: false,
       projName: projName,
       description: description,
