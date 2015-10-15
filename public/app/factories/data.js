@@ -75,7 +75,7 @@ angular.module('myApp.data', [])
         date: currentDate(),
         userID: localStorage.userID,
         usersWhoLikeIt: {},
-        backgroundPath: "",
+        backgroundPath: ideaImage || "",
         userRealName: userRealName,
         ideaID: ideaID,
         count: 0
@@ -368,15 +368,8 @@ angular.module('myApp.data', [])
         console.log(data.val(), "dataVALLLLLL")
         cb(data.val());
 
-      })
-    }
-
-    // factory.getIdeas = function(cb){
-    //   firebase.child("ideas").on("value", function(data){
-    //     cb(data.val());
-    //   });
-    // };
-
+      });
+    };
 
     return factory;
 }]);
