@@ -15,10 +15,12 @@
   ],
   "dependencies": {
     "angular": "~1.4.6",
+    "angular-bootstrap": "~0.14.1",
     "angular-modal-service": "~0.6.7",
     "angular-route": "~1.4.6",
-    "ng-tags-input": "3.0.0",
-    "angular-bootstrap": "~0.14.1"
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "ng-tags-input": "3.0.0"
   },
   "resolutions": {
     "angular": "1.4.7"
