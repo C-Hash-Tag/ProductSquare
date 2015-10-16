@@ -1,5 +1,5 @@
 <div ng-controller="UserMainCtrl" class="container" style="margin-top: 30px;">
-  <div id="user-page-left-col">
+  <div id="user-page-left-col" class="well">
     <div id="user-page-profile-pic" width="100%">
       <img src="{{profileImage}}" />
     </div>
@@ -88,17 +88,28 @@
       </div>
       <div class="portfolio-1" ng-repeat="projectObject in projectObjects">
         <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px; width: 50%">
+          
+          <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
+            <h4>{{projectObject.projName | uppercase}}<h4>
+          </div>
+
           <a class="portfolio-item" data-toggle="modal" data-target="#project-info" ng-click="passit(projectObject.projName, projectObject.description, projectObject.projUrl, projectObject.githubRepo, projectObject.projectImage, projectObject.date, projectObject.projID, projectObject.teamMembers, loggedInUserID)">
+
             <div class="portfolio-link">
               <div class="caption">
                 <div class="caption-content">
-                  <h3 class="ng-binding">{{projectObject.projName}}</h3>
-                  <p class="ng-binding">{{projectObject.description}}</p>
+<!--                   <h3 class="ng-binding">{{projectObject.projName}}</h3>
+ -->                  <p class="ng-binding">{{projectObject.description}}</p>
                 </div>
               </div>
-              <img src="{{projectObject.projectImage}}" class="img-centered" alt="" style="zoom:200%">
+              <img src="{{projectObject.projectImage}}" class="img-centered" alt="" style="position:relative; top:50%; transform: translateY(-50%)">
             </div>
           </a>
+
+          <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); padding-right: 15px; display: inline-block;">
+            <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray"></i> {{projectObject.count || 0}} </h5>
+          </div>
+
         </div>
       </div>
 
@@ -137,8 +148,8 @@
             </li>
             <li>
             
-              <div class="user-profile-label">Technical Skills:</div>
-              <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" value="{{skills}}" style="width: 596px">
+              <div class="user-profile-label form-control">Technical Skills:</div>
+              <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" style="clear:both;" value="{{skills}}">
 
             </li>
             <li>
@@ -157,6 +168,7 @@
               <div class="user-profile-label">School:</div>
               <input ng-model="school" class="form-control" placeholder="The development school you attended" value="{{school}}" />
             </li>
+
             <li>
               <div class="user-profile-label">Profile Url:</div>
               http://productsquare.com/user/
@@ -165,12 +177,14 @@
             </li>
             <li class="clearfix">
               <div class="user-profile-label">Profile Image:</div>
-              <img id="preview" src="{{tempProfileImage}}" style="float:left; margin-right:20px" width="150px"/>
-              <input class="form-control" type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left;" />
+              <img id="preview" src="{{tempProfileImage}}" style="float:left; margin-right:20px; clear:both;" width="150px"/>
+
+              <input class="form-control" type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left; border: 0px" />
+              <button type="submit" class="btn btn-danger btn-rounded btn-outline pull-right"> Save Profile </button>
             </li>
           </ul>
+
           <div class="error" ng-show="errorFound">{{error}}</div>
-          <input type="submit" value="SAVE PROFILE" class="btn btn-danger btn-rounded btn-outline pull-right"/>
         </form>
       </div>
     </div>

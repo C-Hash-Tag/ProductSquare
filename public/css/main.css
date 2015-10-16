@@ -558,13 +558,14 @@ hr {
 /* User profile page styling */
 #user-page-left-col {
   float: left;
-  width: 20%;
-  margin-right: 10%;
+  width: 24%;
+  margin-right: 3%;
 }
 
 .user-profile-label {
   width:200px;
   float:left;
+  font-weight: bold;
 }
 
 .user-profile-update-input {
