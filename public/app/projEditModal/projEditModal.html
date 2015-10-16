@@ -47,23 +47,35 @@
             <div ng-hide="edible">
               <ul class="list-unstyled project-modal-details">
                 <li>
-                  <h3 style="margin:auto;text-align:center;">Team</h3>
+                  <h3 style="margin:auto;text-align:center;">Development Team</h3>
                   <ul class="project-modal-team-list">
                     <li ng-repeat="teamMemberObject in obj.teamMemberObjects" class="clearfix">
-                      <div class="project-modal-team-list-profile-image">
-                        <img src="{{teamMemberObject.profileImage}}" alt="" />
-                      </div> 
-                      <div class="project-modal-class-list-real-name">
-                        {{teamMemberObject.realName}}
-                      </div>
+                      <a onclick="$('#project-info').modal('hide')" href="/#/user/{{teamMemberObject.cleanUrl}}/">
+                        <div class="project-modal-team-list-profile-image">
+                          <img src="{{teamMemberObject.profileImage}}" alt="" />
+                        </div> 
+                        <div class="project-modal-class-list-real-name">
+                          {{teamMemberObject.realName}}
+                        </div>
+                      </a>
                     </li>
                   </ul>
                 </li>
-                <li ng-hide="edible">
-                  <strong>Github Url: </strong>{{obj.githubRepo}}
+                <li class="githubLogo">
+                  <div style="margin:auto;">
+                    <img src="/img/Github-Mark-64px.png" />
+                    <a href="{{obj.githubRepo}}">
+                      {{obj.githubRepo}}
+                    </a>
+                  </div>
                 </li>
-                <li ng-hide="edible">
-                  <strong>Project Url: </strong>{{obj.projUrl}}
+                <li>
+                  <div style="margin:auto; margin-left:3px">
+                    <i class="fa fa-link fa-2x"></i>
+                    <a href="{{obj.projUrl}}" style="margin-top:-5px;">
+                      {{obj.projUrl}}
+                    </a>
+                  </div>  
                 </li>
               </ul>
 
@@ -72,7 +84,7 @@
             <div ng-show="edible">
               <ul class="list-unstyled project-modal-details">
                 <li>
-                  <h3 style="margin:auto;text-align:center;">Team</h3>
+                  <h3 style="margin:auto;text-align:center;">Development Team</h3>
                   <ul class="project-modal-team-list">
                     <li ng-repeat="teamMemberObject in obj.teamMemberObjects" class="clearfix">
                       <div class="project-modal-team-list-profile-image">
