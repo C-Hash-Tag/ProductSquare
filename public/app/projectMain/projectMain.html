@@ -89,7 +89,7 @@
     <div class="container" style="display:inline">
 
       <div class="row">
-        <div class="col-lg-12 text-center" id="page-title-ideas" style="padding-left: 60px;">
+        <div class="col-lg-12 text-center" id="page-title-ideas"">
           <h2>Projects</h2>
           <hr class="primary">
         </div>
@@ -125,7 +125,7 @@
             </a>
 
             <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); padding-left: 15px; padding-right: 15px; display: inline-block;">
-              <span class="pull-left"> Team Member Icons </span>
+              <h5 class="pull-left" style="color:navy"> {{project.teamMembers.faces}} </h5>
               <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray"></i> {{project.count || 0}} </h5>
             </div>
 
