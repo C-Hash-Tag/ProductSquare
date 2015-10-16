@@ -26,7 +26,7 @@ This section describes how to install the plugin and get it working.
 
 = I am a developer, I would like to contribue to ProductSquare? =
 
-Great, please reach out to one of the founders directly through the website and they will give you inform you on our work flow and pull request process
+Great, please reach out to one of the founders directly through the website and they will give you information on our work flow and how to process a pull request process.
 
 = What if I encounter any bugs? How should I report them? =
 
