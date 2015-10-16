@@ -113,8 +113,8 @@ angular.module('myApp.ideaMain', [])
 
   //SORTING FEATURE
   $scope.doSort = function(type){
-   console.log(_.values($scope.newIdeas));
-   console.log('type', type)
+   console.log($scope.newIdeas);
+   console.log('type', type);
    $scope.sortBy = type;
    console.log('reverse:before', $scope.reverse);
    $scope.reverse = !$scope.reverse;
