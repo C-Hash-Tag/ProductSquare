@@ -6,7 +6,7 @@
     <span id="user-page-edit-profile" ng-show="edible" data-toggle="modal" data-target="#profile-edit-modal" style="float:right">
            <i class="fa fa-pencil-square-o"></i>
           </span>
-    <div id="user-page-real-name">{{realName}}</div>  
+    <div id="user-page-real-name">{{realName}}</div>
 
     <div ng-show="stringFound(overview)">
       <div ng-model="overview"> {{overview}} </div>
@@ -73,7 +73,8 @@
     </div>
   </div>
 
-  <div ng-show="stringFound(skills)">
+  <div ng-show="stringFound(skills)" style="margin-left: 322px;">
+    <h2> Technical Skills </h2>
     <div id="user-page-projects-header">
     </div>
     <tags-input id="user-page-projects-tags" ng-model="skills" value="{{skills}}" ng-disabled="true"></tags-input>
@@ -81,21 +82,22 @@
 
   <div id="user-page-right-col">
     <div id="user-page-projects" class="clearfix">
-      
+
       <!-- project cards -->
       <div id="user-page-projects-header">
     <!--     <h2 style="margin-top:0px; padding-top: 0px;">Projects</h2> -->
       </div>
+      <h2 style="margin-left: 16px;"> Projects </h2>
       <div class="portfolio-1" ng-repeat="projectObject in projectObjects">
         <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px; width: 50%">
-          
+
           <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
             <h4>{{projectObject.projName | uppercase}}<h4>
           </div>
 
           <a class="portfolio-item" data-toggle="modal" data-target="#project-info" ng-click="passit(projectObject.projName, projectObject.description, projectObject.projUrl, projectObject.githubRepo, projectObject.projectImage, projectObject.date, projectObject.projID, projectObject.teamMembers, loggedInUserID)">
 
-            <div class="portfolio-link">
+            <div class="portfolio-link" style="width:100%">
               <div class="caption">
                 <div class="caption-content">
 <!--                   <h3 class="ng-binding">{{projectObject.projName}}</h3>
@@ -115,7 +117,7 @@
 
       <proj-edit-modal obj="projEditObj"></proj-edit-modal>
 
-      
+
 
     </div>
   </div>
@@ -147,7 +149,7 @@
               <input ng-model="githubLink" class="form-control" placeholder="Enter your github profile URL here" value="{{githubLink}}" />
             </li>
             <li>
-            
+
               <div class="user-profile-label form-control">Technical Skills:</div>
               <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" style="clear:both;" value="{{skills}}">
 
