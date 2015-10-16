@@ -3,7 +3,15 @@
     <div id="user-page-profile-pic" width="100%">
       <img src="{{profileImage}}" />
     </div>
-    <div id="user-page-real-name">{{realName}}</div>
+    <span id="user-page-edit-profile" ng-show="edible" data-toggle="modal" data-target="#profile-edit-modal" style="float:right">
+           <i class="fa fa-pencil-square-o"></i>
+          </span>
+    <div id="user-page-real-name">{{realName}}</div>  
+
+    <div ng-show="stringFound(overview)">
+      <div ng-model="overview"> {{overview}} </div>
+    </div>
+
     <div id="user-details">
       <div id="user-page-github" class="clearfix" ng-show="stringFound(githubLink)">
         <div id="user-page-github-logo">
@@ -65,31 +73,21 @@
     </div>
   </div>
 
+  <div ng-show="stringFound(skills)">
+    <div id="user-page-projects-header">
+    </div>
+    <tags-input id="user-page-projects-tags" ng-model="skills" value="{{skills}}" ng-disabled="true"></tags-input>
+  </div>
+
   <div id="user-page-right-col">
     <div id="user-page-projects" class="clearfix">
-      <button id="user-page-edit-profile" ng-show="edible" class="btn btn-danger btn-outline btn-rounded" data-toggle="modal" data-target="#profile-edit-modal" style="float:right">
-       Edit my Profile
-      </button>
-      <div ng-show="stringFound(overview)">
-        <div id="user-page-projects-header">
-          <h2 style="margin-top:0px; padding-top: 0px;">Overview</h2>
-        </div>
-        <div ng-model="overview"> {{overview}} </div>
-      </div>
-
-      <div ng-show="stringFound(skills)">
-        <div id="user-page-projects-header">
-          <h2 style="margin-top:0px; padding-top: 0px;">Skills</h2>
-        </div>
-        <tags-input id="user-page-projects-tags" ng-model="skills" value="{{skills}}" ng-disabled="true"></tags-input>
-      </div>
-
+      
       <!-- project cards -->
       <div id="user-page-projects-header">
-        <h2 style="margin-top:0px; padding-top: 0px;">Projects</h2>
+    <!--     <h2 style="margin-top:0px; padding-top: 0px;">Projects</h2> -->
       </div>
       <div class="portfolio-1" ng-repeat="projectObject in projectObjects">
-        <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px">
+        <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px; width: 50%">
           <a class="portfolio-item" data-toggle="modal" data-target="#project-info" ng-click="passit(projectObject.projName, projectObject.description, projectObject.projUrl, projectObject.githubRepo, projectObject.projectImage, projectObject.date, projectObject.projID, projectObject.teamMembers, loggedInUserID)">
             <div class="portfolio-link">
               <div class="caption">

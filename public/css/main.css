@@ -582,7 +582,7 @@ hr {
 
 #user-page-profile-pic img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 50%;
   margin-bottom: 10px;
 }
 
