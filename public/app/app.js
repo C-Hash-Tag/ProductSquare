@@ -25,6 +25,17 @@ angular.module('myApp', [
     return route === $location.path();
   };
 
+  $scope.$on('$locationChangeStart', function(event, next, current){            
+    //hide all modals on back button.
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+  });
+  $scope.$on('$routeChangeStart', function(event, next, current){            
+    //hide all modals on back button.
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+  });
+
   $scope.tags = [
     { text: 'HTML' },
     { text: 'CSS' },
