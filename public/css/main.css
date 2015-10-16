@@ -409,8 +409,7 @@ hr.primary {
   overflow:hidden;
 }
 
-.modal.large {
-  width: 100%;
+.modal {
   overflow-y: auto;
   margin: auto;
 }
