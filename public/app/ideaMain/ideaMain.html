@@ -1,6 +1,6 @@
 <nav-bar> </nav-bar>
 
-<div class="container" style="text-align: center">
+<div class="container" style="text-align: center; margin-top: 50px;">
   <!-- Trigger the Idea Submit Modal with a button -->
   <button id="submit-an-idea-button" type="button" ng-hide="isStudent" class="btn btn-danger btn-rounded pull-right" data-toggle="modal" data-target="{{target}}">Submit A Proposal</button>
 
@@ -14,9 +14,9 @@
 
       <!-- Idea Sort  -->
     <div class="btn-group" role="group" aria-label="project sorting">
-      <button type="button" ng-click="doSort('date')" class="btn btn-primary btn-outline">Latest</button>
-      <button type="button" ng-click="doSort('count')" class="btn btn-primary btn-outline">Popular</button>
-      <button type="button" class="btn btn-primary btn-outline">Featured</button>
+      <button type="button" ng-click="doSort('date')" class="btn btn-danger btn-outline">Latest</button>
+      <button type="button" ng-click="doSort('count')" class="btn btn-danger btn-outline">Popular</button>
+      <button type="button" class="btn btn-danger btn-outline">Featured</button>
     </div>
 
     <div class="cardContainerContainer" style="text-align: center; display: block; margin-top: 30px;">
@@ -24,11 +24,11 @@
       <!-- Idea Card -->
       <div ng-repeat="idea in newIdeas | orderBy:sortBy:reverse" class="portfolio-1">
         <div class="col-sm-4 portfolio-col" style="margin-bottom: 20px;">
-          <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
+          <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 -1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
             <h4>{{idea.ideaName | uppercase}}<h4>
           </div>
           <a href="#/organization/{{idea.usersCleanURL}}/" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" class="portfolio-item" data-toggle="modal">
-            <div class="portfolio-link" >
+            <div class="portfolio-link" style="box-shadow: 0 0 2px 0 rgba(0,0,0,0.22)">
               <div class="caption">
                 <div class="caption-content">
                   <p> {{idea.description}}</p>
@@ -39,7 +39,7 @@
               <!-- </div> -->
             </div>
           </a>
-          <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); padding-left: 15px; padding-right: 15px; display: inline-block;">
+          <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.22); padding-left: 15px; padding-right: 15px; display: inline-block;">
             <h5 class="pull-left" style="color:navy"> {{idea.userID.profileImage}} {{idea.userRealName}} </h5>
             <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray" ng-click="ideaLike(idea.userID, idea.ideaID); idea.liked = true;"></i> {{idea.count || 0}} </h5>
           </div>
