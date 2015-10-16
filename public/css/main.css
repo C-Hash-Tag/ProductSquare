@@ -140,23 +140,23 @@ hr.primary {
 
 .bg-parallax-light {
   width: 100%;
-  height: 632px;
+  height: calc(100vh - 50px);
   background-attachment: scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
   background-position: center center;
-  background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)), url('../../img/demo-portfolio/4.jpg');
+  background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)), url('../../img/main-background/city-wallpaper-11.jpg');
 }
 .bg-parallax-light {
   color: #3e444d;
 }
 
 .bg-parallax-dark {
-  margin-top:-20px;
+  margin-top: 50px;
   width: 100%;
-  height: 632px;
+  height: calc(100vh - 50px);
   background-attachment: scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -250,17 +250,17 @@ hr.primary {
 }
 
 .proj-header {
-  background-color: white; 
-  width: 100%; 
-  border-radius: 6px 6px 0 0; 
+  background-color: white;
+  width: 100%;
+  border-radius: 6px 6px 0 0;
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);"
 }
 
 .proj-footer {
-  background-color: white; 
-  width: 100%; 
-  border-radius: 0 0 6px 6px; 
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); 
+  background-color: white;
+  width: 100%;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
   padding-right: 15px;
 }
 
