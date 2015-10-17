@@ -3,6 +3,35 @@
   <!-- Trigger the Idea Submit Modal with a button -->
   <button id="submit-an-idea-button" type="button" ng-hide="isStudent" class="btn btn-danger btn-rounded pull-right" data-toggle="modal" data-target="{{target}}" style="background-color: MediumSeaGreen; border-color: MediumSeaGreen">Submit A Proposal</button>
 
+
+  <!-- Submit Idea Modal -->
+  <div id="submitModalIdea" class="modal fade" ng-click="close()" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-large">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button ng-click="postIdea(ideaName, description, ideaImage)" class="pull-right btn btn-danger project-modal-edit">
+            Submit Project
+          </button>
+          <h3>
+            <input placeholder="Enter Idea Name" ng-model="ideaName" />
+          </h3>
+        </div>
+        <div class="modal-body clearfix">
+          <div class="col-md-8 project-modal-left-col">
+            <p id="status">Update proposal image</p>
+            <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveIdeaImage(this)"/>
+            <img ng-src="{{ideaImage}}" >
+
+            <p style="margin-bottom: 0;">
+              <textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="projDesc" style="width:100%"></textarea>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container" style="display: inline;">
     <div class="row">
       <div class="col-lg-12 text-center" id="page-title-ideas">
@@ -46,50 +75,6 @@
       </div>
       <!-- Idea Card ends -->
     </div>
-    <!-- Submit Idea Modal -->
-    <div id="submitModalIdea" class="portfolio-modal modal fade" ng-click="close()" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-content">
-        <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-            <div class="rl">
-            </div>
-          </div>
-        </div>
-
-        <div class="container" ng-hide="submission" style="text-align: left;">
-          <form>
-            <div class="row first">
-              <div class="col-lg-12">
-                <h2 class="page-header">
-                  <textarea rows="1" cols="25" name="comment" type="text" placeholder="Enter Idea Name" ng-model="ideaName"></textarea>
-                </h2>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-8">
-                <div id="project-details-carousel" class="owl-carousel owl-theme">
-                  <p id="status"> Please upload an image file. </p>
-                  <input type="file" id="file" name='file' onchange="angular.element(this).scope().saveIdeaImage(this)"/>
-
-                  <div class="item">
-                    <img id="preview" src="{{ideaImage}}" style="float:left" >
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4" style="padding-right: 0; padding-left: 0">
-                <h3>Idea Description:</h3>
-                <p style="margin-bottom: 0"><textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your idea. What is the problem you want to solve? For whom?" ng-model="description" style="width:100%"></textarea></p>
-                <span class="pull-right">
-                  <input ng-click="postIdea(ideaName, description, ideaImage)" type="submit" id="submit" data-dismiss="modal" class="btn btn-primary">
-                </span>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- End Project Submit Modal Content - Standard Portfolio Modal - Images and Text ends -->
   </div> <!-- container ends -->
 </div>
 

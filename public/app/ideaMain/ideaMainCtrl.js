@@ -7,6 +7,7 @@ angular.module('myApp.ideaMain', [])
   $scope.reverse = false;
 
   $scope.newIdeasInArray = _.values($scope.newIdeas);
+  $scope.ideaImage = "/img/proposal-default.gif";
 
   //NOTE: set the listener before you get the data
   var uniqIdeaID = function(str) {
