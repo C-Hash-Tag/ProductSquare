@@ -370,16 +370,8 @@ hr.primary {
   list-style:none;
   padding-left:0px;
   width: 80%;
-  margin: auto;
   margin-top:10px;
   margin-bottom:30px;
-}
-
-.project-modal-team-list li {
-  padding:10px;
-  border-bottom: 1px solid gray;
-  margin-top:0px;
-  margin-bottom:0px;
 }
 
 .project-modal-team-list-profile-image img {

@@ -23,7 +23,7 @@
             </div>
 
             <p style="margin-bottom: 0;">
-              <textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="projDesc" style="width:100%"></textarea>
+              <textarea class="form-control" rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="projDesc" style="width:100%"></textarea>
             </p>
           </div>
           <div class="col-md-4 project-modal-right-col">
@@ -59,11 +59,11 @@
               </li>
               <li>
                 <strong>Github URL: </strong>
-                  <input ng-show"edible"rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl" />
+                  <input class="form-control" ng-show"edible"rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl" />
               </li>
               <li ng-show"edible">
                 <strong>Live Project URL: </strong>
-                  <input rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com" />
+                  <input class="form-control" rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com" />
               </li>
 
               <div ng-show="errorFound" class="error">
