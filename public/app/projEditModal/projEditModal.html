@@ -37,7 +37,7 @@
               </div>
               
               <p style="margin-bottom: 0;">
-                <textarea rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="obj.description" style="width:100%"></textarea>
+                <textarea class="form-control" rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="obj.description" style="width:100%"></textarea>
               </p>
 
             </div>
@@ -87,15 +87,17 @@
                   <h3 style="margin:auto;text-align:center;">Development Team</h3>
                   <ul class="project-modal-team-list">
                     <li ng-repeat="teamMemberObject in obj.teamMemberObjects" class="clearfix">
+
                       <div class="project-modal-team-list-profile-image">
                         <img src="{{teamMemberObject.profileImage}}" alt="" />
                       </div> 
+
                       <div class="project-modal-class-list-real-name">
                         {{teamMemberObject.realName}}
-                        <span ng-click="removeTeamMember($index, obj.teamMembers, obj.teamMemberObjects, obj.teamMembersRemoved);"> X </span>
+                        <span class="close" ng-click="removeTeamMember($index, obj.teamMembers, obj.teamMemberObjects, obj.teamMembersRemoved);"> x </span>
                       </div>
-                      
                     </li>
+
                   </ul>
                 </li>
                 <li>
@@ -111,13 +113,15 @@
                     </li>
                   </ul>
                 </li>
+
+              
                 <li>
                   <strong>Github URL: </strong>
-                    <input rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="obj.githubRepo" />
+                    <input class="form-control" rows="1" cols="50" name="comment" type="text" placeholder="http://github.com/username" ng-model="obj.githubRepo" />
                 </li>
                 <li ng-show"edible">
                   <strong>Project URL: </strong>
-                    <input rows="1" cols="50" name="comment" ng-model="obj.projUrl" type="text" placeholder="www.yourProjectHere.com" />
+                    <input class="form-control" rows="1" cols="50" name="comment" ng-model="obj.projUrl" type="text" placeholder="http://yourProjectHere.com" />
                 </li>
                 
               </ul>
