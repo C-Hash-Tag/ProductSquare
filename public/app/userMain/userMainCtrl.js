@@ -132,21 +132,21 @@ angular.module('myApp.UserMain', [])
     $scope.edible = false;
   });
 
-  //probably the wrong scope.
-  $scope.sendEmail = function(message) {
-    $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
-    console.log("in sendMail");
-    $http.post('/email', {
-      email: $scope.email, //to be populated from the factory.
-      message: message,
-      username: $scope.realName //to be populated from the factory.
-    }).
-    then(function(response) {
-      console.log("email sent");
-    }, function(response) {
-      console.log("email error");
-    });
-  }
+  // //probably the wrong scope.
+  // $scope.sendEmail = function(message) {
+  //   $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
+  //   console.log("in sendMail");
+  //   $http.post('/email', {
+  //     email: $scope.email, //to be populated from the factory.
+  //     message: message,
+  //     username: $scope.realName //to be populated from the factory.
+  //   }).
+  //   then(function(response) {
+  //     console.log("email sent");
+  //   }, function(response) {
+  //     console.log("email error");
+  //   });
+  // }
 
   //HANDLES TRIGGERING PROJECT MODALS
   // $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, projID, teamMembers){

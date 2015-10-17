@@ -105,6 +105,13 @@ angular.module('myApp.OrgMain', [])
     if ($scope.loggedInUserCleanUrl === $scope.cleanUrl){
       $scope.edible = true;
     }
+
+    //CONTACT USER MODAL LOADING
+    $scope.userContactObj = {
+      realName: user.realName,
+      email: user.email,
+    };
+    
     $scope.$apply();
     console.log("iser in user page load scope bottom", user);
   };
