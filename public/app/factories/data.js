@@ -3,17 +3,28 @@ angular.module('myApp.data', [])
     var factory = {};
     // Return today's date in mm/dd/yyyy format
     function currentDate(){
+      var month = new Array();
+      month[0] = "January";
+      month[1] = "February";
+      month[2] = "March";
+      month[3] = "April";
+      month[4] = "May";
+      month[5] = "June";
+      month[6] = "July";
+      month[7] = "August";
+      month[8] = "September";
+      month[9] = "October";
+      month[10] = "November";
+      month[11] = "December";
+
       var today = new Date();
       var dd = today.getDate();
-      var mm = today.getMonth()+1; //January is 0!
+      var month = month[today.getMonth()]; //January is 0!
       var yyyy = today.getFullYear();
       if(dd<10) {
         dd='0'+dd;
       }
-      if(mm<10) {
-          mm='0'+mm;
-      }
-      today = mm+'/'+dd+'/'+yyyy;
+      today = month+' '+dd+', '+yyyy;
       return today;
     }
     // Collect user data from sign up and store it in Firebase
