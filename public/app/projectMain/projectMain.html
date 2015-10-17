@@ -7,7 +7,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <button ng-click="projectSubmit(projDesc, githubUrl, projName, projUrl, projectImage)" class="pull-right btn btn-danger project-modal-edit">
+          <button ng-click="projectSubmit(projDesc, githubUrl, projName, projUrl, projectImage)" class="pull-right btn project-modal-edit">
             Submit Project
           </button>
           <h3>
@@ -81,7 +81,7 @@
     <div class="container" style="display:inline">
 
     <!-- Project Submit Modal Button -->
-    <button id="project-submit-button" type="button" ng-hide="isOrg" class="btn btn-danger btn-rounded pull-right" data-toggle="modal" data-target="{{projTarget}}" style="background-color: MediumSeaGreen; border-color: MediumSeaGreen">
+    <button id="project-submit-button" type="button" ng-hide="isOrg" class="btn btn-outline btn-green btn-rounded pull-right" data-toggle="modal" data-target="{{projTarget}}">
       Submit A Project
     </button>
     <!-- Project Submit Modal Button ends -->
@@ -89,18 +89,18 @@
       <div class="row" style="margin-left: 0;">
         <div class="col-lg-12 text-center" id="page-title-ideas">
           <h2>DEVELOPER PROJECTS</h2>
-          <hr style="margin-bottom: 20px;" class="primary">
+          <hr class="primary">
         </div>
       </div>
 
       <!-- Project Sort  -->
-      <div class="btn-group" role="group" aria-label="project sorting" style="position: absolute; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); display: block">
-        <button type="button" ng-click="doSort('date')" class="btn btn-danger btn-outline" style="background-color: #D86044">Latest</button>
-        <button type="button" ng-click="doSort('count')" class="btn btn-danger btn-outline" style="background-color: #D86044">Popular</button>
-        <button type="button" class="btn btn-danger btn-outline" style="background-color: #D86044">Featured</button>
+      <div class="btn-group clearfix" role="group" aria-label="project sorting" style="width:318px; margin:auto; display:block;">
+          <button type="button" ng-click="doSort('date')" class="btn btn-gray btn-outline" style="width:100px; margin-left:18px;">Latest</button>
+          <button type="button" ng-click="doSort('count')" class="btn btn-gray btn-outline" style="width:100px;">Popular</button>
+          <button type="button" class="btn btn-gray btn-outline" style="width:100px;">Featured</button>
       </div>
 
-      <div class="projectCardsContainer" style="margin-top: 48px;" >
+      <div class="projectCardsContainer" style="margin-top: 30px; display:block;" >
 
         <!-- Project Card -->
         <div ng-repeat="project in newProjects | orderBy:sortBy:reverse" class="portfolio-1">

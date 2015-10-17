@@ -7,15 +7,54 @@ i {
   cursor: pointer;
 }
 
+body a {
+  color: #777;
+}
+
+body a:hover {
+  color: #333;
+}
+
 .tag-item {
   background: #D86044 !important;
   border: #D86044 !important;
   color: white;
 }
+/*  BUTTON styles  */
+.btn-outline {
+    background-color: transparent;
+    transition: all .5s;
+}
 
+.btn-light {
+  text-shadow: none;
+}
+
+.btn-green {
+  border-color: MediumSeaGreen;
+  color: MediumSeaGreen;
+}
+
+.btn-green:hover {
+  background-color: MediumSeaGreen;
+  color: white;
+}
+
+.btn-gray {
+  border-color: DimGray;
+  color: DimGray;
+}
+
+.btn-gray:hover {
+  background-color: DimGray;
+  color: white;
+}
+
+
+/*  Homepage styles  */
 #header-message-container {
-    margin-top: 150px;
-    margin-bottom: 150px;
+  margin-top: 150px;
+  margin-bottom: 150px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -24,11 +63,12 @@ h1, h2, h3, h4, h5, h6 {
 
 hr.primary {
   max-width: 100px;
-  margin: 25px auto;
+  margin: 10px auto;
+  margin-bottom: 30px;
   border-bottom: none;
 }
 hr.primary {
-  border-top: 6px solid #d86044;
+  border-top: 6px solid MediumSeaGreen;
 }
 
 .about-1 #about-1-carousel .item {
@@ -76,7 +116,7 @@ hr.primary {
 
 .about-1 #about-1-carousel .item .info {
   position: absolute;
-  background: rgba(216, 96, 68, 0.8);
+  background: rgba(60, 179, 113, 0.8);
   width: inherit;
   height: inherit;
   border-radius: 50%;
@@ -161,10 +201,10 @@ hr.primary {
   -o-background-size: cover;
   background-position: center center;
   background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)), url('../../img/main-background/city-wallpaper-11.jpg');
+  color: #f4f5f7;
+  text-shadow: 0 0 10px black;
 }
-.bg-parallax-light {
-  color: #3e444d;
-}
+
 
 .bg-parallax-dark {
   margin-top: 50px;
@@ -177,10 +217,8 @@ hr.primary {
   -o-background-size: cover;
   background-position: center center;
   background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)), url('../../img/main-background/beautiful-golden-gate-bridge-at-sunset-wide-hd-wallpaper-download-gate-picture-free.jpg');
-}
-
-.bg-parallax-dark {
   color: #f4f5f7;
+  text-shadow: 0 0 10px black;
 }
 
 @media (min-width: 767px) {
@@ -294,7 +332,7 @@ hr.primary {
 /*  border-radius: 6px;
 */}
 .portfolio-1 .portfolio-item .portfolio-link .caption {
-  background: #D86044;
+  background: MediumSeaGreen;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -330,7 +368,6 @@ hr.primary {
 }
 
 /* PROJECT MODAL DESIGNS */
-
 
 .project-modal-left-col {
   padding-left: 10px;
