@@ -1,16 +1,16 @@
 /*  Homepage styles  */
-body {   
-  background-color: #f5f5f5;   
+body {
+  background-color: #f5f5f5;
 }
 
-i {   
-  cursor: pointer;   
+i {
+  cursor: pointer;
 }
 
-.tag-item {    
-  background: #D86044 !important;    
-  border: #D86044 !important;    
-  color: white;    
+.tag-item {
+  background: #D86044 !important;
+  border: #D86044 !important;
+  color: white;
 }
 
 #header-message-container {
@@ -391,7 +391,7 @@ hr.primary {
 }
 
 .githubLogo img {
-  width:30px;
+  width:22px;
 }
 
 
