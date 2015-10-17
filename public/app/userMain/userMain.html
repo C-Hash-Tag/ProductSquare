@@ -171,7 +171,7 @@
             <li>
               <div class="user-profile-label">Profile Url:</div>
               <div style="clear:both"> http://productsquare.com/user/</div>
-              <input ng-model="cleanUrl" class="form-control" value="{{cleanUrl}}" style="width: 176px"/>
+              <input ng-model="cleanUrl" class="form-control" value="{{cleanUrl}}" style="width: 100%"/>
 
             </li>
             <li class="clearfix">
@@ -179,7 +179,7 @@
               <img id="preview" src="{{tempProfileImage}}" style="float:left; margin-right:20px; clear:left;" width="150px"/>
 
               <input class="form-control" type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left; border: 0px" />
-              <button type="submit" class="btn btn-danger btn-rounded btn-outline pull-right"> Save Profile </button>
+              <button type="submit" class="btn btn-danger btn-rounded btn-outline pull-right" style="color: #D86044"> Save Profile </button>
             </li>
           </ul>
 
