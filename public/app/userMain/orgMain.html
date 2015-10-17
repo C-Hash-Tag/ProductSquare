@@ -130,7 +130,7 @@
                               </li> -->
                           </ul>
                       </div>
-                      <button ng-click="editModal()" ng-show="editIdea(specificUserID) && checked" style="margin-top: 0;">Edit</button>
+                      <button ng-click="editModal()" ng-show="editIdea(specificUserID) && checked" style="margin-top: 0;    position: relative; top: -5px;">Edit</button>
                       <button ng-show="proposalEdible && editIdea(specificUserID)" ng-click="saveModal(specificIdeaID, specificIdeaName, specificDescription, specificBackgroundPath)">Save</button>
                   </div>
               </div>
@@ -183,7 +183,7 @@
 
               <input class="form-control" type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left; border: 0px;" />
 
-              <button type="submit" class="btn btn-danger btn-rounded btn-outline pull-right" style="color: red;"> Save Profile </button>
+              <button type="submit" class="btn btn-danger btn-rounded btn-outline pull-right" style="color: red;"> Save </button>
 
             </li>
           </ul>
