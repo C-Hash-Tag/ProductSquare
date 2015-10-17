@@ -6,12 +6,12 @@
       <div class="modal-header" style="margin-left:10px;">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <div ng-hide="edible">
-          <button ng-click="editModal()" ng-show="obj.editProj" class="pull-right btn btn-success project-modal-edit" >Edit</button>
+          <button ng-click="editModal()" ng-show="obj.editProj" class="pull-right btn btn-green btn-outline project-modal-edit" style="margin-top: 0; position: relative; top: -5px;">Edit</button>
           <h3 style="font-family: Merriweather; font-weight: bold; margin-bottom:5px; font-">{{obj.projName}}</h3>
         </div>
         <div ng-show="edible">
-          <button ng-click="saveModal(obj.projID, obj.projName, obj.description, obj.githubRepo, obj.projUrl, obj.projectImage, obj.teamMembers, obj.teamMembersRemoved)" class="pull-right btn btn-danger project-modal-edit">Save</button>
-          <button ng-click="stopEditModal()" class="pull-right btn btn-danger project-modal-edit">Stop Editing</button>
+          <button ng-click="saveModal(obj.projID, obj.projName, obj.description, obj.githubRepo, obj.projUrl, obj.projectImage, obj.teamMembers, obj.teamMembersRemoved)" class="pull-right btn btn-danger btn-outline project-modal-edit" style="color: red">Save</button>
+          <button ng-click="stopEditModal()" class="pull-right btn btn-default btn-outline project-modal-edit" style="color: gray; margin-right: 3px">Cancel</button>
           <h3>
             <input ng-model="obj.projName" />
           </h3>
