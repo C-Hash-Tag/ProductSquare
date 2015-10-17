@@ -53,7 +53,7 @@
       <div ng-repeat="idea in newIdeas | orderBy:sortBy:reverse" class="portfolio-1">
         <div class="col-sm-4 portfolio-col" style="margin-bottom: 20px;">
           <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 -1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
-            <h4>{{idea.ideaName}}<h4>
+            <h4 style="font-family: Merriweather; font-weight: bold;">{{idea.ideaName}}<h4>
           </div>
           <a href="#/organization/{{idea.usersCleanURL}}/" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" class="portfolio-item" data-toggle="modal">
             <div class="portfolio-link" style="box-shadow: 0 0 2px 0 rgba(0,0,0,0.22)">
