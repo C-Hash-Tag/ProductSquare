@@ -61,7 +61,7 @@ angular.module('myApp.data', [])
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
-        userID: localStorage.userID,
+        userID: ideaSubmitterID,
         usersWhoLikeIt: {},
         backgroundPath: ideaImage,
         userRealName: userRealName,
@@ -70,12 +70,12 @@ angular.module('myApp.data', [])
       });
 
       // Add the idea data to the user in Firebase
-      firebase.child('users').child(localStorage.userID).child('ideasThatIsubmitted').child(ideaID).set({
+      firebase.child('users').child(ideaSubmitterID).child('ideasThatIsubmitted').child(ideaID).set({
         usersCleanURL: cleanURL,
         ideaName: ideaName,
         description: desc,
         date: currentDate(),
-        userID: localStorage.userID,
+        userID: ideaSubmitterID,
         usersWhoLikeIt: {},
         backgroundPath: ideaImage,
         userRealName: userRealName,
