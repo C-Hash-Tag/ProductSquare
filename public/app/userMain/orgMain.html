@@ -140,53 +140,54 @@
 
 <!-- Profile edit Modal -->
 <div ng-controller="OrgProfileEditCtrl" id="profile-edit-modal" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content">
-    <div class="close-modal" data-dismiss="modal">
-      <div class="lr">
-        <div class="rl">
-        </div>
+  <div class="modal-dialog modal-small"> 
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 style="margin-top:5px; margin-bottom:5px;">Edit Profile</h3>
       </div>
-    </div>
-  <div class="container">
-    <div class="row first">
-      <h2 class="page-header">Edit Profile</h2>
-    </div>
-      <div class="row">
+
+      <div class="modal-body">
         <form ng-submit="updateUserProfile(realName, orgName, orgDesc, orgLink, location, cleanUrl)">
           <ul class="list-unstyled project-details">
             <li>
-              <div class="user-profile-label">Your Name:</div>
-              <input ng-model="realName" class="user-profile-update-input" placeholder="Your name here" value="{{realName}}" />
+              <div class="user-profile-label">Name:</div>
+              <input ng-model="realName" class="form-control" placeholder="Your name here" value="{{realName}}" />
             </li>
             <li>
-              <div class="user-profile-label">Org Name:</div>
-              <input ng-model="orgName" class="user-profile-update-input" placeholder="Organization name here" value="{{orgName}}" />
+              <div class="user-profile-label form">Organization Name:</div>
+              <input ng-model="orgName" class="form-control" placeholder="Organization name here" value="{{orgName}}" />
             </li>
             <li>
-              <div class="user-profile-label">Org Description:</div>
-              <input ng-model="orgDesc" class="user-profile-update-input" placeholder="Organization description" value="{{orgDesc}}" />
+              <div class="user-profile-label">Organization Description:</div>
+              <input ng-model="orgDesc" class="form-control" placeholder="Organization description" value="{{orgDesc}}" />
             </li>
             <li>
               <div class="user-profile-label">Organization Website:</div>
-              <input ng-model="orgLink" class="user-profile-update-input" placeholder="Enter your organization's website" value="{{orgLink}}" />
+              <input ng-model="orgLink" class="form-control" placeholder="Enter your organization's website" value="{{orgLink}}" />
             </li>
             <li>
-              <div class="user-profile-label">Org Location:</div>
-              <input ng-model="location" class="user-profile-update-input" placeholder="Enter your current location here" value="{{location}}" />
+              <div class="user-profile-label">Organization Location:</div>
+              <input ng-model="location" class="form-control" placeholder="Enter your current location here" value="{{location}}" />
             </li>
             <li>
               <div class="user-profile-label">Profile Url:</div>
-              <input ng-model="cleanUrl" class="user-profile-update-input" value="{{cleanUrl}}" />
-              http://productsquare.com/orgization/{{cleanUrl}}/
+              <div style="clear:both;">http://productsquare.com/organization/</div>
+              <input ng-model="cleanUrl" class="form-control" value="{{cleanUrl}}" style="width:176px;" />
             </li>
+
             <li class="clearfix">
               <div class="user-profile-label">Organization Image:</div>
-              <img id="preview" src="{{tempProfileImage}}" style="float:left; margin-right:20px" width="150px"/>
-              <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left;" />
+              <img id="preview" src="{{tempProfileImage}}" style="float:left; margin-right:20px; clear:both;" width="150px"/>
+
+              <input class="form-control" type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left; border: 0px;" />
+
+              <button type="submit" class="btn btn-danger btn-rounded btn-outline pull-right"> Save Profile </button>
+              
             </li>
           </ul>
           <div class="error" ng-show="errorFound">{{error}}</div>
-          <input type="submit" value="SAVE PROFILE" class="btn btn-danger btn-rounded btn-outline pull-right"/>
         </form>
       </div>
     </div>

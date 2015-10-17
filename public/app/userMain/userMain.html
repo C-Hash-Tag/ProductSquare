@@ -123,6 +123,7 @@
 <!-- Dev Profile Edit Modal -->
 <div ng-controller="UserProfileEditCtrl" id="profile-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-small">
+
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -131,7 +132,7 @@
 
       <div class="modal-body">
         <form ng-submit="updateUserProfile(realName, overview, githubLink, linkedinLink, blogLink, location, school, cleanUrl, skills)">
-          <ul class="list-unstyled">
+          <ul class="list-unstyled project-details">
             <li>
               <div class="user-profile-label">Name:</div>
               <input class="form-control" ng-model="realName" class="form-control" placeholder="Enter your name here" value="{{realName}}" />
@@ -169,13 +170,13 @@
 
             <li>
               <div class="user-profile-label">Profile Url:</div>
-              http://productsquare.com/user/
+              <div style="clear:both"> http://productsquare.com/user/</div>
               <input ng-model="cleanUrl" class="form-control" value="{{cleanUrl}}" style="width: 176px"/>
 
             </li>
             <li class="clearfix">
               <div class="user-profile-label">Profile Image:</div>
-              <img id="preview" src="{{tempProfileImage}}" style="float:left; margin-right:20px; clear:both;" width="150px"/>
+              <img id="preview" src="{{tempProfileImage}}" style="float:left; margin-right:20px; clear:left;" width="150px"/>
 
               <input class="form-control" type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left; border: 0px" />
               <button type="submit" class="btn btn-danger btn-rounded btn-outline pull-right"> Save Profile </button>
