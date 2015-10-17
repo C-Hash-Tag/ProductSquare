@@ -93,7 +93,7 @@
                   <label class="radio-inline"><input type="radio" ng-model="userType" value="organization" name="optradio"> Organization Representative </label><br/><br/>
                   <p style="color: red" ng-show="errorFound">{{error}}</p>
                   <span class="pull-right">
-                    <input type="submit" id="Submit" class="btn btn-primary" value="Submit"/>
+                    <input type="submit" id="Submit" class="btn btn-green btn-outline" value="Submit"/>
                   </span>
                   <br/>
                   <br/>
@@ -125,7 +125,7 @@
                   <input class="form-control" type="password" ng-model="password"/>
                   <br/>
                   <p style="color: red" ng-show="loginErrorFound">{{ loginError }}</p>
-                  <button ng-click="login(email, password)" type="submit" class="btn btn-primary pull-right">Submit</button>
+                  <button ng-click="login(email, password)" type="submit" class="btn btn-green btn-outline pull-right">Log In</button>
                   <br/>
                   <br/>
                 </form>
@@ -181,7 +181,7 @@
                     </li>
                   </ul>
                   <div ng-show="errorFound" class="error">{{error}}</div>
-                  <input type="submit" value="SAVE PROFILE" class="btn btn-default" />
+                  <input type="submit" value="SAVE PROFILE" class="btn btn-default btn-green btn-outline" />
                 </form>
               </div>
               <div class="modal-footer">
@@ -209,7 +209,7 @@
                   Organization Logo: <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateOrgLogoImage(this)" />  <br/>
                   Your Title: <input type="text" class="form-control" ng-model='orgRepTitle' /> <br/>
                   <div ng-show="errorFound" class="error">{{error}}</div>
-                  <input class="btn btn-success btn-rounded" type="submit" value="Submit" style="cursor:pointer;"/> <br/><br/>
+                  <input class="btn btn-green btn-outline btn-rounded" type="submit" value="Submit" style="cursor:pointer;"/> <br/><br/>
                 </form>
                 <a data-toggle="modal" data-target="#finishOrgProfileModal" style="cursor:pointer;" href="/#/user/{{loggedInUserCleanUrl}}/">Skip this step</a>
               </div>

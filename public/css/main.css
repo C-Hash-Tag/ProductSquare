@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*  Homepage styles  */
 body {
   background-color: #f5f5f5;
@@ -6,6 +5,14 @@ body {
 
 i {
   cursor: pointer;
+}
+
+body a {
+  color: #777;
+}
+
+body a:hover {
+  color: #333;
 }
 
 .tag-item {
@@ -17,6 +24,10 @@ i {
 .btn-outline {
     background-color: transparent;
     transition: all .5s;
+}
+
+.btn-light {
+  text-shadow: none;
 }
 
 .btn-green {
@@ -105,7 +116,7 @@ hr.primary {
 
 .about-1 #about-1-carousel .item .info {
   position: absolute;
-  background: rgba(216, 96, 68, 0.8);
+  background: rgba(60, 179, 113, 0.8);
   width: inherit;
   height: inherit;
   border-radius: 50%;
@@ -190,10 +201,10 @@ hr.primary {
   -o-background-size: cover;
   background-position: center center;
   background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)), url('../../img/main-background/city-wallpaper-11.jpg');
+  color: #f4f5f7;
+  text-shadow: 0 0 10px black;
 }
-.bg-parallax-light {
-  color: #3e444d;
-}
+
 
 .bg-parallax-dark {
   margin-top: 50px;
@@ -206,10 +217,8 @@ hr.primary {
   -o-background-size: cover;
   background-position: center center;
   background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)), url('../../img/main-background/beautiful-golden-gate-bridge-at-sunset-wide-hd-wallpaper-download-gate-picture-free.jpg');
-}
-
-.bg-parallax-dark {
   color: #f4f5f7;
+  text-shadow: 0 0 10px black;
 }
 
 @media (min-width: 767px) {
