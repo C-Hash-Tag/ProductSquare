@@ -25,6 +25,7 @@
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic' rel='stylesheet' type='text/css'>
 
     <!-- NG Tags Input -->
     <link rel="stylesheet" type="text/css" href="./bower_components/ng-tags-input/ng-tags-input.css">
@@ -47,18 +48,18 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li ng-class="{active: isActive('/projects')}">
-                <a href="#/projects">Student Projects</a>
+                <a href="#/projects">DEVELOPER PROJECTS</a>
               </li>
               <li ng-class="{active: isActive('/ideas')}">
-                <a href="#/ideas">Proposal Board</a>
+                <a href="#/ideas">PROPOSAL BOARD</a>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li ng-hide="loggedIn">
-                <a data-toggle="modal" data-target="#signUpModal" style="cursor:pointer;">Sign Up</a>
+                <a data-toggle="modal" data-target="#signUpModal" style="cursor:pointer;">SIGN UP</a>
               </li>
               <li ng-hide="loggedIn">
-                <a data-toggle="modal" data-target="#loginModal" style="cursor:pointer;">Login</a>
+                <a data-toggle="modal" data-target="#loginModal" style="cursor:pointer;">LOGIN</a>
               </li>
               <li ng-show="loggedIn && userType==='student'" ng-class="{active: isActive('/user/'+loggedInUserCleanUrl+'/')}">
                 <a href="/#/user/{{loggedInUserCleanUrl}}/" style="cursor:pointer">{{loggedInUserRealName}}</a>
@@ -67,7 +68,7 @@
                 <a href="/#/organization/{{loggedInUserCleanUrl}}/" style="cursor:pointer">{{loggedInUserRealName}}</a>
               </li>
               <li ng-show="loggedIn">
-                <a href="#/" ng-click="logout()" style="cursor:pointer;">Logout</a>
+                <a href="#/" ng-click="logout()" style="cursor:pointer;">LOGOUT</a>
               </li>
             </ul>
           </div><!-- /.navbar-collapse -->

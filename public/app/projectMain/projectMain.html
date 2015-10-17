@@ -2,7 +2,6 @@
   <!-- Project Sort  -->
 <div class="container" style="padding-left: 0">
 
-
   <!-- Project Submit Modal Content - Standard Portfolio Modal - Images and Text -->
   <div id="submitModalProject" class="modal fade" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-large">
@@ -79,29 +78,28 @@
   </div>
   <!-- End Project Submit Modal Content -->
 
-  <section class="portfolio-1" style="margin-top: 60px;">
+  <section class="portfolio-1" style="margin-top: 50px;">
 
     <div class="container" style="display:inline">
 
     <!-- Project Submit Modal Button -->
-    <button id="project-submit-button" type="button" ng-hide="isOrg" class="btn btn-danger btn-rounded pull-right" data-toggle="modal" data-target="{{projTarget}}">
+    <button id="project-submit-button" type="button" ng-hide="isOrg" class="btn btn-danger btn-rounded pull-right" data-toggle="modal" data-target="{{projTarget}}" style="background-color: MediumSeaGreen; border-color: MediumSeaGreen">
       Submit A Project
     </button>
     <!-- Project Submit Modal Button ends -->
 
-
       <div class="row" style="margin-left: 0;">
-        <div class="col-lg-12 text-center" id="page-title-ideas">
-          <h2>Projects</h2>
+        <div class="col-lg-12 text-center" id="page-title-ideas"">
+          <h2>PROJECTS</h2>
           <hr style="margin-bottom: 20px;" class="primary">
         </div>
       </div>
 
       <!-- Project Sort  -->
       <div class="btn-group" role="group" aria-label="project sorting" style="position: absolute; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); display: block">
-        <button type="button" ng-click="doSort('date')" class="btn btn-danger btn-outline">Latest</button>
-        <button type="button" ng-click="doSort('count')" class="btn btn-danger btn-outline">Popular</button>
-        <button type="button" class="btn btn-danger btn-outline">Featured</button>
+        <button type="button" ng-click="doSort('date')" class="btn btn-danger btn-outline" style="background-color: #D86044">Latest</button>
+        <button type="button" ng-click="doSort('count')" class="btn btn-danger btn-outline" style="background-color: #D86044">Popular</button>
+        <button type="button" class="btn btn-danger btn-outline" style="background-color: #D86044">Featured</button>
       </div>
 
       <div class="projectCardsContainer" style="margin-top: 48px;" >
@@ -112,7 +110,7 @@
           <div class="col-sm-12 portfolio-col" style="margin-bottom: 20px;">
 
             <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 -1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
-              <h4>{{project.projName | uppercase}}<h4>
+              <h4>{{project.projName}}<h4>
             </div>
 
             <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.projID, project.teamMembers, project.userCleanUrl)" class="portfolio-item" data-toggle="modal">
@@ -122,7 +120,7 @@
                     <p> {{project.description}}</p>
                   </div>
                 </div>
-                <img src="{{project.projectImage}}" class="img-centered" alt="" style="position:relative; top:50%; transform: translateY(-50%)">
+                <img src="{{project.projectImage}}" class="img-centered" alt="" style="position:relative; top:50%; transform: translateY(-50%); display: block; min-width: 100%; min-height: 100%;">
               </div>
             </a>
 
