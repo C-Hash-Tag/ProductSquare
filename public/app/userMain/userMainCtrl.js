@@ -2,6 +2,8 @@ angular.module('myApp.UserMain', [])
 
 .controller('UserMainCtrl', ['$scope', '$http', 'data', '$routeParams', 'imageUpload', function($scope, $http, data, $routeParams, imageUpload){
 
+ 
+
   var truncateText = function(text) {
     if (text !== undefined) {
       var returnText = text;
@@ -51,6 +53,12 @@ angular.module('myApp.UserMain', [])
 
     $scope.projEditObj = {prop: "Hello"}
     $scope.projectObjects = [];
+
+    //CONTACT USER MODAL LOADING
+    $scope.userContactObj = {
+      realName: user.realName,
+      email: user.email,
+    };
 
     //handles updating projects on user page: prevents duplicate projects on edit
     if (user.projects){
