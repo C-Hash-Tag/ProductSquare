@@ -50,7 +50,7 @@
       <div ng-repeat="idea in ideasThatIsubmitted" class="portfolio-1">
         <div class="col-sm-4 portfolio-col" style="margin-bottom: 20px; width: 380px">
           <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
-            <h4>{{idea.ideaName | uppercase}}<h4>
+            <h4 style="font-family: Merriweather; font-weight: bold;">{{idea.ideaName | uppercase}}<h4>
           </div>
           <a href="#/organization/{{idea.usersCleanURL}}/" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" class="portfolio-item" data-toggle="modal">
             <div class="portfolio-link" >
@@ -140,7 +140,7 @@
 
 <!-- Profile edit Modal -->
 <div ng-controller="OrgProfileEditCtrl" id="profile-edit-modal" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-small"> 
+  <div class="modal-dialog modal-small">
 
     <div class="modal-content">
       <div class="modal-header">
@@ -184,7 +184,7 @@
               <input class="form-control" type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left; border: 0px;" />
 
               <button type="submit" class="btn btn-danger btn-rounded btn-outline pull-right"> Save Profile </button>
-              
+
             </li>
           </ul>
           <div class="error" ng-show="errorFound">{{error}}</div>
