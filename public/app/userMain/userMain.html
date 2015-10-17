@@ -92,7 +92,7 @@
         <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px; width: 50%">
 
           <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
-            <h4>{{projectObject.projName | uppercase}}<h4>
+            <h4 style="text-align: center;">{{projectObject.projName | uppercase}}<h4>
           </div>
 
           <a class="portfolio-item" data-toggle="modal" data-target="#project-info" ng-click="passit(projectObject.projName, projectObject.description, projectObject.projUrl, projectObject.githubRepo, projectObject.projectImage, projectObject.date, projectObject.projID, projectObject.teamMembers, loggedInUserID)">
@@ -150,8 +150,8 @@
             </li>
             <li>
 
-              <div class="user-profile-label form-control">Technical Skills:</div>
-              <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" style="clear:both;" value="{{skills}}">
+              <div class="user-profile-label">Technical Skills:</div>
+              <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" style="clear:both; width: 100%" value="{{skills}}">
 
             </li>
             <li>
