@@ -1,82 +1,74 @@
 <div class="container" style="margin-top: 100px;">
-  <div id="user-page-left-col">
-    <div id="user-page-edit-profile" ng-show="edible">
-      <button class="btn btn-danger btn-outline btn-rounded" data-toggle="modal" data-target="#profile-edit-modal">
-        Edit my Profile
-      </button>
-    </div>
+  <div id="user-page-left-col" class="well">
     <div id="user-page-profile-pic" width="100%">
       <img src="{{profileImage}}" />
     </div>
+    <span id="user-page-edit-profile" ng-show="edible" data-toggle="modal" data-target="#profile-edit-modal" style="float:right">
+       <i class="fa fa-pencil-square-o" style="font-size: 20px; position: relative; top: 10px;"></i>
+    </span>
+    <div id="user-page-real-name">{{orgName}}</div>
 
-    <div id="user-page-org-name">{{orgName}}</div>
+    <div ng-show="stringFound(overview)">
+      <div ng-model="overview"> {{orgDesc}} </div>
+    </div>
+
     <div id="user-details">
-      <div id="user-page-detail" ng-show="stringFound(orgDesc)">
+      <div id="user-page-detail" class="clearfix" ng-show="stringFound(orgLink)">
         <div id="user-page-logo">
-          <i class="fa fa-info-circle"></i>
+           <span class="fa fa-link">
         </div>
-        <div id="user-page-org-text">
-          {{orgDesc}}
-        </div>
-      </div>
-      <div id="user-page-detail" ng-show="stringFound(orgLink)">
-        <div id="user-page-logo">
-          <span class="fa fa-link">
-        </div>
-        <div id="user-page-org-text">
+        <div id="user-page-org-text" >
           <a href="{{orgLink}}">{{orgLink}}</a>
         </div>
       </div>
-      <div id="user-page-detail" ng-show="stringFound(realName)">
+      <div id="user-page-detail" class="clearfix" ng-show="stringFound(realName)">
         <div id="user-page-logo">
           <i class="fa fa-user"></i>
         </div>
         <div id="user-page-org-text">
-          {{realName}} {{orgRepTitle}}
+          {{realName}} ({{orgRepTitle}})
         </div>
       </div>
-      <div id="user-page-detail" ng-show="stringFound(location)">
-        <div id="user-page-map">
+      <div id="user-page-location" class="clearfix" ng-show="stringFound(location)" style="float: left">
+        <div id="user-page-location-logo">
           <i class="fa fa-map-marker"></i>
         </div>
         <div id="user-page-org-text">
           {{location}}
         </div>
       </div>
+      <div id="user-page-contact">
+        <button type="button" class="btn btn-success btn-rounded btn-outline" data-toggle="modal" data-target="#contactModal">
+          Contact
+        </button>
+      </div>
     </div>
-
-    <div id="user-page-contact">
-      <button type="button" class="btn btn-success btn-rounded btn-outline" data-toggle="modal" data-target="#contactModal">
-        Contact {{name}}
-      </button>
-    </div>
-
   </div>
 
-    <div class="cardContainerContainer" style="text-align: center; display: block">
-      <!-- Neat Non-Flippin Card starts:: SORTED BY RECENT -->
-        <div ng-repeat="idea in ideasThatIsubmitted" class="portfolio-1">
-          <div class="col-sm-4 portfolio-col" style="margin-bottom: 20px;P">
-            <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
-              <h4>{{idea.ideaName | uppercase}}<h4>
-            </div>
-            <a href="#/organization/{{idea.usersCleanURL}}/" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" class="portfolio-item" data-toggle="modal">
-              <div class="portfolio-link" >
-                <div class="caption">
-                  <div class="caption-content">
-                    <p> {{idea.description}}</p>
-                  </div>
+  <div class="cardContainerContainer" style="text-align: center; display: block; margin-left: 360px">
+    <!-- Neat Non-Flippin Card starts:: SORTED BY RECENT -->
+      <div ng-repeat="idea in ideasThatIsubmitted" class="portfolio-1">
+        <div class="col-sm-4 portfolio-col" style="margin-bottom: 20px; width: 380px">
+          <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
+            <h4>{{idea.ideaName | uppercase}}<h4>
+          </div>
+          <a href="#/organization/{{idea.usersCleanURL}}/" ng-click="passit(idea.ideaName, idea.description, idea.backgroundPath, idea.date, idea.userID, idea.ideaID)" class="portfolio-item" data-toggle="modal">
+            <div class="portfolio-link" >
+              <div class="caption">
+                <div class="caption-content">
+                  <p> {{idea.description}}</p>
                 </div>
-               <!--  <div style="position:relative; top:50%; transform: translateY(-50%)"> -->
-                <img src="{{idea.backgroundPath}}" class="img-centered" alt="" style="position:relative; top:50%; transform: translateY(-50%)">
-                <!-- </div> -->
               </div>
-            </a>
-            <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); padding-right: 15px; display: inline-block;">
-              <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray" ng-click="like(idea.userID, idea.ideaID); idea.liked = true;"></i> {{idea.count || 0}} </h5>
+             <!--  <div style="position:relative; top:50%; transform: translateY(-50%)"> -->
+              <img src="{{idea.backgroundPath}}" class="img-centered" alt="" style="position:relative; top:50%; transform: translateY(-50%)">
+              <!-- </div> -->
             </div>
+          </a>
+          <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); padding-right: 15px; display: inline-block;">
+            <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray" ng-click="like(idea.userID, idea.ideaID); idea.liked = true;"></i> {{idea.count || 0}} </h5>
           </div>
         </div>
+      </div>
 
       <!-- Ideas View/ Edit Modal -->
       <div id="idea-info" class="idea-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">

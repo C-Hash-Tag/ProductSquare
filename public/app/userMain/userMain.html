@@ -1,4 +1,5 @@
 <div ng-controller="UserMainCtrl" class="container" style="margin-top: 100px; ">
+
   <div id="user-page-left-col" class="well">
     <div id="user-page-profile-pic" width="100%">
       <img src="{{profileImage}}" />
@@ -92,7 +93,7 @@
         <div class="col-sm-4 portfolio-col" style="padding-bottom: 30px; width: 50%">
 
           <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
-            <h4>{{projectObject.projName | uppercase}}<h4>
+            <h4 style="text-align: center;">{{projectObject.projName | uppercase}}<h4>
           </div>
 
           <a class="portfolio-item" data-toggle="modal" data-target="#project-info" ng-click="passit(projectObject.projName, projectObject.description, projectObject.projUrl, projectObject.githubRepo, projectObject.projectImage, projectObject.date, projectObject.projID, projectObject.teamMembers, loggedInUserID)">
@@ -107,20 +108,15 @@
               <img src="{{projectObject.projectImage}}" class="img-centered" alt="" style="position:relative; top:50%; transform: translateY(-50%)">
             </div>
           </a>
-
           <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22); padding-right: 15px; display: inline-block;">
             <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray"></i> {{projectObject.count || 0}} </h5>
           </div>
-
         </div>
       </div>
-
       <proj-edit-modal obj="projEditObj"></proj-edit-modal>
-
-
-
     </div>
   </div>
+
 </div>
 
 
@@ -150,8 +146,8 @@
             </li>
             <li>
 
-              <div class="user-profile-label form-control">Technical Skills:</div>
-              <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" style="clear:both;" value="{{skills}}">
+              <div class="user-profile-label">Technical Skills:</div>
+              <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" style="clear:both; width: 100%" value="{{skills}}">
 
             </li>
             <li>
