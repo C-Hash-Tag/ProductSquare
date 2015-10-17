@@ -1,3 +1,14 @@
+/* Etc */
+i {
+  cursor: pointer;
+}
+
+.tag-item {
+  background: #D86044 !important;
+  border: #D86044 !important;
+  color: white;
+}
+
 /*  Homepage styles  */
 
 body {
