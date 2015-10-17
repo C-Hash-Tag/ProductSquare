@@ -102,7 +102,7 @@
                 </li>
                 <li>
                   <input class="form-control" ng-change="userLookUp(inputUser, obj.teamMembers)" rows="1" cols="50" name="projectTeamMembers" type="text" placeholder="Add new Team Member" ng-model="inputUser" />
-                  <ul ng-show="inputUser" class="project-modal-team-list">
+                  <ul class="well" style="padding-bottom: 46px;" ng-show="inputUser" class="project-modal-team-list">
                     <li class="filtered-users" ng-click="addTeamMember(value.userId, obj.teamMembers, obj.teamMemberObjects)" ng-repeat="(key, value) in filteredUsers">
                       <div class="project-modal-team-list-profile-image">
                         <img src="{{value.profileImage}}" alt="" />
@@ -115,7 +115,7 @@
                 </li>
 
               
-                <li>
+                <li style="clear:both">
                   <strong>Github URL: </strong>
                     <input class="form-control" rows="1" cols="50" name="comment" type="text" placeholder="http://github.com/username" ng-model="obj.githubRepo" />
                 </li>

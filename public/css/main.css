@@ -1,19 +1,4 @@
-/* Etc */
-i {
-  cursor: pointer;
-}
-
-.tag-item {
-  background: #D86044 !important;
-  border: #D86044 !important;
-  color: white;
-}
-
 /*  Homepage styles  */
-
-body {
-  background-color: #f5f5f5;
-}
 
 #header-message-container {
     margin-top: 150px;
@@ -21,7 +6,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 hr.primary {
@@ -358,7 +343,9 @@ hr.primary {
 }
 
 .project-modal-details li {
-  margin-top:20px;
+  clear:both;
+  list-style: none;
+  margin-bottom: 10px;
 }
 
 .project-modal-edit {
@@ -757,6 +744,11 @@ hr {
   height: 0;
 }
 .clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
 /* start commented backslash hack \*/
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
