@@ -2,6 +2,8 @@ angular.module('myApp.UserMain', [])
 
 .controller('UserMainCtrl', ['$scope', '$http', 'data', '$routeParams', 'imageUpload', function($scope, $http, data, $routeParams, imageUpload){
 
+ 
+
   var truncateText = function(text) {
     if (text !== undefined) {
       var returnText = text;
@@ -51,6 +53,12 @@ angular.module('myApp.UserMain', [])
 
     $scope.projEditObj = {prop: "Hello"}
     $scope.projectObjects = [];
+
+    //CONTACT USER MODAL LOADING
+    $scope.userContactObj = {
+      realName: user.realName,
+      email: user.email,
+    };
 
     //handles updating projects on user page: prevents duplicate projects on edit
     if (user.projects){
@@ -124,21 +132,21 @@ angular.module('myApp.UserMain', [])
     $scope.edible = false;
   });
 
-  //probably the wrong scope.
-  $scope.sendEmail = function(message) {
-    $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
-    console.log("in sendMail");
-    $http.post('/email', {
-      email: $scope.email, //to be populated from the factory.
-      message: message,
-      username: $scope.realName //to be populated from the factory.
-    }).
-    then(function(response) {
-      console.log("email sent");
-    }, function(response) {
-      console.log("email error");
-    });
-  }
+  // //probably the wrong scope.
+  // $scope.sendEmail = function(message) {
+  //   $('#contactModal').modal('hide'); //use jQuery to hide the modal when the submit email button his hit.
+  //   console.log("in sendMail");
+  //   $http.post('/email', {
+  //     email: $scope.email, //to be populated from the factory.
+  //     message: message,
+  //     username: $scope.realName //to be populated from the factory.
+  //   }).
+  //   then(function(response) {
+  //     console.log("email sent");
+  //   }, function(response) {
+  //     console.log("email error");
+  //   });
+  // }
 
   //HANDLES TRIGGERING PROJECT MODALS
   // $scope.passit = function(projName, description, projUrl, githubRepo, projectImage, date, projID, teamMembers){

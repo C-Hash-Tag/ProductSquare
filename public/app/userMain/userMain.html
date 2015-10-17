@@ -19,7 +19,7 @@
           <img src="/img/Github-Mark-64px.png" />
         </div>
         <div id="user-page-github-link" >
-          <a href="{{githubLink}}">{{githubText}}</a>
+          <a target="_blank" href="{{githubLink}}">{{githubText}}</a>
         </div>
       </div>
       <div id="user-page-linkedin" class="clearfix" ng-show="stringFound(linkedinLink)">
@@ -27,7 +27,7 @@
           <img src="/img/In-2C-81px-R.png" />
         </div>
         <div id="user-page-linkedin-link">
-          <a href="{{linkedinLink}}">{{linkedinText}}</a>
+          <a target="_blank" href="{{linkedinLink}}">{{linkedinText}}</a>
         </div>
       </div>
       <div id="user-page-blog" ng-show="stringFound(blogLink)">
@@ -35,7 +35,7 @@
           <img src="/img/blog_icon.png" width="18px" />
         </div>
         <div id="user-page-blog-link">
-          <a href="{{blogLink}}">{{blogText}}</a>
+          <a target="_blank" href="{{blogLink}}">{{blogText}}</a>
         </div>
       </div>
 
@@ -189,21 +189,4 @@
   </div>
 </div>
 
-<!-- Contact User Modal -->
-<div class="modal fade" id="contactModal" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Contact {{name}}</h4>
-      </div>
-      <div class="modal-body">
-       <form ng-submit="sendEmail(message)">
-         <textarea ng-model="message" placeholder="Post your message to Dylan here." style="height:100px; width:500px;"></textarea>
-         <input class="btn btn-success btn-rounded btn-outline" type="submit" value="Send"/>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
+<user-contact-modal obj="userContactObj"> </user-contact-modal>
