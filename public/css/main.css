@@ -422,6 +422,10 @@ hr.primary {
 
 .modal-small {
   width: 40%;
+  margin: 0 auto;
+  margin-top: 15%;
+  margin-bottom: 50%;
+
 }
 
 /* The navbar must have a zindex greater than the modal backdrop so the signin and login modals arent covered. */
