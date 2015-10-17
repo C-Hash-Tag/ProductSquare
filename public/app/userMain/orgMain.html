@@ -140,23 +140,20 @@
 
 <!-- Profile edit Modal -->
 <div ng-controller="OrgProfileEditCtrl" id="profile-edit-modal" class="portfolio-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content">
-    <div class="close-modal" data-dismiss="modal">
-      <div class="lr">
-        <div class="rl">
-        </div>
+  <div class="modal-dialog modal-small"> 
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 style="margin-top:5px; margin-bottom:5px;">Edit Profile</h3>
       </div>
-    </div>
-  <div class="container">
-    <div class="row first">
-      <h2 class="page-header">Edit Profile</h2>
-    </div>
-      <div class="row">
+
+      <div class="modal-body">
         <form ng-submit="updateUserProfile(realName, orgName, orgDesc, orgLink, location, cleanUrl)">
           <ul class="list-unstyled project-details">
             <li>
               <div class="user-profile-label">Your Name:</div>
-              <input ng-model="realName" class="user-profile-update-input" placeholder="Your name here" value="{{realName}}" />
+              <input ng-model="realName" class="form control" placeholder="Your name here" value="{{realName}}" />
             </li>
             <li>
               <div class="user-profile-label">Org Name:</div>

@@ -123,6 +123,7 @@
 <!-- Dev Profile Edit Modal -->
 <div ng-controller="UserProfileEditCtrl" id="profile-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-small">
+
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -131,7 +132,7 @@
 
       <div class="modal-body">
         <form ng-submit="updateUserProfile(realName, overview, githubLink, linkedinLink, blogLink, location, school, cleanUrl, skills)">
-          <ul class="list-unstyled">
+          <ul class="list-unstyled project-details">
             <li>
               <div class="user-profile-label">Name:</div>
               <input class="form-control" ng-model="realName" class="form-control" placeholder="Enter your name here" value="{{realName}}" />
