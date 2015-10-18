@@ -16,9 +16,13 @@ body a:hover {
 }
 
 .tag-item {
-  background: #D86044 !important;
-  border: #D86044 !important;
-  color: white;
+  background: white !important;
+  border: 1px solid MediumSeaGreen !important;
+  color: MediumSeaGreen;
+}
+
+.remove-button {
+  color: MediumSeaGreen !important;
 }
 /*  BUTTON styles  */
 .btn-outline {
