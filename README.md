@@ -19,7 +19,7 @@ This section describes how to install the plugin and get it working.
 2. Clone it down to your local machine
 3. From the root directory 'npm install' and 'bower install'
 4. Run server.js from root directory and browse at localhost:3000
-5. Alternatively, skips steps 1-4 and visit 'https://www.productsquare.com'
+5. Alternatively, skips steps 1-4 and visit 'http://productsquare.herokuapp.com/
 
 
 == Frequently Asked Questions ==
