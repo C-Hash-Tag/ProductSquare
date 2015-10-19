@@ -1,6 +1,5 @@
 # ProductSquare
 
-<<<<<<< HEAD
 === Product Square ===
 Contributors: codeNameAtlas, viinasu, jkf91, sinwailam193, dswright
 Requires at least: 0.0.1
