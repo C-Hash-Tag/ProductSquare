@@ -1,5 +1,6 @@
 # ProductSquare
 
+<<<<<<< HEAD
 === Product Square ===
 Contributors: codeNameAtlas, viinasu, jkf91, sinwailam193, dswright
 Requires at least: 0.0.1
@@ -55,5 +56,4 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
 plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
 "installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
 
