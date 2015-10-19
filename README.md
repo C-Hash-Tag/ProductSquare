@@ -1,6 +1,6 @@
 # ProductSquare
 
-### Contributing Engineers 
+### Contributing Engineers
 
 * [codeNameAtlas](https://github.com/codeNameAtlas "See the github profile for CodeNameAtlas")
 * [viinasu](https://github.com/viinasu "See the github profile for viinasu")
