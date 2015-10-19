@@ -1,79 +1,146 @@
-<nav-bar> </nav-bar>
-<div>
-<!-- Nav Bar will sit here -->
-<div class="mainContainer">
-  <h1>This will be the Main Project page</h1>
-  <!-- Feature sort and Create a Project -->
-  <div class="btn-group" role="group" aria-label="project sorting">
-  <button type="button" class="btn btn-default">Most Recent</button>
-  <button type="button" class="btn btn-default">Most Liked</button>
-  <button type="button" class="btn btn-default">Staff Picks</button>
-  </div>
 
-  <div class="container">
-  <h2>Modal Example</h2>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Submit A Project</button>
 
-  <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Submit Your Project</h4>
-          </div>
-          <div class="modal-body">
-            <form ng-submit="projectSubmit(projectDescription, githubUrl)">
-              Project Description:<br>
-              <input ng-model="projectDescription" type="text" placeholder="Briefly describe your project">
-              <br>
-              Github Url:<br>
-              <input ng-model="githubUrl" type="text" placeholder="Github Url">
-              <br><br>
-              <button id="submit">Submit</button>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+<div class="container">
+  <!-- Project Submit Modal Content - Standard Portfolio Modal - Images and Text -->
+  <div id="submitModalProject" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-large">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3>
+            <input placeholder="New Project Name" ng-model="projName" />
+          </h3>
         </div>
+        <div class="modal-body clearfix">
+          <div class="col-md-8 project-modal-left-col">
+            <p id="status"> Update project image</p>
+            <input type="file" id="file" name='file' onchange="angular.element(this).scope().editProjectImage(this)"/>
+            <img ng-src="{{projectImage}}" alt="" />
 
-      </div>
-  </div>
+            <p style="margin-bottom: 0;">
+              <textarea class="form-control" rows="4" cols="38" name="comment" type="text" placeholder="Tell us about your project. What does your project accomplish? What makes it useful or fun?" ng-model="projDesc" style="width:100%"></textarea>
+            </p>
+          </div>
+          <div class="col-md-4 project-modal-right-col">
 
-  </div>
-  <!-- List View of Projects here -->
-  <div class="projectList">
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-         <img src="..." alt="...">
-          <div class="caption">
-          <h3>Project #1</h3>
-          <p>Here is a brief summary of the project</p>
-          <p><a href="#" class="btn btn-primary" role="button">Modal Click Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            <ul class="list-unstyled project-modal-details">
+              <li>
+                <h3 style="margin:auto;text-align:left;">Team</h3>
+                <ul class="project-modal-team-list">
+                  <li ng-repeat="teamMemberObject in newProjTeamMemberObjects" class="clearfix">
+                    <div class="project-modal-team-list-profile-image">
+                      <img src="{{teamMemberObject.profileImage}}" alt="" />
+                    </div>
+                    <div class="project-modal-class-list-real-name">
+                      {{teamMemberObject.realName}}
+                      <span ng-click="removeTeamMember($index, newProjTeamMembers, newProjTeamMemberObjects);"> X </span>
+                    </div>
+
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <input class="form-control" ng-change="userLookUp(inputUser, newProjTeamMembers)" rows="1" cols="50" name="projectTeamMembers" type="text" placeholder="Add new Team Member" ng-model="inputUser" />
+                <ul class="well" style="padding-bottom: 46px;" ng-show="inputUser" class="project-modal-team-list">
+                  <li class="filtered-users" ng-click="addTeamMember(value.userId, newProjTeamMembers, newProjTeamMemberObjects)" ng-repeat="(key, value) in filteredUsers">
+                    <div class="project-modal-team-list-profile-image">
+                      <img src="{{value.profileImage}}" alt="" />
+                    </div>
+                    <div class="project-modal-class-list-real-name">
+                      {{value.realName}}
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Github URL: </strong>
+                  <input class="form-control" ng-show"edible"rows="1" cols="50" name="comment" type="text" placeholder="github.com/username" ng-model="githubUrl" />
+              </li>
+              <li ng-show"edible">
+                <strong>Live Project URL: </strong>
+                  <input class="form-control" rows="1" cols="50" name="comment" ng-model="projUrl" type="text" placeholder="www.yourProjectHere.com" />
+              </li>
+              <button ng-click="projectSubmit(projDesc, githubUrl, projName, projUrl, projectImage)" class="pull-right btn btn-outline btn-green project-modal-edit" style="margin-right: 0;">
+                Submit
+              </button>
+
+              <div ng-show="errorFound" class="error">
+                {{error}}
+              </div>
+
+            </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-         <img src="..." alt="...">
-          <div class="caption">
-          <h3>Project #2</h3>
-          <p>Here is a brief summary of the project</p>
-          <p><a href="#" class="btn btn-primary" role="button">Modal Click Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-          </div>
+  </div>
+  <!-- End Project Submit Modal Content -->
+
+  <section class="portfolio-1" style="margin-top: 50px;">
+
+    <div class="container" style="display:inline">
+
+    <!-- Project Submit Modal Button -->
+    <button id="project-submit-button" type="button" ng-hide="isOrg" class="btn btn-outline btn-green btn-rounded pull-right" data-toggle="modal" data-target="{{projTarget}}">
+      Submit A Project
+    </button>
+    <!-- Project Submit Modal Button ends -->
+
+      <div class="row" style="margin-left: 0;">
+        <div class="col-lg-12 text-center" id="page-title-ideas">
+          <h2>DEVELOPER PROJECTS</h2>
+          <hr class="primary">
         </div>
       </div>
+
+      <!-- Project Sort  -->
+      <div class="btn-group clearfix" role="group" aria-label="project sorting" style="width:318px; margin:auto; display:block;">
+          <button type="button" ng-click="doSort('date')" class="btn btn-gray btn-outline" style="width:100px; margin-left:18px;">Latest</button>
+          <button type="button" ng-click="doSort('count')" class="btn btn-gray btn-outline" style="width:100px;">Popular</button>
+          <button type="button" class="btn btn-gray btn-outline" style="width:100px;">Featured</button>
+      </div>
+
+      <div class="projectCardsContainer" style="margin-top: 30px; display:block;" >
+
+        <!-- Project Card -->
+        <div ng-repeat="project in newProjects | orderBy:sortBy:reverse" class="portfolio-1">
+
+          <div class="col-sm-12 portfolio-col" style="margin-bottom: 20px;">
+
+            <div class="proj-header" style="background-color: white; width: 100%; border-radius: 6px 6px 0 0; box-shadow: 0 -1px 2px 0 rgba(0,0,0,0.22); display: inline-block;">
+              <h4 style="font-family: Merriweather; font-weight: bold;">{{project.projName}}<h4>
+            </div>
+
+            <a data-target="#project-info" ng-click="passit(project.projName, project.description, project.projUrl, project.githubRepo, project.projectImage, project.date, project.projID, project.teamMembers, project.userCleanUrl)" class="portfolio-item" data-toggle="modal">
+              <div class="portfolio-link" style="box-shadow: 0 0 2px 0 rgba(0,0,0,0.22)">
+                <div class="caption">
+                  <div class="caption-content">
+                    <p> {{project.description}}</p>
+                  </div>
+                </div>
+                <img src="{{project.projectImage}}" class="img-centered" alt="" style="position:relative; top:50%; transform: translateY(-50%); display: block; min-width: 100%; min-height: 100%;">
+              </div>
+            </a>
+
+            <div style="background-color: white; width: 100%; border-radius: 0 0 6px 6px; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.22); padding-left: 15px; padding-right: 15px; display: inline-block;">
+              <h5 class="pull-left" style="color:navy"> {{project.teamMembers.faces}} </h5>
+              <h5 class="pull-right"> <i class="fa fa-thumbs-o-up" style="color: gray"></i> {{project.count || 0}} </h5>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- End of Project Card -->
+
+      </div>
+
     </div>
 
-  </div>
-  <!-- End Project List View Here -->
+    <!-- Start Specific Portfolio View - Standard Portfolio Modal - Images and Text -->
+    <proj-edit-modal obj="projEditObj"></proj-edit-modal>
+    <!-- End Specific Portfolio View - Standard Portfolio Modal - Images and Text ends -->
+  </section>
 </div>
 
-<!-- Footer will sit here -->
+
+

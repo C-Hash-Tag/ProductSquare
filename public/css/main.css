@@ -1,0 +1,814 @@
+/*  Homepage styles  */
+body {
+  background-color: #f5f5f5;
+}
+
+i {
+  cursor: pointer;
+}
+
+body a {
+  color: #777;
+}
+
+body a:hover {
+  color: #333;
+}
+
+.tag-item {
+  background: white !important;
+  border: 1px solid MediumSeaGreen !important;
+  color: MediumSeaGreen;
+}
+
+.remove-button {
+  color: MediumSeaGreen !important;
+}
+/*  BUTTON styles  */
+.btn-outline {
+    background-color: transparent;
+    transition: all .5s;
+}
+
+.btn-light {
+  text-shadow: none;
+}
+
+.btn-green {
+  border-color: MediumSeaGreen;
+  color: MediumSeaGreen;
+}
+
+.btn-green:hover {
+  background-color: MediumSeaGreen;
+  color: white;
+}
+
+.btn-gray {
+  border-color: DimGray;
+  color: DimGray;
+}
+
+.btn-gray:hover {
+  background-color: DimGray;
+  color: white;
+}
+
+
+/*  Homepage styles  */
+#header-message-container {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Sans Pro', "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+hr.primary {
+  max-width: 100px;
+  margin: 10px auto;
+  margin-bottom: 30px;
+  border-bottom: none;
+}
+hr.primary {
+  border-top: 6px solid MediumSeaGreen;
+}
+
+.about-1 #about-1-carousel .item {
+  width: 225px;
+  height: 225px;
+  margin: 15px auto;
+  border-radius: 50%;
+  position: relative;
+  cursor: default;
+  box-shadow: inset 0 0 0 15px rgba(244, 245, 247, 0.5);
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  display:inline-block;
+}
+
+.about-1 #about-1-carousel .item .info h3 {
+  color: #f4f5f7;
+  font-size: 24px;
+  margin: 0 30px;
+  padding: 45px 0 0 0;
+  height: 120px;
+}
+.about-1 #about-1-carousel .item .info p {
+  color: #f4f5f7;
+  color: rgba(244, 245, 247, 0.8);
+  padding: 10px 5px;
+  font-style: italic;
+  margin: 0 30px;
+  font-size: 14px;
+  border-top: 1px solid rgba(244, 245, 247, 0.5);
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0.4s;
+  -moz-transition: all 0.4s ease-in-out 0.4s;
+  -o-transition: all 0.4s ease-in-out 0.4s;
+  -ms-transition: all 0.4s ease-in-out 0.4s;
+  transition: all 0.4s ease-in-out 0.4s;
+}
+
+.about-1 #about-1-carousel .item .info {
+  position: absolute;
+  background: rgba(60, 179, 113, 0.8);
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -o-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-backface-visibility: hidden;
+}
+
+
+.about-1 #about-1-carousel .item:hover {
+  box-shadow: none;
+}
+.about-1 #about-1-carousel .item:hover .info {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+.about-1 #about-1-carousel .item:hover .info p,
+.about-1 #about-1-carousel .item:hover .info ul {
+  opacity: 1;
+}
+
+.about-1 #about-1-carousel .item .info h3 {
+  color: #f4f5f7;
+  font-size: 24px;
+  margin: 0 30px;
+  padding: 45px 0 0 0;
+  height: 120px;
+}
+.about-1 #about-1-carousel .item .info p {
+  color: #f4f5f7;
+  color: rgba(244, 245, 247, 0.8);
+  padding: 10px 5px;
+  font-style: italic;
+  margin: 0 30px;
+  font-size: 14px;
+  border-top: 1px solid rgba(244, 245, 247, 0.5);
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0.4s;
+  -moz-transition: all 0.4s ease-in-out 0.4s;
+  -o-transition: all 0.4s ease-in-out 0.4s;
+  -ms-transition: all 0.4s ease-in-out 0.4s;
+  transition: all 0.4s ease-in-out 0.4s;
+}
+.about-1 #about-1-carousel .item .info ul {
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0.4s;
+  -moz-transition: all 0.4s ease-in-out 0.4s;
+  -o-transition: all 0.4s ease-in-out 0.4s;
+  -ms-transition: all 0.4s ease-in-out 0.4s;
+  transition: all 0.4s ease-in-out 0.4s;
+}
+.about-1 #about-1-carousel .item .info ul li a {
+  color: #f4f5f7;
+  color: rgba(244, 245, 247, 0.8);
+}
+.about-1 #about-1-carousel .item .info ul li a:hover {
+  color: #f4f5f7;
+}
+
+
+
+.bg-parallax-light {
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)), url('../../img/main-background/city-wallpaper-11.jpg');
+  color: #f4f5f7;
+  text-shadow: 0 0 10px black;
+}
+
+
+.bg-parallax-dark {
+  margin-top: 50px;
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.5)), url('../../img/main-background/beautiful-golden-gate-bridge-at-sunset-wide-hd-wallpaper-download-gate-picture-free.jpg');
+  color: #f4f5f7;
+  text-shadow: 0 0 10px black;
+}
+
+@media (min-width: 767px) {
+  .bg-parallax-light,
+  .bg-parallax-dark {
+    background-attachment: fixed;
+  }
+}
+
+.btn-light {
+  background-color: transparent;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transitino: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.btn-outline.btn-light {
+  border: 1px solid #f4f5f7;
+  color: #f4f5f7;
+}
+.btn-outline.btn-light:hover,
+.btn-outline.btn-light:focus {
+  border: 1px solid #f4f5f7;
+  color: #3e444d;
+  background-color: #f4f5f7;
+}
+
+.btn-scroll-light {
+  font-size: 30px;
+  background: transparent;
+  height: 55px;
+  width: 55px;
+  border-radius: 100%;
+  line-height: 45px;
+  margin-top: 5px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transitino: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.btn-scroll-light:hover,
+.btn-scroll-light:focus,
+.btn-scroll-light:active {
+  outline: none;
+}
+
+.btn-scroll-light {
+  color: #f4f5f7;
+  border: 2px solid #f4f5f7;
+}
+.btn-scroll-light:hover,
+.btn-scroll-light:focus,
+.btn-scroll-light:active {
+  color: #f4f5f7;
+  background: rgba(244, 245, 247, 0.2);
+}
+@media (min-width: 768px) {
+  .btn-scroll-light {
+    margin-top: 30px;
+  }
+}
+/*  styles that allow for easing on on hover with nice on hover result on the project modal.  */
+ /* Project details modal styles*/
+
+ .portfolio-link {
+  cursor: pointer;
+  height: 200px;
+  width: 350px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.projectCardsContainer {
+  text-align: center;
+  display: block;
+}
+
+.projectCardsContainer div {
+  display: inline-block;
+}
+
+.proj-header {
+  background-color: white;
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);"
+}
+
+.proj-footer {
+  background-color: white;
+  width: 100%;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+  padding-right: 15px;
+}
+
+.portfolio-link img {
+  width: 100%;
+  /*border: 1px solid #d6d6d6;*/
+}
+
+.portfolio-1 .portfolio-item {
+  margin: 0 0 15px;
+  right: 0;
+}
+.portfolio-1 .portfolio-item .portfolio-link {
+  display: block;
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+/*  border-radius: 6px;
+*/}
+.portfolio-1 .portfolio-item .portfolio-link .caption {
+  background: MediumSeaGreen;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 100;
+  transition: all ease 0.5s;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  cursor: pointer;
+}
+.portfolio-1 .portfolio-item .portfolio-link .caption:hover {
+  opacity: .9;
+}
+.portfolio-1 .portfolio-item .portfolio-link .caption .caption-content {
+  position: absolute;
+  width: 90%;
+  height: 20px;
+  font-size: 20px;
+  text-align: center;
+  top: 10%;
+  left: 5%;
+  color: #f4f5f7;
+}
+.portfolio-1 .portfolio-item .portfolio-link .caption .caption-content i {
+  margin-top: -12px;
+}
+.portfolio-1 .portfolio-item .portfolio-link .caption .caption-content h3,
+.portfolio-1 .portfolio-item .portfolio-link .caption .caption-content h4 {
+  margin: 0;
+}
+.portfolio-1 * {
+  z-index: 2;
+}
+
+/* PROJECT MODAL DESIGNS */
+
+.project-modal-left-col {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.project-modal-image img {
+  margin: auto;
+  display:block;
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.project-modal-right-col {
+
+}
+
+.project-modal-details {
+  padding-left:20px;
+  padding-right:20px;
+}
+
+.project-modal-details li {
+  clear:both;
+  list-style: none;
+  margin-bottom: 10px;
+  margin-top:20px;
+}
+
+.project-modal-edit {
+  margin-right:40px;
+  margin-top:5px;"
+}
+
+.project-modal-team-list {
+  list-style:none;
+  padding-left:0px;
+  width: 80%;
+  margin-top:10px;
+}
+
+.project-modal-team-list-profile-image img {
+  width: 40px;
+  border-radius: 5px;
+}
+
+.project-modal-team-list-profile-image {
+  float:left;
+}
+
+.project-modal-class-list-real-name {
+  margin-top:10px;
+  margin-left: 20px;
+  float: left;
+}
+
+.githubLogo img {
+  width:22px;
+}
+
+
+/*Nav Bar styles*/
+.navrbar {
+  position: relative;
+}
+
+
+/* Sets the backdrop of the modal at the correct z-index to darken all content - Could fix this issue by getting these modals out from underneath the nav-bar div.*/
+.modal-backdrop, .modal-backdrop.in{
+  z-index:3;
+}
+
+.modal {
+  z-index: 50;
+  width:100%;
+  margin-left: 30%;
+  margin: auto;
+}
+
+.modal-open {
+  overflow:hidden;
+}
+
+.modal {
+  overflow-y: auto;
+  margin: auto;
+}
+
+.modal-dialog {
+}
+
+/* classes to be applied on the modal dialog div */
+.modal-large {
+  width: 80%;
+  margin-top: 3%;
+}
+
+.modal-medium {
+  width: 60%;
+}
+
+.modal-small {
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 3%;
+  margin-bottom: 50%;
+
+}
+
+/* The navbar must have a zindex greater than the modal backdrop so the signin and login modals arent covered. */
+.navbar {
+  z-index: 4;
+}
+
+/* Some random styles Not sure what they are for */
+
+#header-banner h1,
+#header-banner h2,
+#header-banner h3 {
+  text-align: center;
+  color: white;
+}
+
+#project-title h3,
+#project-text h3 {
+  color: #003e54;
+  text-align: center;
+}
+
+#header-banner button,
+#project-text button {
+  margin: auto;
+  display: block;
+}
+
+
+/* Styles for the Main Page */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important;
+}
+
+/* Styles for Student Developer Sign Up Modal */
+#tags-input .tags-list .input {
+  width: 100%;
+}
+
+
+/* Styles for Ideas page */
+
+#idea-info {
+  width: 50%;
+  height: 80%;
+  top: 7%;
+  margin: auto;
+}
+
+.btn-group-lg>.btn,.btn-lg {
+  display: block;
+}
+
+.cardContainer {
+  position:relative;
+  margin: 15px;
+  width: 350px;
+  height: 200px;
+  -webkit-perspective: 800px;
+  -ms-perspective: 800px
+;  perspective: 800px;
+  border-radius: 4px;
+}
+
+.card {
+  overflow: hidden;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.card:hover {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+  -moz-box-shadow:    0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+  box-shadow:         0px 0px 30px 0px rgba(102, 204, 255, 0.67);
+}
+
+p {
+  font-family: Helvetica;
+}
+
+.name {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  color: gray;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.glyphicon-container{
+  position: absolute;
+  bottom: -3px;
+  right: 10px;
+  top: 171px !important;
+  cursor: pointer;
+}
+
+.glyphicon {
+  font-size: 13px;
+  color: gray;
+}
+
+.liked {
+  background-color: orange;
+}
+
+/* Styles for the project page */
+
+/*image container*/
+.portfolio-link {
+  display: block;
+  width 500px;
+  height: 200px;
+  margin: 0px;
+  text-align: left;
+  overflow: hidden;
+}
+
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+:-moz-placeholder {
+   font-style: italic;
+}
+::-moz-placeholder {
+   font-style: italic;
+}
+:-ms-input-placeholder {
+   font-style: italic;
+}
+
+/* User profile page styling */
+#user-page-left-col {
+  float: left;
+  width: 24%;
+  margin-right: 3%;
+}
+
+.user-profile-label {
+  width:200px;
+  float:left;
+  font-weight: bold;
+}
+
+.user-profile-update-input {
+  width: 400px;
+}
+
+#user-page-edit-profile {
+  margin-bottom: 15px;
+}
+
+#user-profile-edit-labels {
+  float:left;
+  margin-right: 20px;
+}
+
+#user-page-profile-pic img {
+  width: 100%;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+#user-page-real-name, #user-page-org-name {
+  font-size: 26px;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+#user-details {
+  margin-left:0px;
+}
+
+#user-page-github {
+  margin-top:5px;
+}
+
+#user-page-github-logo img {
+  width: 20px;
+}
+
+#user-page-github-logo {
+  float: left;
+  margin-right: 10px;
+}
+
+#user-page-github-link {
+  float: left;
+  margin-top:1px;
+  text-overflow: ellipsis;
+}
+
+#user-page-linkedin {
+  margin-top: 5px;
+}
+
+#user-page-linkedin-logo {
+  float: left;
+  margin-right: 9px;
+}
+
+#user-page-linkedin-logo img {
+  width: 20px;
+  margin-left: 2px;
+}
+
+#user-page-linkedin-link {
+  margin-top: 1px;
+  margin-left: -1px;
+  float:left;
+}
+
+#user-page-blog {
+  margin-left: 2px;
+  margin-top: 5px;
+}
+
+#user-page-logo, #user-page-blog-logo, #user-page-org-text {
+  float:left;
+  margin-right: 10px;
+}
+#user-page-map {
+  float:left;
+  margin-right: 14px;
+}
+
+#user-page-location {
+  margin-top:5px;
+}
+
+#user-page-location-name {
+  margin-top: 1px;
+}
+
+#user-page-detail {
+  clear: both;
+  float: left;
+  margin-right: 14px;
+  margin-left: 6px;
+}
+
+
+#user-page-location-logo {
+  float: left;
+  margin-right: 14px;
+  margin-left: 6px;
+}
+
+#user-page-organization {
+  margin-top: 5px;
+}
+
+#user-page-organization-logo {
+  margin-left: 1px;
+  margin-right: 8px;
+  float: left;
+}
+
+
+#user-page-school {
+  margin-top: 5px;
+}
+
+#user-page-school-logo {
+  margin-left: 1px;
+  margin-right: 8px;
+  float: left;
+}
+
+#user-page-contact {
+  clear: both;
+  padding-top: 20px;
+}
+
+#user-page-contact button {
+}
+
+.error {
+  color: red;
+}
+
+
+#user-page-right-col {
+  float: left;
+  width: 70%;
+}
+
+
+/* Sign Up Modal Styles */
+#already-have-an-account,
+#dont-have-an-account {
+  text-align: center;
+}
+
+/* clearfix class for floats within divs */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */

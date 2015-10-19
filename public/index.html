@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+<html lang="en-us">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,52 +11,248 @@
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="./css/main.css"> -->
+
+    <!-- CSS from the imported template for Landing page & Project page -->
+    <!-- <link rel="stylesheet" type="text/css" href="./css/custom.css"> -->
+
+    <!-- Custom CSS written by C-hashtag -->
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+
+    <!-- Font Awesome Icons  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic' rel='stylesheet' type='text/css'>
 
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="./css/animate.min.css" type="text/css">
+    <!-- NG Tags Input -->
+    <link rel="stylesheet" type="text/css" href="./bower_components/ng-tags-input/ng-tags-input.css">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/creative.css" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body ng-app="myApp" id="page-top">
-    <div ng-view></div>
-    
+    <div ng-controller="AppController">
+
+      <!-- Actual Navigation Bar -->
+      <div ng-cloak ng-controller="NavBarCtrl" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#/">
+              <img style="max-width:38px; margin-top: -10px; display: inline" src="../../img/logo.png"> <span style="top: -6px; position: relative; left: -4px;"> ProductSquare </span>
+            </a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li ng-class="{active: isActive('/projects')}">
+                <a href="#/projects">DEVELOPER PROJECTS</a>
+              </li>
+              <li ng-class="{active: isActive('/ideas')}">
+                <a href="#/ideas">PROPOSAL BOARD</a>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li ng-hide="loggedIn">
+                <a data-toggle="modal" data-target="#signUpModal" style="cursor:pointer;">SIGN UP</a>
+              </li>
+              <li ng-hide="loggedIn">
+                <a data-toggle="modal" data-target="#loginModal" style="cursor:pointer;">LOGIN</a>
+              </li>
+              <li ng-show="loggedIn && userType==='student'" ng-class="{active: isActive('/user/'+loggedInUserCleanUrl+'/')}">
+                <a href="/#/user/{{loggedInUserCleanUrl}}/" style="cursor:pointer">{{loggedInUserRealName}}</a>
+              </li>
+              <li ng-show="loggedIn && userType==='organization'" ng-class="{active: isActive('/organization/'+loggedInUserCleanUrl+'/')}">
+                <a href="/#/organization/{{loggedInUserCleanUrl}}/" style="cursor:pointer">{{loggedInUserRealName}}</a>
+              </li>
+              <li ng-show="loggedIn">
+                <a href="#/" ng-click="logout()" style="cursor:pointer;">LOGOUT</a>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+
+
+        <div ng-controller="UserSignUpCtrl" id="signUpModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-small">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign Up</h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="createUser(realName, email, password, userType)">
+                  Your Name: <input type="text" class="form-control" ng-model="realName" />  <br/>
+                  Email Address: <input type="text" class="form-control" ng-model="email" /> <br/>
+                  Password: <input type="password" class="form-control" ng-model="password" /> <br/>
+                  Which of the following describes you? <br/>
+                  <label class="radio-inline"><input type="radio" ng-model="userType" value="student" name="optradio"> Student Developer </label>
+                  <label class="radio-inline"><input type="radio" ng-model="userType" value="organization" name="optradio"> Organization Representative </label><br/><br/>
+                  <p style="color: red" ng-show="errorFound">{{error}}</p>
+                  <span class="pull-right">
+                    <input type="submit" id="Submit" class="btn btn-green btn-outline" value="Submit"/>
+                  </span>
+                  <br/>
+                  <br/>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <h5 id="already-have-an-account" style="text-align: center">Already have an account? <a data-toggle="modal" ng-click="gotoLogin()" style="cursor:pointer;">Log In</a> </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-controller="UserLoginCtrl" id="loginModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-small">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Log In</h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                  Email:
+                  <br/>
+                  <input class="form-control" type="text" ng-model="email"/>
+                  <br/>
+                  Password:
+                  <br/>
+                  <input class="form-control" type="password" ng-model="password"/>
+                  <br/>
+                  <p style="color: red" ng-show="loginErrorFound">{{ loginError }}</p>
+                  <button ng-click="login(email, password)" type="submit" class="btn btn-green btn-outline pull-right">Log In</button>
+                  <br/>
+                  <br/>
+                </form>
+              </div>
+              <div class="modal-footer">
+                  <h5 id="dont-have-an-account" style="text-align: center">Don't have an account? <a data-toggle="modal" ng-click="gotoSignup()" style="cursor:pointer;">Sign Up</a> </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Finish User Profile (Enter Additional Info) Modal -->
+        <div ng-controller="DevProfileCompleteCtrl" id="devProfileCompleteModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-small">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Log In</h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="finishDevProfile(githubLink, linkedinLink, blogLink, location, school, skills)">
+                  <ul class="list-unstyled project-details">
+                    <li>
+                      <div class="user-profile-label">Github Profile URL:</div>
+                      <input class="form-control" ng-model="githubLink" class="user-profile-update-input" placeholder="Enter your github profile URL here" value="{{githubLink}}" />
+                    </li>
+                    <li>
+                      <div class="user-profile-label">LinkedIn URL:</div>
+                      <input class="form-control" ng-model="linkedinLink" class="user-profile-update-input" placeholder="Enter your LinkedIn profile URL here" value="{{linkedinLink}}" />
+                    </li>
+                    <li>
+                      <div class="user-profile-label">Personal Blog URL:</div>
+                      <input class="form-control" ng-model="blogLink" class="user-profile-update-input" placeholder="Enter your personal blog URL here" value="{{blogLink}}" />
+                    </li>
+                    <li>
+                      <div class="user-profile-label">Location:</div>
+                      <input class="form-control" ng-model="location" class="user-profile-update-input" placeholder="Enter your current location here" value="{{location}}" />
+                    </li>
+                    <li>
+                      <div class="user-profile-label">School:</div>
+                      <input class="form-control" ng-model="school" class="user-profile-update-input" placeholder="The development school you attended" value="{{school}}" />
+                    </li>
+                    <li>
+                      <div class="user-profile-label">Skills:</div>
+                      <tags-input id="tags-input" ng-model="skills" class="user-profile-update-input" placeholder="Enter your tech skills (e.g., HTML, CSS, JavaScript)" value="{{skills}}">
+                        <auto-complete source="loadTags($query)"></auto-complete>
+                      </tags-input>
+                    </li>
+                    <li class="clearfix">
+                      <div class="user-profile-label">Profile Image:</div>
+                      <img id="preview" src="{{loggedInUserProfileImage}}" style="float:left; margin-right:20px" width="150px" />
+                      <input class="form-control" type="file" id="file" name='file' onchange="angular.element(this).scope().updateUserProfileImage(this)" style="float:left;" />
+                    </li>
+                  </ul>
+                  <div ng-show="errorFound" class="error">{{error}}</div>
+                  <input type="submit" value="SAVE PROFILE" class="btn btn-default btn-green btn-outline" />
+                </form>
+              </div>
+              <div class="modal-footer">
+                <a data-toggle="modal" data-target="#devProfileCompleteModal" href="/#/user/{{loggedInUserCleanUrl}}/">Skip this step</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Finish Organization Profile Modal -->
+        <div ng-controller="OrgProfileCompleteCtrl" id="finishOrgProfileModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-small">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tell Us More about Your Organization </h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="finishOrgProfile(orgName, orgLink, orgDesc, orgRepTitle, orgLoc)">
+                  Organization Name: <input type="text" class="form-control" ng-model='orgName' />  <br/>
+                  Organization Description: <input type="text" class="form-control" ng-model='orgDesc' />  <br/>
+                  Organization Website URL: <input type="text" class="form-control" ng-model='orgLink' />  <br/>
+                  Organization Location: <input type="text" class="form-control" ng-model='orgLoc' />  <br/>
+                  <img id="preview" src="{{loggedInUserProfileImage}}" height="100" width="100" />
+                  Organization Logo: <input type="file" id="file" name='file' onchange="angular.element(this).scope().updateOrgLogoImage(this)" />  <br/>
+                  Your Title: <input type="text" class="form-control" ng-model='orgRepTitle' /> <br/>
+                  <div ng-show="errorFound" class="error">{{error}}</div>
+                  <input class="btn btn-green btn-outline btn-rounded" type="submit" value="Submit" style="cursor:pointer;"/> <br/><br/>
+                </form>
+                <a data-toggle="modal" data-target="#finishOrgProfileModal" style="cursor:pointer;" href="/#/user/{{loggedInUserCleanUrl}}/">Skip this step</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- The main pages of the app -->
+      <div ng-view></div>
+    </div>
+
+    <!-- Custom Font -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
     <!-- FireBase -->
     <script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
 
-    <!-- Angular -->
+    <!-- JS Plug-Ins -->
+    <script src="http://underscorejs.org/underscore.js"></script>
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-route/angular-route.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.28/angular-resource.min.js"></script>
+    <script src="./bower_components/ng-tags-input/ng-tags-input.js"></script>
+
+    <!-- Angular  -->
     <script src="./app/app.js"></script>
     <script src="./app/factories/data.js"></script>
+    <script src="./app/factories/auth.js"></script>
+    <script src="./app/factories/firebase.js"></script>
+    <script src="./app/factories/imageUpload.js"></script>
     <script src="./app/main/mainCtrl.js"></script>
     <script src="./app/ideaMain/ideaMainCtrl.js"></script>
     <script src="./app/userMain/userMainCtrl.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/jquery.fittext.js"></script>
-    <script src="js/wow.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/creative.js"></script>
-
-    <!-- Custom JavaScsript -->
-    <script src="app/navbar/navbar.js"></script>
-
+    <script src="./app/userMain/orgMainCtrl.js"></script>
+    <script src="./app/navbar/navbar.js"></script>
     <script src="./app/projectMain/projectMainCtrl.js"></script>
+    <script src="./app/projEditModal/projEditModal.js"></script>
+    <script src="./app/userContactModal/userContactModal.js"></script>
+
   </body>
 </html>

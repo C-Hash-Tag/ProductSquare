@@ -1,11 +1,9 @@
 // add controller info for angular main
 angular.module('myApp.main', [])
 
-.controller('MainCtrl', ['data', function(data) {
-  // data.createUser("123@gmail.com", "123", "tc1234", "Tom Clooney");
-  // data.getUsersData("Tom Clooney");
-  // data.createProject("it's cool", "what@github.com", "coffeeApp", "tc1234");
-  // data.createIdea('coffeeApp', "hey, lets create some coffee", "tc1234")
-  // console.log(data.login("123@gmail.com", "124"));
-}])
-
+.controller('MainCtrl', ['$scope', function($scope) {
+  // $scope.enterBottom = function() {
+  //   $("html, body").animate({ scrollTop: $(window).height()}, 600);
+  //   return false;
+  // };
+}]);
