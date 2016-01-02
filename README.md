@@ -1,6 +1,6 @@
 # ProductSquare
 
-### Contributing Engineers 
+### Contributing Engineers
 
 * [codeNameAtlas](https://github.com/codeNameAtlas "See the github profile for CodeNameAtlas")
 * [viinasu](https://github.com/viinasu "See the github profile for viinasu")
@@ -21,7 +21,7 @@ This section describes how to install the app and get it working on your localho
 1. Fork the repository at 'https://github.com/C-Hash-Tag/ProductSquare'
 2. Clone it down to your local machine
 3. From the root directory 'npm install' and 'bower install'
-4. Run server.js from root directory and browse at localhost:3000
+4. Run 'node server.js' or 'nodemon server.js' (if you have nodemon installed) from root directory and view the app at localhost:3000
 
 ### Frequently Asked Questions
 
@@ -34,4 +34,3 @@ We welcome anyone who wants to contribute to ProductSquare. Please fork this rep
 First, thanks for being a super hero! Please create a new GitHub issue on this repo that explains the bug and we will address it as soon as possible.
 
 See our current app at [ProductSquare](http://productsquare.herokuapp.com/ "Connecting devs with ideas").
-
