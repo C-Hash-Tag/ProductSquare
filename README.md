@@ -23,13 +23,13 @@ This section describes how to install the app and get it working on your localho
 3. From the root directory 'npm install' and 'bower install'
 4. Run server.js from root directory and browse at localhost:3000
 
-*** Frequently Asked Questions
+### Frequently Asked Questions
 
-***** I am a developer, how can I contribute to ProductSquare?
+##### I am a developer, how can I contribute to ProductSquare?
 
 We welcome anyone who wants to contribute to ProductSquare. Please fork this repo and make a pull request for a feature you would like to add. Another great way to start a conversation with us about how to contribute would be to submit a new issue that you would like to address on this repo and we will respond.
 
-***** What if I encounter a bug? How should I report it?
+##### What if I encounter a bug? How should I report it?
 
 First, thanks for being a super hero! Please create a new GitHub issue on this repo that explains the bug and we will address it as soon as possible.
 
