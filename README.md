@@ -2,11 +2,11 @@
 
 ### Contributing Engineers 
 
-* codeNameAtlas 
-* viinasu 
-* jkf91 
-* sinwailam193 
-* dswright
+* [codeNameAtlas](https://github.com/codeNameAtlas "See the github profile for CodeNameAtlas")
+* [viinasu](https://github.com/viinasu "See the github profile for viinasu")
+* [jkf91](https://github.com/jkf91 "See the github profile for jkf91")
+* [sinwailam193](https://github.com/sinwailam193 "see the github profile for sinwailam193")
+* [dswright](https://github.com/dswright "see the github profile for dswright")
 
 ### ProductSquare Description
 
@@ -33,6 +33,6 @@ We welcome anyone who wants to contribute to ProductSquare. Please fork this rep
 
 First, thanks for being a super hero! Please create a new GitHub issue on this repo that explains the bug and we will address it as soon as possible.
 
-[ProductSquare](http://productsquare.com/ "Connecting devs with ideas").
+See our current app at [ProductSquare](http://productsquare.herokuapp.com/ "Connecting devs with ideas").
 
 
