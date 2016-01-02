@@ -16,7 +16,7 @@ Visit [ProductSquare](http://productsquare.herokuapp.com "Visit ProductSquare")
 
 ### Installation
 
-This section describes how to install the app and get it working on your local host
+This section describes how to install the app and get it working on your localhost
 
 1. Fork the repository at 'https://github.com/C-Hash-Tag/ProductSquare'
 2. Clone it down to your local machine
@@ -27,7 +27,7 @@ This section describes how to install the app and get it working on your local h
 
 ***** I am a developer, how can I contribute to ProductSquare?
 
-We welcome anyone who wants to contribute to ProductSquare. Please fork this repo and make a PR for a feature you would like to add. Another great way to start a conversation with us about how to contribute would be to submit a new issue that you would like to address on this repo.
+We welcome anyone who wants to contribute to ProductSquare. Please fork this repo and make a pull request for a feature you would like to add. Another great way to start a conversation with us about how to contribute would be to submit a new issue that you would like to address on this repo and we will respond.
 
 ***** What if I encounter a bug? How should I report it?
 
