@@ -21,7 +21,7 @@ This section describes how to install the app and get it working on your localho
 1. Fork the repository at 'https://github.com/C-Hash-Tag/ProductSquare'
 2. Clone it down to your local machine
 3. From the root directory 'npm install' and 'bower install'
-4. Run server.js from root directory and browse at localhost:3000
+4. Run 'node server.js' or 'nodemon server.js' (if you have nodemon installed) from root directory and view the app at localhost:3000
 
 ### Frequently Asked Questions
 
