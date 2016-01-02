@@ -95,6 +95,10 @@ hr.primary {
   display:inline-block;
 }
 
+#about-1-carousel a {
+  color: white;
+}
+
 .about-1 #about-1-carousel .item .info h3 {
   color: #f4f5f7;
   font-size: 24px;
