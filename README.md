@@ -1,58 +1,37 @@
 # ProductSquare
 
-=== Product Square ===
-Contributors: codeNameAtlas, viinasu, jkf91, sinwailam193, dswright
-Requires at least: 0.0.1
-Tested up to: 0.0.1
-Stable tag: not stable
+### Contributing Engineers 
 
+* [codeNameAtlas](https://github.com/codeNameAtlas "See the github profile for CodeNameAtlas")
+* [viinasu](https://github.com/viinasu "See the github profile for viinasu")
+* [jkf91](https://github.com/jkf91 "See the github profile for jkf91")
+* [sinwailam193](https://github.com/sinwailam193 "see the github profile for sinwailam193")
+* [dswright](https://github.com/dswright "see the github profile for dswright")
 
-==  Product Square Description ==
+### ProductSquare Description
 
 Every 7 weeks, professionally trained student engineers are creating new products. Every 7 weeks, non-profit organizations in need of software engineers have the opportunity to get their product idea built out for free. ProductSquare is the townsquare for individuals/non-profits to submit product ideas and for student engineers to turn these ideas into a reality. It also provides a platform for student engineers to showcase their portfolio, view what other engineers are developing, and get product ideas from the community. At essence, ProductSquare helps developers brand themselves with projects that matter.
 
-== Installation ==
+Visit [ProductSquare](http://productsquare.herokuapp.com "Visit ProductSquare")
 
-This section describes how to install the plugin and get it working.
+### Installation
+
+This section describes how to install the app and get it working on your localhost
 
 1. Fork the repository at 'https://github.com/C-Hash-Tag/ProductSquare'
 2. Clone it down to your local machine
 3. From the root directory 'npm install' and 'bower install'
 4. Run server.js from root directory and browse at localhost:3000
-5. Alternatively, skips steps 1-4 and visit 'http://productsquare.herokuapp.com/
 
+### Frequently Asked Questions
 
-== Frequently Asked Questions ==
+##### I am a developer, how can I contribute to ProductSquare?
 
-= I am a developer, I would like to contribue to ProductSquare? =
+We welcome anyone who wants to contribute to ProductSquare. Please fork this repo and make a pull request for a feature you would like to add. Another great way to start a conversation with us about how to contribute would be to submit a new issue that you would like to address on this repo and we will respond.
 
-Great, please reach out to one of the founders directly through the website and they will give you information on our work flow and how to process a pull request process.
+##### What if I encounter a bug? How should I report it?
 
-= What if I encounter any bugs? How should I report them? =
+First, thanks for being a super hero! Please create a new GitHub issue on this repo that explains the bug and we will address it as soon as possible.
 
-First, thanks for being a super hero! Please reach out to one of the founders immediately on our website with the bug or issue you are having and they will fix it immediately.
-
-== Additional Information ==
-
-Additional Resources:
-
-* We have additional documentation
-* We have a Press Release
-
-Here's a link to [ProductSquare](http://productsquare.com/ "Connecting devs with ideas").
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
-
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
+See our current app at [ProductSquare](http://productsquare.herokuapp.com/ "Connecting devs with ideas").
 
